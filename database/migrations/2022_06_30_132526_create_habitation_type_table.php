@@ -13,7 +13,7 @@ class CreateHabitationTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('habitation_type', function (Blueprint $table) {
+        Schema::create('habitation_types', function (Blueprint $table) {
             $table->id();
             $table->string('label', 30);
             $table->string('icon');
