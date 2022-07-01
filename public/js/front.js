@@ -50392,7 +50392,7 @@ var root = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/claranocilla/Desktop/BoolBnB/BoolBnB/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\matte\OneDrive\Desktop\Projects\VsCode\Boolean-58\BoolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

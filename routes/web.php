@@ -13,11 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.home');
-});
+// Route::get('/', function () {
+//     return view('guest.home');
+// });
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Back-end route
+Route::middleware('auth')
+->prefix('admin')
+->name('admin.')
+->namespace('Admin')
+->group( function(){
+    Route::get('/', 'HomeController@index')->name('home');
+});
+
+// Front-end route
+Route::get('{any?}',function(){
+    return view('guest.home');
+} )->where('any', ".*");
+
 
