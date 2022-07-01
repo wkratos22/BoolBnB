@@ -87,6 +87,7 @@
 /******/ ({
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
@@ -50361,11 +50362,14 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 >>>>>>> 6ba0caa05e82fd37acdf95a47e6fd1edab340928
+=======
+>>>>>>> 11dc191d6a68e902568718aa28c1ba5266550ef4
 /***/ "./resources/js/front.js":
 /*!*******************************!*\
   !*** ./resources/js/front.js ***!
   \*******************************/
 /*! no exports provided */
+<<<<<<< HEAD
 <<<<<<< HEAD
 /***/ (function(module, exports) {
 
@@ -50391,6 +50395,11 @@ var root = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   }
 });
 >>>>>>> 6ba0caa05e82fd37acdf95a47e6fd1edab340928
+=======
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\matte\\OneDrive\\Desktop\\Projects\\VsCode\\Boolean-58\\BoolBnB\\resources\\js\\front.js'");
+>>>>>>> 11dc191d6a68e902568718aa28c1ba5266550ef4
 
 /***/ }),
 
