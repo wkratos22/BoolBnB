@@ -29,6 +29,7 @@ class CreateHabitationsTable extends Migration
             $table->integer('square_meters')->nullable();
             $table->string('image');
             $table->boolean('visible');
+            $table->timestamps();
         });
     }
 

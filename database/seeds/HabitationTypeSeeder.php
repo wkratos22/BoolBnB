@@ -13,20 +13,30 @@ class HabitationTypeSeeder extends Seeder
     public function run()
     {
         $types = [
-            'Appartamento',
-            'Villa',
-            'B&B',
-            'Baita',
-            'Chalet',
-            'Camping',
-            'Hotel',
-            'Minicasa',
+            [
+                "label" => 'Appartamento',
+                "icon" => 'appartamento.jpeg'
+            ],
+            [
+                "label" => 'Hotel',
+                "icon" => 'hotel.jpeg'
+            ],
+            [
+                "label" => 'Casa',
+                "icon" => 'casa.jpeg'
+            ],
+            [
+                "label" => 'Pensione',
+                "icon" => 'pensione.jpeg'
+            ]
+            
         ];
 
         foreach($types as $type){
             $new_type = new HabitationType();
-            $new_type->label = $type;
-            $new_type->icon = $type;
+            $new_type->label = $type['label'];
+            $new_type->icon = $type['icon'];
+            $new_type->save();
         }
     }
 }
