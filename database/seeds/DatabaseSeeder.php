@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call(
             [
                 HabitationTypeSeeder::class,
-                HabitationSeeder::class
+                HabitationSeeder::class,
+                TagSeeder::class
             ]
     
     );
