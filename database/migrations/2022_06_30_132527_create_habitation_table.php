@@ -16,6 +16,7 @@ class CreateHabitationTable extends Migration
         Schema::create('habitations', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
+            $table->string('slug');
             $table->mediumText('description');
             $table->decimal('price', 7,2);
             $table->string('address');
@@ -28,6 +29,7 @@ class CreateHabitationTable extends Migration
             $table->integer('square_meters')->nullable();
             $table->string('image');
             $table->boolean('visible');
+            $table->timestamps();
         });
     }
 
@@ -38,6 +40,6 @@ class CreateHabitationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('habitation');
+        Schema::dropIfExists('habitations');
     }
 }

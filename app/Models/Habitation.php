@@ -45,4 +45,8 @@ class Habitation extends Model
     public function services() {
         return $this->belongsToMany('App\Models\Service');
     }
+
+    public function tags() {
+        return $this->belongsToMany('App\Models\Tag');
+    }
 }
