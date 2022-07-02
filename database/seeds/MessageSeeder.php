@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use use Faker\Generator as Faker;
+use Faker\Generator as Faker;
+
+use App\Models\Message;
 
 class MessageSeeder extends Seeder
 {
@@ -12,12 +14,13 @@ class MessageSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        //for($i = 0; $i < 10; $i++){
-            //         $message = new Message();
-            //         $message->name = $faker->text();
-            //         $message->content = $faker->paragraph(3);
-            //         $message->image = $faker->imageUrl(250, 250);
-            //         $message->slug = Str::slug($message->title, '-');
-            //         $message->save();
+        for($i = 0; $i < 10; $i++){
+            $message = new Message();
+            $message->habitation_id = $faker->numberBetween(1,10);
+            $message->name = $faker->name();
+            $message->email_sender = $faker->email();
+            $message->text_message = $faker->paragraph(4);
+            $message->save();
+        }
     }
 }

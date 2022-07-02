@@ -15,7 +15,10 @@ class DatabaseSeeder extends Seeder
             [
                 HabitationTypeSeeder::class,
                 HabitationSeeder::class,
-                TagSeeder::class
+                TagSeeder::class,
+                ServiceSeeder::class,
+                MessageSeeder::class,
+                SponsorshipSeeder::class,
             ]
     
     );
