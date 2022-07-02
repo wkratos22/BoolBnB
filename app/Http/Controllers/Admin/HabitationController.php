@@ -28,7 +28,7 @@ class HabitationController extends Controller
             return view('admin.habitations.index', compact('habitations'));
         } else {
             return redirect('/');
-        }        
+        }
     }
 
     /**
@@ -58,9 +58,10 @@ class HabitationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Habitation $habitation)
     {
-        //
+
+        return view('admin.habitations.show', compact('habitation'));
     }
 
     /**

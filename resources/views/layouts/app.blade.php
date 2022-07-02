@@ -21,20 +21,47 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+        <nav class="d-flex justify-content-between navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
+            <div>
+                <a href="{{url('/')}}">
+                    <img class="w-25" src="{{asset('img/icons/icons8-airbnb-200.png')}}" alt="air-bnb-logo">
+                </a>
+
+            </div>
+
+            <div>
+                {{-- <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'BoolB&B') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> --}}
+                <ul class="navbar-nav mr-auto">
 
+                    <li class="m-2">
+                        <a href="{{ route('admin.habitations.index')}}">Oggi</a>
+                    </li>
+                    <li class="m-2">
+                        <a href="{{ route('admin.habitations.index')}}">Posta</a>
+                    </li>
+                    <li class="m-2">
+                        <a href="{{ route('admin.habitations.index')}}">Calendario</a>
+                    </li>
+                    <li class="m-2">
+                        <a href="{{ route('admin.habitations.index')}}">Approfondimenti</a>
+                    </li>
+                    <li class="m-2">
+                        <a href="{{ route('admin.habitations.index')}}">Menu</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

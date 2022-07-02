@@ -1,16 +1,21 @@
 <template>
-  <main>
-    <Header />
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <HomePage />
-        </div>
-      </div>
+
+    <div>
+
+        <Header />
+
+        <main class="container">
+            <div class="row justify-content-center">
+                <div>
+                    <HomePage />
+                </div>
+            </div>
+        </main>
+
+        <Footer />
+
     </div>
 
-    <Footer />
-  </main>
 </template>
 
 <script>

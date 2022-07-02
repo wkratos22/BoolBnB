@@ -1,13 +1,13 @@
 <template>
     <div>
+
         <HabitationSponsored/>
 
-        <div>Sito in costruzione</div>
 
-       
+        <h1>Sito in costruzione</h1>
+
+
     </div>
-
-
 
 </template>
 
@@ -20,7 +20,7 @@ export default {
      components: {
         HabitationSponsored
     }
-   
-   
+
+
 }
 </script>
