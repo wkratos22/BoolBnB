@@ -31,7 +31,7 @@ Route::middleware('auth')
 ->group( function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('habitations', 'HabitationController');
-    Route::resource('habitations{id}', 'HabitationController');
+    Route::resource('habitations', 'HabitationController');
 });
 
 // Front-end route
