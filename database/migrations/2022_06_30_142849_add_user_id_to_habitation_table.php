@@ -16,6 +16,7 @@ class AddUserIdToHabitationTable extends Migration
         Schema::table('habitations', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->after('id');
 
+            // user eliminato -> di conseguenza tutti gli annunci pubblicati
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')->onDelete('cascade');

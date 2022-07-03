@@ -1,18 +1,92 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- 
+@php
+dd($habitation->habitationType->icon)
+@endphp --}}
+    <div class="d-flex">
+        <div id="carouselExampleControls" class="carousel slide w-50" data-ride="carousel">
+            <div class="carousel-inner">
+            @foreach ($habitation->images as $key => $image)
+                <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
+                    <img src="{{asset( "storage/$image->image_url" )}}" class="d-block w-100" height="500px" alt="...">
+                </div>
+            @endforeach
 
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>title</th>
-                </tr>
-            </thead>
-            <tbody>
+            </div>
+        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+            <span class="carousel-control-prev-icon text-danger" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+            <span class="carousel-control-next-icon text-danger" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+            </button>
+        </div>
+        <div class="card w-50">
+            <h5 class="card-header">{{$habitation->title}}</h5>
+            <div class="card-body">
+            <h5 class="card-title text-center my-4">
+                <img src="{{asset('img/icons/types/'. $habitation->habitationType->icon)}}" height="30px" width="30px" alt="">
+                {{$habitation->habitationType->label}}
+            </h5>
 
-            </tbody>
-        </table>
+            <p class="card-text">{{$habitation->description}}</p>
+
+            <div class="my-5">
+                <h6 class="text-center mb-4">
+                    <strong>
+
+                        Caratteristiche dell'ambiente:
+                    </strong>
+                </h6>
+                <div class="d-flex flex-wrap justify-content-around align-items-center">
+                   @forelse ($habitation->tags as $tag)
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="{{asset('img/icons/tags/'. $tag->icon)}}" height="24px" width="24px" class="mr-2"  alt="">
+                            <span>{{$tag->label}}</span>
+                        </div>
+                   @empty
+                    Nessuna informazione riguardo l'ambiente in cui si trova la struttura.
+                   @endforelse
+                </div>
+            </div>
+
+            <div class="my-5">
+                <h6 class="text-center mb-4">
+                    <strong>
+
+                        Servizi disponibili:
+                    </strong>
+                </h6>
+                <div class="d-flex flex-wrap justify-content-around align-items-center">
+                    @forelse ($habitation->services as $service)
+                         <div class="d-flex justify-content-center align-items-center">
+                             <img src="{{asset('img/icons/services/'. $service->icon)}}" height="24px" width="24px" class="mr-2"  alt="">
+                             <span>{{$service->label}}</span>
+                         </div>
+                    @empty
+                     Nessuna informazione riguardo l'ambiente in cui si trova la struttura.
+                    @endforelse
+                 </div>
+            </div>
+
+            
+            <form action="{{route('admin.habitations.destroy', $habitation->id)}}" method="post"
+                class="deleteForm text-center mx-2" data-name="{{$habitation->title}}">
+            
+                @method('DELETE')
+            
+                @csrf
+            
+                <button type="submit" class="btn btn-danger shadow-none">
+                    Elimina annuncio
+                </button>
+            
+            </form>
+            </div>
+        </div>
     </div>
 
 @endsection

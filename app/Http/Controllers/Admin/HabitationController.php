@@ -13,6 +13,7 @@ use App\Models\Habitation;
 use App\Models\HabitationType;
 use App\Models\Service;
 use App\Models\Tag;
+use App\Models\Image;
 
 class HabitationController extends Controller
 {
@@ -26,14 +27,18 @@ class HabitationController extends Controller
 
         $user_hab = Auth::user()->habitations();
 
-        if ($user_hab->count() >= 1) {
+        // se l'utente registrato ha pubblicato almeno un'annuncio         // if ($user_hab->count() >= 1) {
 
-            $habitations = $user_hab->get();
+        //     $habitations = $user_hab->get();
 
-            return view('admin.habitations.index', compact('habitations'));
-        } else {
-            return redirect('/');
-        }
+        //     return view('admin.habitations.index', compact('habitations'));
+        // } else {
+        //     return redirect('/');
+        // }
+
+        $habitations = $user_hab->where('visible', '1')->orderBy('updated_at', 'desc')->get();
+
+        return view('admin.habitations.index', compact('habitations'));
     }
 
     /**
@@ -72,7 +77,7 @@ class HabitationController extends Controller
                 'beds_number'  => 'required|integer|min:1',
                 'bathrooms_number'  => 'required|integer|min:1',
                 'square_meters'  => 'integer|min:1',
-                'image'  => 'required|array',
+                // 'image'  => 'required|array',
                 'visible'  => 'required',
                 'services'  => 'required',
                 'tags'  => 'required',
@@ -116,8 +121,6 @@ class HabitationController extends Controller
                 'square_meters.integer' => 'Inserisci un numero per definire i metri quadrati della struttura.',
                 'square_meters.min' => 'Il numero minimo previsto per i metri quadrati è 1.',
 
-                'image.required' => "Inserisci almeno un'immagine associata alla struttura.",
-
                 'services.required' => 'Inserisci almeno un servizio presente nella struttura',
 
                 'tags.required' => 'Inserisci almeno una caratteristica della struttura', 
@@ -135,29 +138,28 @@ class HabitationController extends Controller
         $new_habitation->user_id = Auth::user()->id;
 
         $new_habitation->slug = Str::slug($new_habitation->title, '-');
+
+        $new_habitation->save();
         
-        // if ($request->hasFile('image')) {
-        //     $files = $request->file('image');
-            
-        //     foreach ($files as $file) {
-        //         $filename = $file->getClientOriginalName();
-        //         $extension = $file->getClientOriginalExtension();
-        //         $customName = Str::random(5)."-".date('his')."-".Str::random(3).".".$extension;
-
-        //         $image_url = Storage::put('habitations_images', $file);
-        //     }
-        // }
-
+        
         if (array_key_exists('image', $data)) {
             $files = $data['image'];
-
+            
             foreach ($files as $file) {
-
+                
+                
+                $new_image = new Image();
+                
                 $image_url = Storage::put('habitations_images', $file);
+                
+                $new_image->image_url = $image_url;
+                $new_image->habitation_id = $new_habitation->id;
+
+                $new_image->save();
+               
             }
         }
 
-        $new_habitation->save();
 
         if (array_key_exists('tags', $data)) {
 
@@ -214,8 +216,10 @@ class HabitationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Habitation $habitation)
     {
-        //
+        $habitation->delete();
+
+        return redirect()->route( 'admin.habitations.index' )->with('message', "$habitation->title è stato eliminato con successo.");
     }
 }

@@ -8,6 +8,7 @@ class Habitation extends Model
 {
     protected $fillable = [
         'title',
+        'habitation_type_id',
         'description',
         'price',
         'address',
@@ -18,7 +19,6 @@ class Habitation extends Model
         'beds_number',
         'bathrooms_number',
         'square_meters',
-        'image',
         'visible'
     ];
 
@@ -26,12 +26,16 @@ class Habitation extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function habitationtype() {
+    public function habitationType() {
         return $this->belongsTo('App\Models\HabitationType');
     }
 
     public function messages() {
         return $this->hasMany('App\Models\Message');
+    }
+
+    public function images() {
+        return $this->hasMany('App\Models\Image');
     }
 
     public function views() {
