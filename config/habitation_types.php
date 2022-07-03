@@ -3,19 +3,19 @@
 return [
     [
         "label" => 'Appartamento',
-        "icon" => 'appartamento.jpeg'
+        "icon" => 'appartamento.jpg'
     ],
     [
         "label" => 'Hotel',
-        "icon" => 'hotel.jpeg'
+        "icon" => 'hotel.jpg'
     ],
     [
         "label" => 'Casa',
-        "icon" => 'casa.jpeg'
+        "icon" => 'casa.jpg'
     ],
     [
         "label" => 'Pensione',
-        "icon" => 'pensione.jpeg'
+        "icon" => 'pensione.jpg'
     ]
 ]
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHabitationTypeTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateHabitationTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('habitation_types', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('label', 30);
-            $table->string('icon');
+            $table->string('image_url');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateHabitationTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('habitation_types');
+        Schema::dropIfExists('images');
     }
 }

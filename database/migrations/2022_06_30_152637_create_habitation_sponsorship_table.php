@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHabitationsSponsorshipsTable extends Migration
+class CreateHabitationSponsorshipTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateHabitationsSponsorshipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('habitations_sponsorships', function (Blueprint $table) {
+        Schema::create('habitation_sponsorship', function (Blueprint $table) {
             $table->id();
 
+            // annuncio eliminato -> di conseguenza anche la relazione nella tabella pivot
             $table->unsignedBigInteger('habitation_id');
             $table->foreign('habitation_id')->references('id')->on('habitations')->onDelete('cascade');
 
+            // sponsor eliminato -> di conseguenza anche la relazione nella tabella pivot
             $table->unsignedBigInteger('sponsorship_id');
             $table->foreign('sponsorship_id')->references('id')->on('sponsorships')->onDelete('cascade');
 
@@ -38,6 +40,6 @@ class CreateHabitationsSponsorshipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('habitations_sponsorships');
+        Schema::dropIfExists('habitation_sponsorship');
     }
 }
