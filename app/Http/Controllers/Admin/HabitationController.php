@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Habitation;
 use App\Models\HabitationType;
 use App\Models\Service;
-use App\Models\Sponsorship;
 use App\Models\Tag;
 
 class HabitationController extends Controller
@@ -46,8 +45,6 @@ class HabitationController extends Controller
         $type_hab = HabitationType::all();
         $tags_hab = Tag::all();
         $service_hab = Service::all();
-        // $sponsor_hab = Sponsorship::all();
-
 
         return view('admin.habitations.create', compact('type_hab', 'tags_hab', 'service_hab'));
     }
@@ -60,13 +57,23 @@ class HabitationController extends Controller
      */
     public function store(Request $request)
     {
-        if(array_key_exists('image', $habitations)){
+        $validator = $request->validate([
+            'image'  => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-            // if($post->image) Storage::delete($post->image);
+        $images = [];
+        
+        if ($request->hasFile('image')) {
+            $files = $request->file('image');
+            
+            foreach ($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $customName = str_random(5)."-".date('his')."-".str_random(3).".".$extension;
 
-            $image_url = Storage::put('post_images', $habitations['image']);
-            $habitations['image'] = $image_url;
-        };
+                $image_url = Storage::put('habitations_images', $file);
+            }
+        }
     }
 
     /**
