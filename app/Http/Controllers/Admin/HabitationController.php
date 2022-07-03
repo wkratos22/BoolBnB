@@ -6,8 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Habitation;
+use App\Models\HabitationType;
+use App\Models\Service;
+use App\Models\Sponsorship;
+use App\Models\Tag;
 
 class HabitationController extends Controller
 {
@@ -38,7 +43,13 @@ class HabitationController extends Controller
      */
     public function create()
     {
-        //
+        $type_hab = HabitationType::all();
+        $tags_hab = Tag::all();
+        $service_hab = Service::all();
+        // $sponsor_hab = Sponsorship::all();
+
+
+        return view('admin.habitations.create', compact('type_hab', 'tags_hab', 'service_hab'));
     }
 
     /**
@@ -49,7 +60,13 @@ class HabitationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(array_key_exists('image', $habitations)){
+
+            // if($post->image) Storage::delete($post->image);
+
+            $image_url = Storage::put('post_images', $habitations['image']);
+            $habitations['image'] = $image_url;
+        };
     }
 
     /**
