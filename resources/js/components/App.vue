@@ -23,7 +23,7 @@ import Header from "./Header.vue";
 import Footer from "./Footer.vue";
 import HomePage from "./pages/HomePage.vue";
 
-// import axios from 'axios';
+
 
 export default {
   name: "App",
@@ -32,22 +32,5 @@ export default {
     Footer,
     HomePage,
   },
-
-
-//   data() {
-//         return {
-//             habitations: [],
-//             isLoading: true,
-//         }
-//     }, 
-
-//     methods: {
-//         getHabitation() {
-//             axios.get("http://127.0.0.1:8000/api/habitations")
-//                 .then((res)=>{
-//                     console.log(res.data)
-//                 })
-//         }
-//     }
 };
 </script>
