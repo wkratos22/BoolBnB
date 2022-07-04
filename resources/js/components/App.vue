@@ -5,11 +5,9 @@
         <Header />
 
         <main class="container">
-            <div class="row justify-content-center">
-                <div>
-                    <HomePage />
-                </div>
-            </div>
+            
+                   <router-view></router-view>
+            
         </main>
 
         <Footer />
@@ -21,14 +19,14 @@
 <script>
 import Header from "./Header.vue";
 import Footer from "./Footer.vue";
-import HomePage from "./pages/HomePage.vue";
+
 
 export default {
   name: "App",
   components: {
     Header,
-    Footer,
-    HomePage,
+    Footer
+   
   },
 };
 </script>

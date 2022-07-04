@@ -31,7 +31,7 @@ class HabitationSeeder extends Seeder
             $habitation->beds_number = $faker->randomDigitNotNull();
             $habitation->bathrooms_number = $faker->randomDigitNotNull();
             $habitation->square_meters = $faker->numberBetween(50, 100);
-            // $habitation->image = $faker->imageUrl(250, 250, 'animals', true);
+            
             $habitation->visible = $faker->numberBetween(0, 1);
             $habitation->save();
         }
