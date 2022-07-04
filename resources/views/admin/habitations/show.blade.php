@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- 
+{{--
 @php
 dd($habitation->habitationType->icon)
 @endphp --}}
@@ -72,18 +72,22 @@ dd($habitation->habitationType->icon)
                  </div>
             </div>
 
-            
+            <a href="{{ route('admin.habitations.edit', $habitation->id)}}" class="btn btn-success shadow-none">
+                Modifica annuncio
+            </a>
+
+
             <form action="{{route('admin.habitations.destroy', $habitation->id)}}" method="post"
                 class="deleteForm text-center mx-2" data-name="{{$habitation->title}}">
-            
+
                 @method('DELETE')
-            
+
                 @csrf
-            
+
                 <button type="submit" class="btn btn-danger shadow-none">
                     Elimina annuncio
                 </button>
-            
+
             </form>
             </div>
         </div>
