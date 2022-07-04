@@ -28,7 +28,11 @@
             <select class="form-control" id="habitation_type" name="habitation_type_id">
                 @foreach ($type_hab as $type)
 
-                <option value="{{$type->id}}">{{$type->label}}</option>
+                <option  value="{{$type->id}}" @if (old('habitation_type_id', $habitation->habitation_type_id) == $type->id) selected
+
+                         @endif>
+                         {{$type->label}}
+                </option>
 
                 @endforeach
             </select>
@@ -76,7 +80,7 @@
                 </h4>
             </label>
             <textarea class="form-control" id="description" rows="3" name="description" placeholder="Inserisci la descrizione" required>
-                {{old('description')}}
+                {{old('description', $habitation->description)}}
             </textarea>
         </div>
 
@@ -86,7 +90,7 @@
                     * Prezzo:
                 </h4>
             </label>
-            <input type="number" class="form-control" id="price" name="price" min="1" max="99999" step="0.01" placeholder="200" value="{{old('price')}}" required>
+            <input type="number" class="form-control" id="price" name="price" min="1" max="99999" step="0.01" placeholder="200" value="{{old('price', $habitation->price)}}" required>
         </div>
 
         <div class="form-group">
@@ -95,7 +99,7 @@
                     * Indirizzo:
                 </h4>
             </label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Via Roma 25, Napoli, Campania, Italia" value="{{old('address')}}" required>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Via Roma 25, Napoli, Campania, Italia" value="{{old('address', $habitation->address)}}" required>
         </div>
 
         <div class="form-group">
@@ -104,7 +108,7 @@
                     * Latitudine:
                 </h4>
             </label>
-            <input type="number" class="form-control" id="latitude" name="latitude" min="-90" max="90" step="0.00001" placeholder="40.92854"  value="{{old('latitude')}}" required>
+            <input type="number" class="form-control" id="latitude" name="latitude" min="-90" max="90" step="0.00001" placeholder="40.92854"  value="{{old('latitude', $habitation->latitude)}}" required>
         </div>
 
         <div class="form-group">
@@ -113,7 +117,7 @@
                     * Longitudine:
                 </h4>
             </label>
-            <input type="number" class="form-control" id="longitude" name="longitude" min="-180" max="180" step="0.00001" placeholder="14.52857" value="{{old('longitude')}}" required>
+            <input type="number" class="form-control" id="longitude" name="longitude" min="-180" max="180" step="0.00001" placeholder="14.52857" value="{{old('longitude', $habitation->longitude)}}" required>
         </div>
 
         <div class="form-group">
@@ -122,7 +126,7 @@
                     * Numero massimo di ospiti:
                 </h4>
             </label>
-            <input type="number" class="form-control" id="guests_number" name="guests_number" min="1" placeholder="8" value="{{old('guests_number')}}" required>
+            <input type="number" class="form-control" id="guests_number" name="guests_number" min="1" placeholder="8" value="{{old('guests_number', $habitation->guests_number)}}" required>
         </div>
 
         <div class="form-group">
@@ -131,7 +135,7 @@
                     * Numero stanze:
                 </h4>
             </label>
-            <input type="number" class="form-control" id="rooms_number" name="rooms_number" min="1" placeholder="5" value="{{old('rooms_number')}}" required>
+            <input type="number" class="form-control" id="rooms_number" name="rooms_number" min="1" placeholder="5" value="{{old('rooms_number', $habitation->rooms_number)}}" required>
         </div>
 
         <div class="form-group">
@@ -140,7 +144,7 @@
                     * Numero letti:
                 </h4>
             </label>
-            <input type="number" class="form-control" id="beds_number" name="beds_number" min="1" placeholder="6" value="{{old('beds_number')}}" required>
+            <input type="number" class="form-control" id="beds_number" name="beds_number" min="1" placeholder="6" value="{{old('beds_number', $habitation->beds_number)}}" required>
         </div>
 
         <div class="form-group">
@@ -149,7 +153,7 @@
                     * Numero bagni:
                 </h4>
             </label>
-            <input type="number" class="form-control" id="bathrooms_number" name="bathrooms_number" min="1" placeholder="2" value="{{old('bathrooms_number')}}" required>
+            <input type="number" class="form-control" id="bathrooms_number" name="bathrooms_number" min="1" placeholder="2" value="{{old('bathrooms_number', $habitation->bathrooms_number)}}" required>
         </div>
 
         <div class="form-group">
@@ -158,7 +162,7 @@
                     Metri quadrati:
                 </h4>
             </label>
-            <input type="number" class="form-control" id="square_meters" name="square_meters" min="1" value="{{old('square_meters')}}" placeholder="85">
+            <input type="number" class="form-control" id="square_meters" name="square_meters" min="1" value="{{old('square_meters', $habitation->square_meters)}}" placeholder="85">
         </div>
 
         <div class="form-group">
@@ -167,7 +171,7 @@
                     * Images:
                 </h4>
             </label>
-            <input type="file" class="form-control-file" id="image" name="image[]" multiple required>
+            <input type="file" class="form-control-file" id="image" name="image[]" value="" multiple>
         </div>
 
 
@@ -196,7 +200,7 @@
 
 
 
-        <button class="btn btn-success w-25 b-rounded-3" style="margin: 10px auto;" type="submit" src="{{route('admin.habitations.store')}}">
+        <button class="btn btn-success w-25 b-rounded-3" style="margin: 10px auto;" type="submit" src="{{route('admin.habitations.update', $habitation->id)}}">
             Create
         </button>
 

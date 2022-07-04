@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Habitation;
 use App\Models\HabitationType;
@@ -63,6 +65,7 @@ class HabitationController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = $request->validate(
             [
                 'title'  => 'required|max:100|unique:habitations',
@@ -77,7 +80,6 @@ class HabitationController extends Controller
                 'beds_number'  => 'required|integer|min:1',
                 'bathrooms_number'  => 'required|integer|min:1',
                 'square_meters'  => 'integer|min:1',
-                // 'image'  => 'required|array',
                 'visible'  => 'required',
                 'services'  => 'required',
                 'tags'  => 'required',
@@ -215,9 +217,19 @@ class HabitationController extends Controller
      */
     public function update(Request $request, Habitation $habitation)
     {
+
+        $data = $request->all();
+
+        Validator::make($data, [
+            'title' => [
+                'required',
+                Rule::unique('habitations')->ignore($habitation->id),
+            ],
+        ]);
+
         $validator = $request->validate(
             [
-                'title'  => 'required|max:100|unique:habitations',
+                // 'title'  => 'required|max:100|unique:habitations',
                 'habitation_type_id' => 'required',
                 'description'  => 'required',
                 'price'  => 'required|numeric|between:1,99999.99',
@@ -229,7 +241,6 @@ class HabitationController extends Controller
                 'beds_number'  => 'required|integer|min:1',
                 'bathrooms_number'  => 'required|integer|min:1',
                 'square_meters'  => 'integer|min:1',
-                // 'image'  => 'required|array',
                 'visible'  => 'required',
                 'services'  => 'required',
                 'tags'  => 'required',
@@ -279,9 +290,7 @@ class HabitationController extends Controller
                 ]
         );
 
-        $data = $request->all();
-
-        $data['slug'] = Str::slug($data->title, '-');
+        $data['slug'] = Str::slug($data['title'], '-');
 
         if (array_key_exists('image', $data)) {
             $files = $data['image'];
