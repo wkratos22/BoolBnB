@@ -15,12 +15,13 @@
 
 import HabitationSponsored from "../habitations/HabitationSponsored.vue";
 
+
 export default {
     name: 'HomePage',
      components: {
         HabitationSponsored
-    }
+    },
 
-
+    
 }
 </script>
