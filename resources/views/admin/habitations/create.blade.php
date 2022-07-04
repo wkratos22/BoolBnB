@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('includes.errors')
+@include('includes.validation.errors')
 
 @section('content')
 

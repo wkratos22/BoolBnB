@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Validator;
 
 use App\Models\Habitation;
 use App\Models\HabitationType;
@@ -29,16 +27,7 @@ class HabitationController extends Controller
 
         $user_hab = Auth::user()->habitations();
 
-        // se l'utente registrato ha pubblicato almeno un'annuncio         // if ($user_hab->count() >= 1) {
-
-        //     $habitations = $user_hab->get();
-
-        //     return view('admin.habitations.index', compact('habitations'));
-        // } else {
-        //     return redirect('/');
-        // }
-
-        $habitations = $user_hab->where('visible', '1')->orderBy('updated_at', 'desc')->get();
+        $habitations = $user_hab->orderBy('updated_at', 'desc')->get();
 
         return view('admin.habitations.index', compact('habitations'));
     }
@@ -203,7 +192,6 @@ class HabitationController extends Controller
 
         $habitation_tags_id = $habitation->tags->pluck('id')->toArray();
         $habitation_services_id = $habitation->services->pluck('id')->toArray();
-        // dd($habitation_tags_id);
 
         return view('admin.habitations.edit', compact('habitation', 'habitation_tags_id', 'habitation_services_id', 'type_hab', 'tags_hab', 'service_hab'));
     }
@@ -220,16 +208,9 @@ class HabitationController extends Controller
 
         $data = $request->all();
 
-        Validator::make($data, [
-            'title' => [
-                'required',
-                Rule::unique('habitations')->ignore($habitation->id),
-            ],
-        ]);
-
         $validator = $request->validate(
             [
-                // 'title'  => 'required|max:100|unique:habitations',
+                'title'  => 'required|max:100|unique:habitations,title,'.$habitation->id,
                 'habitation_type_id' => 'required',
                 'description'  => 'required',
                 'price'  => 'required|numeric|between:1,99999.99',
@@ -290,7 +271,8 @@ class HabitationController extends Controller
                 ]
         );
 
-        $data['slug'] = Str::slug($data['title'], '-');
+        $habitation->slug = Str::slug($data['title'], '-');
+
 
         if (array_key_exists('image', $data)) {
             $files = $data['image'];
@@ -320,7 +302,9 @@ class HabitationController extends Controller
             $habitation->services()->sync($data['services']);
         }
 
+
         $habitation->update($data);
+
 
         return redirect()->route('admin.habitations.show', $habitation)->with('message', "L'annuncio '$habitation->title' è stato modificato con successo!");
     }

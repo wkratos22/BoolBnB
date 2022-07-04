@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('includes.errors')
+@include('includes.validation.errors')
 
 @section('content')
 
@@ -201,7 +201,7 @@
 
 
         <button class="btn btn-success w-25 b-rounded-3" style="margin: 10px auto;" type="submit" src="{{route('admin.habitations.update', $habitation->id)}}">
-            Create
+            Edit
         </button>
 
         </form>

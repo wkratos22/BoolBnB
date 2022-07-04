@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
+
 @section('content')
-{{--
-@php
-dd($habitation->habitationType->icon)
-@endphp --}}
+
+@include('includes.messages.success')
+
     <div class="d-flex">
         <div id="carouselExampleControls" class="carousel slide w-50" data-ride="carousel">
             <div class="carousel-inner">
@@ -15,13 +15,13 @@ dd($habitation->habitationType->icon)
             @endforeach
 
             </div>
-        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
-            <span class="carousel-control-prev-icon text-danger" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
-            <span class="carousel-control-next-icon text-danger" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+                <span class="carousel-control-prev-icon" style="filter: invert(1);" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+                <span class="carousel-control-next-icon" style="filter: invert(1);" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
             </button>
         </div>
         <div class="card w-50">
@@ -50,6 +50,7 @@ dd($habitation->habitationType->icon)
                    @empty
                     Nessuna informazione riguardo l'ambiente in cui si trova la struttura.
                    @endforelse
+
                 </div>
             </div>
 
@@ -72,23 +73,26 @@ dd($habitation->habitationType->icon)
                  </div>
             </div>
 
-            <a href="{{ route('admin.habitations.edit', $habitation->id)}}" class="btn btn-success shadow-none">
-                Modifica annuncio
-            </a>
+            <div class="d-flex justify-content-around align-items-center">
+                <a href="{{ route('admin.habitations.edit', $habitation->id)}}" class="btn btn-success shadow-none">
+                    Modifica annuncio
+                </a>
+    
+    
+                <form action="{{route('admin.habitations.destroy', $habitation->id)}}" method="post"
+                    class="deleteForm text-center mx-2" data-name="{{$habitation->title}}">
+    
+                    @method('DELETE')
+    
+                    @csrf
+    
+                    <button type="submit" class="btn btn-danger shadow-none">
+                        Elimina annuncio
+                    </button>
+    
+                </form>
+            </div>
 
-
-            <form action="{{route('admin.habitations.destroy', $habitation->id)}}" method="post"
-                class="deleteForm text-center mx-2" data-name="{{$habitation->title}}">
-
-                @method('DELETE')
-
-                @csrf
-
-                <button type="submit" class="btn btn-danger shadow-none">
-                    Elimina annuncio
-                </button>
-
-            </form>
             </div>
         </div>
     </div>
