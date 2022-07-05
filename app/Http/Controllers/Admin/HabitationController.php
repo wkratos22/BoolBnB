@@ -57,13 +57,11 @@ class HabitationController extends Controller
 
         $validator = $request->validate(
             [
-                'title'  => 'required|max:100|unique:habitations',
+                'title'  => 'required|max:100|string|unique:habitations',
                 'habitation_type_id' => 'required',
-                'description'  => 'required',
-                'price'  => 'required|numeric|between:1,99999.99',
-                'address'  => 'required',
-                'latitude'  => 'required|numeric|between:-90,90',
-                'longitude'  => 'required|numeric|between:-180,180',
+                'description'  => 'required|string',
+                'price'  => 'required|integer||between:1,25000',
+                'address'  => 'required|string',
                 'guests_number'  => 'required|integer|min:1',
                 'rooms_number'  => 'required|integer|min:1',
                 'beds_number'  => 'required|integer|min:1',
@@ -77,21 +75,20 @@ class HabitationController extends Controller
             [
                 'title.required' => 'Il titolo è un campo obbligatorio.',
                 'title.max' => 'Il limite massimo di caratteri per il titolo è 100.',
+                'title.string' => 'Il titolo deve essere una stringa.',
                 'title.unique' => 'Il titolo selezionato già esiste, provane un altro.',
 
                 'habitation_type_id.required' => 'La tipologia di struttura è un campo obbligatorio.',
 
                 'description.required' => 'La descrizione è un campo obbligatorio.',
+                'description.string' => 'La descrizione deve essere una stringa.',
+
+                'price.required' => "Inserisci il prezzo per una singola notte.",
+                'price.integer' => "Il prezzo deve essere un numero.",
+                'price.between' => "Il prezzo deve essere compreso tra 1 e 25000.",
 
                 'address.required' => "L'indirizzo è un campo obbligatorio.",
-
-                'latitude.required' => 'La latitudine è un campo obbligatorio.',
-                'latitude.numeric' => 'Inserisci un numero per definire la latitudine.',
-                'latitude.between' => 'La latitudine è compresa tra -90 e 90.',
-
-                'longitude.required' => 'La longitudine è un campo obbligatorio.',
-                'longitude.numeric' => 'Inserisci un numero per definire la longitudine.',
-                'longitude.between' => 'La longitudine è compresa tra -180 e 180.',
+                'address.string' => "L'indirizzo deve essere una stringa.",
 
                 'guests_number.required' => 'Il numero massimo di ospiti è un campo obbligatorio.',
                 'guests_number.integer' => 'Inserisci un numero per stabilire la quantità massima di ospiti.',
@@ -120,15 +117,28 @@ class HabitationController extends Controller
 
         $data = $request->all();
 
-        // dd($data);
 
         $new_habitation = new Habitation();
 
+        // recupero di lat e long
+        $apiKey = "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl";
+        $address = $data['address'];
+        $address = urlencode($address);
+        $url = "https://api.tomtom.com/search/2/geocode/{$address}.json?key={$apiKey}&limit=5&countrySet=IT&language=it-IT";
+        $response_json = file_get_contents($url);
+        $response = json_decode($response_json, true);
+
+        // inserimento lat e lot nel rispettivo record
+        $new_habitation->latitude = $response['results'][0]['position']['lat'];
+        $new_habitation->longitude = $response['results'][0]['position']['lon'];
+        
         $new_habitation->fill($data);
-
+        
         $new_habitation->user_id = Auth::user()->id;
-
+        
         $new_habitation->slug = Str::slug($new_habitation->title, '-');
+        
+
 
         $new_habitation->save();
 
@@ -210,13 +220,11 @@ class HabitationController extends Controller
 
         $validator = $request->validate(
             [
-                'title'  => 'required|max:100|unique:habitations,title,'.$habitation->id,
+                'title'  => 'required|max:100|string|unique:habitations,title,'.$habitation->id,
                 'habitation_type_id' => 'required',
-                'description'  => 'required',
-                'price'  => 'required|numeric|between:1,99999.99',
-                'address'  => 'required',
-                'latitude'  => 'required|numeric|between:-90,90',
-                'longitude'  => 'required|numeric|between:-180,180',
+                'description'  => 'required|string',
+                'price'  => 'required|integer|between:1,25000',
+                'address'  => 'required|string',
                 'guests_number'  => 'required|integer|min:1',
                 'rooms_number'  => 'required|integer|min:1',
                 'beds_number'  => 'required|integer|min:1',
@@ -229,22 +237,21 @@ class HabitationController extends Controller
 
             [
                 'title.required' => 'Il titolo è un campo obbligatorio.',
+                'title.string' => 'Il titolo deve essere una stringa.',
                 'title.max' => 'Il limite massimo di caratteri per il titolo è 100.',
                 'title.unique' => 'Il titolo selezionato già esiste, provane un altro.',
 
                 'habitation_type_id.required' => 'La tipologia di struttura è un campo obbligatorio.',
 
                 'description.required' => 'La descrizione è un campo obbligatorio.',
+                'description.string' => 'La descrizione deve essere una stringa.',
+
+                'price.required' => "Inserisci il prezzo per una singola notte.",
+                'price.integer' => "Il prezzo deve essere un numero.",
+                'price.between' => "Il prezzo deve essere compreso tra 1 e 25000.",
 
                 'address.required' => "L'indirizzo è un campo obbligatorio.",
-
-                'latitude.required' => 'La latitudine è un campo obbligatorio.',
-                'latitude.numeric' => 'Inserisci un numero per definire la latitudine.',
-                'latitude.between' => 'La latitudine è compresa tra -90 e 90.',
-
-                'longitude.required' => 'La longitudine è un campo obbligatorio.',
-                'longitude.numeric' => 'Inserisci un numero per definire la longitudine.',
-                'longitude.between' => 'La longitudine è compresa tra -180 e 180.',
+                'address.string' => "L'indirizzo deve essere una stringa.",
 
                 'guests_number.required' => 'Il numero massimo di ospiti è un campo obbligatorio.',
                 'guests_number.integer' => 'Inserisci un numero per stabilire la quantità massima di ospiti.',
@@ -272,6 +279,18 @@ class HabitationController extends Controller
         );
 
         $habitation->slug = Str::slug($data['title'], '-');
+
+        // recupero di lat e long
+        $apiKey = "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl";
+        $address = $data['address'];
+        $address = urlencode($address);
+        $url = "https://api.tomtom.com/search/2/geocode/{$address}.json?key={$apiKey}&limit=5&countrySet=IT&language=it-IT";
+        $response_json = file_get_contents($url);
+        $response = json_decode($response_json, true);
+
+        // inserimento lat e lot nel rispettivo record
+        $habitation->latitude = $response['results'][0]['position']['lat'];
+        $habitation->longitude = $response['results'][0]['position']['lon'];
 
 
         if (array_key_exists('image', $data)) {

@@ -25,32 +25,27 @@
     
        <div class="card w-25 m-3">
 
-        <div id="carouselExampleControls" class="carousel slide w-100" data-ride="carousel" data-interval="false">
-            <div class="carousel-inner">
-            @foreach ($habitation->images as $key => $image)
-                <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
-                    <img src="{{asset( "storage/$image->image_url" )}}" class="d-block w-100" alt="...">
-                </div>
-            @endforeach
+            @if ($habitation->images->count() == 0)
+                <a href="{{route('admin.habitations.show', $habitation->id)}}">
+                    <img src="https://source.unsplash.com/random/?home" class="card-img-top" height="185px" alt="...">
+                </a>
+           @else
+                
+                
+                @foreach ($habitation->images as $image)
+                
+                @if ($loop->first)
+                <a href="{{route('admin.habitations.show', $habitation->id)}}">
+                    <img src="{{asset( "storage/$image->image_url" )}}" class="card-img-top" height="185px" alt="...">
+                </a>
+                @endif
+                
+                @endforeach
+            @endif
 
-            </div>
-            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
-                <span class="carousel-control-prev-icon" style="filter: invert(1);" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-                </button>
-                <button class="carousel-control-next" style="filter: invert(1);" type="button" data-target="#carouselExampleControls" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </button>
-        </div>
-    
-           {{-- <img src="{{asset('storage/habitations_images/')}}" class="card-img-top" alt="..."> --}}
-           <div class="card-body">
+            <div class="card-body">
              <h5 class="card-title">{{$habitation->title}}</h5>
              <p class="card-text">{{$habitation->price}} € </p>
-             <div  class="text-center">
-                <a class="btn btn-primary" href="{{route('admin.habitations.show', $habitation->id)}}">View</a>
-             </div>
            </div>
        </div>
        @endforeach

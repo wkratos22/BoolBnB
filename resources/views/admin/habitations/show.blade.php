@@ -5,26 +5,37 @@
 
 @include('includes.messages.success')
 
-    <div class="d-flex">
-        <div id="carouselExampleControls" class="carousel slide w-50" data-ride="carousel">
-            <div class="carousel-inner">
-            @foreach ($habitation->images as $key => $image)
-                <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
-                    <img src="{{asset( "storage/$image->image_url" )}}" class="d-block w-100" height="500px" alt="...">
-                </div>
-            @endforeach
+    <div class="d-flex" style="min-height: 50vh">
 
-            </div>
-            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
-                <span class="carousel-control-prev-icon" style="filter: invert(1);" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
+        @if ($habitation->images->count() > 0)
+            <div id="showCarousel" class="carousel slide w-50" data-ride="carousel">
+                <div class="carousel-inner">
+                @foreach ($habitation->images as $key => $image)
+                    <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
+                        <img src="{{asset( "storage/$image->image_url" )}}" class="d-block w-100" height="500px" alt="...">
+                    </div>
+                @endforeach
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-target="#showCarousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon" style="filter: invert(1);" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-target="#showCarousel" data-slide="next">
+                    <span class="carousel-control-next-icon" style="filter: invert(1);" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
-                <span class="carousel-control-next-icon" style="filter: invert(1);" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </button>
+            </div>
+
+        @else
+
+        <div class="h-100 w-50">
+            <img src="https://source.unsplash.com/random/?home" class="w-100 h-100" alt="...">
         </div>
-        <div class="card w-50">
+
+
+        @endif
+        <div class="card w-50 h-100">
             <h5 class="card-header">{{$habitation->title}}</h5>
             <div class="card-body">
             <h5 class="card-title text-center my-4">

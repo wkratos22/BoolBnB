@@ -18,7 +18,7 @@ class CreateHabitationsTable extends Migration
             $table->string('title', 100)->unique();
             $table->string('slug')->unique();
             $table->mediumText('description');
-            $table->decimal('price', 7,2);
+            $table->smallInteger('price');
             $table->string('address');
             $table->decimal('latitude', 7,5);
             $table->decimal('longitude', 8,5);
