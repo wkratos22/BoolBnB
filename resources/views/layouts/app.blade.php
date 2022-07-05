@@ -25,11 +25,18 @@
 
             <div>
                 <a href="{{url('/')}}">
-                    <img class="w-25" src="{{asset('img/icons/icons8-airbnb-200.png')}}" alt="air-bnb-logo">
+                    <img class="w-25" src="{{asset('img/icons/BoolBnb_logo.jpg')}}" alt="air-bnb-logo">
                 </a>
 
             </div>
-
+            <div></div>
+            <div>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+            </div>
+            
             <div>
                 {{-- <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'BoolB&B') }}
@@ -37,29 +44,11 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button> --}}
-                <ul class="navbar-nav mr-auto">
-
-                    <li class="m-2">
-                        <a href="{{ route('admin.habitations.index')}}">Oggi</a>
-                    </li>
-                    <li class="m-2">
-                        <a href="{{ route('admin.habitations.index')}}">Posta</a>
-                    </li>
-                    <li class="m-2">
-                        <a href="{{ route('admin.habitations.index')}}">Calendario</a>
-                    </li>
-                    <li class="m-2">
-                        <a href="{{ route('admin.habitations.index')}}">Approfondimenti</a>
-                    </li>
-                    <li class="m-2">
-                        <a href="{{ route('admin.habitations.index')}}">Menu</a>
-                    </li>
-
-                </ul>
+             
 
             </div>
 
-            <div>
+            <div class="d-flex">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
 
@@ -96,6 +85,35 @@
                         @endguest
                     </ul>
                 </div>
+               <div>
+                
+                    <li class="nav-item dropdown  d-flex flex-row">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          YourBoolBnb
+                        </a>
+                        <ul class="navbar-nav mr-auto">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                           
+                                <li class="m-2">
+                                    <a href="{{ route('admin.habitations.index')}}">Oggi</a>
+                                </li>
+                                <li class="m-2">
+                                    <a href="{{ route('admin.habitations.index')}}">Posta</a>
+                                </li>
+                                <li class="m-2">
+                                    <a href="{{ route('admin.habitations.index')}}">Calendario</a>
+                                </li>
+                                <li class="m-2">
+                                    <a href="{{ route('admin.habitations.index')}}">Approfondimenti</a>
+                                </li>
+                                <li class="m-2">
+                                    <a href="{{ route('admin.habitations.index')}}">Menu</a>
+                            
+                            </ul>
+               </div>
+            </div>
+                   
+                
             </div>
         </nav>
 
