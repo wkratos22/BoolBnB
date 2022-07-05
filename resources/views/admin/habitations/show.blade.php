@@ -5,7 +5,7 @@
 @php
 dd($habitation->habitationType->icon)
 @endphp --}}
-    <div class="d-flex">
+    <div class="d-flex container">
         <div id="carouselExampleControls" class="carousel slide w-50" data-ride="carousel">
             <div class="carousel-inner">
             @foreach ($habitation->images as $key => $image)

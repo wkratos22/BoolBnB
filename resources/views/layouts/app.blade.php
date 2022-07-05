@@ -99,8 +99,8 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            <div class="container">
+        <main class="">
+            <div class="">
                 @yield('content')
             </div>
         </main>
