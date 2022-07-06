@@ -25,7 +25,7 @@
               onclick="decreaseValue()"
               value="Decrease Value"
             ></div>
-            <input type="number" id="number" value="0" />
+            <input type="number" id="number" min="1" />
             <div
               class="value-button"
               id="increase"
