@@ -47,9 +47,11 @@ class HabitationApi extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $habitation = Post::all()->find($id);
+        $habitation = Habitation::where('slug', $slug)->with('services', 'tags', 'habitationType', 'images')->first();
+
+        if(!$habitation) return response('Post not found', 404);
 
         return response()->json($habitation);
     }

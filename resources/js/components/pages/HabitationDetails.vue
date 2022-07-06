@@ -7,7 +7,7 @@
     </div>
 </template>
 
-<script>s
+<script>
 export default {
     name: "HabitationDetails"
 }
