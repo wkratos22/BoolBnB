@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -30,6 +30,8 @@ Route::middleware('auth')
 ->namespace('Admin')
 ->group( function(){
     Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('habitations', 'HabitationController');
+    Route::resource('habitations', 'HabitationController');
 });
 
 // Front-end route

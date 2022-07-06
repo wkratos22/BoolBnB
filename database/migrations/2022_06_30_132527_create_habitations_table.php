@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHabitationTable extends Migration
+class CreateHabitationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -27,7 +27,7 @@ class CreateHabitationTable extends Migration
             $table->integer('beds_number');
             $table->integer('bathrooms_number');
             $table->integer('square_meters')->nullable();
-            $table->string('image');
+            // $table->string('image');
             $table->boolean('visible');
             $table->timestamps();
         });
