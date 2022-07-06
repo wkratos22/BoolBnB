@@ -102,10 +102,10 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
-                                    1
+                                    {{habitation.title}}
                                 </label>
                         </div>
-                        <div class="form-check form-check-inline">
+                        <!-- <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
                                     2
@@ -114,7 +114,7 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
                             <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
             </div>
@@ -136,6 +136,8 @@ export default {
             guestsNumber: '',
             radius: '',
             active: false,
+            api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
+            habitations: [],
         }
     },
 
@@ -158,7 +160,19 @@ export default {
 
         getShow() {
             this.active = !this.active
+        },
+
+        getHabitation() {
+            console.log(encodeURIComponent(this.destination));
+            axios.get(`https://api.tomtom.com/search/2/search/via%20roma.json?radius=20000&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${api_key}`)
+                .then((res)=>{
+                    this.habitations = res;
+                })
         }
   },
+
+    mounted() {
+
+    }
 }
 </script>

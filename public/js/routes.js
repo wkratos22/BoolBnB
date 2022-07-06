@@ -2064,7 +2064,9 @@ __webpack_require__.r(__webpack_exports__);
       bedsNumber: "",
       guestsNumber: '',
       radius: '',
-      active: false
+      active: false,
+      api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
+      habitations: []
     };
   },
   methods: {
@@ -2083,8 +2085,17 @@ __webpack_require__.r(__webpack_exports__);
     // },
     getShow: function getShow() {
       this.active = !this.active;
+    },
+    getHabitation: function getHabitation() {
+      var _this = this;
+
+      console.log(encodeURIComponent(this.destination));
+      axios.get("https://api.tomtom.com/search/2/search/via%20roma.json?radius=20000&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=".concat(api_key)).then(function (res) {
+        _this.habitations = res;
+      });
     }
-  }
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -2907,11 +2918,35 @@ var render = function () {
                         _vm._v("Attributi"),
                       ]),
                       _vm._v(" "),
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _vm._m(2),
+                      _c(
+                        "div",
+                        { staticClass: "form-check form-check-inline" },
+                        [
+                          _c("input", {
+                            staticClass: "form-check-input",
+                            attrs: {
+                              type: "checkbox",
+                              value: "",
+                              id: "defaultCheck1",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-check-label",
+                              attrs: { for: "defaultCheck1" },
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.habitation.title) +
+                                  "\n                            "
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
                     ]),
                   ]
                 )
@@ -2932,72 +2967,7 @@ var render = function () {
     ),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-check form-check-inline" }, [
-      _c("input", {
-        staticClass: "form-check-input",
-        attrs: { type: "checkbox", value: "", id: "defaultCheck1" },
-      }),
-      _vm._v(" "),
-      _c(
-        "label",
-        { staticClass: "form-check-label", attrs: { for: "defaultCheck1" } },
-        [
-          _vm._v(
-            "\n                                1\n                            "
-          ),
-        ]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-check form-check-inline" }, [
-      _c("input", {
-        staticClass: "form-check-input",
-        attrs: { type: "checkbox", value: "", id: "defaultCheck1" },
-      }),
-      _vm._v(" "),
-      _c(
-        "label",
-        { staticClass: "form-check-label", attrs: { for: "defaultCheck1" } },
-        [
-          _vm._v(
-            "\n                                2\n                            "
-          ),
-        ]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-check form-check-inline" }, [
-      _c("input", {
-        staticClass: "form-check-input",
-        attrs: {
-          type: "checkbox",
-          id: "inlineCheckbox3",
-          value: "option3",
-          disabled: "",
-        },
-      }),
-      _vm._v(" "),
-      _c(
-        "label",
-        { staticClass: "form-check-label", attrs: { for: "inlineCheckbox3" } },
-        [_vm._v("3 (disabled)")]
-      ),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
