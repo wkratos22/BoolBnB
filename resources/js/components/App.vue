@@ -6,7 +6,8 @@
 
         <main class="container">
             
-                   <router-view></router-view>
+          <router-view></router-view>
+          
             
         </main>
 

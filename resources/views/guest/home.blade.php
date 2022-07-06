@@ -8,11 +8,6 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-
-        </style>
         <link rel="stylesheet" href="{{ asset('css/app.css')}}">
     </head>
     <body>
@@ -34,6 +29,10 @@
         <div class="content">
             <div id="root"></div>
         </div>
+
+        <script src=" {{asset('js/app.js')}} "></script>
         <script src=" {{asset('js/front.js')}} "></script>
+        <script src=" {{asset('js/routes.js')}} "></script>
+        
     </body>
 </html>

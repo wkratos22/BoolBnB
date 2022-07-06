@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 import HomePage from './components/pages/HomePage.vue';
 import AdvancedSearch from './components/pages/AdvancedSearch.vue';
@@ -19,7 +19,7 @@ const router = new VueRouter({
     routes: [
         { path: '/', component: HomePage, name: 'home' },
         { path: '/habitations', component: AdvancedSearch, name: 'advancedSearch' },
-        { path: '/habitations-details', component: HabitationDetails, name: 'habitationDetails' },
+        { path: '/habitations/:slug', component: HabitationDetails, name: 'habitationDetails' },
         { path: '*', component: NotFoundPage, name: 'notFound' }
     ]
 

@@ -14,9 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::middleware('auth:api', function (){
+    Route::get('/user', 'UserController@index');
 });
 
-Route::get('/habitations', 'Api\HabitationApi@index');
+
+Route::namespace('Api')->group(function(){
+
+    Route::get('/habitations', 'HabitationApi@index');
+    Route::get('/habitations{slug}', 'HabitationApi@show');
+
+});
+
 

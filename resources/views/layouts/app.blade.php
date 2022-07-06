@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -91,9 +88,10 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           YourBoolBnb
                         </a>
+                        
                         <ul class="navbar-nav mr-auto">
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                           
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            
                                 <li class="m-2">
                                     <a href="{{ route('admin.habitations.index')}}">Oggi</a>
                                 </li>
@@ -108,20 +106,26 @@
                                 </li>
                                 <li class="m-2">
                                     <a href="{{ route('admin.habitations.index')}}">Menu</a>
-                            
-                            </ul>
-               </div>
+                                </li>
+                                
+                            </div>    
+                        </ul>
+                    </li>
+                </div>
             </div>
                    
                 
             </div>
         </nav>
 
-        <main class="">
-            <div class="">
+        <main class="py-4">
+            <div class="container">
                 @yield('content')
             </div>
         </main>
     </div>
+
+        <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
