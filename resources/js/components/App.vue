@@ -23,6 +23,8 @@ import Header from "./Header.vue";
 import Footer from "./Footer.vue";
 import HomePage from "./pages/HomePage.vue";
 
+
+
 export default {
   name: "App",
   components: {
