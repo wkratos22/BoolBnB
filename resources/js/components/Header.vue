@@ -14,6 +14,7 @@
         <!-- <a class="nav-link m-1" href="/admin.habitations.create">Diventa un host</a> -->
 
         <!--Button per entrare nel back-end per l'utente loggato-->
+        <router-link class="nav-link m-1" :to="{ name: 'advancedSearch' }">Annunci</router-link >
         <a class="nav-link m-1" href="/admin">Passa alla modalità host</a>
 
         <a class="nav-link m-1" href="/register">Registrati</a>
