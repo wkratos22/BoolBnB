@@ -8,7 +8,7 @@
       </li>
 
       <SearchHab />
-      
+
       <li class="nav-item d-flex">
         <!--Button per diventare un'host(aggiungi abitazioni)-->
         <!-- <a class="nav-link m-1" href="/admin.habitations.create">Diventa un host</a> -->
