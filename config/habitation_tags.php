@@ -33,10 +33,7 @@ return [
         "label" => 'Camping',
         "icon" => 'camping.jpg'
     ],
-    [
-        "label" => 'Dimore storiche',
-        "icon" => 'dimore-storiche.jpg'
-    ],
+    
     [
         "label" => 'Design',
         "icon" => 'design.jpg'

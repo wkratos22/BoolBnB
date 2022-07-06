@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@include('includes.errors')
+@include('includes.validation.errors')
 
 @section('content')
 
-    <div class="container">
+<small class="form-text text-muted mb-3">* Campo obbligatorio</small>
 
         <form action="{{ route('admin.habitations.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -87,11 +87,10 @@
             <div class="form-group">
                 <label for="price">
                     <h4>
-                        * Prezzo:
+                        * Prezzo per notte:
                     </h4>
                 </label>
-                <input type="number" class="form-control" id="price" name="price" min="1" max="99999" step="0.01"
-                    placeholder="200" value="{{old('price')}}" required>
+                <input type="number" class="form-control" id="price" name="price" min="1" max="25000" placeholder="200" value="{{old('price')}}" required>
             </div>
 
             <div class="form-group">
@@ -100,28 +99,7 @@
                         * Indirizzo:
                     </h4>
                 </label>
-                <input type="text" class="form-control" id="address" name="address"
-                    placeholder="Via Roma 25, Napoli, Campania, Italia" value="{{old('address')}}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="latitude">
-                    <h4>
-                        * Latitudine:
-                    </h4>
-                </label>
-                <input type="number" class="form-control" id="latitude" name="latitude" min="-90" max="90" step="0.00001"
-                    placeholder="40.92854" value="{{old('latitude')}}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="longitude">
-                    <h4>
-                        * Longitudine:
-                    </h4>
-                </label>
-                <input type="number" class="form-control" id="longitude" name="longitude" min="-180" max="180"
-                    step="0.00001" placeholder="14.52857" value="{{old('longitude')}}" required>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Via Roma 25, Napoli, 80125, Campania, Italia" value="{{old('address')}}" required>
             </div>
 
             <div class="form-group">
@@ -215,7 +193,7 @@
             </button>
 
         </form>
-    </div>
+    
 
 
 

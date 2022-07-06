@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- 
-@php
-dd($habitation->habitationType->icon)
-@endphp --}}
-    <div class="d-flex container">
-        <div id="carouselExampleControls" class="carousel slide w-50" data-ride="carousel">
+
+@include('includes.messages.success')
+
+<div class="d-flex" style="min-height: 50vh">
+
+    @if ($habitation->images->count() > 0)
+        <div id="showCarousel" class="carousel slide w-50" data-ride="carousel">
             <div class="carousel-inner">
             @foreach ($habitation->images as $key => $image)
                 <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
@@ -15,16 +16,29 @@ dd($habitation->habitationType->icon)
             @endforeach
 
             </div>
-        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
-            <span class="carousel-control-prev-icon text-danger" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <button class="carousel-control-prev" type="button" data-target="#showCarousel" data-slide="prev">
+                <span class="carousel-control-prev-icon" style="filter: invert(1);" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#showCarousel" data-slide="next">
+                <span class="carousel-control-next-icon" style="filter: invert(1);" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
             </button>
-            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
-            <span class="carousel-control-next-icon text-danger" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-            </button>
+
         </div>
-        <div class="card w-50">
+
+        @else
+
+        <div class="h-100 w-50">
+            <img src="https://source.unsplash.com/random/?home" class="w-100 h-100" alt="...">
+        </div>
+    
+
+        
+        
+    @endif
+
+        <div class="card w-50 h-100">
             <h5 class="card-header">{{$habitation->title}}</h5>
             <div class="card-body">
             <h5 class="card-title text-center my-4">
@@ -73,18 +87,25 @@ dd($habitation->habitationType->icon)
             </div>
 
             
-            <form action="{{route('admin.habitations.destroy', $habitation->id)}}" method="post"
-                class="deleteForm text-center mx-2" data-name="{{$habitation->title}}">
-            
-                @method('DELETE')
-            
-                @csrf
-            
-                <button type="submit" class="btn btn-danger shadow-none">
-                    Elimina annuncio
-                </button>
-            
-            </form>
+            <div class="d-flex justify-content-around align-items-center">
+                <a href="{{ route('admin.habitations.edit', $habitation->id)}}" class="btn btn-success shadow-none">
+                    Modifica annuncio
+                </a>
+
+
+                <form action="{{route('admin.habitations.destroy', $habitation->id)}}" method="post"
+                    class="deleteForm text-center mx-2" data-name="{{$habitation->title}}">
+
+                    @method('DELETE')
+
+                    @csrf
+
+                    <button type="submit" class="btn btn-danger shadow-none">
+                        Elimina annuncio
+                    </button>
+
+                </form>
+            </div>
             </div>
         </div>
     </div>
