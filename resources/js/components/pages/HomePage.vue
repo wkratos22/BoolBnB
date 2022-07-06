@@ -7,7 +7,7 @@
 
         <h1>Sito in costruzione</h1>
 
-        <div class="m-3 d-flex" v-for="habitation in habitations" :key="habitation">
+        <div class="m-3 d-flex" v-for="habitation in habitations" :key="habitation.id">
             <div>
                 <h2>Titolo</h2>
                 {{habitation.title}}
