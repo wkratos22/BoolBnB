@@ -26,7 +26,8 @@ Route::middleware('auth:api', function (){
 Route::namespace('Api')->group(function(){
 
     Route::get('/habitations', 'HabitationApi@index');
-    Route::get('/habitations{slug}', 'HabitationApi@show');
+    Route::get('/habitations/{slug}', 'HabitationApi@show');
+    Route::get('/habitations/{guests}', 'HabitationApi@search');
 
 });
 

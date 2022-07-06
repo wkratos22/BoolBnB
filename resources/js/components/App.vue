@@ -2,13 +2,15 @@
 
     <div>
 
-        <Header />
+        <header>
+          
+         <Header />
+        </header>
 
         <main class="container">
             
           <router-view></router-view>
           
-            
         </main>
 
         <Footer />

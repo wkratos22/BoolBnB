@@ -15,7 +15,7 @@ class HabitationApi extends Controller
      */
     public function index()
     {
-        $habitations= Habitation::all();
+        $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images')->get();
 
         return response()->json(compact('habitations'));
     }
