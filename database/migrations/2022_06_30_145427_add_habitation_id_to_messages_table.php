@@ -16,6 +16,7 @@ class AddHabitationIdToMessagesTable extends Migration
         Schema::table('messages', function (Blueprint $table) {
             $table->unsignedBigInteger('habitation_id')->after('id');
 
+            // annuncio eliminato -> di conseguenza anche i relativi messaggi
             $table->foreign('habitation_id')
                   ->references('id')
                   ->on('habitations')->onDelete('cascade');
