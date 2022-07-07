@@ -55,6 +55,4 @@
        @endforeach
    </div>
 
-   ciao
-
 @endsection
