@@ -2534,7 +2534,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nli{\n    list-style: none;\n    padding: 15px;\n}\nli:hover{\n    text-decoration: underline;\n    cursor: pointer;\n}\n.font-weight{\n    font-weight: bolder;\n    font-size: large;\n}\n.inline{\n    display: inline-flex;\n    justify-content: space-around;\n}\n.bg-color{\n    background-color: lightblue;\n}\n.icon{\n    width: 30px;\n}\n.icon:hover{\n    cursor: pointer;\n    transition: 0.3s;\n    opacity: 0.6;\n}\n.btn-outline-secondary{\n    border-radius: 50%;\n    width: 70px;\n    height: 70px;\n}\n.wave{\n    margin-top: -100px;\n}\n", ""]);
+exports.push([module.i, "\nli{\n    list-style: none;\n    padding: 15px;\n}\nli:hover{\n    text-decoration: underline;\n    cursor: pointer;\n}\n.font-weight{\n    font-weight: bolder;\n    font-size: large;\n}\n.inline{\n    display: inline-flex;\n    justify-content: space-around;\n}\n.bg-color{\n    background-color: lightblue;\n}\n.icon{\n    width: 30px;\n}\n.icon:hover{\n    cursor: pointer;\n    transition: 0.3s;\n    opacity: 0.6;\n}\n.btn-outline-secondary{\n    border-radius: 50%;\n    width: 70px;\n    height: 70px;\n}\n\n", ""]);
 
 // exports
 

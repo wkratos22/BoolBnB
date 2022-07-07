@@ -167,8 +167,4 @@ export default {
         height: 70px;
     }
     
-
-    .wave{
-        margin-top: -100px;
-    }
 </style>
