@@ -1,5 +1,5 @@
 <template>
-<div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center">
+<div class="py-4 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center">
     <div class="card col m-3" v-for="habitation in habitations" :key="habitation.id">
         <img class="card-img-top" :src="require(`../../../../public/storage/${firstImage}`)" alt="Card image cap">
         <div class="card-body">

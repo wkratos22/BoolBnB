@@ -118,16 +118,17 @@ export default {
           let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
           console.log(url)
           
-            axios.get(url)
-                  .then((res)=>{
-
-                    let position = res.data.results[0].position;
-                    this.latitudeSearch = position.lat;
-                    this.longitudeSearch = position.lon;
-                    console.log(this.latitudeSearch);
-                    console.log(this.longitudeSearch);
-                  })
-                  .catch(err => console.error('Impossibile caricare i dati', err))
+              
+              axios.get(url)
+                    .then((res)=>{
+  
+                      let position = res.data.results[0].position;
+                      this.latitudeSearch = position.lat;
+                      this.longitudeSearch = position.lon;
+                      console.log(this.latitudeSearch);
+                      console.log(this.longitudeSearch);
+                    })
+                    .catch(err => console.error('Impossibile caricare i dati', err))
 
         }
   },
