@@ -2,23 +2,24 @@
   <nav>
     <ul class="nav d-flex justify-content-between m-1">
       <li class="nav-item">
-        <router-link class="navbar-brand" :to="{ name: 'home' }"
-          >Home</router-link
+        <router-link class="navbar-brand" :to="{ name: 'home' }">
+          Home
+        </router-link
         >
       </li>
 
-      <SearchHab @search="searchFunction"/>
+      <SearchHab />
 
       <li class="nav-item d-flex">
         <!--Button per diventare un'host(aggiungi abitazioni)-->
         <!-- <a class="nav-link m-1" href="/admin.habitations.create">Diventa un host</a> -->
 
         <!--Button per entrare nel back-end per l'utente loggato-->
-        <router-link class="nav-link m-1" :to="{ name: 'advancedSearch' }">Annunci</router-link >
-        <a class="nav-link m-1" href="/admin">Passa alla modalità host</a>
+        <!-- <router-link class="nav-link m-1" :to="{ name: 'advancedSearch' }">Annunci</router-link > -->
+        <!-- <a class="nav-link m-1" href="/admin">Passa alla modalità host</a> -->
 
         <a class="nav-link m-1" href="/register">Registrati</a>
-        <a class="nav-link m-1" href="/login">Accedi</a>
+        <a class="nav-link m-1" href="/login">Passa alla modalità host</a>
 
       </li>
     </ul>
@@ -34,23 +35,6 @@ export default {
 
   components: {
     SearchHab,
-  },
-
-  data() {
-    return {
-        positionInput: {latitudine: "", longitudine: ""},
-    }
-  },
-
-  methods: {
-    searchFunction(positionInput) {
-      this.positionInput.latitudine = positionInput.latitudine;
-      this.positionInput.longitudine = positionInput.longitudine;
-
-      console.log('RESPONSE-Header', this.positionInput);
-
-      this.$emit('search-data', this.positionInput)
-    }
   },
 
 };

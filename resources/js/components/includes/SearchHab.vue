@@ -11,7 +11,7 @@
               placeholder="Cerca località"
               aria-label="Search"
               minlength="2"
-              v-model="destination"
+              v-model="positionInput.destination"
             />
           </div>
 
@@ -36,8 +36,8 @@
           <form>
             <div class="form-group mb-0">
                 <label for="formControlRange">Raggio di ricerca?</label>
-                <input type="range" class="form-control-range" id="formControlRange" min="1000" max="500000" step="1000" value="20000" v-model="radius">
-                {{radius / 1000}}km
+                <input type="range" class="form-control-range" id="formControlRange" min="1000" max="500000" step="1000" value="20000" v-model="positionInput.radius">
+                {{positionInput.radius / 1000}}km
             </div>
           </form>
 
@@ -50,10 +50,10 @@
 
                   <form>
                       <div class="form-group my-4">
-                          <input type="number" class="form-control" v-model="roomsNumber" min="1" max="99" placeholder="Numero minimo di stanze?">
+                          <input type="number" class="form-control" v-model="positionInput.roomsNumber" min="1" max="99" placeholder="Numero minimo di stanze?">
                       </div>
                       <div class="form-group my-4">
-                          <input type="number" class="form-control" v-model="bedsNumber" min="1" max="99" placeholder="Numero minimo di letti?">
+                          <input type="number" class="form-control" v-model="positionInput.bedsNumber" min="1" max="99" placeholder="Numero minimo di letti?">
                       </div>
                       <div class="form-check form-check-inline my-3">
                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -66,26 +66,29 @@
             </div>
 
             <!-- <router-link class="btn btn-primary" :to="{ name: 'advancedSearch' }">Search</router-link > -->
-            <button class="btn btn-primary" @click.prevent="getLocation()">Search</button >
+            <!-- <button class="btn btn-primary" @click.prevent="getLocation()"> -->
+              <router-link v-if="$route.path != '/habitations'" class="btn btn-primary" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber, },  }">
+                Search
+              </router-link >
+            <!-- </button > -->
         </form>
       </li>
 </template>
 
 <script>
-import axios from 'axios';
 export default {
     name: 'SearchHab',
 
     data(){
         return {
-            destination: "",
-            roomsNumber: "",
-            bedsNumber: "",
-            guestsNumber: "",
-            radius: 20000,
+          // guestsNumber: "",
             active: false,
-            api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
-            positionInput: {latitudine: "", longitudine: ""},
+            positionInput: {
+              destination: "",
+              radius: 20000,
+              roomsNumber: 0,
+              bedsNumber: 0,
+            },
         }
     },
 
@@ -110,24 +113,24 @@ export default {
             this.active = !this.active
         },
 
-        getLocation() {
+        // getLocation() {
 
-          let encodeLocation = encodeURI(this.destination);
+        //   let encodeLocation = encodeURI(this.destination);
 
-          let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
-          console.log(url)
+        //   let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
+        //   console.log(url)
 
 
-              axios.get(url)
-                    .then((res)=>{
-                      let position = res.data.results[0].position;
-                      this.positionInput.latitudine = position.lat
-                      this.positionInput.longitudine = position.lon
-                      this.$emit('search', this.positionInput);
-                    })
-                    .catch(err => console.error('Impossibile caricare i dati', err))
+        //       axios.get(url)
+        //             .then((res)=>{
+        //               let position = res.data.results[0].position;
+        //               this.positionInput.latitude = position.lat
+        //               this.positionInput.longitude = position.lon
+        //               this.$emit('search', this.positionInput);
+        //             })
+        //             .catch(err => console.error('Impossibile caricare i dati', err))
 
-        },
+        // },
 
 
   },

@@ -11,10 +11,6 @@
         </div>
 
     </div>
-    <div>
-        <h1>{{position.latitudine}}</h1>
-        <h1>{{position.longitudine}}</h1>
-    </div>
 </div>
 </template>
 
@@ -24,14 +20,15 @@ import axios from 'axios';
 export default {
     name: "AdvancedSearch",
 
-    props: {
-        position: Object,
-    },
-
     data() {
         return {
             habitations: [],
             firstImage: "",
+            api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
+            coordinates: {
+                latitude: '',
+                longitude: ''
+            }
         }
     },
     methods: {
@@ -61,13 +58,47 @@ export default {
                     // console.log(images)
 
                 })
+        },
+
+        getLocation() {
+
+          let encodeLocation = encodeURI(this.$route.params.destination);
+
+          let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.$route.params.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
+          console.log(url)
+
+
+              axios.get(url)
+                    .then((res)=>{
+                      let position = res.data.results[0].position;
+
+                        let coordinates = {
+                            latitude : position.lat,
+                            longitude : position.lon,
+                            radius: this.$route.params.radius
+                        }
+                        console.log(coordinates)
+                        this.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius);
+                    })
+                    .catch(err => console.error('Impossibile caricare i dati', err))
+
+        },
+
+        sendQuery(latitudine, longitudine, radius){
+            axios.get('http://127.0.0.1:8000/api/search?lat='+latitudine+'&lon='+longitudine+'&radius='+radius)
+            .then( (res) => {
+                console.log(res.data)
+            })
+            .catch(err => console.error('Impossibile caricare i dati', err))
         }
     },
 
 
     mounted() {
         this.getHabitation();
-    }
+        this.getLocation();
+        console.log(this.$route.params)
+    },
 
 }
 </script>

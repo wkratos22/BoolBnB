@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Habitation;
 
+use Illuminate\Support\Facades\Validator;
+
 class HabitationApi extends Controller
 {
     /**
@@ -18,27 +20,6 @@ class HabitationApi extends Controller
         $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images')->get();
 
         return response()->json(compact('habitations'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -56,37 +37,46 @@ class HabitationApi extends Controller
         return response()->json($habitation);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function getParams( Request $request ){
+        $data= $request->all();
+
+        $longitude = $data['lon'];
+        $latitude = $data['lat'];
+        $radius = $data['radius'];
+
+        $habitations = Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images')->get();
+
+        $filteredHab = [];
+
+        foreach ($habitations as $habitation) {
+            $distance = self::haversineGreatCircleDistance($latitude, $longitude, $habitation->latitude, $habitation->longitude);
+            $kmRadius = $radius / 1000;
+            if ($distance < $kmRadius) {
+                array_push($filteredHab, $habitation);
+            }
+
+        }
+        
+        return response()->json(compact('filteredHab'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    // metodo php per calcolare la distanza tra due diversi punti (definiti tramite lat e long)
+    public function haversineGreatCircleDistance(
+        $latitudeFrom,
+        $longitudeFrom,
+        $latitudeTo,
+        $longitudeTo,
+        $earthMeanRadius = 6371
+    ) 
     {
-        //
+        $deltaLatitude = deg2rad($latitudeTo - $latitudeFrom);
+        $deltaLongitude = deg2rad($longitudeTo - $longitudeFrom);
+        $a = sin($deltaLatitude / 2) * sin($deltaLatitude / 2) +
+            cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) *
+            sin($deltaLongitude / 2) * sin($deltaLongitude / 2);
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+        return $earthMeanRadius * $c;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
