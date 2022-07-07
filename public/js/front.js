@@ -2508,7 +2508,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nli{\n    list-style: none;\n    padding: 15px;\n}\nli:hover{\n    text-decoration: underline;\n    cursor: pointer;\n}\n.font-weight{\n    font-weight: bolder;\n    font-size: large;\n}\n.inline{\n    display: inline-flex;\n    justify-content: space-around;\n}\n.bg-color{\n    background-color: lightblue;\n}\n.icon{\n    width: 30px;\n}\n.icon:hover{\n    cursor: pointer;\n    transition: 0.3s;\n    opacity: 0.6;\n}\n.btn-outline-secondary{\n    border-radius: 50%;\n    width: 70px;\n    height: 70px;\n}\n\n", ""]);
+exports.push([module.i, "\nli{\n    list-style: none;\n    padding: 15px;\n}\nli:hover{\n    text-decoration: underline;\n    cursor: pointer;\n}\n.font-weight{\n    font-weight: bolder;\n    font-size: large;\n}\n.inline{\n    display: inline-flex;\n    justify-content: space-around;\n}\n.bg-color{\n    background-color: lightblue;\n}\n.icon{\n    width: 30px;\n}\n.icon:hover{\n    cursor: pointer;\n    transition: 0.3s;\n    opacity: 0.6;\n}\n.btn-outline-secondary{\n    border-radius: 50%;\n    width: 70px;\n    height: 70px;\n}\n.wave{\n    margin-top: -100px;\n}\n\n", ""]);
 
 // exports
 
@@ -3884,30 +3884,32 @@ var staticRenderFns = [
       _c("div", { staticClass: "px-5 text-center" }, [
         _c("h3", [_vm._v("Trovaci sui nostri social!")]),
         _vm._v(" "),
-        _c("img", {
-          staticClass: "icon mx-4 ml-2",
-          attrs: { src: __webpack_require__(/*! ./icon/facebook.png */ "./resources/js/components/icon/facebook.png"), alt: "" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "icon mx-4 ml-2",
-          attrs: { src: __webpack_require__(/*! ./icon/instagram.png */ "./resources/js/components/icon/instagram.png"), alt: "" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "icon mx-4 ml-2",
-          attrs: { src: __webpack_require__(/*! ./icon/twitter.png */ "./resources/js/components/icon/twitter.png"), alt: "" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "icon mx-4 ml-2",
-          attrs: { src: __webpack_require__(/*! ./icon/youtube.png */ "./resources/js/components/icon/youtube.png"), alt: "" },
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "icon mx-4 ml-2",
-          attrs: { src: __webpack_require__(/*! ./icon/whatsapp.png */ "./resources/js/components/icon/whatsapp.png"), alt: "" },
-        }),
+        _c("div", { staticClass: "mt-5" }, [
+          _c("img", {
+            staticClass: "icon mx-4 ml-2",
+            attrs: { src: __webpack_require__(/*! ./icon/facebook.png */ "./resources/js/components/icon/facebook.png"), alt: "" },
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "icon mx-4 ml-2",
+            attrs: { src: __webpack_require__(/*! ./icon/instagram.png */ "./resources/js/components/icon/instagram.png"), alt: "" },
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "icon mx-4 ml-2",
+            attrs: { src: __webpack_require__(/*! ./icon/twitter.png */ "./resources/js/components/icon/twitter.png"), alt: "" },
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "icon mx-4 ml-2",
+            attrs: { src: __webpack_require__(/*! ./icon/youtube.png */ "./resources/js/components/icon/youtube.png"), alt: "" },
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "icon mx-4 ml-2",
+            attrs: { src: __webpack_require__(/*! ./icon/whatsapp.png */ "./resources/js/components/icon/whatsapp.png"), alt: "" },
+          }),
+        ]),
       ]),
     ])
   },
@@ -20100,7 +20102,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/img-loader/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\39351\\Desktop\\boolean\\BoolBnB\\resources\\js\\components\\icon\\facebook.png'");
+module.exports = "/images/facebook.png?87e2de9c3536d686a96f394dfb9fa87c";
 
 /***/ }),
 
@@ -20111,7 +20113,7 @@ throw new Error("Module build failed (from ./node_modules/img-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/img-loader/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\39351\\Desktop\\boolean\\BoolBnB\\resources\\js\\components\\icon\\instagram.png'");
+module.exports = "/images/instagram.png?4a8c23476a7c20c5bee2a752a6f96e9e";
 
 /***/ }),
 
@@ -20122,7 +20124,7 @@ throw new Error("Module build failed (from ./node_modules/img-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/img-loader/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\39351\\Desktop\\boolean\\BoolBnB\\resources\\js\\components\\icon\\twitter.png'");
+module.exports = "/images/twitter.png?8f35a40403a84631c4125c4f1859c7a6";
 
 /***/ }),
 
@@ -20133,7 +20135,7 @@ throw new Error("Module build failed (from ./node_modules/img-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/img-loader/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\39351\\Desktop\\boolean\\BoolBnB\\resources\\js\\components\\icon\\whatsapp.png'");
+module.exports = "/images/whatsapp.png?774352deeaa60ebe04164a1e28489771";
 
 /***/ }),
 
@@ -20144,7 +20146,7 @@ throw new Error("Module build failed (from ./node_modules/img-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/img-loader/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\39351\\Desktop\\boolean\\BoolBnB\\resources\\js\\components\\icon\\youtube.png'");
+module.exports = "/images/youtube.png?ca6d67e60f758d352745329b283e8f32";
 
 /***/ }),
 
