@@ -24,12 +24,14 @@ class HabitationController extends Controller
      */
     public function index()
     {
+        if (Auth::check()) {
 
-        $user_hab = Auth::user()->habitations();
-
-        $habitations = $user_hab->orderBy('updated_at', 'desc')->get();
-
-        return view('admin.habitations.index', compact('habitations'));
+            $user_hab = Auth::user()->habitations();
+    
+            $habitations = $user_hab->where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+    
+            return view('admin.habitations.index', compact('habitations'));
+        }
     }
 
     /**
@@ -183,8 +185,9 @@ class HabitationController extends Controller
      */
     public function show(Habitation $habitation)
     {
-
-        return view('admin.habitations.show', compact('habitation'));
+        if (Auth::user()->id == $habitation->user_id) {
+            return view('admin.habitations.show', compact('habitation'));
+        } return view('admin.pages.notFound');
     }
 
     /**
@@ -202,7 +205,10 @@ class HabitationController extends Controller
         $habitation_tags_id = $habitation->tags->pluck('id')->toArray();
         $habitation_services_id = $habitation->services->pluck('id')->toArray();
 
-        return view('admin.habitations.edit', compact('habitation', 'habitation_tags_id', 'habitation_services_id', 'type_hab', 'tags_hab', 'service_hab'));
+        if (Auth::user()->id == $habitation->user_id) {
+            return view('admin.habitations.edit', compact('habitation', 'habitation_tags_id', 'habitation_services_id', 'type_hab', 'tags_hab', 'service_hab'));
+        } return view('admin.pages.notFound');
+
     }
 
     /**
@@ -322,7 +328,6 @@ class HabitationController extends Controller
 
         $habitation->update($data);
 
-
         return redirect()->route('admin.habitations.show', $habitation)->with('message', "L'annuncio '$habitation->title' è stato modificato con successo!");
     }
 
@@ -334,8 +339,12 @@ class HabitationController extends Controller
      */
     public function destroy(Habitation $habitation)
     {
-        $habitation->delete();
+        
+        if (Auth::user()->id == $habitation->user_id) {
+            $habitation->delete();
+            return redirect()->route( 'admin.habitations.index' )->with('message', "$habitation->title è stato eliminato con successo.");
 
-        return redirect()->route( 'admin.habitations.index' )->with('message', "$habitation->title è stato eliminato con successo.");
+        } return view('admin.pages.notFound');
+
     }
 }

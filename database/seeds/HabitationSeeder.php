@@ -27,7 +27,7 @@ class HabitationSeeder extends Seeder
             'Casa Falcucci',
             'Romantic Studio',
         ];
-
+        
         $addresses = [
             'Via Emilio Gola 20, Milano, 20143',
             'Via Terracina 380, Napoli, 80125',
@@ -40,6 +40,7 @@ class HabitationSeeder extends Seeder
             'Via Nazionale 10, Firenze, 50123',
             'Via Manfredo Camperio 9, Milano, 20123',
         ];
+
         
         for($i = 0; $i < 10; $i++){
             $habitation = new Habitation();
@@ -70,7 +71,6 @@ class HabitationSeeder extends Seeder
             $habitation->beds_number = $faker->numberBetween(2, 15);
             $habitation->bathrooms_number = $faker->numberBetween(1, 5);
             $habitation->square_meters = $faker->numberBetween(50, 200);
-            
             $habitation->visible = $faker->numberBetween(0, 1);
             $habitation->save();
         }
