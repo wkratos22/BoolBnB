@@ -7,7 +7,7 @@
         >
       </li>
 
-      <SearchHab />
+      <SearchHab @search="searchFunction"/>
 
       <li class="nav-item d-flex">
         <!--Button per diventare un'host(aggiungi abitazioni)-->
@@ -53,7 +53,29 @@ export default {
 
   components: {
     SearchHab,
-  }
+  },
+
+  data() {
+    return {
+        latitudine: '',
+        longitudine: '',
+    }
+  },
+
+  methods: {
+    searchFunction() {
+      this.latitudine = this.latitudeSearch;
+      this.longitudine = this.longitudeSearch;
+
+      console.log('LATITUDINE', this.latitudine);
+
+      this.$emit('search-data', {latitudine, longitudine})
+    }
+  },
+
+//   mounted() {
+//     this.searchFunction()
+//   }
 
 };
 </script>

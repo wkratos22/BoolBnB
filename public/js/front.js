@@ -1910,6 +1910,7 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Header_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header.vue */ "./resources/js/components/Header.vue");
 /* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
+/* harmony import */ var _pages_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/AdvancedSearch.vue */ "./resources/js/components/pages/AdvancedSearch.vue");
 //
 //
 //
@@ -1931,13 +1932,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   components: {
     Header: _Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Footer: _Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Footer: _Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    AdvancedSearch: _pages_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      lat: '',
+      "long": ''
+    };
+  },
+  methods: {
+    searchDataFunction: function searchDataFunction() {
+      this.lat = this.latitudine;
+      this["long"] = this.longitudine;
+      console.log('LATITUDINE', this.lat);
+    }
+  },
+  mounted: function mounted() {
+    this.searchDataFunction();
   }
 });
 
@@ -2136,7 +2158,27 @@ __webpack_require__.r(__webpack_exports__);
   name: "Header",
   components: {
     SearchHab: _includes_SearchHab_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+  },
+  data: function data() {
+    return {
+      latitudine: '',
+      longitudine: ''
+    };
+  },
+  methods: {
+    searchFunction: function searchFunction() {
+      this.latitudine = this.latitudeSearch;
+      this.longitudine = this.longitudeSearch;
+      console.log('LATITUDINE', this.latitudine);
+      this.$emit('search-data', {
+        latitudine: latitudine,
+        longitudine: longitudine
+      });
+    }
+  } //   mounted() {
+  //     this.searchFunction()
+  //   }
+
 });
 
 /***/ }),
@@ -2294,9 +2336,15 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         return console.error('Impossibile caricare i dati', err);
       });
+      this.$emit('search', {
+        latitudeSearch: latitudeSearch,
+        longitudeSearch: longitudeSearch
+      });
     }
-  },
-  mounted: function mounted() {}
+  } // mounted() {
+  //     this.getLocation()
+  // }
+
 });
 
 /***/ }),
@@ -2312,7 +2360,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _includes_SearchHab_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../includes/SearchHab.vue */ "./resources/js/components/includes/SearchHab.vue");
 //
 //
 //
@@ -2326,12 +2373,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdvancedSearch",
-  components: {
-    SearchHab: _includes_SearchHab_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  props: {
+    lat: String
   },
   data: function data() {
     return {
@@ -2344,8 +2396,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/habitations").then(function (res) {
-        // console.log('STATUS CALL', res.data.habitations)
         _this.habitations = res.data.habitations;
+        console.log('STATUS CALL', res.data.habitations);
 
         _this.habitations.forEach(function (element) {
           var images = element.images;
@@ -2355,9 +2407,9 @@ __webpack_require__.r(__webpack_exports__);
             console.log('STATUS CALL', element.images[0].image_url);
             _this.firstImage = images[0].image_url;
           }
-        }); // images = this.habitations.images[0]
+        });
 
-
+        images = _this.habitations.images[0];
         console.log(images);
       });
     }
@@ -3631,7 +3683,13 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("header", [_c("Header")], 1),
+      _c(
+        "header",
+        [_c("Header", { on: { "search-data": _vm.searchDataFunction } })],
+        1
+      ),
+      _vm._v(" "),
+      _c("AdvancedSearch", { attrs: { latitude: _vm.lat } }),
       _vm._v(" "),
       _c("main", { staticClass: "container" }, [_c("router-view")], 1),
       _vm._v(" "),
@@ -3916,7 +3974,7 @@ var render = function () {
           1
         ),
         _vm._v(" "),
-        _c("SearchHab"),
+        _c("SearchHab", { on: { search: _vm.searchFunction } }),
         _vm._v(" "),
         _c(
           "li",
@@ -4226,54 +4284,58 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center",
-    },
-    _vm._l(_vm.habitations, function (habitation) {
-      return _c("div", { key: habitation.id, staticClass: "card col m-3" }, [
-        _c("img", {
-          staticClass: "card-img-top",
-          attrs: {
-            src: __webpack_require__("./public/storage sync recursive ^\\.\\/.*$")("./" + _vm.firstImage),
-            alt: "Card image cap",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "card-body" },
-          [
-            _c("h5", { staticClass: "card-title" }, [
-              _vm._v(_vm._s(habitation.title)),
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v(_vm._s(habitation.address)),
-            ]),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  to: {
-                    name: "habitationDetails",
-                    params: { slug: habitation.slug },
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass:
+          "py-4 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center",
+      },
+      _vm._l(_vm.habitations, function (habitation) {
+        return _c("div", { key: habitation, staticClass: "card col m-3" }, [
+          _c("img", {
+            staticClass: "card-img-top",
+            attrs: {
+              src: __webpack_require__("./public/storage sync recursive ^\\.\\/.*$")("./" + _vm.firstImage),
+              alt: "Card image cap",
+            },
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("h5", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(habitation.title)),
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(_vm._s(habitation.address)),
+              ]),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: {
+                    to: {
+                      name: "habitationDetails",
+                      params: { slug: habitation.slug },
+                    },
                   },
                 },
-              },
-              [_vm._v("Vedi appartamento")]
-            ),
-          ],
-          1
-        ),
-      ])
-    }),
-    0
-  )
+                [_vm._v("Vedi appartamento")]
+              ),
+            ],
+            1
+          ),
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("div", [_vm._v("\r\n        " + _vm._s(_vm.lat) + "\r\n    ")]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
