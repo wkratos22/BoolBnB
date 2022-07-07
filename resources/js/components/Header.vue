@@ -20,25 +20,6 @@
         <a class="nav-link m-1" href="/register">Registrati</a>
         <a class="nav-link m-1" href="/login">Accedi</a>
 
-        <!-- Dropdown sul button in alto a destra utente non loggato -->
-        <!-- <div>
-                    <a class="nav-link m-1" href="/login">Diventa un host</a>
-                    <a class="nav-link m-1" href="/create">Proponi un'esperienza</a>
-                    <a class="nav-link m-1" href="/help-page">Assistenza</a>
-                </div> -->
-
-        <!-- Dropdown sul button in alto a destra utente loggato -->
-        <!-- <div>
-                    <a class="nav-link m-1" href="/messages">Messaggi</a>
-                    <a class="nav-link m-1" href="/messages">Notifiche</a>
-                    <a class="nav-link m-1" href="/habitations">Viaggi</a>
-                    <a class="nav-link m-1" href="/prefers">Preferiti</a>
-                    <a class="nav-link m-1" href="/annunci">Gestisci gli annunci</a>
-                    <a class="nav-link m-1" href="/condividi">Proponi un'esperienza</a>
-                    <a class="nav-link m-1" href="/login">Account</a>
-                    <a class="nav-link m-1" href="/help-page">Assistenza</a>
-                    <a class="nav-link m-1" href="/logout">Esci</a>
-                </div> -->
       </li>
     </ul>
   </nav>
@@ -57,25 +38,20 @@ export default {
 
   data() {
     return {
-        latitudine: '',
-        longitudine: '',
+        positionInput: {latitudine: "", longitudine: ""},
     }
   },
 
   methods: {
-    searchFunction() {
-      this.latitudine = this.latitudeSearch;
-      this.longitudine = this.longitudeSearch;
+    searchFunction(positionInput) {
+      this.positionInput.latitudine = positionInput.latitudine;
+      this.positionInput.longitudine = positionInput.longitudine;
 
-      console.log('LATITUDINE', this.latitudine);
+      console.log('RESPONSE-Header', this.positionInput);
 
-      this.$emit('search-data', {latitudine, longitudine})
+      this.$emit('search-data', this.positionInput)
     }
   },
-
-//   mounted() {
-//     this.searchFunction()
-//   }
 
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="py-4 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center">
-        <div class="card col m-3" v-for="habitation in habitations" :key="habitation">
+        <div class="card col m-3" v-for="habitation in habitations" :key="habitation.id">
             <img class="card-img-top" :src="require(`../../../../public/storage/${firstImage}`)" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{habitation.title}}</h5>
@@ -12,7 +12,8 @@
 
     </div>
     <div>
-        {{lat}}
+        <h1>{{position.latitudine}}</h1>
+        <h1>{{position.longitudine}}</h1>
     </div>
 </div>
 </template>
@@ -24,7 +25,7 @@ export default {
     name: "AdvancedSearch",
 
     props: {
-        lat: String,
+        position: Object,
     },
 
     data() {
@@ -39,7 +40,7 @@ export default {
                 .then((res)=>{
 
                     this.habitations = res.data.habitations
-                    console.log('STATUS CALL', res.data.habitations)
+                    console.log('STATUS CALL API', res.data.habitations)
 
 
 
@@ -50,14 +51,14 @@ export default {
                         if (images.length) {
 
 
-                            console.log('STATUS CALL', element.images[0].image_url)
+                            console.log('STATUS CALL IMG', element.images[0].image_url)
                             this.firstImage = images[0].image_url
 
                         }
                     });
 
-                    images = this.habitations.images[0]
-                    console.log(images)
+                    // images = this.habitations.images[0]
+                    // console.log(images)
 
                 })
         }

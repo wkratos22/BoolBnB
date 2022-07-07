@@ -85,8 +85,7 @@ export default {
             radius: 20000,
             active: false,
             api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
-            latitudeSearch: "",
-            longitudeSearch: "",
+            positionInput: {latitudine: "", longitudine: ""},
         }
     },
 
@@ -121,23 +120,18 @@ export default {
 
               axios.get(url)
                     .then((res)=>{
-
                       let position = res.data.results[0].position;
-                      this.latitudeSearch = position.lat;
-                      this.longitudeSearch = position.lon;
-                      console.log(this.latitudeSearch);
-                      console.log(this.longitudeSearch);
+                      this.positionInput.latitudine = position.lat
+                      this.positionInput.longitudine = position.lon
+                      this.$emit('search', this.positionInput);
                     })
                     .catch(err => console.error('Impossibile caricare i dati', err))
 
-                    this.$emit('search', {latitudeSearch, longitudeSearch})
-        }
+        },
+
 
   },
 
-    // mounted() {
-    //     this.getLocation()
-    // }
 }
 </script>
 

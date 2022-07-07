@@ -8,11 +8,11 @@
 
         </header>
 
-        <AdvancedSearch :latitude="lat" />
+        <!-- <AdvancedSearch  /> -->
 
         <main class="container">
 
-          <router-view></router-view>
+          <router-view :position="positionInput"></router-view>
 
         </main>
 
@@ -38,22 +38,22 @@ export default {
 
   data() {
     return {
-        lat: '',
-        long: '',
+        positionInput: {latitudine: "", longitudine: ""},
     }
   },
 
    methods: {
-    searchDataFunction() {
-      this.lat = this.latitudine;
-      this.long =this.longitudine;
-      console.log('LATITUDINE', this.lat);
+    searchDataFunction(positionInput) {
+      this.positionInput.latitudine = positionInput.latitudine;
+      this.positionInput.longitudine = positionInput.longitudine;
+
+      console.log('RESPONSE-App', this.positionInput);
     }
   },
 
-  mounted() {
-    this.searchDataFunction()
-  }
+//   mounted() {
+//     this.searchDataFunction()
+//   }
 
 };
 </script>
