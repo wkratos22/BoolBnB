@@ -67,10 +67,13 @@
 
             <!-- <router-link class="btn btn-primary" :to="{ name: 'advancedSearch' }">Search</router-link > -->
             <!-- <button class="btn btn-primary" @click.prevent="getLocation()"> -->
-              <router-link class="btn btn-primary" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber },  }">
+              <!-- <router-link class="btn btn-primary" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber },  }">
                 Search
-              </router-link >
+              </router-link > -->
             <!-- </button > -->
+            <button class="btn btn-primary" @click.prevent="$emit('locationData', positionInput)">
+              Search
+            </button>
         </form>
       </li>
 </template>

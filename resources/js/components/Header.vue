@@ -8,7 +8,7 @@
         >
       </li>
 
-      <SearchHab v-if="$route.name != 'home'" />
+      <SearchHab v-if="$route.name != 'home'" @locationData="getLocationData"/>
 
       <li class="nav-item d-flex  my_2">
         <!--Button per diventare un'host(aggiungi abitazioni)-->
@@ -37,7 +37,18 @@ export default {
     SearchHab,
   },
 
-
+  data(){
+    return {
+      positionInput: {
+      },
+    }
+  },
+  methods: {
+    getLocationData(locationData){
+      this.positionInput = locationData;
+      this.$emit('locationData', this.positionInput)
+    }
+  }
 };
 </script>
 
