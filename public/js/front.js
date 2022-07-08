@@ -1917,6 +1917,16 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Header: _Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Footer: _Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      positionInput: {}
+    };
+  },
+  methods: {
+    getLocationData: function getLocationData(locationData) {
+      this.positionInput = locationData;
+    }
   }
 });
 
@@ -1952,6 +1962,17 @@ __webpack_require__.r(__webpack_exports__);
   name: "Header",
   components: {
     SearchHab: _includes_SearchHab_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      positionInput: {}
+    };
+  },
+  methods: {
+    getLocationData: function getLocationData(locationData) {
+      this.positionInput = locationData;
+      this.$emit('locationData', this.positionInput);
+    }
   }
 });
 
@@ -1985,46 +2006,34 @@ __webpack_require__.r(__webpack_exports__);
   name: 'SearchHab',
   data: function data() {
     return {
-      // guestsNumber: "",
       active: false,
       positionInput: {
         destination: "",
         radius: 20000,
-        roomsNumber: 0,
-        bedsNumber: 0
-      }
+        roomsNumber: 1,
+        bedsNumber: 1,
+        checkedService: []
+      },
+      services: []
     };
   },
   methods: {
-    // increaseValue() {
-    // var value = parseInt(document.getElementById("number").value, 10);
-    // value = isNaN(value) ? 0 : value;
-    // value++;
-    // document.getElementById("number").value = value;
-    // },
-    // decreaseValue() {
-    // var value = parseInt(document.getElementById("number").value, 10);
-    // value = isNaN(value) ? 0 : value;
-    // value < 1 ? (value = 1) : "";
-    // value--;
-    // document.getElementById("number").value = value;
-    // },
     getShow: function getShow() {
       this.active = !this.active;
-    } // getLocation() {
-    //   let encodeLocation = encodeURI(this.destination);
-    //   let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
-    //   console.log(url)
-    //       axios.get(url)
-    //             .then((res)=>{
-    //               let position = res.data.results[0].position;
-    //               this.positionInput.latitude = position.lat
-    //               this.positionInput.longitude = position.lon
-    //               this.$emit('search', this.positionInput);
-    //             })
-    //             .catch(err => console.error('Impossibile caricare i dati', err))
-    // },
+    },
+    getServices: function getServices() {
+      var _this = this;
 
+      axios.get('http://127.0.0.1:8000/api/services').then(function (res) {
+        console.log(res.data);
+        _this.services = res.data.services;
+      })["catch"](function (err) {
+        return console.error('Impossibile caricare i dati', err);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getServices();
   }
 });
 
@@ -2044,15 +2053,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdvancedSearch",
+  props: {
+    locationData: Object
+  },
   data: function data() {
     return {
       habitations: [],
       firstImage: "",
-      api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
-      coordinates: {
-        latitude: '',
-        longitude: ''
-      }
+      api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl"
     };
   },
   methods: {
@@ -2081,7 +2089,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var destinationParam = this.$route.params.destination;
 
-      if (destinationParam != "" || destinationParam.length >= 3) {
+      if (destinationParam != "" && destinationParam != null && destinationParam != undefined) {
         var encodeLocation = encodeURI(this.$route.params.destination);
         var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.$route.params.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
         console.log(url);
@@ -2090,18 +2098,22 @@ __webpack_require__.r(__webpack_exports__);
           var coordinates = {
             latitude: position.lat,
             longitude: position.lon,
-            radius: _this2.$route.params.radius
+            radius: _this2.$route.params.radius,
+            minBeds: _this2.$route.params.bedsNumber,
+            minRooms: _this2.$route.params.roomsNumber,
+            services: _this2.$route.params.services
           };
-          console.log(coordinates);
 
-          _this2.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius);
+          if (coordinates.latitude != null && coordinates.latitude != undefined && coordinates.longitude != null && coordinates.longitude != null) {
+            _this2.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius, coordinates.minBeds, coordinates.minRooms, coordinates.services);
+          }
         })["catch"](function (err) {
           return console.error('Impossibile caricare i dati', err);
         });
       }
     },
-    sendQuery: function sendQuery(latitudine, longitudine, radius) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine + '&radius=' + radius).then(function (res) {
+    sendQuery: function sendQuery(latitudine, longitudine, radius, minBeds, minRooms, services) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine + '&radius=' + radius + '&minBeds=' + minBeds + '&minRooms=' + minRooms + '&services=' + services).then(function (res) {
         console.log(res.data.filteredHab);
       })["catch"](function (err) {
         return console.error('Impossibile caricare i dati', err);
@@ -2109,9 +2121,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    // this.getHabitation();
     this.getLocation();
-    console.log(this.$route.params);
   }
 });
 
@@ -2182,9 +2192,17 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("header", [_c("Header")], 1), _vm._v(" "), _c("main", {
+  return _c("div", [_c("header", [_c("Header", {
+    on: {
+      locationData: _vm.getLocationData
+    }
+  })], 1), _vm._v(" "), _c("main", {
     staticClass: "container"
-  }, [_c("router-view")], 1), _vm._v(" "), _c("Footer")], 1);
+  }, [_c("router-view", {
+    attrs: {
+      locationData: this.positionInput
+    }
+  })], 1), _vm._v(" "), _c("Footer")], 1);
 };
 
 var staticRenderFns = [];
@@ -2243,7 +2261,11 @@ var render = function render() {
         name: "home"
       }
     }
-  }, [_vm._v("\n          Home\n        ")])], 1), _vm._v(" "), _c("SearchHab"), _vm._v(" "), _vm._m(0)], 1)]);
+  }, [_vm._v("\n          Home\n        ")])], 1), _vm._v(" "), _c("SearchHab", {
+    on: {
+      locationData: _vm.getLocationData
+    }
+  }), _vm._v(" "), _vm._m(0)], 1)]);
 };
 
 var staticRenderFns = [function () {
@@ -2387,10 +2409,15 @@ var render = function render() {
   }, [_vm._v("\n                Ulteriori Filtri\n            ")]), _vm._v(" "), _vm.active ? _c("div", {
     staticClass: "addFilters form-group position-absolute bg-dark py-5"
   }, [_c("div", {
-    staticClass: "w-75 mx-auto"
+    staticClass: "container"
   }, [_c("form", [_c("div", {
     staticClass: "form-group my-4"
-  }, [_c("input", {
+  }, [_c("label", {
+    staticClass: "text-light",
+    attrs: {
+      "for": "roomsNumber"
+    }
+  }, [_vm._v("Numero minimo di stanze")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2400,9 +2427,9 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "number",
+      id: "roomsNumber",
       min: "1",
-      max: "99",
-      placeholder: "Numero minimo di stanze?"
+      max: "99"
     },
     domProps: {
       value: _vm.positionInput.roomsNumber
@@ -2416,7 +2443,12 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group my-4"
-  }, [_c("input", {
+  }, [_c("label", {
+    staticClass: "text-light",
+    attrs: {
+      "for": "bedsNumber"
+    }
+  }, [_vm._v("Numero minimo di letti")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2426,9 +2458,9 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "number",
+      id: "bedsNumber",
       min: "1",
-      max: "99",
-      placeholder: "Numero minimo di letti?"
+      max: "99"
     },
     domProps: {
       value: _vm.positionInput.bedsNumber
@@ -2440,42 +2472,68 @@ var render = function render() {
         _vm.$set(_vm.positionInput, "bedsNumber", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _vm._m(0)])])]) : _vm._e(), _vm._v(" "), _c("router-link", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      to: {
-        name: "advancedSearch",
-        params: {
-          destination: _vm.positionInput.destination,
-          radius: _vm.positionInput.radius,
-          roomsNumber: _vm.positionInput.roomsNumber,
-          bedsNumber: _vm.positionInput.bedsNumber
+  })]), _vm._v(" "), _c("h3", {
+    staticClass: "text-light text-center mb-4"
+  }, [_vm._v("Servizi presenti nella struttura:")]), _vm._v(" "), _c("div", {
+    staticClass: "form-group row row-cols-2 row-cols-md-3 row-cols-xl-4 m-0"
+  }, _vm._l(_vm.services, function (service) {
+    return _c("div", {
+      key: service.id,
+      staticClass: "form-check col flex-column justify-content-center my-2 w-25"
+    }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.positionInput.checkedService,
+        expression: "positionInput.checkedService"
+      }],
+      staticClass: "form-check-input mr-0",
+      attrs: {
+        type: "checkbox",
+        id: "service-" + service.id
+      },
+      domProps: {
+        value: service.id,
+        checked: Array.isArray(_vm.positionInput.checkedService) ? _vm._i(_vm.positionInput.checkedService, service.id) > -1 : _vm.positionInput.checkedService
+      },
+      on: {
+        change: function change($event) {
+          var $$a = _vm.positionInput.checkedService,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false;
+
+          if (Array.isArray($$a)) {
+            var $$v = service.id,
+                $$i = _vm._i($$a, $$v);
+
+            if ($$el.checked) {
+              $$i < 0 && _vm.$set(_vm.positionInput, "checkedService", $$a.concat([$$v]));
+            } else {
+              $$i > -1 && _vm.$set(_vm.positionInput, "checkedService", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            }
+          } else {
+            _vm.$set(_vm.positionInput, "checkedService", $$c);
+          }
         }
       }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-check-label text-light",
+      attrs: {
+        "for": "service-" + service.id
+      }
+    }, [_vm._v("\n                                  " + _vm._s(service.label) + "\n                              ")])]);
+  }), 0)])])]) : _vm._e(), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.$emit("locationData", _vm.positionInput);
+      }
     }
-  }, [_vm._v("\n                Search\n              ")])], 1)]);
+  }, [_vm._v("\n              Search\n            ")])])]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "form-check form-check-inline my-3"
-  }, [_c("input", {
-    staticClass: "form-check-input",
-    attrs: {
-      type: "checkbox",
-      value: "",
-      id: "defaultCheck1"
-    }
-  }), _vm._v(" "), _c("label", {
-    staticClass: "form-check-label",
-    attrs: {
-      "for": "defaultCheck1"
-    }
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -18667,6 +18725,7 @@ module.exports = g;
 
 var map = {
 	"./habitations_images/1U85PeSOLxBTV2HnnG1YaMBpVEcWDxm4IbfyC73z.jpg": "./storage/app/public/habitations_images/1U85PeSOLxBTV2HnnG1YaMBpVEcWDxm4IbfyC73z.jpg",
+	"./habitations_images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg": "./storage/app/public/habitations_images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg",
 	"./habitations_images/5Vn1ty8ak14jPWNkqX2y2TddhB4HRMja73oMbNy9.jpg": "./storage/app/public/habitations_images/5Vn1ty8ak14jPWNkqX2y2TddhB4HRMja73oMbNy9.jpg",
 	"./habitations_images/DPA49lOe7DfmJQKOX2Eo3jEDDutTcOy62QR4FuXx.jpg": "./storage/app/public/habitations_images/DPA49lOe7DfmJQKOX2Eo3jEDDutTcOy62QR4FuXx.jpg",
 	"./habitations_images/ERzuNmU3qktZta7XkWzqrn74kuFmvoDcZBMxKumQ.jpg": "./storage/app/public/habitations_images/ERzuNmU3qktZta7XkWzqrn74kuFmvoDcZBMxKumQ.jpg",
@@ -18680,6 +18739,7 @@ var map = {
 	"./habitations_images/UvAFzFimdo3zp2BXCV1v6yeLQJggcoJoHsZy4HRZ.jpg": "./storage/app/public/habitations_images/UvAFzFimdo3zp2BXCV1v6yeLQJggcoJoHsZy4HRZ.jpg",
 	"./habitations_images/VdlWwu8uyY2cl6MJhwAbJ7vL8BhMxstroJxGIOuu.jpg": "./storage/app/public/habitations_images/VdlWwu8uyY2cl6MJhwAbJ7vL8BhMxstroJxGIOuu.jpg",
 	"./habitations_images/Wwf97GSrebCzUgXOS4O9fOFwjG4wHhH5CFPjXEOS.jpg": "./storage/app/public/habitations_images/Wwf97GSrebCzUgXOS4O9fOFwjG4wHhH5CFPjXEOS.jpg",
+	"./habitations_images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg": "./storage/app/public/habitations_images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg",
 	"./habitations_images/d8wxF5MiuxylHmm4d6l31flawEMthdB9BFKWVCcF.jpg": "./storage/app/public/habitations_images/d8wxF5MiuxylHmm4d6l31flawEMthdB9BFKWVCcF.jpg",
 	"./habitations_images/eZDLwF2aoSKNhIBUl1GWqD8DvZrMs7hbNzR4E1Bs.jpg": "./storage/app/public/habitations_images/eZDLwF2aoSKNhIBUl1GWqD8DvZrMs7hbNzR4E1Bs.jpg",
 	"./habitations_images/eyQ9XEZIGU1tZlGDFbQ9dBAuJky8h0TraGHnTePG.jpg": "./storage/app/public/habitations_images/eyQ9XEZIGU1tZlGDFbQ9dBAuJky8h0TraGHnTePG.jpg",
@@ -18688,11 +18748,15 @@ var map = {
 	"./habitations_images/gXNc2ONAItps4Ep1MqHVi80jRBaDRdrTLjjvk4bt.jpg": "./storage/app/public/habitations_images/gXNc2ONAItps4Ep1MqHVi80jRBaDRdrTLjjvk4bt.jpg",
 	"./habitations_images/hRqOniCFHA9oJ6le5A5Qqg24G9FWc0y0dClO19SU.jpg": "./storage/app/public/habitations_images/hRqOniCFHA9oJ6le5A5Qqg24G9FWc0y0dClO19SU.jpg",
 	"./habitations_images/iAFKY9I3OYrfLDnpch0AV4Dznd0njgWHqlSk0mMB.jpg": "./storage/app/public/habitations_images/iAFKY9I3OYrfLDnpch0AV4Dznd0njgWHqlSk0mMB.jpg",
+	"./habitations_images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg": "./storage/app/public/habitations_images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg",
+	"./habitations_images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg": "./storage/app/public/habitations_images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg",
 	"./habitations_images/j57cNcEyRmA3Tsfq4Vz0WzJtEAm06Zojh0mwXyZW.jpg": "./storage/app/public/habitations_images/j57cNcEyRmA3Tsfq4Vz0WzJtEAm06Zojh0mwXyZW.jpg",
 	"./habitations_images/kkZG01mh1V3Bj1Le9rqrI66w7dSj1KLkxFGeCVTd.jpg": "./storage/app/public/habitations_images/kkZG01mh1V3Bj1Le9rqrI66w7dSj1KLkxFGeCVTd.jpg",
 	"./habitations_images/lavUpN59DnZ7xE8UFpIHJ8ptYHpgO8YvmWDlEg72.jpg": "./storage/app/public/habitations_images/lavUpN59DnZ7xE8UFpIHJ8ptYHpgO8YvmWDlEg72.jpg",
+	"./habitations_images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg": "./storage/app/public/habitations_images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg",
 	"./habitations_images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg": "./storage/app/public/habitations_images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg",
 	"./habitations_images/q9rimf1QXZO9NiggmDkuYBt3eKAU2kzDGArSmMGY.jpg": "./storage/app/public/habitations_images/q9rimf1QXZO9NiggmDkuYBt3eKAU2kzDGArSmMGY.jpg",
+	"./habitations_images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg": "./storage/app/public/habitations_images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg",
 	"./habitations_images/zRc7MSJqQ8WnBeavbuNjlKdcMQc61vwJ6Q0LjpHZ.jpg": "./storage/app/public/habitations_images/zRc7MSJqQ8WnBeavbuNjlKdcMQc61vwJ6Q0LjpHZ.jpg"
 };
 
@@ -19444,6 +19508,17 @@ module.exports = "/images/1U85PeSOLxBTV2HnnG1YaMBpVEcWDxm4IbfyC73z.jpg?cefe7b1ec
 
 /***/ }),
 
+/***/ "./storage/app/public/habitations_images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg?6c5eae98d067dced4ecb078bb5073860";
+
+/***/ }),
+
 /***/ "./storage/app/public/habitations_images/5Vn1ty8ak14jPWNkqX2y2TddhB4HRMja73oMbNy9.jpg":
 /*!********************************************************************************************!*\
   !*** ./storage/app/public/habitations_images/5Vn1ty8ak14jPWNkqX2y2TddhB4HRMja73oMbNy9.jpg ***!
@@ -19587,6 +19662,17 @@ module.exports = "/images/Wwf97GSrebCzUgXOS4O9fOFwjG4wHhH5CFPjXEOS.jpg?cefe7b1ec
 
 /***/ }),
 
+/***/ "./storage/app/public/habitations_images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg?8d5dae27480183a1d70bc74b05cc4983";
+
+/***/ }),
+
 /***/ "./storage/app/public/habitations_images/d8wxF5MiuxylHmm4d6l31flawEMthdB9BFKWVCcF.jpg":
 /*!********************************************************************************************!*\
   !*** ./storage/app/public/habitations_images/d8wxF5MiuxylHmm4d6l31flawEMthdB9BFKWVCcF.jpg ***!
@@ -19675,6 +19761,28 @@ module.exports = "/images/iAFKY9I3OYrfLDnpch0AV4Dznd0njgWHqlSk0mMB.jpg?cefe7b1ec
 
 /***/ }),
 
+/***/ "./storage/app/public/habitations_images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg?0e3aba97736fa796bc2e6d7e9868aaa1";
+
+/***/ }),
+
+/***/ "./storage/app/public/habitations_images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg?6c5eae98d067dced4ecb078bb5073860";
+
+/***/ }),
+
 /***/ "./storage/app/public/habitations_images/j57cNcEyRmA3Tsfq4Vz0WzJtEAm06Zojh0mwXyZW.jpg":
 /*!********************************************************************************************!*\
   !*** ./storage/app/public/habitations_images/j57cNcEyRmA3Tsfq4Vz0WzJtEAm06Zojh0mwXyZW.jpg ***!
@@ -19708,6 +19816,17 @@ module.exports = "/images/lavUpN59DnZ7xE8UFpIHJ8ptYHpgO8YvmWDlEg72.jpg?33ade7db1
 
 /***/ }),
 
+/***/ "./storage/app/public/habitations_images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg?8d5dae27480183a1d70bc74b05cc4983";
+
+/***/ }),
+
 /***/ "./storage/app/public/habitations_images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg":
 /*!********************************************************************************************!*\
   !*** ./storage/app/public/habitations_images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg ***!
@@ -19727,6 +19846,17 @@ module.exports = "/images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg?b652e1994
 /***/ (function(module, exports) {
 
 module.exports = "/images/q9rimf1QXZO9NiggmDkuYBt3eKAU2kzDGArSmMGY.jpg?cefe7b1ec7c768643d6473be2134e51e";
+
+/***/ }),
+
+/***/ "./storage/app/public/habitations_images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg?0e3aba97736fa796bc2e6d7e9868aaa1";
 
 /***/ }),
 

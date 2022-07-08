@@ -1928,15 +1928,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdvancedSearch",
+  props: {
+    locationData: Object
+  },
   data: function data() {
     return {
       habitations: [],
       firstImage: "",
-      api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
-      coordinates: {
-        latitude: '',
-        longitude: ''
-      }
+      api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl"
     };
   },
   methods: {
@@ -1965,7 +1964,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var destinationParam = this.$route.params.destination;
 
-      if (destinationParam != "" || destinationParam.length >= 3) {
+      if (destinationParam != "" && destinationParam != null && destinationParam != undefined) {
         var encodeLocation = encodeURI(this.$route.params.destination);
         var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.$route.params.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
         console.log(url);
@@ -1974,18 +1973,22 @@ __webpack_require__.r(__webpack_exports__);
           var coordinates = {
             latitude: position.lat,
             longitude: position.lon,
-            radius: _this2.$route.params.radius
+            radius: _this2.$route.params.radius,
+            minBeds: _this2.$route.params.bedsNumber,
+            minRooms: _this2.$route.params.roomsNumber,
+            services: _this2.$route.params.services
           };
-          console.log(coordinates);
 
-          _this2.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius);
+          if (coordinates.latitude != null && coordinates.latitude != undefined && coordinates.longitude != null && coordinates.longitude != null) {
+            _this2.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius, coordinates.minBeds, coordinates.minRooms, coordinates.services);
+          }
         })["catch"](function (err) {
           return console.error('Impossibile caricare i dati', err);
         });
       }
     },
-    sendQuery: function sendQuery(latitudine, longitudine, radius) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine + '&radius=' + radius).then(function (res) {
+    sendQuery: function sendQuery(latitudine, longitudine, radius, minBeds, minRooms, services) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine + '&radius=' + radius + '&minBeds=' + minBeds + '&minRooms=' + minRooms + '&services=' + services).then(function (res) {
         console.log(res.data.filteredHab);
       })["catch"](function (err) {
         return console.error('Impossibile caricare i dati', err);
@@ -1993,9 +1996,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    // this.getHabitation();
     this.getLocation();
-    console.log(this.$route.params);
   }
 });
 
@@ -17616,6 +17617,7 @@ module.exports = g;
 
 var map = {
 	"./habitations_images/1U85PeSOLxBTV2HnnG1YaMBpVEcWDxm4IbfyC73z.jpg": "./storage/app/public/habitations_images/1U85PeSOLxBTV2HnnG1YaMBpVEcWDxm4IbfyC73z.jpg",
+	"./habitations_images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg": "./storage/app/public/habitations_images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg",
 	"./habitations_images/5Vn1ty8ak14jPWNkqX2y2TddhB4HRMja73oMbNy9.jpg": "./storage/app/public/habitations_images/5Vn1ty8ak14jPWNkqX2y2TddhB4HRMja73oMbNy9.jpg",
 	"./habitations_images/DPA49lOe7DfmJQKOX2Eo3jEDDutTcOy62QR4FuXx.jpg": "./storage/app/public/habitations_images/DPA49lOe7DfmJQKOX2Eo3jEDDutTcOy62QR4FuXx.jpg",
 	"./habitations_images/ERzuNmU3qktZta7XkWzqrn74kuFmvoDcZBMxKumQ.jpg": "./storage/app/public/habitations_images/ERzuNmU3qktZta7XkWzqrn74kuFmvoDcZBMxKumQ.jpg",
@@ -17629,6 +17631,7 @@ var map = {
 	"./habitations_images/UvAFzFimdo3zp2BXCV1v6yeLQJggcoJoHsZy4HRZ.jpg": "./storage/app/public/habitations_images/UvAFzFimdo3zp2BXCV1v6yeLQJggcoJoHsZy4HRZ.jpg",
 	"./habitations_images/VdlWwu8uyY2cl6MJhwAbJ7vL8BhMxstroJxGIOuu.jpg": "./storage/app/public/habitations_images/VdlWwu8uyY2cl6MJhwAbJ7vL8BhMxstroJxGIOuu.jpg",
 	"./habitations_images/Wwf97GSrebCzUgXOS4O9fOFwjG4wHhH5CFPjXEOS.jpg": "./storage/app/public/habitations_images/Wwf97GSrebCzUgXOS4O9fOFwjG4wHhH5CFPjXEOS.jpg",
+	"./habitations_images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg": "./storage/app/public/habitations_images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg",
 	"./habitations_images/d8wxF5MiuxylHmm4d6l31flawEMthdB9BFKWVCcF.jpg": "./storage/app/public/habitations_images/d8wxF5MiuxylHmm4d6l31flawEMthdB9BFKWVCcF.jpg",
 	"./habitations_images/eZDLwF2aoSKNhIBUl1GWqD8DvZrMs7hbNzR4E1Bs.jpg": "./storage/app/public/habitations_images/eZDLwF2aoSKNhIBUl1GWqD8DvZrMs7hbNzR4E1Bs.jpg",
 	"./habitations_images/eyQ9XEZIGU1tZlGDFbQ9dBAuJky8h0TraGHnTePG.jpg": "./storage/app/public/habitations_images/eyQ9XEZIGU1tZlGDFbQ9dBAuJky8h0TraGHnTePG.jpg",
@@ -17637,11 +17640,15 @@ var map = {
 	"./habitations_images/gXNc2ONAItps4Ep1MqHVi80jRBaDRdrTLjjvk4bt.jpg": "./storage/app/public/habitations_images/gXNc2ONAItps4Ep1MqHVi80jRBaDRdrTLjjvk4bt.jpg",
 	"./habitations_images/hRqOniCFHA9oJ6le5A5Qqg24G9FWc0y0dClO19SU.jpg": "./storage/app/public/habitations_images/hRqOniCFHA9oJ6le5A5Qqg24G9FWc0y0dClO19SU.jpg",
 	"./habitations_images/iAFKY9I3OYrfLDnpch0AV4Dznd0njgWHqlSk0mMB.jpg": "./storage/app/public/habitations_images/iAFKY9I3OYrfLDnpch0AV4Dznd0njgWHqlSk0mMB.jpg",
+	"./habitations_images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg": "./storage/app/public/habitations_images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg",
+	"./habitations_images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg": "./storage/app/public/habitations_images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg",
 	"./habitations_images/j57cNcEyRmA3Tsfq4Vz0WzJtEAm06Zojh0mwXyZW.jpg": "./storage/app/public/habitations_images/j57cNcEyRmA3Tsfq4Vz0WzJtEAm06Zojh0mwXyZW.jpg",
 	"./habitations_images/kkZG01mh1V3Bj1Le9rqrI66w7dSj1KLkxFGeCVTd.jpg": "./storage/app/public/habitations_images/kkZG01mh1V3Bj1Le9rqrI66w7dSj1KLkxFGeCVTd.jpg",
 	"./habitations_images/lavUpN59DnZ7xE8UFpIHJ8ptYHpgO8YvmWDlEg72.jpg": "./storage/app/public/habitations_images/lavUpN59DnZ7xE8UFpIHJ8ptYHpgO8YvmWDlEg72.jpg",
+	"./habitations_images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg": "./storage/app/public/habitations_images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg",
 	"./habitations_images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg": "./storage/app/public/habitations_images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg",
 	"./habitations_images/q9rimf1QXZO9NiggmDkuYBt3eKAU2kzDGArSmMGY.jpg": "./storage/app/public/habitations_images/q9rimf1QXZO9NiggmDkuYBt3eKAU2kzDGArSmMGY.jpg",
+	"./habitations_images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg": "./storage/app/public/habitations_images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg",
 	"./habitations_images/zRc7MSJqQ8WnBeavbuNjlKdcMQc61vwJ6Q0LjpHZ.jpg": "./storage/app/public/habitations_images/zRc7MSJqQ8WnBeavbuNjlKdcMQc61vwJ6Q0LjpHZ.jpg"
 };
 
@@ -18071,6 +18078,17 @@ module.exports = "/images/1U85PeSOLxBTV2HnnG1YaMBpVEcWDxm4IbfyC73z.jpg?cefe7b1ec
 
 /***/ }),
 
+/***/ "./storage/app/public/habitations_images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/4nyEs7vQgmspRbT2ZuvS4XUA4rgWvIWnCsaP0tTd.jpg?6c5eae98d067dced4ecb078bb5073860";
+
+/***/ }),
+
 /***/ "./storage/app/public/habitations_images/5Vn1ty8ak14jPWNkqX2y2TddhB4HRMja73oMbNy9.jpg":
 /*!********************************************************************************************!*\
   !*** ./storage/app/public/habitations_images/5Vn1ty8ak14jPWNkqX2y2TddhB4HRMja73oMbNy9.jpg ***!
@@ -18214,6 +18232,17 @@ module.exports = "/images/Wwf97GSrebCzUgXOS4O9fOFwjG4wHhH5CFPjXEOS.jpg?cefe7b1ec
 
 /***/ }),
 
+/***/ "./storage/app/public/habitations_images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/ZKaK1KUCP4ZqaPIs3hC0VyP7mIv6x0ugIelD5FJ4.jpg?8d5dae27480183a1d70bc74b05cc4983";
+
+/***/ }),
+
 /***/ "./storage/app/public/habitations_images/d8wxF5MiuxylHmm4d6l31flawEMthdB9BFKWVCcF.jpg":
 /*!********************************************************************************************!*\
   !*** ./storage/app/public/habitations_images/d8wxF5MiuxylHmm4d6l31flawEMthdB9BFKWVCcF.jpg ***!
@@ -18302,6 +18331,28 @@ module.exports = "/images/iAFKY9I3OYrfLDnpch0AV4Dznd0njgWHqlSk0mMB.jpg?cefe7b1ec
 
 /***/ }),
 
+/***/ "./storage/app/public/habitations_images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/iPMbb1tNNXRdgDIMKWMM2HHBAhGvDzOzvYSBwvMS.jpg?0e3aba97736fa796bc2e6d7e9868aaa1";
+
+/***/ }),
+
+/***/ "./storage/app/public/habitations_images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/ifAeDpowQXaxA2EHVBZKQu2AmObF3MoWOnA9Fk4N.jpg?6c5eae98d067dced4ecb078bb5073860";
+
+/***/ }),
+
 /***/ "./storage/app/public/habitations_images/j57cNcEyRmA3Tsfq4Vz0WzJtEAm06Zojh0mwXyZW.jpg":
 /*!********************************************************************************************!*\
   !*** ./storage/app/public/habitations_images/j57cNcEyRmA3Tsfq4Vz0WzJtEAm06Zojh0mwXyZW.jpg ***!
@@ -18335,6 +18386,17 @@ module.exports = "/images/lavUpN59DnZ7xE8UFpIHJ8ptYHpgO8YvmWDlEg72.jpg?33ade7db1
 
 /***/ }),
 
+/***/ "./storage/app/public/habitations_images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/meefHDgHWITMBZfDKnN3ruiN61oCv0xVstnT0ZbD.jpg?8d5dae27480183a1d70bc74b05cc4983";
+
+/***/ }),
+
 /***/ "./storage/app/public/habitations_images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg":
 /*!********************************************************************************************!*\
   !*** ./storage/app/public/habitations_images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg ***!
@@ -18354,6 +18416,17 @@ module.exports = "/images/p5LOLA3xx5H2GkdV4rF6xlQeBerqyg5fgD4S6rKe.jpg?b652e1994
 /***/ (function(module, exports) {
 
 module.exports = "/images/q9rimf1QXZO9NiggmDkuYBt3eKAU2kzDGArSmMGY.jpg?cefe7b1ec7c768643d6473be2134e51e";
+
+/***/ }),
+
+/***/ "./storage/app/public/habitations_images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg":
+/*!********************************************************************************************!*\
+  !*** ./storage/app/public/habitations_images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/s2Fj5sMp8IraAeuAfHJP3u87Vh3gBQZv55NGViOi.jpg?0e3aba97736fa796bc2e6d7e9868aaa1";
 
 /***/ }),
 
