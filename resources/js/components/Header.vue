@@ -40,15 +40,20 @@ export default {
   data(){
     return {
       positionInput: {
+
+
       },
     }
   },
+
   methods: {
     getLocationData(locationData){
       this.positionInput = locationData;
+
       this.$emit('locationData', this.positionInput)
     }
   }
+
 };
 </script>
 

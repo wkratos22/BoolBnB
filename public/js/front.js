@@ -2067,46 +2067,34 @@ __webpack_require__.r(__webpack_exports__);
   name: 'SearchHab',
   data: function data() {
     return {
-      // guestsNumber: "",
       active: false,
       positionInput: {
         destination: "",
         radius: 20000,
-        roomsNumber: 0,
-        bedsNumber: 0
-      }
+        roomsNumber: 1,
+        bedsNumber: 1,
+        checkedService: []
+      },
+      services: []
     };
   },
   methods: {
-    // increaseValue() {
-    // var value = parseInt(document.getElementById("number").value, 10);
-    // value = isNaN(value) ? 0 : value;
-    // value++;
-    // document.getElementById("number").value = value;
-    // },
-    // decreaseValue() {
-    // var value = parseInt(document.getElementById("number").value, 10);
-    // value = isNaN(value) ? 0 : value;
-    // value < 1 ? (value = 1) : "";
-    // value--;
-    // document.getElementById("number").value = value;
-    // },
     getShow: function getShow() {
       this.active = !this.active;
-    } // getLocation() {
-    //   let encodeLocation = encodeURI(this.destination);
-    //   let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
-    //   console.log(url)
-    //       axios.get(url)
-    //             .then((res)=>{
-    //               let position = res.data.results[0].position;
-    //               this.positionInput.latitude = position.lat
-    //               this.positionInput.longitude = position.lon
-    //               this.$emit('search', this.positionInput);
-    //             })
-    //             .catch(err => console.error('Impossibile caricare i dati', err))
-    // },
+    },
+    getServices: function getServices() {
+      var _this = this;
 
+      axios.get('http://127.0.0.1:8000/api/services').then(function (res) {
+        console.log(res.data);
+        _this.services = res.data.services;
+      })["catch"](function (err) {
+        return console.error('Impossibile caricare i dati', err);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getServices();
   }
 });
 
@@ -2157,42 +2145,73 @@ __webpack_require__.r(__webpack_exports__);
 
       });
     },
-    getLocation: function getLocation() {
-      var _this2 = this;
+    data: function data() {
+      return {
+        habitations: [],
+        firstImage: "",
+        api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl"
+      };
+    },
+    methods: {
+      getHabitation: function getHabitation() {
+        var _this2 = this;
 
-      var destinationParam = this.$route.params.destination;
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/habitations").then(function (res) {
+          _this2.habitations = res.data.habitations;
+          console.log('STATUS CALL API', res.data.habitations);
 
-      if (destinationParam != "" || destinationParam.length >= 3) {
-        var encodeLocation = encodeURI(this.$route.params.destination);
-        var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.$route.params.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
-        console.log(url);
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (res) {
-          var position = res.data.results[0].position;
-          var coordinates = {
-            latitude: position.lat,
-            longitude: position.lon,
-            radius: _this2.$route.params.radius
-          };
-          console.log(coordinates);
+          _this2.habitations.forEach(function (element) {
+            var images = element.images;
+            console.log(images);
 
-          _this2.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius);
+            if (images.length) {
+              console.log('STATUS CALL IMG', element.images[0].image_url);
+              _this2.firstImage = images[0].image_url;
+            }
+          }); // images = this.habitations.images[0]
+          // console.log(images)
+
+        });
+      },
+      getLocation: function getLocation() {
+        var _this3 = this;
+
+        var destinationParam = this.$route.params.destination;
+
+        if (destinationParam != "" && destinationParam != null && destinationParam != undefined) {
+          var encodeLocation = encodeURI(this.$route.params.destination);
+          var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.$route.params.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
+          console.log(url);
+          axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (res) {
+            var position = res.data.results[0].position;
+            var coordinates = {
+              latitude: position.lat,
+              longitude: position.lon,
+              radius: _this3.$route.params.radius,
+              minBeds: _this3.$route.params.bedsNumber,
+              minRooms: _this3.$route.params.roomsNumber,
+              services: _this3.$route.params.services
+            };
+
+            if (coordinates.latitude != null && coordinates.latitude != undefined && coordinates.longitude != null && coordinates.longitude != null) {
+              _this3.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius, coordinates.minBeds, coordinates.minRooms, coordinates.services);
+            }
+          })["catch"](function (err) {
+            return console.error('Impossibile caricare i dati', err);
+          });
+        }
+      },
+      sendQuery: function sendQuery(latitudine, longitudine, radius, minBeds, minRooms, services) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine + '&radius=' + radius + '&minBeds=' + minBeds + '&minRooms=' + minRooms + '&services=' + services).then(function (res) {
+          console.log(res.data.filteredHab);
         })["catch"](function (err) {
           return console.error('Impossibile caricare i dati', err);
         });
       }
     },
-    sendQuery: function sendQuery(latitudine, longitudine, radius) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine + '&radius=' + radius).then(function (res) {
-        console.log(res.data.filteredHab);
-      })["catch"](function (err) {
-        return console.error('Impossibile caricare i dati', err);
-      });
+    mounted: function mounted() {
+      this.getLocation();
     }
-  },
-  mounted: function mounted() {
-    // this.getHabitation();
-    this.getLocation();
-    console.log(this.$route.params);
   }
 });
 
@@ -2595,10 +2614,15 @@ var render = function render() {
   }, [_vm._v("\n                Ulteriori Filtri\n            ")]), _vm._v(" "), _vm.active ? _c("div", {
     staticClass: "addFilters form-group position-absolute bg-dark py-5"
   }, [_c("div", {
-    staticClass: "w-75 mx-auto"
+    staticClass: "container"
   }, [_c("form", [_c("div", {
     staticClass: "form-group my-4"
-  }, [_c("input", {
+  }, [_c("label", {
+    staticClass: "text-light",
+    attrs: {
+      "for": "roomsNumber"
+    }
+  }, [_vm._v("Numero minimo di stanze")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2608,9 +2632,9 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "number",
+      id: "roomsNumber",
       min: "1",
-      max: "99",
-      placeholder: "Numero minimo di stanze?"
+      max: "99"
     },
     domProps: {
       value: _vm.positionInput.roomsNumber
@@ -2624,7 +2648,12 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group my-4"
-  }, [_c("input", {
+  }, [_c("label", {
+    staticClass: "text-light",
+    attrs: {
+      "for": "bedsNumber"
+    }
+  }, [_vm._v("Numero minimo di letti")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2634,9 +2663,9 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "number",
+      id: "bedsNumber",
       min: "1",
-      max: "99",
-      placeholder: "Numero minimo di letti?"
+      max: "99"
     },
     domProps: {
       value: _vm.positionInput.bedsNumber
@@ -2648,7 +2677,57 @@ var render = function render() {
         _vm.$set(_vm.positionInput, "bedsNumber", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _vm._m(0)])])]) : _vm._e(), _vm._v(" "), _c("button", {
+  })]), _vm._v(" "), _c("h3", {
+    staticClass: "text-light text-center mb-4"
+  }, [_vm._v("Servizi presenti nella struttura:")]), _vm._v(" "), _c("div", {
+    staticClass: "form-group row row-cols-2 row-cols-md-3 row-cols-xl-4 m-0"
+  }, _vm._l(_vm.services, function (service) {
+    return _c("div", {
+      key: service.id,
+      staticClass: "form-check col flex-column justify-content-center my-2 w-25"
+    }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.positionInput.checkedService,
+        expression: "positionInput.checkedService"
+      }],
+      staticClass: "form-check-input mr-0",
+      attrs: {
+        type: "checkbox",
+        id: "service-" + service.id
+      },
+      domProps: {
+        value: service.id,
+        checked: Array.isArray(_vm.positionInput.checkedService) ? _vm._i(_vm.positionInput.checkedService, service.id) > -1 : _vm.positionInput.checkedService
+      },
+      on: {
+        change: function change($event) {
+          var $$a = _vm.positionInput.checkedService,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false;
+
+          if (Array.isArray($$a)) {
+            var $$v = service.id,
+                $$i = _vm._i($$a, $$v);
+
+            if ($$el.checked) {
+              $$i < 0 && _vm.$set(_vm.positionInput, "checkedService", $$a.concat([$$v]));
+            } else {
+              $$i > -1 && _vm.$set(_vm.positionInput, "checkedService", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            }
+          } else {
+            _vm.$set(_vm.positionInput, "checkedService", $$c);
+          }
+        }
+      }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-check-label text-light",
+      attrs: {
+        "for": "service-" + service.id
+      }
+    }, [_vm._v("\n                                  " + _vm._s(service.label) + "\n                              ")])]);
+  }), 0)])])]) : _vm._e(), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     on: {
       click: function click($event) {
@@ -2659,26 +2738,7 @@ var render = function render() {
   }, [_vm._v("\n              Search\n            ")])])]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "form-check form-check-inline my-3"
-  }, [_c("input", {
-    staticClass: "form-check-input",
-    attrs: {
-      type: "checkbox",
-      value: "",
-      id: "defaultCheck1"
-    }
-  }), _vm._v(" "), _c("label", {
-    staticClass: "form-check-label",
-    attrs: {
-      "for": "defaultCheck1"
-    }
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 

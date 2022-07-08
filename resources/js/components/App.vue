@@ -38,17 +38,17 @@ export default {
 
   data(){
     return {
-      positionInput: {
-      },
+      positionInput: {},
     }
   },
+
   methods: {
     getLocationData(locationData){
       this.positionInput = locationData;
     }
   }
-
 }
+
 
 </script>
 
