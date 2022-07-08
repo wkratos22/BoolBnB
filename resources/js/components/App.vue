@@ -4,7 +4,7 @@
 
         <header>
 
-          <Header />
+          <Header @locationData="getLocationData"/>
 
         </header>
 
@@ -12,7 +12,7 @@
 
         <main class="container">
 
-          <router-view></router-view>
+          <router-view :locationData="this.positionInput"></router-view>
 
         </main>
 
@@ -29,11 +29,25 @@ import Footer from "./Footer.vue";
 
 export default {
   name: "App",
+
   components: {
     Header,
     Footer,
   },
 
+  data(){
+    return {
+      positionInput: {
+
+      },
+    }
+  },
+
+  methods: {
+    getLocationData(locationData){
+      this.positionInput = locationData;
+    }
+  }
 
 };
 </script>

@@ -8,7 +8,7 @@
         >
       </li>
 
-      <SearchHab />
+      <SearchHab @locationData="getLocationData"/>
 
       <li class="nav-item d-flex">
         <!--Button per diventare un'host(aggiungi abitazioni)-->
@@ -36,6 +36,22 @@ export default {
   components: {
     SearchHab,
   },
+
+  data(){
+    return {
+      positionInput: {
+
+      },
+    }
+  },
+
+  methods: {
+    getLocationData(locationData){
+      this.positionInput = locationData;
+
+      this.$emit('locationData', this.positionInput)
+    }
+  }
 
 };
 </script>

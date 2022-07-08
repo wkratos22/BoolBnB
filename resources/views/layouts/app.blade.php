@@ -82,34 +82,38 @@
                     </ul>
                 </div>
                <div>
+
+               @auth                
+                   <li class="nav-item dropdown  d-flex flex-row">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           YourBoolBnb
+                       </a>
+                       
+                       <ul class="navbar-nav mr-auto">
+                           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                           
+                               <li class="m-2">
+                                   <a href="{{ route('admin.habitations.index')}}">Oggi</a>
+                               </li>
+                               <li class="m-2">
+                                   <a href="{{ route('admin.habitations.index')}}">Posta</a>
+                               </li>
+                               <li class="m-2">
+                                   <a href="{{ route('admin.habitations.index')}}">Calendario</a>
+                               </li>
+                               <li class="m-2">
+                                   <a href="{{ route('admin.habitations.index')}}">Approfondimenti</a>
+                               </li>
+                               <li class="m-2">
+                                   <a href="{{ route('admin.habitations.index')}}">Menu</a>
+                               </li>
+                               
+                           </div>    
+                       </ul>
+                   </li>
+               @endauth
                 
-                    <li class="nav-item dropdown  d-flex flex-row">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          YourBoolBnb
-                        </a>
-                        
-                        <ul class="navbar-nav mr-auto">
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            
-                                <li class="m-2">
-                                    <a href="{{ route('admin.habitations.index')}}">Oggi</a>
-                                </li>
-                                <li class="m-2">
-                                    <a href="{{ route('admin.habitations.index')}}">Posta</a>
-                                </li>
-                                <li class="m-2">
-                                    <a href="{{ route('admin.habitations.index')}}">Calendario</a>
-                                </li>
-                                <li class="m-2">
-                                    <a href="{{ route('admin.habitations.index')}}">Approfondimenti</a>
-                                </li>
-                                <li class="m-2">
-                                    <a href="{{ route('admin.habitations.index')}}">Menu</a>
-                                </li>
-                                
-                            </div>    
-                        </ul>
-                    </li>
+
                 </div>
             </div>
                    

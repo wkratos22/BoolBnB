@@ -15,24 +15,6 @@
             />
           </div>
 
-          <!-- <div>
-            <div>Per quante persone?</div>
-            <div
-              class="value-button"
-              id="decrease"
-              onclick="decreaseValue()"
-              value="Decrease Value"
-
-            ></div>
-            <input type="number" v-model="guestsNumber" id="number" min="1" />
-            <div
-              class="value-button"
-              id="increase"
-              onclick="increaseValue()"
-              value="Increase Value"
-            ></div>
-          </div> -->
-
           <form>
             <div class="form-group mb-0">
                 <label for="formControlRange">Raggio di ricerca?</label>
@@ -46,31 +28,40 @@
             </button>
 
             <div v-if="active" class="addFilters form-group position-absolute bg-dark py-5">
-                <div class="w-75 mx-auto">
+                <div class="container">
 
+                    <!-- gruppo input ULTERIORI FILTRI -->
                   <form>
+                    <!-- numero minimo di stanze -->
                       <div class="form-group my-4">
-                          <input type="number" class="form-control" v-model="positionInput.roomsNumber" min="1" max="99" placeholder="Numero minimo di stanze?">
+                          <label class="text-light" for="roomsNumber">Numero minimo di stanze</label>
+                          <input type="number" class="form-control" id="roomsNumber" v-model="positionInput.roomsNumber" min="1" max="99">
                       </div>
+
+                    <!-- numero minimo di letti -->
                       <div class="form-group my-4">
-                          <input type="number" class="form-control" v-model="positionInput.bedsNumber" min="1" max="99" placeholder="Numero minimo di letti?">
+                          <label class="text-light" for="bedsNumber">Numero minimo di letti</label>
+                          <input type="number" class="form-control" id="bedsNumber" v-model="positionInput.bedsNumber" min="1" max="99">
                       </div>
-                      <div class="form-check form-check-inline my-3">
-                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                              <label class="form-check-label" for="defaultCheck1">
-                                  <!-- {{habitation.title}} -->
+
+                    <!-- checkboxes per servzi obbligatori -->
+                      <h3 class="text-light text-center mb-4">Servizi presenti nella struttura:</h3>
+                      <div class="form-group row row-cols-2 row-cols-md-3 row-cols-xl-4 m-0">
+                          <div class="form-check col flex-column justify-content-center my-2 w-25" v-for="service in services" :key="service.id">
+                              <input class="form-check-input mr-0" type="checkbox" :value="service.id" :id="'service-'+service.id" v-model="positionInput.checkedService">
+                              <label class="form-check-label text-light" :for="'service-'+service.id">
+                                  {{service.label}}
                               </label>
+                          </div>
                       </div>
                   </form>
                 </div>
             </div>
 
-            <!-- <router-link class="btn btn-primary" :to="{ name: 'advancedSearch' }">Search</router-link > -->
-            <!-- <button class="btn btn-primary" @click.prevent="getLocation()"> -->
-              <router-link class="btn btn-primary" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber },  }">
-                Search
-              </router-link >
-            <!-- </button > -->
+            <button class="btn btn-primary" @click.prevent="$emit('locationData', positionInput)">
+              Search
+            </button>
+
         </form>
       </li>
 </template>
@@ -81,58 +72,36 @@ export default {
 
     data(){
         return {
-          // guestsNumber: "",
             active: false,
             positionInput: {
               destination: "",
               radius: 20000,
-              roomsNumber: 0,
-              bedsNumber: 0,
+              roomsNumber: 1,
+              bedsNumber: 1,
+              checkedService: [],
             },
+            services: [],
         }
     },
 
     methods: {
-        // increaseValue() {
-        // var value = parseInt(document.getElementById("number").value, 10);
-        // value = isNaN(value) ? 0 : value;
-        // value++;
-        // document.getElementById("number").value = value;
-        // },
-
-        // decreaseValue() {
-        // var value = parseInt(document.getElementById("number").value, 10);
-        // value = isNaN(value) ? 0 : value;
-        // value < 1 ? (value = 1) : "";
-        // value--;
-
-        // document.getElementById("number").value = value;
-        // },
-
         getShow() {
             this.active = !this.active
         },
 
-        // getLocation() {
+        getServices() {
+              axios.get('http://127.0.0.1:8000/api/services')
+                    .then((res)=>{
+                      console.log(res.data)
+                      this.services = res.data.services;
+                    })
+                    .catch(err => console.error('Impossibile caricare i dati', err))
 
-        //   let encodeLocation = encodeURI(this.destination);
+        },
+  },
 
-        //   let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
-        //   console.log(url)
-
-
-        //       axios.get(url)
-        //             .then((res)=>{
-        //               let position = res.data.results[0].position;
-        //               this.positionInput.latitude = position.lat
-        //               this.positionInput.longitude = position.lon
-        //               this.$emit('search', this.positionInput);
-        //             })
-        //             .catch(err => console.error('Impossibile caricare i dati', err))
-
-        // },
-
-
+  mounted() {
+      this.getServices();
   },
 
 }
