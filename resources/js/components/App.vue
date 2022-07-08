@@ -1,6 +1,6 @@
 <template>
 
-    <div :class="($route.name === 'home') ? 'bg_black' : '' ">
+    <div :class="($route.name === 'home') ? 'bg_img_casual' : '' ">
     <!-- v-if="HomePage ? 'bg_black' : '' "  -->
 
         <header>
@@ -11,7 +11,7 @@
 
         <!-- <AdvancedSearch  /> -->
 
-        <div class="container d-flex justify-content-center align-items-center " style="height: 100vh">
+        <div class="container">
 
           <router-view></router-view>
 
@@ -52,8 +52,14 @@ export default {
 
 <style lang="scss">
 
-    .bg_black {
-        background-color: lightseagreen;
+    .bg_img_casual {
+        background-image: url('../../../public/images/pexels-rachel-claire-5531437.jpg');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .bg_white{
+        background-color: blue;
     }
 
 </style>

@@ -1,11 +1,23 @@
 <template>
-    <div>
+
+    <div class="height_100vh flex_between">
+
+        <div class="align-self-center">
+            <h1 class="text_gray font_size_3">Scegli una meta.. Goditi il viaggio!</h1>
+        </div>
 
 
-        <HabitationSponsored/>
+        <main class="align-self-center">
 
-        <!-- <h1 class="my-5 py-5 text-center">Sito in costruzione</h1> -->
-        <HomeSearch/>
+            <!-- <h1 class="my-5 py-5 text-center">Sito in costruzione</h1> -->
+            <HomeSearch/>
+
+        </main>
+
+        <div>
+
+        </div>
+
 
     </div>
 
@@ -28,5 +40,23 @@ export default {
 </script>
 
 <style scoped>
+
+    .height_100vh{
+        height: 100vh
+    }
+
+    .flex_between {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .font_size_3{
+        font-size: 3rem;
+    }
+
+    .text_gray{
+        color: rgb(190, 182, 182);
+    }
 
 </style>
