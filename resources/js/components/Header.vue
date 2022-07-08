@@ -8,7 +8,7 @@
         >
       </li>
 
-      <SearchHab />
+      <SearchHab v-if="$route.name != 'home'" />
 
       <li class="nav-item d-flex">
         <!--Button per diventare un'host(aggiungi abitazioni)-->
@@ -36,6 +36,7 @@ export default {
   components: {
     SearchHab,
   },
+
 
 };
 </script>
