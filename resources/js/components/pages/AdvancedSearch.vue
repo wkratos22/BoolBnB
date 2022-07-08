@@ -62,32 +62,36 @@ export default {
 
         getLocation() {
 
-          let encodeLocation = encodeURI(this.$route.params.destination);
+            let destinationParam = this.$route.params.destination;
 
-          let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.$route.params.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
-          console.log(url)
+            if (destinationParam != "" || destinationParam.length >= 3) {
+                let encodeLocation = encodeURI(this.$route.params.destination);
+        
+                let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.$route.params.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
+                console.log(url)
 
 
-              axios.get(url)
-                    .then((res)=>{
-                      let position = res.data.results[0].position;
+                axios.get(url)
+                        .then((res)=>{
+                        let position = res.data.results[0].position;
 
-                        let coordinates = {
-                            latitude : position.lat,
-                            longitude : position.lon,
-                            radius: this.$route.params.radius
-                        }
-                        console.log(coordinates)
-                        this.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius);
-                    })
-                    .catch(err => console.error('Impossibile caricare i dati', err))
+                            let coordinates = {
+                                latitude : position.lat,
+                                longitude : position.lon,
+                                radius: this.$route.params.radius
+                            }
+                            console.log(coordinates)
+                            this.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius);
+                        })
+                        .catch(err => console.error('Impossibile caricare i dati', err))
+            }
 
         },
 
         sendQuery(latitudine, longitudine, radius){
             axios.get('http://127.0.0.1:8000/api/search?lat='+latitudine+'&lon='+longitudine+'&radius='+radius)
             .then( (res) => {
-                console.log(res.data)
+                console.log(res.data.filteredHab)
             })
             .catch(err => console.error('Impossibile caricare i dati', err))
         }
@@ -95,7 +99,7 @@ export default {
 
 
     mounted() {
-        this.getHabitation();
+        // this.getHabitation();
         this.getLocation();
         console.log(this.$route.params)
     },

@@ -10,7 +10,7 @@
               id="destination"
               placeholder="Cerca località"
               aria-label="Search"
-              minlength="2"
+              minlength="3"
               v-model="positionInput.destination"
             />
           </div>
@@ -67,7 +67,7 @@
 
             <!-- <router-link class="btn btn-primary" :to="{ name: 'advancedSearch' }">Search</router-link > -->
             <!-- <button class="btn btn-primary" @click.prevent="getLocation()"> -->
-              <router-link v-if="$route.path != '/habitations'" class="btn btn-primary" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber, },  }">
+              <router-link class="btn btn-primary" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber },  }">
                 Search
               </router-link >
             <!-- </button > -->

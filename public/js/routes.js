@@ -1963,33 +1963,37 @@ __webpack_require__.r(__webpack_exports__);
     getLocation: function getLocation() {
       var _this2 = this;
 
-      var encodeLocation = encodeURI(this.$route.params.destination);
-      var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.$route.params.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
-      console.log(url);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (res) {
-        var position = res.data.results[0].position;
-        var coordinates = {
-          latitude: position.lat,
-          longitude: position.lon,
-          radius: _this2.$route.params.radius
-        };
-        console.log(coordinates);
+      var destinationParam = this.$route.params.destination;
 
-        _this2.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius);
-      })["catch"](function (err) {
-        return console.error('Impossibile caricare i dati', err);
-      });
+      if (destinationParam != "" || destinationParam.length >= 3) {
+        var encodeLocation = encodeURI(this.$route.params.destination);
+        var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.$route.params.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
+        console.log(url);
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (res) {
+          var position = res.data.results[0].position;
+          var coordinates = {
+            latitude: position.lat,
+            longitude: position.lon,
+            radius: _this2.$route.params.radius
+          };
+          console.log(coordinates);
+
+          _this2.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius);
+        })["catch"](function (err) {
+          return console.error('Impossibile caricare i dati', err);
+        });
+      }
     },
     sendQuery: function sendQuery(latitudine, longitudine, radius) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine + '&radius=' + radius).then(function (res) {
-        console.log(res.data);
+        console.log(res.data.filteredHab);
       })["catch"](function (err) {
         return console.error('Impossibile caricare i dati', err);
       });
     }
   },
   mounted: function mounted() {
-    this.getHabitation();
+    // this.getHabitation();
     this.getLocation();
     console.log(this.$route.params);
   }
