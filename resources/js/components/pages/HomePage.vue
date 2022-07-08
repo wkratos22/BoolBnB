@@ -24,24 +24,23 @@
 </template>
 
 <script>
-import HabitationSponsored from "../habitations/HabitationSponsored.vue";
+// import HabitationSponsored from "../habitations/HabitationSponsored.vue";
 import HomeSearch from "../includes/HomeSearch.vue";
 
 
 export default {
     name: 'HomePage',
      components: {
-        HabitationSponsored,
-         HomeSearch
+        // HabitationSponsored,
+        HomeSearch
     },
 
 
 }
 </script>
 
-<style scoped>
-
-    .height_100vh{
+<style lang="scss" scoped>
+    .height_100vh {
         height: 100vh
     }
 
@@ -51,12 +50,11 @@ export default {
         justify-content: space-around;
     }
 
-    .font_size_3{
+    .font_size_3 {
         font-size: 3rem;
     }
 
-    .text_gray{
+    .text_gray {
         color: rgb(190, 182, 182);
     }
-
 </style>
