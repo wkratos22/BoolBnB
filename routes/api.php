@@ -29,6 +29,8 @@ Route::namespace('Api')->group(function(){
     Route::get('/habitations/{slug}', 'HabitationApi@show');
     Route::get('/habitations/{guests}', 'HabitationApi@search');
 
+    Route::get('/generate', 'PayController@generate');
+    Route::post('/makePayment', 'PayController@makePayment');
 });
 
 

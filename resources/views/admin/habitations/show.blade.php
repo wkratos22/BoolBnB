@@ -40,6 +40,7 @@
 
         <div class="card w-50 h-100">
             <h5 class="card-header">{{$habitation->title}}</h5>
+            <a href="{{ route('admin.sponsorship.index', $habitation->id)}}" type="button" class="btn btn-primary">Sponsorizzazione</a>
             <div class="card-body">
             <h5 class="card-title text-center my-4">
                 <img src="{{asset('img/icons/types/'. $habitation->habitationType->icon)}}" height="30px" width="30px" alt="">
