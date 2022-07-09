@@ -15,24 +15,6 @@
             />
           </div>
 
-          <!-- <div>
-            <div>Per quante persone?</div>
-            <div
-              class="value-button"
-              id="decrease"
-              onclick="decreaseValue()"
-              value="Decrease Value"
-
-            ></div>
-            <input type="number" v-model="guestsNumber" id="number" min="1" />
-            <div
-              class="value-button"
-              id="increase"
-              onclick="increaseValue()"
-              value="Increase Value"
-            ></div>
-          </div> -->
-
           <form>
             <div class="form-group mb-0">
                 <label for="formControlRange">Raggio di ricerca?</label>
@@ -40,38 +22,11 @@
                 {{positionInput.radius / 1000}}km
             </div>
           </form>
-          <!--
-            <button @click.prevent="getShow()" class="btn btn-secondary dropdown-toggle" type="button">
-                Ulteriori Filtri
-            </button>
 
-            <div v-if="active" class="addFilters form-group position-absolute bg-dark py-5">
-                <div class="w-75 mx-auto">
+          <router-link class="btn btn-primary" @click.native="getLocation()" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber, services: positionInput.checkedService },  }">
+            Search
+          </router-link >
 
-                  <form>
-                      <div class="form-group my-4">
-                          <input type="number" class="form-control" v-model="positionInput.roomsNumber" min="1" max="99" placeholder="Numero minimo di stanze?">
-                      </div>
-                      <div class="form-group my-4">
-                          <input type="number" class="form-control" v-model="positionInput.bedsNumber" min="1" max="99" placeholder="Numero minimo di letti?">
-                      </div>
-                      <div class="form-check form-check-inline my-3">
-                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                              <label class="form-check-label" for="defaultCheck1">
-                                   {{habitation.title}} -->
-                              <!--</label>
-                      </div>
-                  </form>
-                </div>
-            </div>-->
-
-
-            <!-- <router-link class="btn btn-primary" :to="{ name: 'advancedSearch' }">Search</router-link > -->
-            <!-- <button class="btn btn-primary" @click.prevent="getLocation()"> -->
-              <router-link class="btn btn-primary" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber },  }">
-                Search
-              </router-link >
-            <!-- </button > -->
         </form>
       </li>
 </template>
@@ -82,33 +37,21 @@ export default {
 
     data(){
         return {
-          // guestsNumber: "",
             active: false,
+
             positionInput: {
               destination: "",
               radius: 20000,
-              roomsNumber: 0,
-              bedsNumber: 0,
+              latitude: "",
+              longitude:"",
+              roomsNumber: 1,
+              bedsNumber: 1,
+              checkedService: []
             },
         }
     },
 
     methods: {
-        // increaseValue() {
-        // var value = parseInt(document.getElementById("number").value, 10);
-        // value = isNaN(value) ? 0 : value;
-        // value++;
-        // document.getElementById("number").value = value;
-        // },
-
-        // decreaseValue() {
-        // var value = parseInt(document.getElementById("number").value, 10);
-        // value = isNaN(value) ? 0 : value;
-        // value < 1 ? (value = 1) : "";
-        // value--;
-
-        // document.getElementById("number").value = value;
-        // },
 
         getShow() {
             this.active = !this.active

@@ -2,8 +2,7 @@
     <div>
         <div class="py-4 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center">
             <div class="card col m-3" v-for="habitation in habitations" :key="habitation.id">
-                <img class="card-img-top" :src="require(`../../../../public/storage/${firstImage}`)"
-                    alt="Card image cap">
+                <!-- <img class="card-img-top" :src="require(`../../../../public/storage/${firstImage}`)" alt="Card image cap"> -->
                 <div class="card-body">
                     <h5 class="card-title">{{habitation.title}}</h5>
                     <p class="card-text">{{habitation.address}}</p>
@@ -18,7 +17,6 @@
 </template>
 
 <script>
-    import axios from 'axios';
 
     export default {
         name: "AdvancedSearch",
@@ -37,27 +35,28 @@
 
         mounted() {
             this.getLocation();
+            console.log('buongiorno')
         },
 
 
         methods: {
-            getHabitation() {
-                axios.get(`http://127.0.0.1:8000/api/habitations`)
-                    .then((res) => {
-                        this.habitations = res.data.habitations
-                        // console.log('STATUS CALL API', res.data.habitations)
-                        this.habitations.forEach(element => {
-                            let images = element.images
-                            // console.log(images)
-                            if (images.length) {
-                                // console.log('STATUS CALL IMG', element.images[0].image_url)
-                                this.firstImage = images[0].image_url
-                            }
-                        });
-                        // images = this.habitations.images[0]
-                        // console.log(images)
-                    })
-            },
+            // getHabitation() {
+            //     axios.get(`http://127.0.0.1:8000/api/habitations`)
+            //         .then((res) => {
+            //             this.habitations = res.data.habitations
+            //             // console.log('STATUS CALL API', res.data.habitations)
+            //             this.habitations.forEach(element => {
+            //                 let images = element.images
+            //                 // console.log(images)
+            //                 if (images.length) {
+            //                     // console.log('STATUS CALL IMG', element.images[0].image_url)
+            //                     this.firstImage = images[0].image_url
+            //                 }
+            //             });
+            //             // images = this.habitations.images[0]
+            //             // console.log(images)
+            //         })
+            // },
 
             getLocation() {
                 let destinationParam = this.$route.params.destination;
@@ -94,7 +93,8 @@
                         '&radius=' + radius + '&minBeds=' + minBeds + '&minRooms=' + minRooms + '&services=' +
                         services)
                     .then((res) => {
-                        // console.log(res.data.filteredHab)
+                        this.habitations = res.data.filteredHab
+                        console.log(res.data.filteredHab)
                     })
                     .catch(err => console.error('Impossibile caricare i dati', err))
             }

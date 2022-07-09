@@ -46,30 +46,36 @@ class HabitationApi extends Controller
         $radius = $data['radius'];
         $minBeds = $data['minBeds'];
         $minRooms = $data['minRooms'];
-        $explodedServices = explode(',', $data['services']);
 
-        // dd($explodedServices);
+        
+        if ($data['services']) {
+            $explodedServices = explode(',', $data['services']);
+        } else {
+            $explodedServices = [];
+        }
 
+        
         $habitations = Habitation::orderBy('updated_at', 'DESC')
                                     ->where('visible', 1)  
                                     ->where('beds_number', '>=', $minBeds)  
                                     ->where('rooms_number', '>=', $minRooms)
                                     ->where(function ($query) use ($explodedServices) {
 
-                                        foreach ($explodedServices as $service) {
-                        
-                                            $query->whereHas('services', function ($q) use ($service) {
-                                                $q->where('service_id', $service);
-                                            });
+                                        if (array_key_exists(0, $explodedServices)) {
+                                            
+                                            foreach ($explodedServices as $service) {
+                                                
+                                                $query->whereHas('services', function ($q) use ($service) {
+                                                    $q->where('service_id', $service);
+                                                });
+                                            }
                                         }
-
+                                        
                                     })  
                                     ->with('services', 'tags', 'habitationType', 'images')->get();
 
         
         $filteredHab = [];
-
-        $services = [];
 
         foreach ($habitations as $habitation) {
             $distance = self::haversineGreatCircleDistance($latitude, $longitude, $habitation->latitude, $habitation->longitude);

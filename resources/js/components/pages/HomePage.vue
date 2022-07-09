@@ -24,14 +24,12 @@
 </template>
 
 <script>
-// import HabitationSponsored from "../habitations/HabitationSponsored.vue";
 import HomeSearch from "../includes/HomeSearch.vue";
 
 
 export default {
     name: 'HomePage',
      components: {
-        // HabitationSponsored,
         HomeSearch
     },
 
