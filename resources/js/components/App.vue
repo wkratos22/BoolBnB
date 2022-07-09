@@ -4,13 +4,13 @@
 
         <header>
 
-          <Header @locationData="getLocationData"/>
+          <Header @sendHab="getLocationData"/>
 
         </header>
 
 
         <main>
-          <router-view :locationData="this.positionInput"></router-view>
+          <router-view :filteredHabs="this.habitations"></router-view>
         </main>
 
         <Footer />
@@ -34,13 +34,14 @@ export default {
 
   data(){
     return {
-      positionInput: {},
+      habitations: "",
     }
   },
 
   methods: {
     getLocationData(locationData){
-      this.positionInput = locationData;
+      this.habitations = locationData;
+      return this.habitations
     }
   }
 }

@@ -9,7 +9,7 @@
         >
       </li>
 
-      <SearchHab v-if="$route.name != 'home'" />
+      <SearchHab v-if="$route.name != 'home'" @sendHab="getHabitations" />
       <!-- @locationData="getLocationData" -->
 
       <li class="nav-item d-flex  my_2">
@@ -41,19 +41,16 @@ export default {
 
   data(){
     return {
-      positionInput: {
-
-
-      },
+      habitations: "",
     }
   },
 
   methods: {
-    // getLocationData(locationData){
-    //   this.positionInput = locationData;
+    getHabitations(locationData){
+      this.habitations = locationData;
 
-    //   this.$emit('locationData', this.positionInput)
-    // }
+      this.$emit('sendHab', this.habitations)
+    }
   }
 
 };

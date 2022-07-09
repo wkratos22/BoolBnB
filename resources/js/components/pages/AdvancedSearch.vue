@@ -23,7 +23,7 @@
         name: "AdvancedSearch",
 
         props: {
-            locationData: Object,
+            filteredHabs: String,
         },
 
         data() {
@@ -64,8 +64,7 @@
                 if (destinationParam != "" && destinationParam != null && destinationParam != undefined) {
                     let encodeLocation = encodeURI(this.$route.params.destination);
 
-                    let url =
-                        `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.$route.params.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
+                    let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.$route.params.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
                     // console.log(url)
                     axios.get(url)
                         .then((res) => {

@@ -1959,24 +1959,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  methods: {
-    getLocation: function getLocation() {
-      var _this = this;
-
-      var encodeLocation = encodeURI(this.destination);
-      var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
-      console.log(url);
-      axios.get(url).then(function (res) {
-        var position = res.data.results[0].position;
-        _this.positionInput.latitude = position.lat;
-        _this.positionInput.longitude = position.lon;
-
-        _this.$emit('search', _this.positionInput);
-      })["catch"](function (err) {
-        return console.error('Impossibile caricare i dati', err);
-      });
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -2014,7 +1997,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdvancedSearch",
   props: {
-    locationData: Object
+    filteredHabs: String
   },
   data: function data() {
     return {

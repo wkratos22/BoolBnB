@@ -1941,12 +1941,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      positionInput: {}
+      habitations: ""
     };
   },
   methods: {
     getLocationData: function getLocationData(locationData) {
-      this.positionInput = locationData;
+      this.habitations = locationData;
+      return this.habitations;
     }
   }
 });
@@ -2023,13 +2024,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      positionInput: {}
+      habitations: ""
     };
   },
-  methods: {// getLocationData(locationData){
-    //   this.positionInput = locationData;
-    //   this.$emit('locationData', this.positionInput)
-    // }
+  methods: {
+    getHabitations: function getHabitations(locationData) {
+      this.habitations = locationData;
+      this.$emit('sendHab', this.habitations);
+    }
   }
 });
 
@@ -2095,24 +2097,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  methods: {
-    getLocation: function getLocation() {
-      var _this = this;
-
-      var encodeLocation = encodeURI(this.destination);
-      var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
-      console.log(url);
-      axios.get(url).then(function (res) {
-        var position = res.data.results[0].position;
-        _this.positionInput.latitude = position.lat;
-        _this.positionInput.longitude = position.lon;
-
-        _this.$emit('search', _this.positionInput);
-      })["catch"](function (err) {
-        return console.error('Impossibile caricare i dati', err);
-      });
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -2192,13 +2177,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SearchHab',
   data: function data() {
     return {
       active: false,
+      api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
       positionInput: {
         destination: "",
         radius: 20000,
@@ -2206,7 +2190,8 @@ __webpack_require__.r(__webpack_exports__);
         bedsNumber: 1,
         checkedService: []
       },
-      services: []
+      services: [],
+      habitations: []
     };
   },
   methods: {
@@ -2219,6 +2204,37 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('http://127.0.0.1:8000/api/services').then(function (res) {
         console.log(res.data);
         _this.services = res.data.services;
+      })["catch"](function (err) {
+        return console.error('Impossibile caricare i dati', err);
+      });
+    },
+    getFilteredLocation: function getFilteredLocation() {
+      var _this2 = this;
+
+      if (this.positionInput.destination != "" && this.positionInput.destination != null && this.positionInput.destination != undefined) {
+        var encodeLocation = encodeURI(this.positionInput.destination);
+        var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.positionInput.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
+        axios.get(url).then(function (res) {
+          var position = res.data.results[0].position;
+          var latitude = position.lat;
+          var longitude = position.lon;
+
+          if (latitude != null && latitude != undefined && longitude != null && longitude != null) {
+            _this2.sendQuery(latitude, longitude, _this2.positionInput.radius, _this2.positionInput.bedsNumber, _this2.positionInput.roomsNumber, _this2.positionInput.checkedService);
+
+            _this2.$emit('sendHab', _this2.api_key);
+          }
+        })["catch"](function (err) {
+          return console.error('Impossibile caricare i dati', err);
+        });
+      }
+    },
+    sendQuery: function sendQuery(latitudine, longitudine, radius, minBeds, minRooms, services) {
+      var _this3 = this;
+
+      axios.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine + '&radius=' + radius + '&minBeds=' + minBeds + '&minRooms=' + minRooms + '&services=' + services).then(function (res) {
+        _this3.habitations = res.data.filteredHab;
+        console.log('chiamata api SEARCH', _this3.habitations);
       })["catch"](function (err) {
         return console.error('Impossibile caricare i dati', err);
       });
@@ -2264,7 +2280,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdvancedSearch",
   props: {
-    locationData: Object
+    filteredHabs: String
   },
   data: function data() {
     return {
@@ -3766,15 +3782,11 @@ var render = function () {
     "div",
     { class: _vm.$route.name === "home" ? "bg_img_casual" : "" },
     [
-      _c(
-        "header",
-        [_c("Header", { on: { locationData: _vm.getLocationData } })],
-        1
-      ),
+      _c("header", [_c("Header", { on: { sendHab: _vm.getLocationData } })], 1),
       _vm._v(" "),
       _c(
         "main",
-        [_c("router-view", { attrs: { locationData: this.positionInput } })],
+        [_c("router-view", { attrs: { filteredHabs: this.habitations } })],
         1
       ),
       _vm._v(" "),
@@ -3855,7 +3867,9 @@ var render = function () {
           1
         ),
         _vm._v(" "),
-        _vm.$route.name != "home" ? _c("SearchHab") : _vm._e(),
+        _vm.$route.name != "home"
+          ? _c("SearchHab", { on: { sendHab: _vm.getHabitations } })
+          : _vm._e(),
         _vm._v(" "),
         _vm._m(0),
       ],
@@ -4116,9 +4130,9 @@ var render = function () {
               },
             }),
             _vm._v(
-              "\n            " +
+              "\n                " +
                 _vm._s(_vm.positionInput.radius / 1000) +
-                "km\n        "
+                "km\n            "
             ),
           ]),
         ]),
@@ -4320,9 +4334,9 @@ var render = function () {
                               },
                               [
                                 _vm._v(
-                                  "\n                              " +
+                                  "\n                                " +
                                     _vm._s(service.label) +
-                                    "\n                          "
+                                    "\n                            "
                                 ),
                               ]
                             ),
@@ -4344,11 +4358,11 @@ var render = function () {
             on: {
               click: function ($event) {
                 $event.preventDefault()
-                return _vm.$emit("locationData", _vm.positionInput)
+                return _vm.getFilteredLocation()
               },
             },
           },
-          [_vm._v("\n          Search\n        ")]
+          [_vm._v("\n            Search\n        ")]
         ),
       ]
     ),
