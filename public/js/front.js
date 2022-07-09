@@ -2376,7 +2376,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".bg_img_casual {\n  background-image: url(\"/images/bg-home.jpg\");\n  background-position: center;\n  background-size: cover;\n}\n.bg_white {\n  background-color: blue;\n}", ""]);
+exports.push([module.i, ".bg_img_casual {\n  background-image: url(\"/images/bg-home.jpeg\");\n  background-position: center;\n  background-size: cover;\n}\n.bg_white {\n  background-color: blue;\n}", ""]);
 
 // exports
 
@@ -3750,7 +3750,10 @@ var render = function () {
   return _c("header", [
     _c(
       "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
+      {
+        staticClass: "navbar navbar-expand-lg navbar-light",
+        class: _vm.$route.path != "/" ? "bg-ligh" : "",
+      },
       [
         _c(
           "router-link",
