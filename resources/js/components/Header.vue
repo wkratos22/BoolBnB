@@ -3,8 +3,8 @@
     <ul class="nav d-flex justify-content-between align-items-center">
       <li class="nav-item my_2">
         <router-link class="navbar-brand m-1" :to="{ name: 'home' }">
-          Home
-          <!-- <img class="w-50" :src="require('../../../public/images/BoolBnb_logo-removebg-preview.png')" alt=""> -->
+          <!-- Home -->
+          <!-- <img class="w-50" :src="require('/@/public/images/logo_header.png')" alt=""> -->
         </router-link
         >
       </li>

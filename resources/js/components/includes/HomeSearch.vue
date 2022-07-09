@@ -58,24 +58,24 @@ export default {
         //     this.active = !this.active
         // },
 
-        // getLocation() {
+        getLocation() {
 
-        //   let encodeLocation = encodeURI(this.destination);
+          let encodeLocation = encodeURI(this.destination);
 
-        //   let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
-        //   console.log(url)
+          let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
+          console.log(url)
 
 
-        //       axios.get(url)
-        //             .then((res)=>{
-        //               let position = res.data.results[0].position;
-        //               this.positionInput.latitude = position.lat
-        //               this.positionInput.longitude = position.lon
-        //               this.$emit('search', this.positionInput);
-        //             })
-        //             .catch(err => console.error('Impossibile caricare i dati', err))
+              axios.get(url)
+                    .then((res)=>{
+                      let position = res.data.results[0].position;
+                      this.positionInput.latitude = position.lat
+                      this.positionInput.longitude = position.lon
+                      this.$emit('search', this.positionInput);
+                    })
+                    .catch(err => console.error('Impossibile caricare i dati', err))
 
-        // },
+        },
 
 
   },

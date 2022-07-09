@@ -5,8 +5,8 @@
 
         <header>
 
-          <Header />
-  <!-- @locationData="getLocationData" -->
+          <Header @locationData="getLocationData"/>
+
         </header>
 
         <!-- <AdvancedSearch  /> -->
@@ -43,9 +43,9 @@ export default {
   },
 
   methods: {
-    // getLocationData(locationData){
-    //   this.positionInput = locationData;
-    // }
+    getLocationData(locationData){
+      this.positionInput = locationData;
+    }
   }
 }
 
@@ -54,11 +54,11 @@ export default {
 
 <style lang="scss">
 
-    // .bg_img_casual {
-    //     background-image: url('../../../public/images/pexels-rachel-claire-5531437.jpg');
-    //     background-position: center;
-    //     background-size: cover;
-    // }
+    .bg_img_casual {
+        // background-image: url('./../../../public/images/bg-home.jpg');
+        background-position: center;
+        background-size: cover;
+    }
 
     .bg_white{
         background-color: blue;

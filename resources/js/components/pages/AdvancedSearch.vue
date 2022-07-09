@@ -17,6 +17,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
 
     export default {
         name: "AdvancedSearch",
@@ -35,7 +36,6 @@
 
         mounted() {
             this.getLocation();
-            console.log('buongiorno')
         },
 
 
@@ -94,7 +94,7 @@
                         services)
                     .then((res) => {
                         this.habitations = res.data.filteredHab
-                        console.log(res.data.filteredHab)
+                        console.log(this.habitations)
                     })
                     .catch(err => console.error('Impossibile caricare i dati', err))
             }

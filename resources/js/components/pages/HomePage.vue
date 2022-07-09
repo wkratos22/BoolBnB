@@ -10,7 +10,7 @@
         <main class="align-self-center">
 
             <!-- <h1 class="my-5 py-5 text-center">Sito in costruzione</h1> -->
-            <HomeSearch/>
+            <HomeSearch @locationData="getLocationData"/>
 
         </main>
 
@@ -33,6 +33,19 @@ export default {
         HomeSearch
     },
 
+    data(){
+        return {
+            positionInput: {}
+        }
+    },
+
+    methods: {
+        getLocationData(locationData){
+          this.positionInput = locationData;
+
+          this.$emit('locationData', this.positionInput)
+        }
+    }
 
 }
 </script>

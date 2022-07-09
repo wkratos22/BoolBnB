@@ -48,7 +48,7 @@ class HabitationApi extends Controller
         $minRooms = $data['minRooms'];
 
         
-        if ($data['services']) {
+        if (isset($data['services'])) {
             $explodedServices = explode(',', $data['services']);
         } else {
             $explodedServices = [];

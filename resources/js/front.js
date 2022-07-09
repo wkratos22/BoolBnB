@@ -1,6 +1,6 @@
 
 window.Vue = require('vue');
-// axios = require('axios');
+axios = require('axios');
 
 
 import Vue from 'vue';
