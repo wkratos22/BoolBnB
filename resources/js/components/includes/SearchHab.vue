@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" @click.prevent="getFilteredLocation()">
+            <button class="btn btn-primary">
                 Search
             </button>
 
@@ -94,15 +94,14 @@
           this.active = !this.active
       },
 
-      getServices() {
+        getServices() {
           axios.get('http://127.0.0.1:8000/api/services')
               .then((res) => {
                   console.log(res.data)
                   this.services = res.data.services;
               })
               .catch(err => console.error('Impossibile caricare i dati', err))
-
-      },
+        },
 
       getFilteredLocation() {
         if (this.positionInput.destination != "" && this.positionInput.destination != null && this.positionInput
@@ -121,8 +120,6 @@
 
                       if (latitude != null && latitude != undefined && longitude != null && longitude != null) {
                           this.sendQuery(latitude, longitude, this.positionInput.radius, this.positionInput.bedsNumber, this.positionInput.roomsNumber, this.positionInput.checkedService);
-
-                          this.$emit('sendHab', this.api_key)
                       }
                   })
                   .catch(err => console.error('Impossibile caricare i dati', err))

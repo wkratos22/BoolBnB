@@ -1,7 +1,7 @@
 <template>
     <div class="w-100 d-flex flex-column justify-content-center">
         
-        <form class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center">
           <div class="form-group mb-0 text-light text-center">
             <!-- <label for="destination">Dove vuoi andare?</label> -->
             <input
@@ -25,11 +25,11 @@
             {{positionInput.radius / 1000}}km
           </span>
 
-        </form>
+        </div>
 
-          <router-link class="btn btn-primary align-self-center mt-3" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber, services: positionInput.checkedService },  }">
-            Search
-          </router-link >
+        <router-link v-if="positionInput.destination.length >= 3" class="btn btn-primary align-self-center mt-3" role="button" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber, services: positionInput.checkedService },  }">
+          Search
+        </router-link >
 
       </div>
 </template>

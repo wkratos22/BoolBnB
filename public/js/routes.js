@@ -1993,6 +1993,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdvancedSearch",
@@ -2001,54 +2068,61 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      active: false,
       habitations: [],
-      firstImage: "",
-      api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl"
+      services: [],
+      api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
+      positionInput: {
+        destination: "",
+        radius: 20000,
+        roomsNumber: 1,
+        bedsNumber: 1,
+        checkedService: []
+      }
     };
   },
   mounted: function mounted() {
-    this.getLocation();
+    this.positionInput.destination = this.$route.params.destination;
+
+    if (isNaN(this.$route.params.radius)) {
+      this.positionInput.radius = 20000;
+    } else {
+      this.positionInput.radius = this.$route.params.radius;
+    }
+
+    this.getHomeSearch(this.$route.params.destination, this.$route.params.radius, this.$route.params.bedsNumber, this.$route.params.roomsNumber, this.$route.params.services);
+    this.getServices();
   },
   methods: {
-    // getHabitation() {
-    //     axios.get(`http://127.0.0.1:8000/api/habitations`)
-    //         .then((res) => {
-    //             this.habitations = res.data.habitations
-    //             // console.log('STATUS CALL API', res.data.habitations)
-    //             this.habitations.forEach(element => {
-    //                 let images = element.images
-    //                 // console.log(images)
-    //                 if (images.length) {
-    //                     // console.log('STATUS CALL IMG', element.images[0].image_url)
-    //                     this.firstImage = images[0].image_url
-    //                 }
-    //             });
-    //             // images = this.habitations.images[0]
-    //             // console.log(images)
-    //         })
-    // },
-    getLocation: function getLocation() {
+    getShow: function getShow() {
+      this.active = !this.active;
+    },
+    getHomeSearch: function getHomeSearch(location, radius, minBeds, minRooms, services) {
       var _this = this;
 
-      var destinationParam = this.$route.params.destination;
+      var destinationParam = location;
+
+      if (destinationParam == "") {
+        this.habitations = [];
+      }
 
       if (destinationParam != "" && destinationParam != null && destinationParam != undefined) {
-        var encodeLocation = encodeURI(this.$route.params.destination);
-        var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.$route.params.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key); // console.log(url)
+        var encodeLocation = encodeURI(location);
+        var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key); // console.log(url)
 
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (res) {
           var position = res.data.results[0].position;
           var coordinates = {
             latitude: position.lat,
             longitude: position.lon,
-            radius: _this.$route.params.radius,
-            minBeds: _this.$route.params.bedsNumber,
-            minRooms: _this.$route.params.roomsNumber,
-            services: _this.$route.params.services
+            radiusKey: radius,
+            minBedsKey: minBeds,
+            minRoomsKey: minRooms,
+            servicesKey: services
           };
 
           if (coordinates.latitude != null && coordinates.latitude != undefined && coordinates.longitude != null && coordinates.longitude != null) {
-            _this.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radius, coordinates.minBeds, coordinates.minRooms, coordinates.services);
+            _this.sendQuery(coordinates.latitude, coordinates.longitude, coordinates.radiusKey, coordinates.minBedsKey, coordinates.minRoomsKey, coordinates.servicesKey);
           }
         })["catch"](function (err) {
           return console.error('Impossibile caricare i dati', err);
@@ -2061,6 +2135,16 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine + '&radius=' + radius + '&minBeds=' + minBeds + '&minRooms=' + minRooms + '&services=' + services).then(function (res) {
         _this2.habitations = res.data.filteredHab;
         console.log(_this2.habitations);
+      })["catch"](function (err) {
+        return console.error('Impossibile caricare i dati', err);
+      });
+    },
+    getServices: function getServices() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/services').then(function (res) {
+        console.log(res.data);
+        _this3.services = res.data.services;
       })["catch"](function (err) {
         return console.error('Impossibile caricare i dati', err);
       });
@@ -2184,6 +2268,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, ".radiusValue[data-v-210d5bd0] {\n  min-width: 4em;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".searchContainer[data-v-781a2080] {\n  width: 60%;\n}\n.addFilters[data-v-781a2080] {\n  z-index: 9999;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  height: 60vh;\n  width: 60vw;\n}", ""]);
 
 // exports
 
@@ -2698,6 +2801,36 @@ process.umask = function() { return 0; };
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./HomeSearch.vue?vue&type=style&index=0&id=210d5bd0&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/includes/HomeSearch.vue?vue&type=style&index=0&id=210d5bd0&lang=scss&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -3353,7 +3486,7 @@ var render = function () {
     { staticClass: "w-100 d-flex flex-column justify-content-center" },
     [
       _c(
-        "form",
+        "div",
         { staticClass: "d-flex justify-content-center align-items-center" },
         [
           _c("div", { staticClass: "form-group mb-0 text-light text-center" }, [
@@ -3432,25 +3565,28 @@ var render = function () {
         ]
       ),
       _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          staticClass: "btn btn-primary align-self-center mt-3",
-          attrs: {
-            to: {
-              name: "advancedSearch",
-              params: {
-                destination: _vm.positionInput.destination,
-                radius: _vm.positionInput.radius,
-                roomsNumber: _vm.positionInput.roomsNumber,
-                bedsNumber: _vm.positionInput.bedsNumber,
-                services: _vm.positionInput.checkedService,
+      _vm.positionInput.destination.length >= 3
+        ? _c(
+            "router-link",
+            {
+              staticClass: "btn btn-primary align-self-center mt-3",
+              attrs: {
+                role: "button",
+                to: {
+                  name: "advancedSearch",
+                  params: {
+                    destination: _vm.positionInput.destination,
+                    radius: _vm.positionInput.radius,
+                    roomsNumber: _vm.positionInput.roomsNumber,
+                    bedsNumber: _vm.positionInput.bedsNumber,
+                    services: _vm.positionInput.checkedService,
+                  },
+                },
               },
             },
-          },
-        },
-        [_vm._v("\n        Search\n      ")]
-      ),
+            [_vm._v("\n      Search\n    ")]
+          )
+        : _vm._e(),
     ],
     1
   )
@@ -3462,10 +3598,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080& ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3478,6 +3614,339 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "searchContainer mx-auto my-4" }, [
+      _c(
+        "form",
+        {
+          staticClass: "w-100 d-flex justify-content-around align-items-center",
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.getHomeSearch(
+                _vm.positionInput.destination,
+                _vm.positionInput.radius,
+                _vm.positionInput.bedsNumber,
+                _vm.positionInput.roomsNumber,
+                _vm.positionInput.checkedService
+              )
+            },
+          },
+        },
+        [
+          _c("div", { staticClass: "form-group mb-0" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.positionInput.destination,
+                  expression: "positionInput.destination",
+                },
+              ],
+              staticClass: "form-control mr-sm-2",
+              attrs: {
+                type: "search",
+                placeholder: "Dove vuoi andare?",
+                "aria-label": "Search",
+                minlength: "3",
+              },
+              domProps: { value: _vm.positionInput.destination },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.positionInput,
+                    "destination",
+                    $event.target.value
+                  )
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("form", [
+            _c("div", { staticClass: "form-group mb-0 text-center" }, [
+              _c("label", { attrs: { for: "formControlRange" } }, [
+                _vm._v("Raggio di ricerca?"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.positionInput.radius,
+                    expression: "positionInput.radius",
+                  },
+                ],
+                staticClass: "form-control-range",
+                attrs: {
+                  type: "range",
+                  id: "formControlRange",
+                  min: "1000",
+                  max: "500000",
+                  step: "1000",
+                  value: "20000",
+                },
+                domProps: { value: _vm.positionInput.radius },
+                on: {
+                  keyup: function ($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.getHomeSearch(
+                      _vm.positionInput.destination,
+                      _vm.positionInput.radius,
+                      _vm.positionInput.bedsNumber,
+                      _vm.positionInput.roomsNumber,
+                      _vm.positionInput.checkedService
+                    )
+                  },
+                  __r: function ($event) {
+                    return _vm.$set(
+                      _vm.positionInput,
+                      "radius",
+                      $event.target.value
+                    )
+                  },
+                },
+              }),
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.positionInput.radius / 1000) +
+                  "km\n            "
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary dropdown-toggle",
+              attrs: { type: "button" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  return _vm.getShow()
+                },
+              },
+            },
+            [_vm._v("\n            Ulteriori Filtri\n        ")]
+          ),
+          _vm._v(" "),
+          _vm.active
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "addFilters form-group position-absolute bg-dark py-5",
+                },
+                [
+                  _c("div", { staticClass: "container" }, [
+                    _c("form", [
+                      _c("div", { staticClass: "form-group my-4" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "text-light",
+                            attrs: { for: "roomsNumber" },
+                          },
+                          [_vm._v("Numero minimo di stanze")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.positionInput.roomsNumber,
+                              expression: "positionInput.roomsNumber",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "number",
+                            id: "roomsNumber",
+                            min: "1",
+                            max: "99",
+                          },
+                          domProps: { value: _vm.positionInput.roomsNumber },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.positionInput,
+                                "roomsNumber",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group my-4" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "text-light",
+                            attrs: { for: "bedsNumber" },
+                          },
+                          [_vm._v("Numero minimo di letti")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.positionInput.bedsNumber,
+                              expression: "positionInput.bedsNumber",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "number",
+                            id: "bedsNumber",
+                            min: "1",
+                            max: "99",
+                          },
+                          domProps: { value: _vm.positionInput.bedsNumber },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.positionInput,
+                                "bedsNumber",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("h3", { staticClass: "text-light text-center mb-4" }, [
+                        _vm._v("Servizi desiderati:"),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "form-group row row-cols-2 row-cols-md-3 row-cols-xl-4 m-0",
+                        },
+                        _vm._l(_vm.services, function (service) {
+                          return _c(
+                            "div",
+                            {
+                              key: service.id,
+                              staticClass:
+                                "form-check col flex-column justify-content-center my-2 w-25",
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.positionInput.checkedService,
+                                    expression: "positionInput.checkedService",
+                                  },
+                                ],
+                                staticClass: "form-check-input mr-0",
+                                attrs: {
+                                  type: "checkbox",
+                                  id: "service-" + service.id,
+                                },
+                                domProps: {
+                                  value: service.id,
+                                  checked: Array.isArray(
+                                    _vm.positionInput.checkedService
+                                  )
+                                    ? _vm._i(
+                                        _vm.positionInput.checkedService,
+                                        service.id
+                                      ) > -1
+                                    : _vm.positionInput.checkedService,
+                                },
+                                on: {
+                                  change: function ($event) {
+                                    var $$a = _vm.positionInput.checkedService,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = service.id,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            _vm.positionInput,
+                                            "checkedService",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            _vm.positionInput,
+                                            "checkedService",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(
+                                        _vm.positionInput,
+                                        "checkedService",
+                                        $$c
+                                      )
+                                    }
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "form-check-label text-light",
+                                  attrs: { for: "service-" + service.id },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(service.label) +
+                                      "\n                            "
+                                  ),
+                                ]
+                              ),
+                            ]
+                          )
+                        }),
+                        0
+                      ),
+                    ]),
+                  ]),
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+            [_vm._v("\n            Search\n        ")]
+          ),
+        ]
+      ),
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       {
@@ -19090,9 +19559,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AdvancedSearch_vue_vue_type_template_id_781a2080___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdvancedSearch.vue?vue&type=template&id=781a2080& */ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&");
+/* harmony import */ var _AdvancedSearch_vue_vue_type_template_id_781a2080_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true& */ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true&");
 /* harmony import */ var _AdvancedSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdvancedSearch.vue?vue&type=script&lang=js& */ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _AdvancedSearch_vue_vue_type_style_index_0_id_781a2080_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true& */ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -19100,13 +19571,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _AdvancedSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _AdvancedSearch_vue_vue_type_template_id_781a2080___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _AdvancedSearch_vue_vue_type_template_id_781a2080___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _AdvancedSearch_vue_vue_type_template_id_781a2080_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AdvancedSearch_vue_vue_type_template_id_781a2080_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "781a2080",
   null
   
 )
@@ -19132,19 +19603,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080& ***!
-  \*****************************************************************************************/
+/***/ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true&":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true& ***!
+  \********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_style_index_0_id_781a2080_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_style_index_0_id_781a2080_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_style_index_0_id_781a2080_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_style_index_0_id_781a2080_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_style_index_0_id_781a2080_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true& ***!
+  \*****************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_template_id_781a2080___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AdvancedSearch.vue?vue&type=template&id=781a2080& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_template_id_781a2080___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_template_id_781a2080_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_template_id_781a2080_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_template_id_781a2080___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdvancedSearch_vue_vue_type_template_id_781a2080_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

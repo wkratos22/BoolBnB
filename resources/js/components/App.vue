@@ -2,18 +2,13 @@
 
     <div :class="($route.name === 'home') ? 'bg_img_casual' : '' ">
 
-        <header>
+      <Header/>
 
-          <Header @sendHab="getLocationData"/>
+      <main>
+        <router-view></router-view>
+      </main>
 
-        </header>
-
-
-        <main>
-          <router-view :filteredHabs="this.habitations"></router-view>
-        </main>
-
-        <Footer />
+      <Footer />
 
     </div>
 
@@ -32,18 +27,6 @@ export default {
     Footer,
   },
 
-  data(){
-    return {
-      habitations: "",
-    }
-  },
-
-  methods: {
-    getLocationData(locationData){
-      this.habitations = locationData;
-      return this.habitations
-    }
-  }
 }
 
 
