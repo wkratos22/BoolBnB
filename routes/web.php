@@ -31,6 +31,10 @@ Route::middleware('auth')
 ->group( function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('habitations', 'HabitationController');
+    Route::resource('sponsorship', 'SponsorController');
+
+    Route::get('payments', 'PaymentsController@generate')->name('pay');
+    Route::post('payments', 'PaymentsController@makePayment')->name('pay');
 });
 
 // Front-end route

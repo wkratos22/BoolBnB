@@ -92,6 +92,10 @@
                     Modifica annuncio
                 </a>
 
+                <a href="{{ route('admin.sponsorship.index', $habitation->id)}}" class="btn btn-success shadow-none">
+                    Sponsorizza
+                </a>
+
 
                 <form action="{{route('admin.habitations.destroy', $habitation->id)}}" method="post"
                     class="deleteForm text-center mx-2" data-name="{{$habitation->title}}">
