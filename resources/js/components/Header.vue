@@ -3,12 +3,14 @@
     <ul class="nav d-flex justify-content-between align-items-center">
       <li class="nav-item my_2">
         <router-link class="navbar-brand m-1" :to="{ name: 'home' }">
-          <img class="w-50" :src="require('../../../public/images/BoolBnb_logo-removebg-preview.png')" alt="">
+          Home
+          <!-- <img class="w-50" :src="require('../../../public/images/BoolBnb_logo-removebg-preview.png')" alt=""> -->
         </router-link
         >
       </li>
 
-      <SearchHab v-if="$route.name != 'home'" @locationData="getLocationData"/>
+      <SearchHab v-if="$route.name != 'home'" />
+      <!-- @locationData="getLocationData" -->
 
       <li class="nav-item d-flex  my_2">
         <!--Button per diventare un'host(aggiungi abitazioni)-->
@@ -47,11 +49,11 @@ export default {
   },
 
   methods: {
-    getLocationData(locationData){
-      this.positionInput = locationData;
+    // getLocationData(locationData){
+    //   this.positionInput = locationData;
 
-      this.$emit('locationData', this.positionInput)
-    }
+    //   this.$emit('locationData', this.positionInput)
+    // }
   }
 
 };

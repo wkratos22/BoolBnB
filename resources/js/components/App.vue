@@ -5,8 +5,8 @@
 
         <header>
 
-          <Header @locationData="getLocationData"/>
-
+          <Header />
+  <!-- @locationData="getLocationData" -->
         </header>
 
         <!-- <AdvancedSearch  /> -->
@@ -43,9 +43,9 @@ export default {
   },
 
   methods: {
-    getLocationData(locationData){
-      this.positionInput = locationData;
-    }
+    // getLocationData(locationData){
+    //   this.positionInput = locationData;
+    // }
   }
 }
 
