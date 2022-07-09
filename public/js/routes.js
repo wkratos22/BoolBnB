@@ -1942,11 +1942,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HomeSearch',
   data: function data() {
     return {
-      // active: false,
       positionInput: {
         destination: "",
         radius: 20000,
@@ -1959,9 +1960,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    // getShow() {
-    //     this.active = !this.active
-    // },
     getLocation: function getLocation() {
       var _this = this;
 
@@ -2144,10 +2142,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HomePage',
@@ -2206,7 +2200,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".addFilters[data-v-210d5bd0] {\n  z-index: 9999;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  height: 60vh;\n  width: 60vw;\n}", ""]);
+exports.push([module.i, ".radiusValue[data-v-210d5bd0] {\n  min-width: 4em;\n}", ""]);
 
 // exports
 
@@ -3371,53 +3365,49 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "d-flex flex-nowrap searchContainer" }, [
-    _c(
-      "form",
-      { staticClass: "w-100 d-flex justify-content-around align-items-center" },
-      [
-        _c("div", { staticClass: "form-group mb-0" }, [
-          _c("div"),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "destination" } }, [
-            _vm._v("Dove vuoi andare?"),
+  return _c(
+    "div",
+    { staticClass: "w-100 d-flex flex-column justify-content-center" },
+    [
+      _c(
+        "form",
+        { staticClass: "d-flex justify-content-center align-items-center" },
+        [
+          _c("div", { staticClass: "form-group mb-0 text-light text-center" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.positionInput.destination,
+                  expression: "positionInput.destination",
+                },
+              ],
+              staticClass: "form-control mr-sm-2",
+              attrs: {
+                type: "search",
+                id: "destination",
+                placeholder: "Dove vuoi andare?",
+                "aria-label": "Search",
+                minlength: "3",
+              },
+              domProps: { value: _vm.positionInput.destination },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.positionInput,
+                    "destination",
+                    $event.target.value
+                  )
+                },
+              },
+            }),
           ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.positionInput.destination,
-                expression: "positionInput.destination",
-              },
-            ],
-            staticClass: "form-control mr-sm-2",
-            attrs: {
-              type: "search",
-              id: "destination",
-              placeholder: "Cerca località",
-              "aria-label": "Search",
-              minlength: "3",
-            },
-            domProps: { value: _vm.positionInput.destination },
-            on: {
-              input: function ($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.positionInput, "destination", $event.target.value)
-              },
-            },
-          }),
-        ]),
-        _vm._v(" "),
-        _c("form", [
-          _c("div", { staticClass: "form-group mb-0" }, [
-            _c("label", { attrs: { for: "formControlRange" } }, [
-              _vm._v("Raggio di ricerca?"),
-            ]),
-            _vm._v(" "),
+          _c("div", { staticClass: "form-group mb-0 ml-4 mr-2" }, [
             _c("input", {
               directives: [
                 {
@@ -3447,37 +3437,40 @@ var render = function () {
                 },
               },
             }),
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-light radiusValue" }, [
             _vm._v(
-              "\n            " +
+              "\n        " +
                 _vm._s(_vm.positionInput.radius / 1000) +
-                "km\n        "
+                "km\n      "
             ),
           ]),
-        ]),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "btn btn-primary",
-            attrs: {
-              to: {
-                name: "advancedSearch",
-                params: {
-                  destination: _vm.positionInput.destination,
-                  radius: _vm.positionInput.radius,
-                  roomsNumber: _vm.positionInput.roomsNumber,
-                  bedsNumber: _vm.positionInput.bedsNumber,
-                  services: _vm.positionInput.checkedService,
-                },
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        {
+          staticClass: "btn btn-primary align-self-center mt-3",
+          attrs: {
+            to: {
+              name: "advancedSearch",
+              params: {
+                destination: _vm.positionInput.destination,
+                radius: _vm.positionInput.radius,
+                roomsNumber: _vm.positionInput.roomsNumber,
+                bedsNumber: _vm.positionInput.bedsNumber,
+                services: _vm.positionInput.checkedService,
               },
             },
           },
-          [_vm._v("\n        Search\n      ")]
-        ),
-      ],
-      1
-    ),
-  ])
+        },
+        [_vm._v("\n        Search\n      ")]
+      ),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3605,18 +3598,18 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "height_100vh flex_between" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "main",
-      { staticClass: "align-self-center" },
-      [_c("HomeSearch", { on: { locationData: _vm.getLocationData } })],
-      1
-    ),
-    _vm._v(" "),
-    _c("div"),
-  ])
+  return _c(
+    "div",
+    { staticClass: "height_100vh flex_between" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("HomeSearch", { on: { locationData: _vm.getLocationData } }),
+      _vm._v(" "),
+      _c("div"),
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function () {

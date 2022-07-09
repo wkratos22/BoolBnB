@@ -1,35 +1,37 @@
 <template>
-    <li class="d-flex flex-nowrap searchContainer">
+    <div class="w-100 d-flex flex-column justify-content-center">
         
-        <form class="w-100 d-flex justify-content-around align-items-center">
-          <div class="form-group mb-0">
-            <div></div>
-            <label for="destination">Dove vuoi andare?</label>
+        <form class="d-flex justify-content-center align-items-center">
+          <div class="form-group mb-0 text-light text-center">
+            <!-- <label for="destination">Dove vuoi andare?</label> -->
             <input
               class="form-control mr-sm-2"
               type="search"
               id="destination"
-              placeholder="Cerca località"
+              placeholder="Dove vuoi andare?"
               aria-label="Search"
               minlength="3"
               v-model="positionInput.destination"
             />
           </div>
 
-          <form>
-            <div class="form-group mb-0">
-                <label for="formControlRange">Raggio di ricerca?</label>
-                <input type="range" class="form-control-range" id="formControlRange" min="1000" max="500000" step="1000" value="20000" v-model="positionInput.radius">
-                {{positionInput.radius / 1000}}km
-            </div>
-          </form>
 
-          <router-link class="btn btn-primary" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber, services: positionInput.checkedService },  }">
+          <div class="form-group mb-0 ml-4 mr-2">
+            <!-- <label for="formControlRange">Raggio di ricerca?</label> -->
+            <input type="range" class="form-control-range" id="formControlRange" min="1000" max="500000" step="1000" value="20000" v-model="positionInput.radius">
+          </div>
+
+          <span class="text-light radiusValue">
+            {{positionInput.radius / 1000}}km
+          </span>
+
+        </form>
+
+          <router-link class="btn btn-primary align-self-center mt-3" :to="{ name: 'advancedSearch', params: { destination: positionInput.destination, radius: positionInput.radius, roomsNumber: positionInput.roomsNumber, bedsNumber: positionInput.bedsNumber, services: positionInput.checkedService },  }">
             Search
           </router-link >
 
-        </form>
-      </li>
+      </div>
 </template>
 
 <script>
@@ -38,8 +40,6 @@ export default {
 
     data(){
         return {
-            // active: false,
-
             positionInput: {
               destination: "",
               radius: 20000,
@@ -53,10 +53,6 @@ export default {
     },
 
     methods: {
-
-        // getShow() {
-        //     this.active = !this.active
-        // },
 
         getLocation() {
 
@@ -85,17 +81,8 @@ export default {
 
 <style lang="scss" scoped>
 
-//   .searchContainer {
-//     width: 40%;
-//   }
-
-  .addFilters{
-    z-index: 9999;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 60vh;
-    width: 60vw;
-  }
+.radiusValue {
+  min-width: 4em;
+}
 
 </style>

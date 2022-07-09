@@ -4,7 +4,7 @@
       <li class="nav-item my_2">
         <router-link class="navbar-brand m-1" :to="{ name: 'home' }">
           <!-- Home -->
-          <!-- <img class="w-50" :src="require('/@/public/images/logo_header.png')" alt=""> -->
+          <img class="w-50" src="/images/logo_header.png" alt="">
         </router-link
         >
       </li>

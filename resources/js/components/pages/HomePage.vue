@@ -3,18 +3,14 @@
     <div class="height_100vh flex_between">
 
         <div class="align-self-center">
+
             <h1 class="text_gray font_size_3">Scegli una meta.. Goditi il viaggio!</h1>
-        </div>
 
+            </div>
+                <!-- <h1 class="my-5 py-5 text-center">Sito in costruzione</h1> -->
+                <HomeSearch @locationData="getLocationData"/>
 
-        <main class="align-self-center">
-
-            <!-- <h1 class="my-5 py-5 text-center">Sito in costruzione</h1> -->
-            <HomeSearch @locationData="getLocationData"/>
-
-        </main>
-
-        <div>
+            <div>
 
         </div>
 

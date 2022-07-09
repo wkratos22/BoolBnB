@@ -1,7 +1,6 @@
 <template>
 
     <div :class="($route.name === 'home') ? 'bg_img_casual' : '' ">
-    <!-- v-if="HomePage ? 'bg_black' : '' "  -->
 
         <header>
 
@@ -9,13 +8,10 @@
 
         </header>
 
-        <!-- <AdvancedSearch  /> -->
 
-        <div class="container">
-
+        <main>
           <router-view :locationData="this.positionInput"></router-view>
-
-        </div>
+        </main>
 
         <Footer />
 
@@ -55,7 +51,7 @@ export default {
 <style lang="scss">
 
     .bg_img_casual {
-        // background-image: url('./../../../public/images/bg-home.jpg');
+        background-image: url('/images/bg-home.jpg');
         background-position: center;
         background-size: cover;
     }
