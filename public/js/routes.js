@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'HomeSearch',
   data: function data() {
     return {
-      active: false,
+      // active: false,
       positionInput: {
         destination: "",
         radius: 20000,
@@ -111,26 +111,22 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  methods: {
-    getShow: function getShow() {
-      this.active = !this.active;
-    },
-    getLocation: function getLocation() {
-      var _this = this;
-
-      var encodeLocation = encodeURI(this.destination);
-      var url = "https://api.tomtom.com/search/2/search/".concat(encodeLocation, ".json?limit=5&radius=").concat(this.radius, "&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=").concat(this.api_key);
-      console.log(url);
-      axios.get(url).then(function (res) {
-        var position = res.data.results[0].position;
-        _this.positionInput.latitude = position.lat;
-        _this.positionInput.longitude = position.lon;
-
-        _this.$emit('search', _this.positionInput);
-      })["catch"](function (err) {
-        return console.error('Impossibile caricare i dati', err);
-      });
-    }
+  methods: {// getShow() {
+    //     this.active = !this.active
+    // },
+    // getLocation() {
+    //   let encodeLocation = encodeURI(this.destination);
+    //   let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${this.radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
+    //   console.log(url)
+    //       axios.get(url)
+    //             .then((res)=>{
+    //               let position = res.data.results[0].position;
+    //               this.positionInput.latitude = position.lat
+    //               this.positionInput.longitude = position.lon
+    //               this.$emit('search', this.positionInput);
+    //             })
+    //             .catch(err => console.error('Impossibile caricare i dati', err))
+    // },
   }
 });
 
@@ -364,11 +360,6 @@ var render = function render() {
           bedsNumber: _vm.positionInput.bedsNumber,
           services: _vm.positionInput.checkedService
         }
-      }
-    },
-    nativeOn: {
-      click: function click($event) {
-        return _vm.getLocation();
       }
     }
   }, [_vm._v("\n        Search\n      ")])], 1)]);
