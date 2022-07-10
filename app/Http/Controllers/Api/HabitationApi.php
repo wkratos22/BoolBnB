@@ -47,34 +47,34 @@ class HabitationApi extends Controller
         $minBeds = $data['minBeds'];
         $minRooms = $data['minRooms'];
 
-        
-        if ($data['services']) {
+
+        if (isset($data['services'])) {
             $explodedServices = explode(',', $data['services']);
         } else {
             $explodedServices = [];
         }
 
-        
+
         $habitations = Habitation::orderBy('updated_at', 'DESC')
-                                    ->where('visible', 1)  
-                                    ->where('beds_number', '>=', $minBeds)  
+                                    ->where('visible', 1)
+                                    ->where('beds_number', '>=', $minBeds)
                                     ->where('rooms_number', '>=', $minRooms)
                                     ->where(function ($query) use ($explodedServices) {
 
                                         if (array_key_exists(0, $explodedServices)) {
-                                            
+
                                             foreach ($explodedServices as $service) {
-                                                
+
                                                 $query->whereHas('services', function ($q) use ($service) {
                                                     $q->where('service_id', $service);
                                                 });
                                             }
                                         }
-                                        
-                                    })  
+
+                                    })
                                     ->with('services', 'tags', 'habitationType', 'images')->get();
 
-        
+
         $filteredHab = [];
 
         foreach ($habitations as $habitation) {
@@ -82,7 +82,7 @@ class HabitationApi extends Controller
 
             $kmRadius = $radius / 1000;
 
-            if ($distance < $kmRadius ) {                
+            if ($distance < $kmRadius ) {
                 array_push($filteredHab, $habitation);
 
             }
@@ -104,7 +104,7 @@ class HabitationApi extends Controller
         $latitudeTo,
         $longitudeTo,
         $earthMeanRadius = 6371
-    ) 
+    )
     {
         $deltaLatitude = deg2rad($latitudeTo - $latitudeFrom);
         $deltaLongitude = deg2rad($longitudeTo - $longitudeFrom);
@@ -113,6 +113,12 @@ class HabitationApi extends Controller
             sin($deltaLongitude / 2) * sin($deltaLongitude / 2);
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
         return $earthMeanRadius * $c;
+    }
+
+    public function getMessages( Request $request ){
+
+        $messages = $request->all();
+
     }
 
 }

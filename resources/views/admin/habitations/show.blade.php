@@ -110,4 +110,34 @@
         </div>
     </div>
 
+   @if ($habitation->messages->count())
+    
+        <div class="mt-4">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">Nome mittente</th>
+                    <th scope="col">Email mittente</th>
+                    <th scope="col">Testo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    @foreach ($habitation->messages as $message)                
+                    <tr>
+                        <td>{{$message->name}}</td>
+                        <td>{{$message->email_sender}}</td>
+                        <td>{{$message->text_message}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+   @else
+   
+        <h3 class="text-center mt-5">Non hai ricevuto alcun messaggio per il tuo annuncio...</h3>
+
+   @endif
+
 @endsection

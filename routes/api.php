@@ -29,6 +29,7 @@ Route::namespace('Api')->group(function(){
     Route::get('/habitations/{slug}', 'HabitationApi@show');
     Route::get('/search', 'HabitationApi@getParams');
     Route::get('/services', 'HabitationApi@getServices');
+    Route::post('/messages', 'ContactMessageController@send');
 });
 
 
