@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <h2>Contact page</h2>
+        <h2>Contact area</h2>
 
         <Alert type="success">
 
@@ -53,12 +53,17 @@ export default {
         Alert
     },
 
+    props: {
+        userId: Number,
+    },
+
     data() {
         return {
             form: {
                 name: '',
                 email: '',
                 message: '',
+                idUser: '',
             },
             alertMessage: '',
         }
@@ -66,6 +71,7 @@ export default {
 
     methods: {
         sendForm(){
+            this.form.idUser = this.userId
             axios.post('http://127.0.0.1:8000/api/messages', this.form)
             .then( (res) => {
                 this.form.name = ''
@@ -78,6 +84,7 @@ export default {
 
     mounted(){
         console.log(this.$route);
+        return this.userId
     }
 }
 

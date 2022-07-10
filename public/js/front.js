@@ -2095,12 +2095,16 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Alert: _Alert_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  props: {
+    userId: Number
+  },
   data: function data() {
     return {
       form: {
         name: '',
         email: '',
-        message: ''
+        message: '',
+        idUser: ''
       },
       alertMessage: ''
     };
@@ -2109,6 +2113,7 @@ __webpack_require__.r(__webpack_exports__);
     sendForm: function sendForm() {
       var _this = this;
 
+      this.form.idUser = this.userId;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/api/messages', this.form).then(function (res) {
         _this.form.name = '';
         _this.form.email = '', _this.form.message = '', _this.alertMessage = 'Il messaggio è stato inviato';
@@ -2117,6 +2122,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log(this.$route);
+    return this.userId;
   }
 });
 
@@ -2386,6 +2392,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _includes_ContactForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../includes/ContactForm.vue */ "./resources/js/components/includes/ContactForm.vue");
 //
 //
 //
@@ -2504,8 +2511,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HabitationDetails",
+  components: {
+    ContactForm: _includes_ContactForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       habitation: [],
@@ -4187,7 +4202,7 @@ var render = function () {
     "div",
     { staticClass: "container" },
     [
-      _c("h2", [_vm._v("Contact page")]),
+      _c("h2", [_vm._v("Contact area")]),
       _vm._v(" "),
       _c("Alert", { attrs: { type: "success" } }),
       _vm._v(" "),
@@ -5155,6 +5170,12 @@ var render = function () {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "w-50" }),
+    _vm._v(" "),
+    _c(
+      "div",
+      [_c("ContactForm", { attrs: { userId: _vm.habitation.user_id } })],
+      1
+    ),
   ])
 }
 var staticRenderFns = [
@@ -21465,11 +21486,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     path: '/habitations/:slug',
     component: _components_pages_HabitationDetails_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     name: 'habitationDetails'
-  }, {
-    path: '/messages',
-    component: _components_includes_ContactForm_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    name: 'contacts'
-  }, {
+  }, // { path: '/messages', component: ContactForm, name: 'contacts'},
+  {
     path: '*',
     component: _components_pages_NotFoundPage_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     name: 'notFound'

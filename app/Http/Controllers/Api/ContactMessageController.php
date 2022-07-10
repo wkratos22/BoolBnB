@@ -22,7 +22,7 @@ class ContactMessageController extends Controller
 
         $data = $request->all();
 
-        // var_dump($data);
+        var_dump($data);
 
         // $name = $data['name'];
         // $email = $data['email'];
@@ -49,7 +49,7 @@ class ContactMessageController extends Controller
         };
 
         $mail = new ContactMail( $data );
-        Mail::to(env($messages->email))->send($mail);
+        Mail::to($user['email'])->send($mail);
 
         return response()->json( $data);
     }
