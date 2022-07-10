@@ -1979,6 +1979,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1999,6 +2011,12 @@ __webpack_require__.r(__webpack_exports__);
         idUser: '',
         idHabitation: ''
       },
+      errors: {
+        name: null,
+        email: null,
+        message: null
+      },
+      sentMessage: false,
       alertMessage: ''
     };
   },
@@ -2008,14 +2026,58 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.idUser = this.userId;
       this.form.idHabitation = this.habitationId;
+      this.getErrors();
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/api/messages', this.form).then(function (res) {
+        if (_this.form.name && _this.form.email && _this.form.message && _this.validEmail(_this.form.email)) {
+          _this.sentMessage = true;
+
+          _this.hideAlert();
+        }
+      }).then(function (res) {
         _this.form.name = '';
-        _this.form.email = '', _this.form.message = '', _this.alertMessage = 'Il messaggio è stato inviato';
+        _this.form.email = '', _this.form.message = '', _this.alertMessage = 'Il messaggio è stato inviato con successo!';
+      })["catch"](function (err) {
+        return console.error('Impossibile caricare i dati', err);
       });
+    },
+    getErrors: function getErrors() {
+      var _this2 = this;
+
+      if (!this.form.name) {
+        this.errors.name = "Il nome è obbligatorio!";
+      }
+
+      if (!this.validEmail(this.form.email)) {
+        this.errors.email = "Inserisci un'email valida!";
+      }
+
+      if (!this.form.email) {
+        this.errors.email = "L'email è obbligatoria!";
+      }
+
+      if (!this.form.message) {
+        this.errors.message = "Inserisci il testo per contattare l'host!";
+      }
+
+      setTimeout(function () {
+        _this2.errors.email = null;
+        _this2.errors.message = null;
+      }, 25000);
+    },
+    validEmail: function validEmail(email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+    hideAlert: function hideAlert() {
+      var _this3 = this;
+
+      setTimeout(function () {
+        _this3.sentMessage = false;
+      }, 5000);
     }
   },
   mounted: function mounted() {
-    console.log(this.$route); // return this.userId, this.habitationId
+    console.log(this.$route);
   }
 });
 
@@ -3829,15 +3891,23 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container mt-5" },
     [
-      _c("h2", [_vm._v("Contact area")]),
+      _c("h2", { staticClass: "text-center" }, [_vm._v("Contact area")]),
       _vm._v(" "),
-      _c("Alert", { attrs: { type: "success" } }),
+      _vm.sentMessage
+        ? _c("Alert", {
+            attrs: { type: "success", message: this.alertMessage },
+          })
+        : _vm._e(),
       _vm._v(" "),
       _c("form", { attrs: { enctype: "multipart/form-data" } }, [
+        _c("small", { staticClass: "form-text text-muted mb-3" }, [
+          _vm._v("* Campo obbligatorio"),
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "name" } }, [_vm._v("Nome")]),
+          _c("label", { attrs: { for: "name" } }, [_vm._v("* Nome")]),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -3853,6 +3923,7 @@ var render = function () {
               type: "text",
               id: "name",
               placeholder: "Inserisci il tuo nome",
+              required: "",
             },
             domProps: { value: _vm.form.name },
             on: {
@@ -3865,7 +3936,13 @@ var render = function () {
             },
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "email" } }, [_vm._v("Email address")]),
+          _c("small", { staticClass: "form-text text-danger" }, [
+            _vm._v(_vm._s(_vm.errors.name)),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "email" } }, [_vm._v("* Email")]),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -3877,7 +3954,12 @@ var render = function () {
               },
             ],
             staticClass: "form-control",
-            attrs: { type: "email", id: "email", placeholder: "Enter email" },
+            attrs: {
+              type: "email",
+              id: "email",
+              placeholder: "Enter email",
+              required: "",
+            },
             domProps: { value: _vm.form.email },
             on: {
               input: function ($event) {
@@ -3888,12 +3970,14 @@ var render = function () {
               },
             },
           }),
+          _vm._v(" "),
+          _c("small", { staticClass: "form-text text-danger" }, [
+            _vm._v(_vm._s(_vm.errors.email)),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "message" } }, [
-            _vm._v("Example textarea"),
-          ]),
+          _c("label", { attrs: { for: "message" } }, [_vm._v("* Messaggio")]),
           _vm._v(" "),
           _c("textarea", {
             directives: [
@@ -3905,7 +3989,7 @@ var render = function () {
               },
             ],
             staticClass: "form-control",
-            attrs: { id: "message", rows: "3" },
+            attrs: { id: "message", rows: "3", required: "" },
             domProps: { value: _vm.form.message },
             on: {
               input: function ($event) {
@@ -3916,6 +4000,10 @@ var render = function () {
               },
             },
           }),
+          _vm._v(" "),
+          _c("small", { staticClass: "form-text text-danger" }, [
+            _vm._v(_vm._s(_vm.errors.message)),
+          ]),
         ]),
         _vm._v(" "),
         _c(
@@ -20869,7 +20957,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\matte\OneDrive\Desktop\Projects\VsCode\Boolean-58\BoolBnB\resources\js\routes.js */"./resources/js/routes.js");
+module.exports = __webpack_require__(/*! /Users/simonelucazaino/Desktop/BoolBnB progetto finale/Repository/BoolBnB/resources/js/routes.js */"./resources/js/routes.js");
 
 
 /***/ })

@@ -110,4 +110,27 @@
         </div>
     </div>
 
+    <div>
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nome mittente</th>
+                <th scope="col">Email mittente</th>
+                <th scope="col">Testo</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+               @foreach ($habitation->messages as $message)                
+                <tr>
+                    <td>{{$message->name}}</td>
+                    <td>{{$message->email_sender}}</td>
+                    <td>{{$message->text_message}}</td>
+                </tr>
+               @endforeach
+            </tbody>
+          </table>
+          
+    </div>
+
 @endsection

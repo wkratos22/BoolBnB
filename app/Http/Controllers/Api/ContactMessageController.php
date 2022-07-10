@@ -4,34 +4,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+
 use App\User;
+use App\Models\Message;
 
 
 class ContactMessageController extends Controller
 {
     public function send( Request $request){
 
-        // $data = $request->all();
-
-        // $data = $request->validate([
-        //     'field' => 'request|string|max:255',
-        // ]);
-
         $data = $request->all();
 
-        var_dump($data);
-
-        // $name = $data['name'];
-        // $email = $data['email'];
-        // $message = $data['message'];
-
-        //var_dump($message);
-
-        // $user = Auth::user();
+        // var_dump($data['idHabitation']);
 
         $validator = Validator::make($data, [
             'name' => 'required',
@@ -49,16 +39,27 @@ class ContactMessageController extends Controller
             return response()->json(['errors' => $validator->errors()]);
         };
 
-        $user = User::all();
+        $message = new Message();
 
-        if($request->idUser == $user['id']){
-            $mail = new ContactMail( $data );
-            Mail::to($user->email)->send($mail);
-        }
+        $message->habitation_id = $data['idHabitation'];
+        $message->name = $data['name'];
+        $message->email_sender = $data['email'];
+        $message->text_message = $data['message'];
+
+        $message->save();
+
+        // $user = User::where('id', $data['idUser'])->get();
+
+        // var_dump($user);
+
+        // if($request->idUser == $user['id']){
+        //     $mail = new ContactMail( $data );
+        //     Mail::to($user->email)->send($mail);
+        // }
 
 
 
-        return response()->json( $data);
+        // return response()->json( $data);
     }
 }
 
