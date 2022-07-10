@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import HomePage from './components/pages/HomePage.vue';
 import AdvancedSearch from './components/pages/AdvancedSearch.vue';
 import HabitationDetails from './components/pages/HabitationDetails.vue';
+import ContactForm from './components/includes/ContactForm.vue';
 import NotFoundPage from './components/pages/NotFoundPage.vue';
 
 
@@ -20,6 +21,7 @@ const router = new VueRouter({
         { path: '/', component: HomePage, name: 'home' },
         { path: '/habitations', component: AdvancedSearch, name: 'advancedSearch' },
         { path: '/habitations/:slug', component: HabitationDetails, name: 'habitationDetails' },
+        { path: '/contact', component: ContactForm, name: 'contacts'},
         { path: '*', component: NotFoundPage, name: 'notFound' }
     ]
 
