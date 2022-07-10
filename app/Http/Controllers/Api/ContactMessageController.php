@@ -24,15 +24,17 @@ class ContactMessageController extends Controller
         // var_dump($data['idHabitation']);
 
         $validator = Validator::make($data, [
-            'name' => 'required',
+            'name' => 'required|min:1',
             'email' => 'required|email',
-            'message' => 'required'
+            'message' => 'required|min:1'
         ],
         [
             'name.required' => 'Il nome è obbligatorio',
+            'name.required' => 'Il numero minimo di caratteri previsti per il nome è 1.',
             'email.required' => 'La mail è obbligatoria',
             'email.email' => 'La sintassi della mail è sbagliata',
-            'message.required' => 'Il messaggio della mail è obbligatorio'
+            'message.required' => 'Il messaggio della mail è obbligatorio',
+            'message.min' => 'Il numero minimo di caratteri previsti per il messaggio è 1.'
         ]);
 
         if( $validator->fails() ){
@@ -57,9 +59,7 @@ class ContactMessageController extends Controller
         //     Mail::to($user->email)->send($mail);
         // }
 
-
-
-        // return response()->json( $data);
+        return response()->json( $data);
     }
 }
 

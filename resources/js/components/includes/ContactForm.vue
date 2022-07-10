@@ -138,6 +138,7 @@ export default {
             }
 
             setTimeout(() => {
+                this.errors.name = null
                 this.errors.email = null
                 this.errors.message = null
             }, 25000)
