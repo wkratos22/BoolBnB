@@ -115,7 +115,7 @@
         </div>
 
         <div>
-            <ContactForm :userId="habitation.user_id" />
+            <ContactForm :userId="habitation.user_id" :habitationId="habitation.id" />
         </div>
     </div>
 </template>

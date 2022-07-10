@@ -1987,7 +1987,8 @@ __webpack_require__.r(__webpack_exports__);
     Alert: _Alert_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
-    userId: Number
+    userId: Number,
+    habitationId: Number
   },
   data: function data() {
     return {
@@ -1995,7 +1996,8 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         email: '',
         message: '',
-        idUser: ''
+        idUser: '',
+        idHabitation: ''
       },
       alertMessage: ''
     };
@@ -2005,6 +2007,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.form.idUser = this.userId;
+      this.form.idHabitation = this.habitationId;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/api/messages', this.form).then(function (res) {
         _this.form.name = '';
         _this.form.email = '', _this.form.message = '', _this.alertMessage = 'Il messaggio è stato inviato';
@@ -2012,8 +2015,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log(this.$route);
-    return this.userId;
+    console.log(this.$route); // return this.userId, this.habitationId
   }
 });
 
@@ -4800,7 +4802,14 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      [_c("ContactForm", { attrs: { userId: _vm.habitation.user_id } })],
+      [
+        _c("ContactForm", {
+          attrs: {
+            userId: _vm.habitation.user_id,
+            habitationId: _vm.habitation.id,
+          },
+        }),
+      ],
       1
     ),
   ])

@@ -55,6 +55,7 @@ export default {
 
     props: {
         userId: Number,
+        habitationId: Number,
     },
 
     data() {
@@ -64,6 +65,7 @@ export default {
                 email: '',
                 message: '',
                 idUser: '',
+                idHabitation: '',
             },
             alertMessage: '',
         }
@@ -72,6 +74,7 @@ export default {
     methods: {
         sendForm(){
             this.form.idUser = this.userId
+            this.form.idHabitation = this.habitationId
             axios.post('http://127.0.0.1:8000/api/messages', this.form)
             .then( (res) => {
                 this.form.name = ''
@@ -84,7 +87,7 @@ export default {
 
     mounted(){
         console.log(this.$route);
-        return this.userId
+        // return this.userId, this.habitationId
     }
 }
 

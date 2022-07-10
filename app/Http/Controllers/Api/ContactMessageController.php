@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 
 class ContactMessageController extends Controller
@@ -30,7 +31,7 @@ class ContactMessageController extends Controller
 
         //var_dump($message);
 
-        $user = Auth::user();
+        // $user = Auth::user();
 
         $validator = Validator::make($data, [
             'name' => 'required',
@@ -48,8 +49,14 @@ class ContactMessageController extends Controller
             return response()->json(['errors' => $validator->errors()]);
         };
 
-        $mail = new ContactMail( $data );
-        Mail::to($user['email'])->send($mail);
+        $user = User::all();
+
+        if($request->idUser == $user['id']){
+            $mail = new ContactMail( $data );
+            Mail::to($user->email)->send($mail);
+        }
+
+
 
         return response()->json( $data);
     }
