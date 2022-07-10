@@ -36,7 +36,7 @@
                 </textarea>
             </div>
 
-            <button class="btn btn-primary" @click.prevent="sendForm">Invia</button>
+            <button class="btn btn-primary" @click.prevent="sendForm()">Invia</button>
         </form>
     </div>
 

@@ -9,21 +9,31 @@ use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
+
 class ContactMessageController extends Controller
 {
     public function send( Request $request){
+
+        // $data = $request->all();
+
+        // $data = $request->validate([
+        //     'field' => 'request|string|max:255',
+        // ]);
+
         $data = $request->all();
 
-        $name = $data['name'];
-        $email = $data['email'];
-        $message = $data['message'];
+        // var_dump($data);
+
+        // $name = $data['name'];
+        // $email = $data['email'];
+        // $message = $data['message'];
 
         //var_dump($message);
 
         $user = Auth::user();
 
         $validator = Validator::make($data, [
-            'name' => 'required|name',
+            'name' => 'required',
             'email' => 'required|email',
             'message' => 'required'
         ],
@@ -39,7 +49,7 @@ class ContactMessageController extends Controller
         };
 
         $mail = new ContactMail( $data );
-        Mail::to($user->email)->send($mail);
+        Mail::to(env($messages->email))->send($mail);
 
         return response()->json( $data);
     }

@@ -1,8 +1,8 @@
 @component('mail::message')
 
-Email: {{ $contact['email']}}
+Email: {{ $messages['email']}}
 
-Messaggio: {{ $contact['message']}}
+Messaggio: {{ $messages['message']}}
 
 {{-- @component('mail::button', ['url' => ''])
 Button Text
