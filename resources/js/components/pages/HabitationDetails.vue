@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="d-flex align-items-center justify-content-around my-3">
-          
+
                     <div class="text-center">
                         <div>
                             <span class="text-dark font-weight-bold"> {{habitation.price}} &#8364;</span>
@@ -34,7 +34,7 @@
                             <span>/ notte</span>
                         </div>
                     </div>
- 
+
                     <div class="text-center">
                         <div class="d-flex justify-content-center align-items-center">
                             <span class="text-dark font-weight-bold mr-1"> {{habitation.guests_number}}</span>
@@ -113,12 +113,22 @@
         <div class="w-50">
             <!-- INSERIRE COMPONENTE MAPPA -->
         </div>
+
+        <div>
+            <ContactForm :userId="habitation.user_id" :habitationId="habitation.id" />
+        </div>
     </div>
 </template>
 
 <script>
+import ContactForm from '../includes/ContactForm.vue'
+
     export default {
         name: "HabitationDetails",
+
+        components: {
+            ContactForm
+        },
 
         data() {
             return {
@@ -142,7 +152,7 @@
                         this.images = res.data.images;
 
                         this.services = res.data.services;
-                        
+
                         this.type = res.data.habitation_type;
 
                         this.tags = res.data.tags;
