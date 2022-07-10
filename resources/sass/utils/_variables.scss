@@ -1,0 +1,35 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+$breakpoints: (
+  "phone":          400px,
+  "phone-wide":     480px,
+  "phablet":        560px,
+  "tablet-small":   640px,
+  "almost-tablet":  744px,
+  "tablet":         768px,
+  "tablet-big":     950px,
+  "tablet-wide":    1024px,
+  "desktop-small":  1128px,
+  "desktop":        1248px,
+  "desktop-wide":   1440px,
+  "desktop-hd":     1920px
+);
+

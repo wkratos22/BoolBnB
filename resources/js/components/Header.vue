@@ -17,11 +17,11 @@
       <ul class="navbar-nav">
 
         <li class="nav-item">
-          <a class="nav-link m-1 font-size-1 text_gray" href="/login">Passa alla modalità host</a>
+          <a class="nav-link m-1 font-size-1 text-white" href="/login">Passa alla modalità host</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link m-1 font-size-1 text_gray" href="/register">Registrati</a>
+          <a class="nav-link m-1 font-size-1 text-white" href="/register">Registrati</a>
         </li>
 
       </ul>

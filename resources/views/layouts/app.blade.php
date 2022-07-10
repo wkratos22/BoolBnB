@@ -22,26 +22,28 @@
 
             <div>
                 <a href="{{url('/')}}">
-                    <img class="w-25" src="{{asset('img/icons/BoolBnb_logo.jpg')}}" alt="air-bnb-logo">
+                    <img class="w-25" src="{{asset('/images/BoolBnb_logo-removebg-preview.png')}}" alt="air-bnb-logo">
                 </a>
-
             </div>
-            {{-- <div>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                  </form>
-            </div> --}}
-            
-            <div>
-                {{-- <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'BoolB&B') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button> --}}
-             
 
+            <div>
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="m-2">
+                        <a href="{{ route('admin.habitations.index')}}">Dashboard</a>
+                    </li>
+                    <li class="m-2">
+                        <a href="{{ route('admin.habitations.index')}}">Posta</a>
+                    </li>
+                    <li class="m-2">
+                        <a href="{{ route('admin.habitations.index')}}">Calendario</a>
+                    </li>
+                    <li class="m-2">
+                        <div class="text-center">
+                            <a class="" href="{{ route('admin.habitations.create')}}">Crea Annuncio</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
             <div class="d-flex">
@@ -60,65 +62,48 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
+
+                    @auth
+
+                        <div>
+                            <li class="nav-item dropdown  d-flex flex-row">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    YourBoolBnb
+                                </a>
+
+                                <ul class="navbar-nav mr-auto">
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li class="m-2">
+                                            <a href="{{ route('admin.habitations.index')}}">Approfondimenti</a>
+                                        </li>
+
+                                    </div>
+                                </ul>
                             </li>
-                        @endguest
-                    </ul>
+                        </div>
+                    @endauth
                 </div>
-               <div>
-
-               @auth                
-                   <li class="nav-item dropdown  d-flex flex-row">
-                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           YourBoolBnb
-                       </a>
-                       
-                       <ul class="navbar-nav mr-auto">
-                           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                           
-                               <li class="m-2">
-                                   <a href="{{ route('admin.habitations.index')}}">Oggi</a>
-                               </li>
-                               <li class="m-2">
-                                   <a href="{{ route('admin.habitations.index')}}">Posta</a>
-                               </li>
-                               <li class="m-2">
-                                   <a href="{{ route('admin.habitations.index')}}">Calendario</a>
-                               </li>
-                               <li class="m-2">
-                                   <a href="{{ route('admin.habitations.index')}}">Approfondimenti</a>
-                               </li>
-                               <li class="m-2">
-                                   <a href="{{ route('admin.habitations.index')}}">Menu</a>
-                               </li>
-                               
-                           </div>    
-                       </ul>
-                   </li>
-               @endauth
-                
-
-                </div>
-            </div>
-                   
-                
-            </div>
         </nav>
 
         <main class="py-4">
