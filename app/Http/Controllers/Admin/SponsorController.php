@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sponsorship;
+use App\Models\Habitation;
 
 class SponsorController extends Controller
 {
@@ -13,11 +14,11 @@ class SponsorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Habitation $habitation)
     {
-        $sponsors = Sponsorship::all();
+        $sponsorships = Sponsorship::all();
 
-        return view('admin.sponsorship.index', compact('sponsors'));
+        return view('admin.sponsorship.index', compact('sponsorships', 'habitation'));
     }
 
     /**

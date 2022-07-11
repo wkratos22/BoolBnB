@@ -92,7 +92,7 @@
                     Modifica annuncio
                 </a>
 
-                <a href="{{ route('admin.sponsorship.index', ['hab' => $habitation->id])}}" class="btn btn-success shadow-none">
+                <a href="{{ route('admin.sponsor', $habitation)}}" class="btn btn-success shadow-none">
                     Sponsorizza
                 </a>
 

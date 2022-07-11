@@ -4,27 +4,46 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Braintree\Gateway;
+
+use App\Models\Habitation;
+use App\Models\Sponsorship;
 
 class PaymentsController extends Controller
 {
-    public function generate(Request $request, Gateway $gateway){
-        
-        $token = $gateway->clientToken()->generate();
+    public function generate(Habitation $habitation, Sponsorship $sponsorship){
 
-        $data = [
-            'token' => $token
-        ];
-        //dd($gateway->clientToken()->generate());
+        $gateway = new \Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
         
-        return view('admin.payments.pay');
+        // dd($sponsorship);
+
+        $token = $gateway->clientToken()->generate();
+        
+        return view('admin.payments.payment', compact('token', 'habitation', 'sponsorship'));
     }
 
-    public function makePayment(PayRequest $request, Gateway $gateway){
+    public function makePayment(Request $request, Habitation $habitation, Sponsorship $sponsorship){
+
+        $gateway = new \Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+
+        $data = $request->all();
+
+        $amount = $data['price'];
+
+        $nonce = $data['payment_method_nonce'];
 
         $result = $gateway->transaction()->sale([
-            'amount' => '10',
-            'paymentMethodNonce' => $request->token,
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonce,
             'options' => [
                 'submitForSettlement' => true
               ]
@@ -32,20 +51,18 @@ class PaymentsController extends Controller
         ]);
 
         if($result->success){
-            $data = [
-                'success' => true,
-                'message' => "transazione eseguita"
-            ];
+            $transaction = $result->transaction;
 
-
-            // Relazione habitations - sponsorships
-
+            return back()->with('message', "Transazione effettuata con successo! L' ID della transazione è:" . $transaction->id);
         } else{
-            $data = [
-                'success' => false,
-                'token' => "transazione fallita "
-            ];
+
+            $errorString = "";
+
+            foreach ($result->errors->deepAll() as $error) {
+                $errorString .= 'Error:' . $error->code . ": " . $error->message . "\n";
+            }
+
+            return back()->withErrors('Si è verificato un errore. Leggi il messaggio:' . $result->message);
         }
-        return view('admin.payments.pay',response()->json(compact($data, 401))); 
     }
 }

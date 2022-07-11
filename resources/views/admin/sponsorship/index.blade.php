@@ -2,27 +2,23 @@
 
 @section('content')
 
-@php
-$hab = request('hab');
-
-// dd($habId );
-@endphp
-
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            @foreach ($sponsors as $sponsor)
-                <div class="card" style="width: 18rem;">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        @foreach ($sponsorships as $sponsorship)
+            <div class="col">
+                <div class="card my-2" style="width: 18rem;">
                     <div class="card-body">
-                    <h5 class="card-title">Sponsorizzazione</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Durata: {{$sponsor->duration}} ore</h6>
-                    <h6 class="card-text">Prezzo: {{$sponsor->price}}€</h6>
-                    <a href="{{ route('admin.pay', ['hab' => $hab, 'sponsor' => $sponsor->id])}}" class="card-link">Acquista</a>
+                    <h5 class="card-title">{{$sponsorship->name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Durata: {{$sponsorship->duration}} ore</h6>
+                    <h6 class="card-text">Prezzo: {{$sponsorship->price}}€</h6>
+                    <div class="text-right">
+                        <a href="{{ route('admin.pay', [$habitation, $sponsorship])}}" class="btn btn-primary">Sponsorizza</a>
+                    </div>
                     
                     </div>
                 </div>
-            @endforeach 
-        </div>
+            </div>
+        @endforeach 
     </div>
 </div>
 @endsection
