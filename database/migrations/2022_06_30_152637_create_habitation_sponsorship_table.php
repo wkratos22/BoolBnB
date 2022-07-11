@@ -24,7 +24,7 @@ class CreateHabitationSponsorshipTable extends Migration
             $table->unsignedBigInteger('sponsorship_id');
             $table->foreign('sponsorship_id')->references('id')->on('sponsorships')->onDelete('cascade');
 
-            $table->dateTime('start_date')->withTimestamps();
+            $table->dateTime('start_date');
             $table->dateTime('end_date');
 
             $table->timestamps();

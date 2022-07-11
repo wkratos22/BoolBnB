@@ -2,7 +2,6 @@
 
 @section('content')
 
-    @include('includes.messages.success')
     @include('includes.validation.errors')
     
     <div class="container">

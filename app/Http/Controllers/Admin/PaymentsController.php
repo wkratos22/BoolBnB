@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Habitation;
 use App\Models\Sponsorship;
 
+use Carbon\Carbon;
+
 class PaymentsController extends Controller
 {
     public function generate(Habitation $habitation, Sponsorship $sponsorship){
@@ -18,8 +20,6 @@ class PaymentsController extends Controller
             'publicKey' => config('services.braintree.publicKey'),
             'privateKey' => config('services.braintree.privateKey')
         ]);
-        
-        // dd($sponsorship);
 
         $token = $gateway->clientToken()->generate();
         
@@ -52,8 +52,14 @@ class PaymentsController extends Controller
 
         if($result->success){
             $transaction = $result->transaction;
+        
+            $startDate = Carbon::now()->toDateTimeString();
+            $endDate = Carbon::now()->addHours($sponsorship->duration)->toDateTimeString();
+    
 
-            return back()->with('message', "Transazione effettuata con successo! L' ID della transazione è:" . $transaction->id);
+            $habitation->sponsorships()->sync([$sponsorship->id => ['start_date' => $startDate, 'end_date' => $endDate]]);
+
+            return redirect()->route('admin.habitations.show', $habitation)->with('message', "Il tuo annuncio ora è nella sezione 'In Evidenza'. Cosa aspetti? Corri a vederlo!");
         } else{
 
             $errorString = "";
