@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+@php
+$hab = request('hab');
+
+// dd($habId );
+@endphp
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -10,7 +17,7 @@
                     <h5 class="card-title">Sponsorizzazione</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Durata: {{$sponsor->duration}} ore</h6>
                     <h6 class="card-text">Prezzo: {{$sponsor->price}}€</h6>
-                    <a href="{{ route('admin.pay')}}" class="card-link">Acquista</a>
+                    <a href="{{ route('admin.pay', ['hab' => $hab, 'sponsor' => $sponsor->id])}}" class="card-link">Acquista</a>
                     
                     </div>
                 </div>

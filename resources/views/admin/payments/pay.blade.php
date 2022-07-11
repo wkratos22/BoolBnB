@@ -1,3 +1,10 @@
+
+@php
+  $hab = request('hab');
+
+  $sponsor = request('sponsor');
+@endphp
+
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>

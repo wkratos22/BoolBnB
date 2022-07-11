@@ -36,6 +36,10 @@ class PaymentsController extends Controller
                 'success' => true,
                 'message' => "transazione eseguita"
             ];
+
+
+            // Relazione habitations - sponsorships
+
         } else{
             $data = [
                 'success' => false,
