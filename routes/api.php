@@ -25,11 +25,23 @@ Route::middleware('auth:api', function (){
 
 Route::namespace('Api')->group(function(){
 
+    // Dashboard 
     Route::get('/habitations', 'HabitationApi@index');
-    Route::get('/habitations/{slug}', 'HabitationApi@show');
+
+    // Habitations Sponsored
+    Route::get('/habitations/sponsor', 'HabitationApi@getSponsored');
+    
+    // Advanced Search
     Route::get('/search', 'HabitationApi@getParams');
     Route::get('/services', 'HabitationApi@getServices');
+
+    // Habitation Details
+    Route::get('/habitations/{slug}', 'HabitationApi@show');
+
+
+    // Contact Form
     Route::post('/messages', 'ContactMessageController@send');
+
 });
 
 

@@ -6,7 +6,6 @@ Vue.use(VueRouter);
 import HomePage from './components/pages/HomePage.vue';
 import AdvancedSearch from './components/pages/AdvancedSearch.vue';
 import HabitationDetails from './components/pages/HabitationDetails.vue';
-import ContactForm from './components/includes/ContactForm.vue';
 import NotFoundPage from './components/pages/NotFoundPage.vue';
 import Dashboard from './components/habitations/Dashboard.vue';
 

@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Models\Habitation;
 use App\Models\Service;
 
 use Illuminate\Support\Facades\Validator;
+
+use Carbon\Carbon;
 
 class HabitationApi extends Controller
 {
@@ -20,7 +23,27 @@ class HabitationApi extends Controller
     {
         $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
 
-        return response()->json(compact('habitations'));
+        $habsNoSponsor = [];
+
+        foreach ($habitations as $habitation) {
+
+            if ($habitation->sponsorships()->count() == 0) {
+                array_push($habsNoSponsor, $habitation);
+            }
+        }
+
+        return response()->json(compact('habsNoSponsor'));
+    }
+
+    public function getSponsored()
+    {
+        $currentDate = Carbon::now()->toDateTimeString();
+
+        $sponsoredHabs = Habitation::whereHas('sponsorships', function ($query) use ($currentDate){
+            $query->where('end_date', '>=', $currentDate);
+           })->where('visible', 1)->with('sponsorships', 'images')->get();
+
+        return response()->json(compact('sponsoredHabs'));
     }
 
     /**
@@ -72,7 +95,7 @@ class HabitationApi extends Controller
                                         }
 
                                     })
-                                    ->with('services', 'tags', 'habitationType', 'images')->get();
+                                    ->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
 
 
         $filteredHab = [];
@@ -115,10 +138,6 @@ class HabitationApi extends Controller
         return $earthMeanRadius * $c;
     }
 
-    // public function getMessages( Request $request ){
 
-    //     $messages = $request->all();
-
-    // }
 
 }

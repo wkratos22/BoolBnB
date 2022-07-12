@@ -43,7 +43,7 @@ class Habitation extends Model
     }
 
     public function sponsorships() {
-        return $this->belongsToMany('App\Models\Sponsorship');
+        return $this->belongsToMany('App\Models\Sponsorship')->withPivot('start_date', 'end_date');
     }
 
     public function services() {
