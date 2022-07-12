@@ -17,6 +17,10 @@
       <ul class="navbar-nav">
 
         <li class="nav-item">
+            <router-link class="nav-link m-1 font-size-1 text-white" :to="{ name: 'dashboard' }">Annunci</router-link>
+        </li>
+        
+        <li class="nav-item">
           <a class="nav-link m-1 font-size-1 text-white" href="/login">Passa alla modalità host</a>
         </li>
 
