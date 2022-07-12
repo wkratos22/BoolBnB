@@ -6,7 +6,9 @@
 
         <title>BoolB&B</title>
 
-        <!-- Fonts -->
+        <link rel="stylesheet" type="text/css" href="maps.css"/>
+
+        {{-- <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.39.0/maps/maps.css'> --}}
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/app.css')}}">
     </head>
@@ -32,6 +34,9 @@
 
         <script src=" {{asset('js/app.js')}} "></script>
         <script src=" {{asset('js/front.js')}} "></script>
-        
+        <script src="maps-web.min.js"></script>
+        {{-- <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.39.0/maps/maps-web.min.js"></script> --}}
+        {{-- <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/services/services-web.min.js"></script> --}}
+
     </body>
 </html>
