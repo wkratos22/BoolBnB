@@ -15,7 +15,7 @@ class HabitationApi extends Controller
      */
     public function index()
     {
-        $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images')->get();
+        $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
 
         return response()->json(compact('habitations'));
     }
@@ -89,4 +89,11 @@ class HabitationApi extends Controller
     {
         //
     }
+
+    // public function getAllHabitations() {
+
+    //     $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
+
+    //     return response()->json(compact('habitations'));
+    // }
 }

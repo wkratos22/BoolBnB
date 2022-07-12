@@ -6,6 +6,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{habitation.title}}</h5>
                 <p class="card-text">{{habitation.address}}</p>
+                <p v-for="sponsor in habitation.sponsorships" :key="sponsor.id" class="card-text">Sponsorizzato per {{sponsor.duration}} ore</p>
                 <router-link class="btn btn-primary" :to="{name: 'habitationDetails', params: { slug: habitation.slug} }">Vedi appartamento</router-link>
             </div>
         </div>
