@@ -1,57 +1,53 @@
 <template>
-  <nav>
-    <ul class="nav d-flex justify-content-between m-1">
-      <li class="nav-item">
-        <router-link class="navbar-brand" :to="{ name: 'home' }"
-          >Home</router-link
-        >
-      </li>
+<header>
 
-      <SearchHab @search="searchFunction"/>
+  <nav class="navbar navbar-expand-lg" :class="($route.path != '/' ? 'bg-secondary' : '')">
 
-      <li class="nav-item d-flex">
-        <!--Button per diventare un'host(aggiungi abitazioni)-->
-        <!-- <a class="nav-link m-1" href="/admin.habitations.create">Diventa un host</a> -->
+    <!-- Home -->
+    <router-link class="navbar-brand m-1" :to="{ name: 'home' }">
+      <img class="w-50" src="/images/logo_header.png" alt="">
+    </router-link>
 
-        <!--Button per entrare nel back-end per l'utente loggato-->
-        <router-link class="nav-link m-1" :to="{ name: 'advancedSearch' }">Annunci</router-link >
-        <a class="nav-link m-1" href="/admin">Passa alla modalità host</a>
+    <!-- Button menu mobile -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <a class="nav-link m-1" href="/register">Registrati</a>
-        <a class="nav-link m-1" href="/login">Accedi</a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
 
-      </li>
-    </ul>
+        <li class="nav-item">
+          <a class="nav-link m-1 font-size-1 text-white" href="/login">Passa alla modalità host</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link m-1 font-size-1 text-white" href="/register">Registrati</a>
+        </li>
+
+      </ul>
+    </div>
   </nav>
+
+</header>
 </template>
 
 <script>
 
-import SearchHab from './includes/SearchHab.vue'
-
 export default {
   name: "Header",
-
-  components: {
-    SearchHab,
-  },
-
-  data() {
-    return {
-        positionInput: {latitudine: "", longitudine: ""},
-    }
-  },
-
-  methods: {
-    searchFunction(positionInput) {
-      this.positionInput.latitudine = positionInput.latitudine;
-      this.positionInput.longitudine = positionInput.longitudine;
-
-      console.log('RESPONSE-Header', this.positionInput);
-
-      this.$emit('search-data', this.positionInput)
-    }
-  },
-
 };
+
 </script>
+
+<style scoped>
+
+    .font-size-1{
+        font-size: 1.2rem;
+    }
+
+    .text_gray{
+        color: rgb(190, 182, 182);
+    }
+
+
+</style>

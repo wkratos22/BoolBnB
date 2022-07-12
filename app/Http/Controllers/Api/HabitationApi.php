@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Habitation;
+use App\Models\Service;
+
+use Illuminate\Support\Facades\Validator;
 
 class HabitationApi extends Controller
 {
@@ -18,27 +21,6 @@ class HabitationApi extends Controller
         $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
 
         return response()->json(compact('habitations'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -56,44 +38,87 @@ class HabitationApi extends Controller
         return response()->json($habitation);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function getParams( Request $request ){
+        $data= $request->all();
+
+        $longitude = $data['lon'];
+        $latitude = $data['lat'];
+        $radius = $data['radius'];
+        $minBeds = $data['minBeds'];
+        $minRooms = $data['minRooms'];
+
+
+        if (isset($data['services'])) {
+            $explodedServices = explode(',', $data['services']);
+        } else {
+            $explodedServices = [];
+        }
+
+
+        $habitations = Habitation::orderBy('updated_at', 'DESC')
+                                    ->where('visible', 1)
+                                    ->where('beds_number', '>=', $minBeds)
+                                    ->where('rooms_number', '>=', $minRooms)
+                                    ->where(function ($query) use ($explodedServices) {
+
+                                        if (array_key_exists(0, $explodedServices)) {
+
+                                            foreach ($explodedServices as $service) {
+
+                                                $query->whereHas('services', function ($q) use ($service) {
+                                                    $q->where('service_id', $service);
+                                                });
+                                            }
+                                        }
+
+                                    })
+                                    ->with('services', 'tags', 'habitationType', 'images')->get();
+
+
+        $filteredHab = [];
+
+        foreach ($habitations as $habitation) {
+            $distance = self::haversineGreatCircleDistance($latitude, $longitude, $habitation->latitude, $habitation->longitude);
+
+            $kmRadius = $radius / 1000;
+
+            if ($distance < $kmRadius ) {
+                array_push($filteredHab, $habitation);
+
+            }
+
+        }
+        return response()->json(compact('filteredHab'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function getServices(){
+        $services= Service::orderBy('label', 'ASC')->get();
+
+        return response()->json(compact('services'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    // metodo php per calcolare la distanza tra due diversi punti (definiti tramite lat e long)
+    public function haversineGreatCircleDistance(
+        $latitudeFrom,
+        $longitudeFrom,
+        $latitudeTo,
+        $longitudeTo,
+        $earthMeanRadius = 6371
+    )
     {
-        //
+        $deltaLatitude = deg2rad($latitudeTo - $latitudeFrom);
+        $deltaLongitude = deg2rad($longitudeTo - $longitudeFrom);
+        $a = sin($deltaLatitude / 2) * sin($deltaLatitude / 2) +
+            cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) *
+            sin($deltaLongitude / 2) * sin($deltaLongitude / 2);
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+        return $earthMeanRadius * $c;
     }
 
-    // public function getAllHabitations() {
+    // public function getMessages( Request $request ){
 
-    //     $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
+    //     $messages = $request->all();
 
-    //     return response()->json(compact('habitations'));
     // }
+
 }

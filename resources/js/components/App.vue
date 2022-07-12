@@ -1,22 +1,14 @@
 <template>
 
-    <div>
+    <div :class="($route.name === 'home') ? 'bg_img_casual' : '' ">
 
-        <header>
+      <Header/>
 
-          <Header @search-data="searchDataFunction" />
+      <main>
+        <router-view></router-view>
+      </main>
 
-        </header>
-
-        <!-- <AdvancedSearch  /> -->
-
-        <main class="container">
-
-          <router-view :position="positionInput"></router-view>
-
-        </main>
-
-        <Footer />
+      <Footer />
 
     </div>
 
@@ -25,35 +17,31 @@
 <script>
 import Header from "./Header.vue";
 import Footer from "./Footer.vue";
-import AdvancedSearch from "./pages/AdvancedSearch.vue";
 
 
 export default {
   name: "App",
+
   components: {
     Header,
     Footer,
-    AdvancedSearch
   },
 
-  data() {
-    return {
-        positionInput: {latitudine: "", longitudine: ""},
-    }
-  },
+}
 
-   methods: {
-    searchDataFunction(positionInput) {
-      this.positionInput.latitudine = positionInput.latitudine;
-      this.positionInput.longitudine = positionInput.longitudine;
 
-      console.log('RESPONSE-App', this.positionInput);
-    }
-  },
-
-//   mounted() {
-//     this.searchDataFunction()
-//   }
-
-};
 </script>
+
+<style lang="scss">
+
+    .bg_img_casual {
+        background-image: url('/images/bg-home.jpeg');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .bg_white{
+        background-color: blue;
+    }
+
+</style>
