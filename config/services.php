@@ -30,4 +30,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // 1) compilare i campi nel file ".env" con le credenziali generate dopo aver fatto il Login 
+    // 2) credenziali Braintree che fanno riferimento al ".env"
+    'braintree' => [
+        'environment' => env('BT_ENVIRONMENT', 'sandbox'),
+        'merchantId' => env('BT_MERCHANT_ID'),
+        'publicKey' => env('BT_PUBLIC_KEY'),
+        'privateKey' => env('BT_PRIVATE_KEY'),
+    ],
+
 ];

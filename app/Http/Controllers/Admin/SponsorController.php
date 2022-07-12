@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Sponsorship;
 use App\Models\Habitation;
 
-class HabitationApi extends Controller
+class SponsorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Habitation $habitation)
     {
-        $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
+        $sponsorships = Sponsorship::all();
 
-        return response()->json(compact('habitations'));
+        return view('admin.sponsorship.index', compact('sponsorships', 'habitation'));
     }
 
     /**
@@ -47,13 +48,9 @@ class HabitationApi extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $habitation = Habitation::where('slug', $slug)->with('services', 'tags', 'habitationType', 'images')->first();
-
-        if(!$habitation) return response('Post not found', 404);
-
-        return response()->json($habitation);
+        //
     }
 
     /**
@@ -89,11 +86,4 @@ class HabitationApi extends Controller
     {
         //
     }
-
-    // public function getAllHabitations() {
-
-    //     $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
-
-    //     return response()->json(compact('habitations'));
-    // }
 }
