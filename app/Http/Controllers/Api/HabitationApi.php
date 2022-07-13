@@ -21,6 +21,7 @@ class HabitationApi extends Controller
      */
     public function index()
     {
+        // Zero sponsor
         $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
 
         $habsNoSponsor = [];
@@ -32,12 +33,23 @@ class HabitationApi extends Controller
             }
         }
 
+        // Sponsor scaduti
+        $currentDate = Carbon::now('Europe/Rome')->toDateTimeString();
+
+        $expiredSponsorHabs = Habitation::whereHas('sponsorships', function ($query) use ($currentDate){
+            $query->where('end_date', '<=', $currentDate);
+           })->where('visible', 1)->with('sponsorships', 'images')->get();
+
+           foreach ($expiredSponsorHabs as $expiredSponsorHab) {
+                array_push($habsNoSponsor, $expiredSponsorHab);
+            }   
+        
         return response()->json(compact('habsNoSponsor'));
     }
 
     public function getSponsored()
     {
-        $currentDate = Carbon::now()->toDateTimeString();
+        $currentDate = Carbon::now('Europe/Rome')->toDateTimeString();
 
         $sponsoredHabs = Habitation::whereHas('sponsorships', function ($query) use ($currentDate){
             $query->where('end_date', '>=', $currentDate);

@@ -53,8 +53,8 @@ class PaymentsController extends Controller
         if($result->success){
             $transaction = $result->transaction;
         
-            $startDate = Carbon::now()->toDateTimeString();
-            $endDate = Carbon::now()->addHours($sponsorship->duration)->toDateTimeString();
+            $startDate = Carbon::now('Europe/Rome')->toDateTimeString();
+            $endDate = Carbon::now('Europe/Rome')->addHours($sponsorship->duration)->toDateTimeString();
     
 
             $habitation->sponsorships()->sync([$sponsorship->id => ['start_date' => $startDate, 'end_date' => $endDate]]);
