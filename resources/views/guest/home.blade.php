@@ -11,6 +11,8 @@
 
         {{-- CDN --}}
         <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.39.0/maps/maps.css'>
+        {{-- MOBILE --}}
+        {{-- <link rel='stylesheet' type='text/css' href='../assets/ui-library/index.css'/> --}}
 
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/app.css')}}">
