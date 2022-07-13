@@ -12,21 +12,21 @@
 
                 <div class="position-relative">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item" v-for="(image, i) in images" :class="{ active: i==0 }" :key="image.id">
-                            <img :src="'/storage/' + image.image_url" class="w-100 hab-img" :alt="'immagine di' + habitation.title">
+                        <div class="carousel-inner">
+                            <div class="carousel-item" v-for="(image, i) in images" :class="{ active: i==0 }" :key="image.id">
+                                <img :src="'/storage/' + image.image_url" class="w-100 hab-img" :alt="'immagine di' + habitation.title">
+                            </div>
                         </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                    </div>
-                    <!-- <img :src="'/storage/' + image.image_url" class="w-100 hab-img" :alt="'immagine di' + habitation.title" v-if="index == 0"> -->
+
 
                     <!-- LABEL METRI QUADRI -->
                     <div class="text-center position-absolute habSquare p-1 bg-light rounded">
@@ -172,6 +172,7 @@ import tt from '@tomtom-international/web-sdk-maps';
                 // TomTom Map data
                 map: null,
                 location: [],
+                style: 'https://api.tomtom.com/style/1/style/*?map=2/basic_street-satellite&poi=2/poi_dynamic-satellite&key=k87agPGYuyeyzMn0ZPCv6AGAxV0dI4UZ',
             }
         },
 
@@ -209,12 +210,13 @@ import tt from '@tomtom-international/web-sdk-maps';
                         basePath: 'sdk/',
                         center: this.location,
                         zoom: 15,
-                        minZomm: 5,
-                        theme: {
-                            style: 'buildings',
-                            layer: 'basic',
-                            source: 'vector'
-                        },
+                        minZoom: 5,
+                        // theme: {
+                        //     style: `https://api.tomtom.com/style/1/style/*?map=2/basic_street-satellite&poi=2/poi_dynamic-satellite&key=${this.api_key}`,
+                        //     layer: 'basic',
+                        //     source: 'vector'
+                        // },
+                        style: this.style,
                         dragPan: !isMobileOrTablet()
 
                     });
