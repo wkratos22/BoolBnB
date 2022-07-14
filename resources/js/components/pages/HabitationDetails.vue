@@ -2,9 +2,9 @@
     <div class="container-custom">
 
 
-        <div class="d-flex">
+        <div class="d-flex display-flex-column">
 
-            <div class="w-50">
+            <div class="width-50">
 
                 <!-- <div>
                     <h2 class="mt-24 mb-32">{{habitation.title}}</h2>
@@ -40,7 +40,7 @@
             </div>
 
             <!-- MAPPA -->
-            <div class="w-50">
+            <div class="width-50">
                 <!-- <div>
                     <h2 class="mt-24 mb-32">Ci troviamo qui..</h2>
                 </div> -->
@@ -251,6 +251,8 @@ import ContactForm from '../includes/ContactForm.vue';
 
 <style lang="scss" scoped>
 
+
+@media screen and (min-width: 821px) {
     .firstCapitalize::first-letter {
         text-transform: uppercase;
     }
@@ -262,7 +264,54 @@ import ContactForm from '../includes/ContactForm.vue';
 
     #map,
     .hab-img {
-        height: 70vh;
+        height: 60vh;
     }
+        .width-50 {
+            width: 50%;
+        }
+}
+@media screen and (min-width: 601px) and (max-width: 820px) {
+    .firstCapitalize::first-letter {
+        text-transform: uppercase;
+    }
+
+    .habSquare {
+        top: 1em;
+        right: 1em;
+    }
+
+    #map,
+    .hab-img {
+        height: 30vh;
+        display: block;
+    }
+
+    .width-50{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 200px) and (max-width: 600px) {
+    .firstCapitalize::first-letter {
+        text-transform: uppercase;
+    }
+
+    .habSquare {
+        top: 1em;
+        right: 1em;
+    }
+
+    #map,
+    .hab-img {
+        height: 30vh;
+        width: 100%;
+    
+        
+    }
+    .display-flex-column{
+        display: flex;
+        flex-direction: column;
+    }
+}
 
 </style>

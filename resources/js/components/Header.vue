@@ -1,7 +1,7 @@
 <template>
 <header>
 
-  <nav class="navbar navbar-expand-lg" :class="($route.path != '/' ? 'bg-secondary' : '')">
+  <nav class="navbar navbar-expand-lg navbar-dark" :class="($route.path != '/' ? 'bg-secondary' : '')">
 
     <!-- Home -->
     <router-link class="navbar-brand m-1" :to="{ name: 'home' }">

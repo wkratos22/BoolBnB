@@ -2690,7 +2690,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "w-100 d-flex flex-column justify-content-center"
   }, [_c("div", {
-    staticClass: "d-flex justify-content-center align-items-center"
+    staticClass: "d-flex justify-content-center display-flex-column align-items-center"
   }, [_c("div", {
     staticClass: "form-group mb-0 text-light text-center"
   }, [_c("input", {
@@ -2746,7 +2746,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("span", {
     staticClass: "text-light radiusValue"
-  }, [_vm._v("\n        " + _vm._s(_vm.positionInput.radius / 1000) + "km\n      ")])]), _vm._v(" "), _vm.positionInput.destination.length >= 3 ? _c("router-link", {
+  }, [_vm._v("\n      " + _vm._s(_vm.positionInput.radius / 1000) + "km\n    ")])]), _vm._v(" "), _vm.positionInput.destination.length >= 3 ? _c("router-link", {
     staticClass: "btn btn-primary align-self-center mt-3",
     attrs: {
       role: "button",
@@ -2761,7 +2761,7 @@ var render = function render() {
         }
       }
     }
-  }, [_vm._v("\n      Search\n    ")]) : _vm._e()], 1);
+  }, [_vm._v("\n    Search\n  ")]) : _vm._e()], 1);
 };
 
 var staticRenderFns = [];
@@ -2788,7 +2788,7 @@ var render = function render() {
   return _c("div", [_c("div", {
     staticClass: "searchContainer mx-auto my-4"
   }, [_c("form", {
-    staticClass: "w-100 d-flex justify-content-around align-items-center",
+    staticClass: "w-100 d-flex justify-content-around align-items-center display-flex-column",
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -2796,7 +2796,7 @@ var render = function render() {
       }
     }
   }, [_c("div", {
-    staticClass: "form-group mb-0"
+    staticClass: "form-group margin"
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -2822,7 +2822,7 @@ var render = function render() {
       }
     }
   })]), _vm._v(" "), _c("form", [_c("div", {
-    staticClass: "form-group mb-0 text-center"
+    staticClass: "form-group margin text-center"
   }, [_c("label", {
     attrs: {
       "for": "formControlRange"
@@ -2855,8 +2855,8 @@ var render = function render() {
         return _vm.$set(_vm.positionInput, "radius", $event.target.value);
       }
     }
-  }), _vm._v("\n                    " + _vm._s(_vm.positionInput.radius / 1000) + "km\n                ")])]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-secondary dropdown-toggle",
+  }), _vm._v("\n                    \n\n                    " + _vm._s(_vm.positionInput.radius / 1000) + "km\n                ")])]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary dropdown-toggle margin",
     attrs: {
       type: "button"
     },
@@ -2869,7 +2869,7 @@ var render = function render() {
   }, [_vm._v("\n                Ulteriori Filtri\n            ")]), _vm._v(" "), _vm.active ? _c("div", {
     staticClass: "addFilters form-group position-absolute bg-dark py-5"
   }, [_c("div", {
-    staticClass: "container"
+    staticClass: "container margin"
   }, [_c("form", [_c("div", {
     staticClass: "form-group my-4"
   }, [_c("label", {
@@ -3062,7 +3062,7 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("Vedi appartamento\n                    ")])], 1)]);
+    }, [_vm._v("Vedi appartamento\n                ")])], 1)]);
   }), 0)]);
 };
 
@@ -3090,9 +3090,9 @@ var render = function render() {
   return _c("div", {
     staticClass: "container-custom"
   }, [_c("div", {
-    staticClass: "d-flex"
+    staticClass: "d-flex display-flex-column"
   }, [_c("div", {
-    staticClass: "w-50"
+    staticClass: "width-50"
   }, [_c("div", {
     staticClass: "position-relative"
   }, [_c("div", {
@@ -3278,7 +3278,7 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "w-50"
+    staticClass: "width-50"
   }, [_c("div", {
     staticClass: "w-100",
     attrs: {
@@ -3311,9 +3311,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("h1", {
-    staticClass: "my-5 py-5 text-center"
-  }, [_vm._v("Sito in costruzione")]), _vm._v(" "), _c("div", {
+  return _c("div", [_c("div", {
     staticClass: "height_100vh flex_between"
   }, [_vm._m(0), _vm._v(" "), _c("HomeSearch", {
     on: {
@@ -3329,7 +3327,7 @@ var staticRenderFns = [function () {
   return _c("div", {
     staticClass: "align-self-center"
   }, [_c("h1", {
-    staticClass: "text_gray font_size_3"
+    staticClass: "text_gray font_size_3 margin-top"
   }, [_vm._v("Scegli una meta.. Goditi il viaggio!")])]);
 }];
 render._withStripped = true;
@@ -3401,7 +3399,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".radiusValue[data-v-210d5bd0] {\n  min-width: 4em;\n}", ""]);
+exports.push([module.i, "@media screen and (min-width: 821px) {\n.radiusValue[data-v-210d5bd0] {\n    min-width: 4em;\n}\n}\n@media screen and (min-width: 601px) {\ninput[data-v-210d5bd0] {\n    width: 230px;\n    height: 50px;\n}\n}\n@media screen and (min-width: 200px) and (max-width: 600px) {\ninput[data-v-210d5bd0] {\n    width: 190px;\n    height: 30px;\n}\n.display-flex-column[data-v-210d5bd0] {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n}\n}", ""]);
 
 // exports
 
@@ -3420,7 +3418,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".searchContainer[data-v-781a2080] {\n  width: 60%;\n}\n.addFilters[data-v-781a2080] {\n  z-index: 9999;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  height: 60vh;\n  width: 60vw;\n}", ""]);
+exports.push([module.i, "@media screen and (min-width: 821px) {\n.searchContainer[data-v-781a2080] {\n    width: 60%;\n}\n.addFilters[data-v-781a2080] {\n    z-index: 9999;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    height: 60vh;\n    width: 60vw;\n}\n}\n@media screen and (min-width: 601px) and (max-width: 820px) {\n.searchContainer[data-v-781a2080] {\n    width: 90%;\n}\n.addFilters[data-v-781a2080] {\n    z-index: 9999;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    height: 60vh;\n}\n}\n@media screen and (min-width: 200px) and (max-width: 600px) {\n.margin[data-v-781a2080] {\n    margin-bottom: 20px;\n}\n.searchContainer[data-v-781a2080] {\n    width: 100%;\n}\n.display-flex-column[data-v-781a2080] {\n    display: flex;\n    flex-direction: column;\n}\ninput[data-v-781a2080] {\n    width: 220px;\n    height: 40px;\n}\n}", ""]);
 
 // exports
 
@@ -3439,7 +3437,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".firstCapitalize[data-v-221bcbdb]::first-letter {\n  text-transform: uppercase;\n}\n.habSquare[data-v-221bcbdb] {\n  top: 1em;\n  right: 1em;\n}\n#map[data-v-221bcbdb],\n.hab-img[data-v-221bcbdb] {\n  height: 70vh;\n}", ""]);
+exports.push([module.i, "@media screen and (min-width: 821px) {\n.firstCapitalize[data-v-221bcbdb]::first-letter {\n    text-transform: uppercase;\n}\n.habSquare[data-v-221bcbdb] {\n    top: 1em;\n    right: 1em;\n}\n#map[data-v-221bcbdb],\n.hab-img[data-v-221bcbdb] {\n    height: 60vh;\n}\n.width-50[data-v-221bcbdb] {\n    width: 50%;\n}\n}\n@media screen and (min-width: 601px) and (max-width: 820px) {\n.firstCapitalize[data-v-221bcbdb]::first-letter {\n    text-transform: uppercase;\n}\n.habSquare[data-v-221bcbdb] {\n    top: 1em;\n    right: 1em;\n}\n#map[data-v-221bcbdb],\n.hab-img[data-v-221bcbdb] {\n    height: 30vh;\n    display: block;\n}\n.width-50[data-v-221bcbdb] {\n    width: 50%;\n}\n}\n@media screen and (min-width: 200px) and (max-width: 600px) {\n.firstCapitalize[data-v-221bcbdb]::first-letter {\n    text-transform: uppercase;\n}\n.habSquare[data-v-221bcbdb] {\n    top: 1em;\n    right: 1em;\n}\n#map[data-v-221bcbdb],\n.hab-img[data-v-221bcbdb] {\n    height: 30vh;\n    width: 100%;\n}\n.display-flex-column[data-v-221bcbdb] {\n    display: flex;\n    flex-direction: column;\n}\n}", ""]);
 
 // exports
 
@@ -3458,7 +3456,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".height_100vh[data-v-317790a4] {\n  height: 100vh;\n}\n.flex_between[data-v-317790a4] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n}\n.font_size_3[data-v-317790a4] {\n  font-size: 3rem;\n}\n.text_gray[data-v-317790a4] {\n  color: rgb(190, 182, 182);\n}", ""]);
+exports.push([module.i, "@media screen and (min-width: 821px) {\n.height_100vh[data-v-317790a4] {\n    height: 100vh;\n}\n.flex_between[data-v-317790a4] {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-around;\n}\n.font_size_3[data-v-317790a4] {\n    font-size: 3rem;\n}\n.text_gray[data-v-317790a4] {\n    color: rgb(190, 182, 182);\n}\n}\n@media screen and (min-width: 601px) {\n.height_100vh[data-v-317790a4] {\n    height: 85vh;\n}\n.flex_between[data-v-317790a4] {\n    display: flex;\n    flex-direction: column;\n}\n.font_size_3[data-v-317790a4] {\n    font-size: 2.5rem;\n}\n.text_gray[data-v-317790a4] {\n    color: rgb(190, 182, 182);\n}\n.margin-top[data-v-317790a4] {\n    margin-top: 200px;\n    margin-bottom: 150px;\n}\n}\n@media screen and (min-width: 200px) and (max-width: 600px) {\n.height_100vh[data-v-317790a4] {\n    height: 80vh;\n}\n.flex_between[data-v-317790a4] {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-around;\n}\n.font_size_3[data-v-317790a4] {\n    font-size: 1.5rem;\n}\n.text_gray[data-v-317790a4] {\n    color: rgb(190, 182, 182);\n}\n}", ""]);
 
 // exports
 

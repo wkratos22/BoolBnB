@@ -1,66 +1,70 @@
 <template>
-<div>
+    <div>
         <!-- INPUT PER RICERCA AVANZATA -->
         <div class="searchContainer mx-auto my-4">
-        <form class="w-100 d-flex justify-content-around align-items-center" @submit.prevent="getHomeSearch(positionInput.destination, positionInput.radius, positionInput.bedsNumber, positionInput.roomsNumber, positionInput.checkedService)">
-            <div class="form-group mb-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Dove vuoi andare?"
-                    aria-label="Search" minlength="3" v-model="positionInput.destination" />
-            </div>
-
-            <form>
-                <div class="form-group mb-0 text-center">
-                    <label for="formControlRange">Raggio di ricerca?</label>
-                    <input type="range" class="form-control-range" id="formControlRange" min="1000" max="500000"
-                        step="1000" value="20000" v-model="positionInput.radius" @keyup.enter="getHomeSearch(positionInput.destination, positionInput.radius, positionInput.bedsNumber, positionInput.roomsNumber, positionInput.checkedService)">
-                    {{positionInput.radius / 1000}}km
+            <form class="w-100 d-flex justify-content-around align-items-center display-flex-column "
+                @submit.prevent="getHomeSearch(positionInput.destination, positionInput.radius, positionInput.bedsNumber, positionInput.roomsNumber, positionInput.checkedService)">
+                <div class="form-group margin">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Dove vuoi andare?"
+                        aria-label="Search" minlength="3" v-model="positionInput.destination" />
                 </div>
-            </form>
 
-            <button @click.prevent="getShow()" class="btn btn-secondary dropdown-toggle" type="button">
-                Ulteriori Filtri
-            </button>
+                <form>
+                    <div class="form-group margin text-center ">
+                        <label for="formControlRange">Raggio di ricerca?</label>
+                        <input  type="range" class="form-control-range" id="formControlRange"
+                            min="1000" max="500000" step="1000" value="20000" v-model="positionInput.radius"
+                            @keyup.enter="getHomeSearch(positionInput.destination, positionInput.radius, positionInput.bedsNumber, positionInput.roomsNumber, positionInput.checkedService)">
+                        
 
-            <div v-if="active" class="addFilters form-group position-absolute bg-dark py-5">
-                <div class="container">
+                        {{positionInput.radius / 1000}}km
+                    </div>
+                </form>
 
-                    <!-- gruppo input ULTERIORI FILTRI -->
-                    <form>
-                        <!-- numero minimo di stanze -->
-                        <div class="form-group my-4">
-                            <label class="text-light" for="roomsNumber">Numero minimo di stanze</label>
-                            <input type="number" class="form-control" id="roomsNumber"
-                                v-model="positionInput.roomsNumber" min="1" max="99">
-                        </div>
+                <button @click.prevent="getShow()" class="btn btn-secondary dropdown-toggle margin" type="button">
+                    Ulteriori Filtri
+                </button>
 
-                        <!-- numero minimo di letti -->
-                        <div class="form-group my-4">
-                            <label class="text-light" for="bedsNumber">Numero minimo di letti</label>
-                            <input type="number" class="form-control" id="bedsNumber" v-model="positionInput.bedsNumber"
-                                min="1" max="99">
-                        </div>
+                <div v-if="active" class="addFilters form-group position-absolute bg-dark py-5">
+                    <div class="container margin">
 
-                        <!-- checkboxes per servzi obbligatori -->
-                        <h3 class="text-light text-center mb-4">Servizi desiderati:</h3>
-                        <div class="form-group row row-cols-2 row-cols-md-3 row-cols-xl-4 m-0">
-                            <div class="form-check col flex-column justify-content-center my-2 w-25"
-                                v-for="service in services" :key="service.id">
-                                <input class="form-check-input mr-0" type="checkbox" :value="service.id"
-                                    :id="'service-'+service.id" v-model="positionInput.checkedService">
-                                <label class="form-check-label text-light" :for="'service-'+service.id">
-                                    {{service.label}}
-                                </label>
+                        <!-- gruppo input ULTERIORI FILTRI -->
+                        <form>
+                            <!-- numero minimo di stanze -->
+                            <div class="form-group my-4">
+                                <label class="text-light" for="roomsNumber">Numero minimo di stanze</label>
+                                <input type="number" class="form-control" id="roomsNumber"
+                                    v-model="positionInput.roomsNumber" min="1" max="99">
                             </div>
-                        </div>
-                    </form>
+
+                            <!-- numero minimo di letti -->
+                            <div class="form-group my-4">
+                                <label class="text-light" for="bedsNumber">Numero minimo di letti</label>
+                                <input type="number" class="form-control" id="bedsNumber"
+                                    v-model="positionInput.bedsNumber" min="1" max="99">
+                            </div>
+
+                            <!-- checkboxes per servzi obbligatori -->
+                            <h3 class="text-light text-center mb-4">Servizi desiderati:</h3>
+                            <div class="form-group row row-cols-2 row-cols-md-3 row-cols-xl-4 m-0">
+                                <div class="form-check col flex-column justify-content-center my-2 w-25"
+                                    v-for="service in services" :key="service.id">
+                                    <input class="form-check-input mr-0" type="checkbox" :value="service.id"
+                                        :id="'service-'+service.id" v-model="positionInput.checkedService">
+                                    <label class="form-check-label text-light" :for="'service-'+service.id">
+                                        {{service.label}}
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <button class="btn btn-primary" type="submit">
-                Search
-            </button>
+                <button class="btn btn-primary" type="submit">
+                    Search
+                </button>
 
-        </form>
+            </form>
         </div>
         <!-- LISTA DI ANNUNCI TROVATI -->
         <div class="py-4 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center">
@@ -68,21 +72,26 @@
                 <!-- <div  v-for="(image, i) in habitation.images" :key="image.id" > 
                     <img class="card-img-top" :src="'/storage/' + image.image_url" alt="Card image cap" width="280px" height="350px" v-if="i == 0">
                 </div> -->
-                <div :id="'carouselControls' + habitation.id" class="carousel slide" data-ride="carousel" data-interval="false">
-                        <div class="carousel-inner">
-                            <div class="carousel-item" v-for="(image, i) in habitation.images" :class="{ active: i==0 }" :key="image.id">
-                                <img :src="'/storage/' + image.image_url" class="w-100 hab-img" width="280px" height="350px" :alt="'immagine di' + habitation.title">
-                            </div>
+                <div :id="'carouselControls' + habitation.id" class="carousel slide" data-ride="carousel"
+                    data-interval="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item" v-for="(image, i) in habitation.images" :class="{ active: i==0 }"
+                            :key="image.id">
+                            <img :src="'/storage/' + image.image_url" class="w-100 hab-img" width="280px" height="350px"
+                                :alt="'immagine di' + habitation.title">
                         </div>
-                        <a class="carousel-control-prev" :href="'#carouselControls' + habitation.id" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" :href="'#carouselControls' + habitation.id" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
+                    <a class="carousel-control-prev" :href="'#carouselControls' + habitation.id" role="button"
+                        data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" :href="'#carouselControls' + habitation.id" role="button"
+                        data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{habitation.title}}</h5>
                     <p class="card-text">{{habitation.address}}</p>
@@ -116,6 +125,7 @@
                 services: [],
 
                 api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
+               
 
                 positionInput: {
                   destination: "",
@@ -140,6 +150,8 @@
             this.getHomeSearch(this.$route.params.destination, this.$route.params.radius, this.$route.params.bedsNumber, this.$route.params.roomsNumber, this.$route.params.services);
 
             this.getServices();
+
+            
         },
 
 
@@ -201,6 +213,8 @@
                 })
                 .catch(err => console.error('Impossibile caricare i dati', err))
             },
+
+         
         }
 
     }
@@ -208,7 +222,10 @@
 </script>
 
 <style lang="scss" scoped>
-    .searchContainer {
+
+ @media screen and (min-width: 821px) {
+
+ .searchContainer {
         width: 60%;
     }
 
@@ -220,4 +237,48 @@
         height: 60vh;
         width: 60vw;
     }
+
+ }
+
+   @media screen and (min-width: 601px) and (max-width: 820px) {
+
+       .searchContainer {
+           width: 90%;
+       }
+
+
+       .addFilters {
+           z-index: 9999;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           height: 60vh;
+
+
+       }
+           
+   }
+
+ @media screen and (min-width: 200px) and (max-width: 600px) { 
+  
+
+        .margin{
+            margin-bottom: 20px;
+        }
+
+                 .searchContainer {
+                     width: 100%;
+                 }
+
+                 .display-flex-column{
+                    display: flex;
+                    flex-direction: column;
+                 }
+                                   input {
+                                       width: 220px;
+                                       height: 40px;
+                                   }
+
+ }
+
 </style>

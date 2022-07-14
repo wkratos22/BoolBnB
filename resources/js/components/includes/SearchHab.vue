@@ -1,12 +1,14 @@
 <template>
-    <li class="d-flex flex-nowrap searchContainer">
-        <form class="w-100 d-flex justify-content-around align-items-center">
+    <li class="d-flex flex-nowrap ">
+        <form class="d-flex justify-content-around align-items-center">
+           
             <div class="form-group mb-0">
-                <div></div>
+                
+        
                 <label for="destination">Dove vuoi andare?</label>
                 <input class="form-control mr-sm-2" type="search" id="destination" placeholder="Cerca località"
                     aria-label="Search" minlength="3" v-model="positionInput.destination" />
-            </div>
+          
 
             <form>
                 <div class="form-group mb-0">
@@ -16,7 +18,8 @@
                     {{positionInput.radius / 1000}}km
                 </div>
             </form>
-
+              
+</div>
             <button @click.prevent="getShow()" class="btn btn-secondary dropdown-toggle" type="button">
                 Ulteriori Filtri
             </button>
@@ -25,7 +28,7 @@
                 <div class="container">
 
                     <!-- gruppo input ULTERIORI FILTRI -->
-                    <form>
+                    <form >
                         <!-- numero minimo di stanze -->
                         <div class="form-group my-4">
                             <label class="text-light" for="roomsNumber">Numero minimo di stanze</label>
@@ -148,7 +151,9 @@
 </script>
 
 <style lang="scss" scoped>
-    .searchContainer {
+   
+   @media screen and (min-width: 821px) {
+   .searchContainer {
         width: 40%;
     }
 
@@ -159,6 +164,28 @@
         transform: translate(-50%, -50%);
         height: 60vh;
         width: 60vw;
+        
     }
+   }
+
+        @media screen and (min-width: 601px) and (max-width: 820px) {
+           
+            .searchContainer {
+                    width: 90%;
+                }
+       
+    
+            .addFilters {
+                z-index: 9999;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 60vh;
+               
+    
+            }
+
+                         
+        }
 
 </style>
