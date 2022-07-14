@@ -45,7 +45,7 @@
                     <input class="form-check-input" type="checkbox" id="tag{{$tag->id}}" value="{{$tag->id}}"
                         name="tags[]" @if( in_array($tag->id, old('tags', []) ) ) checked @endif>
 
-                    <label class="form-check-label" for="tag{{$tag->id}}">{{$tag->label}}</label>
+                    <label class="form-check-label " for="tag{{$tag->id}}">{{$tag->label}}</label>
 
 
                 </div>
@@ -67,7 +67,7 @@
                         value="{{$service->id}}" name="services[]" @if( in_array($service->id, old('services', []) ) )
                     checked @endif>
 
-                    <label class="form-check-label me-3" for="service{{$service->id}}">{{$service->label}}</label>
+                    <label class="form-check-label me-3 " for="service{{$service->id}}">{{$service->label}}</label>
                 </div>
 
                 @endforeach
@@ -124,7 +124,7 @@
                     * Numero stanze:
                 </h4>
             </label>
-            <input type="number" class="form-control bg-transparent c_border" id="rooms_number" name="rooms_number"
+            <input type="number" class="form-control bg-transparent c_border c_green" id="rooms_number" name="rooms_number"
                 min="1" placeholder="5" value="{{old('rooms_number')}}" required>
         </div>
 
