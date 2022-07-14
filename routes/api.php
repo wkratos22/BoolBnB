@@ -14,23 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-Route::middleware('auth:api', function (){
-    Route::get('/user', 'UserController@index');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
+Route::middleware('auth:sanctum')->get('users','UserController@users');
 
 Route::namespace('Api')->group(function(){
 
-    // Dashboard 
+    // Dashboard
     Route::get('/habitations', 'HabitationApi@index');
 
     // Habitations Sponsored
     Route::get('/habitations/sponsor', 'HabitationApi@getSponsored');
-    
+
     // Advanced Search
     Route::get('/search', 'HabitationApi@getParams');
     Route::get('/services', 'HabitationApi@getServices');
@@ -42,6 +39,12 @@ Route::namespace('Api')->group(function(){
     // Contact Form
     Route::post('/messages', 'ContactMessageController@send');
 
+    // Token
+    Route::get('/token', 'UserApiController@getUserData');
+
 });
+
+Route::post('login','UserController@index');
+// Route::get('users','UserController@users');
 
 

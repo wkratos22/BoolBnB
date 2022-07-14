@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(
             [
+                UsersTableSeeder::class,
                 HabitationTypeSeeder::class,
                 HabitationSeeder::class,
                 TagSeeder::class,
@@ -20,7 +21,7 @@ class DatabaseSeeder extends Seeder
                 MessageSeeder::class,
                 SponsorshipSeeder::class,
             ]
-    
+
     );
     }
 }

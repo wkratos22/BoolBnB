@@ -36,6 +36,7 @@ Route::middleware('auth')
 
     Route::get('payments/{habitation}/{sponsorship}', 'PaymentsController@generate')->name('pay');
     Route::post('payments/checkout/{habitation}/{sponsorship}', 'PaymentsController@makePayment')->name('pay.checkout');
+
 });
 
 // Front-end route

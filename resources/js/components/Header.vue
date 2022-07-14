@@ -19,7 +19,7 @@
         <li class="nav-item">
             <router-link class="nav-link m-1 font-size-1 text-white" :to="{ name: 'dashboard' }">Annunci</router-link>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link m-1 font-size-1 text-white" href="/login">Passa alla modalità host</a>
         </li>
@@ -36,10 +36,76 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: "Header",
-};
+
+  data(){
+    return{
+        users: [],
+        name: [],
+        surname: [],
+        email: [],
+        token: [],
+        xxsrftoken: [],
+    }
+  },
+
+  methods: {
+
+    getToken(){
+        axios.get('/sanctum/csrf-cookie').then(response => {
+
+            console.log('TOTALSANCTUM', response)
+            console.log('SANCTUM', response.config.headers)
+
+        });
+    },
+
+    getUser(){
+        axios.get('http://127.0.0.1:8000/api/users')
+        .then(res => {
+            console.log('USER', res.data)
+            this.users = res.data
+
+            this.users.forEach(element => {
+
+            this.name = element.name;
+            this.surname = element.surname;
+            this.email = element.email;
+
+            console.log('NAME', this.name);
+            console.log('SURNAME', this.surname);
+            console.log('EMAIL', this.email);
+            });
+        })
+    },
+
+    getTokenUser(){
+                axios.get('http://127.0.0.1:8000/api/token')
+                .then(res => {
+                        this.token = res.data.token;
+                        console.log('UT', this.token);
+                    });
+
+
+        },
+    },
+
+
+
+    mounted(){
+        this.getToken();
+
+        this.getUser();
+
+        this.getTokenUser()
+    }
+
+}
+
+
 
 </script>
 
