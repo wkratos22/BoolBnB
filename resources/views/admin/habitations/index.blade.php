@@ -4,84 +4,121 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="create-gradient d-flex justify-content-between align-items-center py-2 px-5">
+        <h4 class="text-white welcomeUser">
+            Ciao <span class="firstLetterUpp">{{Auth::user()->name}}</span>, benvenuto nella tua area personale!
+        </h4>
 
-        <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <h2>Dashboard</h2>
+        <a href="{{ route('admin.habitations.create')}}" class="btn btn_outline_green desktopCreate">Crea Annuncio</a>
+    </div>
+
+    <div class="container-fluid">
+    
+        <div class="wrapperPseudoStats row row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-4">
+            <div class="col p-2 p-md-4 text-center">
+                <p class="pseudoStats">{{$habitations->count()}}</p>
+                <h3 class="mb-3">Annunci</h3>
             </div>
-        </div>
-
-        <div class="row mb-24">
-        {{-- <div class="col-12 col-md-6 ">
-            <div class="slider-container">
-                SLIDER
+    
+            <div class="col p-4 text-center">
+                <p class="pseudoStats">{{$visibleHabs->count()}}</p>
+                <h3 class="mb-3">Visibili</h3>
             </div>
-        </div> --}}
-
-        <div class="col-6 col-md-6">
-            <div class="rest-title">
-                <div class="div">
-                    <small>Benvenuto <span> {{Auth::user()->name}}</span></small>
-                </div>
+            
+            <div class="col p-4 text-center">
+                <p class="pseudoStats">{{$hiddenHabs->count()}}</p>
+                <h3 class="mb-3">Nascosti</h3>
             </div>
-
-            <h4 class="mb-4 text-center">
-                @if ($habitations->count() > 0)
-
-                    Ciao {{Auth::user()->name}}, hai pubblicato {{$habitations->count()}} annunci!
-                    @else
-                    Ciao {{Auth::user()->name}}, clicca qui sotto per pubblicare il tuo primo annuncio!
-
-                @endif
-            </h4>
-
-            @include('includes.messages.success')
-
-            <div class="rest-title">
-                <h4>Annunci</h4>
+            
+            <div class="col p-4 text-center">
+                <p class="pseudoStats">{{$sponsoredHabs->count()}}</p>
+                <h3 class="mb-3">Sponsorizzati</h3>
             </div>
-
-        </div>
-
-
-
-        <div class="grid-container">
-
-            @foreach ($habitations as $habitation)
-
-                <div class="mycard-container">
-                    <div class="mycard">
-                        @if ($habitation->images->count() == 0)
-                            <a class="image d-flex align-items-center justify-content-center" href="{{route('admin.habitations.show', $habitation->id)}}">
-                                <img src="https://source.unsplash.com/random/?home" class="h-80" height="185px" alt="...">
-                            </a>
-                            @else
-
-
-                            @foreach ($habitation->images as $image)
-
-                                @if ($loop->first)
-                                    <a href="{{route('admin.habitations.show', $habitation->id)}}">
-                                        <img src="{{asset( "storage/$image->image_url" )}}" class="h-80" height="185px" alt="...">
-                                    </a>
-                                @endif
-
-                            @endforeach
-                        @endif
-                    </div>
-
-
-                    <div class="content">
-                        <h5 class="card-title">{{$habitation->title}}</h5>
-                        <p class="card-text">{{$habitation->price}} € </p>
-                    </div>
-                </div>
-            @endforeach
         </div>
     </div>
-</div>
+
+    <div class="container py-4">
+
+        @include('includes.messages.success')
+    
+        <div class="text-center mobileCreate mb-5">
+            <a href="{{ route('admin.habitations.create')}}" class="btn btn_outline_green">Crea Annuncio</a>
+        </div>
+
+        <div>
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Cover</th>
+                    <th scope="col">Titolo</th>
+                    <th scope="col" class="d-none d-sm-table-cell">Stato</th>
+                    <th scope="col" class="habPrice">Prezzo</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach ($habitations as $habitation)
+                        <tr>
+                            <th scope="row">{{$habitation->id}}</th>
+
+                            <td>
+                                @foreach ($habitation->images as $image)
+                                    @if ($loop->first)
+                                        <img src="{{asset( "storage/$image->image_url" )}}" height="50px" width="65px" alt="...">
+                                    @endif
+                                @endforeach
+                            </td>
+
+                            <td>{{$habitation->title}}</td>
+
+                            <td class="d-none d-sm-table-cell">
+                                @if ($habitation->visible)
+                                    Visibile
+                                @else
+                                    Nascosto
+                                @endif
+                            </td>
+
+                            <td class="habPrice">{{$habitation->price}} € /notte</td>
+
+                            <td class="text-center">
+                                <a class="btn btn_green" href="{{route('admin.habitations.show', $habitation->id)}}">Vedi</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+              </table>
+
+        </div>
+
+    </div>
 
 @endsection
 
+{{-- <div class="hab-card card-cust">
+    <div class="wrapper">
+        @foreach ($habitation->images as $image)
 
+        @if ($loop->first)
+            <a href="{{route('admin.habitations.show', $habitation->id)}}">
+                <img src="{{asset( "storage/$image->image_url" )}}" height="350px" width="100%" alt="...">
+            </a>
+        @endif
+
+        @endforeach
+        <div class="hab-visibility {{$habitation->visible == false ? 'p-2' : ''}}">
+            @if ($habitation->visible == false)
+                <span class="day">
+                    Hidden
+                </span>
+            @endif
+        </div>
+        <div class="data">
+            <div class="content">
+                <h2 class="title">{{$habitation->title}}</h2>
+                <p class="text">{{$habitation->price}} € /notte</p>
+            </div>
+        </div>
+    </div>
+</div> --}}

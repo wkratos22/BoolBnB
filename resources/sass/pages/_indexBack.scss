@@ -1,0 +1,166 @@
+.create-gradient {
+    height: 20vh;
+    background: rgb(47,166,143);
+    background: linear-gradient(90deg, rgba(47,166,143,0.8463760504201681) 0%, rgba(34,179,151,0.6979166666666667) 30%, rgba(38,175,148,0.4990371148459384) 60%, rgba(25,188,156,0.39539565826330536) 100%);
+}
+
+.welcomeUser {
+    width: 70%;
+}
+
+.btn_outline_green {
+    color: #409584;
+    border: 2px solid #409584;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10rem;
+      z-index: -2;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: #409584;
+      transition: all .3s;
+    //   border-radius: 10rem;
+      z-index: -1;
+    }
+    &:hover {
+        color: $white;
+      &:before {
+        width: 100%;
+      }
+    }
+  }
+
+.grid_responsive_index {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.firstLetterUpp {
+    text-transform: capitalize;
+}
+
+.pseudoStats {
+    font-size: 1.4em;
+    color: $bermuda;
+}
+
+.wrapperPseudoStats {
+    border-bottom: 2px solid $bermuda;
+}
+
+.btn_green {
+    background-color: #409584;
+    color: $white;
+    
+    &:hover {
+        background-color: #26af94;
+        color: $white;
+    }
+}
+
+.mobileCreate {
+    display: none;
+}
+
+// Base styles
+.card-cust {
+  padding: 0 1.7rem;
+  .wrapper {
+    background-color: $white;
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 19px 38px rgba($black, 0.3), 0 15px 12px rgba($black, 0.2);
+    &:hover {
+      .data {
+        transform: translateY(0);
+      }
+    }
+  }
+  .data {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(calc(70px + 1em));
+    transition: transform 0.3s;
+    .content {
+      padding: 1em;
+      position: relative;
+      z-index: 1;
+    }
+  }
+  .title {
+    margin-top: 10px;
+    font-family: $open-sans;
+    font-weight: 300;
+  }
+  .text {
+    height: 70px;
+    margin: 0;
+  }
+}
+
+// First example styles
+.hab-card {
+  .hab-visibility {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $bermuda;
+    color: $white;
+    span {
+      display: block;
+      text-align: center;
+    }
+    .day {
+      font-weight: 600;
+      font-size: 1em;
+      text-shadow: 2px 3px 2px rgba($black, 0.18);
+    }
+  }
+  .content {
+    background-color: $white;
+    box-shadow: 0 5px 30px 10px rgba($black, 0.3);
+  }
+  .title {
+    a {
+      color: lighten($black, 50%);
+    }
+  }
+}
+
+@media screen and (max-width: 730px) {
+    .desktopCreate {
+        display: none;
+    }
+
+    .welcomeUser {
+        width: 100%;
+    }
+
+    .mobileCreate {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 405px) {
+    .habPrice {
+        display: none;
+    }
+}
