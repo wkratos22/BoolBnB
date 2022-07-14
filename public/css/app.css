@@ -10032,3 +10032,8 @@ a {
   overflow: auto;
   border-radius: 5px;
 }
+
+.containerDue {
+  width: 90%;
+  margin: 0 auto;
+}
