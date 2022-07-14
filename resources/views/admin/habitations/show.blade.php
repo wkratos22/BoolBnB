@@ -4,7 +4,7 @@
 
 @include('includes.messages.success')
 
-<div class="d-flex flex-column" style="min-height: 50vh containerDue">
+<div class="d-flex flex-column containerDue" style="min-height: 50vh">
 
     <h2>Annunci</h2>
 
@@ -20,24 +20,21 @@
             <th scope="col">BAGNI</th>
             <th scope="col">POSIZIONE</th>
             <th scope="col">ULTIMA MODIFICA</th>
-            <th scope="col">IPOSTAZIONI</th>
+            <th scope="col">IMPOSTAZIONI</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
+          <tr scope="row">
+            <td>{{$habitation->title}}</td>
             <td>Otto</td>
             <td>@mdo</td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
+          <tr scope="row">
             <td>Jacob</td>
             <td>Thornton</td>
             <td>@fat</td>
           </tr>
-          <tr>
-            <th scope="row">3</th>
+          <tr scope="row">
             <td>Larry</td>
             <td>the Bird</td>
             <td>@twitter</td>
