@@ -15,6 +15,8 @@ use App\Models\Service;
 use App\Models\Tag;
 use App\Models\Image;
 
+use Carbon\Carbon;
+
 class HabitationController extends Controller
 {
     /**
@@ -28,9 +30,23 @@ class HabitationController extends Controller
 
             $user_hab = Auth::user()->habitations();
     
+            // Tutti gli annunci pubblicati
             $habitations = $user_hab->where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+
+            // Annunci sponsorizzati attualmente
+            $currentDate = Carbon::now('Europe/Rome')->toDateTimeString();
+
+            $sponsoredHabs = Habitation::whereHas('sponsorships', function ($query) use ($currentDate){
+                $query->where('end_date', '>=', $currentDate);
+               })->where('user_id', Auth::user()->id)->get();
+
+            // Annunci visibili
+            $visibleHabs = $user_hab->where('user_id', Auth::user()->id)->where('visible', 1)->get();
+
+            // Annunci nascosti
+            $hiddenHabs = $user_hab->where('user_id', Auth::user()->id)->where('visible', 0)->get();
     
-            return view('admin.habitations.index', compact('habitations'));
+            return view('admin.habitations.index', compact('habitations', 'sponsoredHabs', 'visibleHabs', 'hiddenHabs'));
         }
     }
 
