@@ -1,8 +1,8 @@
 <template>
-    <div class="bg-color pt-5">
-<!-- prima colonna -->
-        <div class="inline px-5">
-            <ul>
+   <div class="container-fluid bg-color">
+     <div class="d-flex row justify-content-around pt-2 p-5">
+        <div>
+             <ul>
                 <li class="font-weight">
                     Assistenza
                 </li>
@@ -29,9 +29,8 @@
                 </li>
             </ul>
         </div>
-<!-- seconda colonna -->
-        <div class="inline px-5">
-            <ul>
+        <div>
+             <ul>
                 <li class="font-weight">
                     Ospitare
                 </li>
@@ -52,9 +51,8 @@
                 </li>
             </ul>
         </div>
-<!-- terza colonna -->
-        <div class="inline px-5">
-            <ul>
+        <div>
+             <ul>
                 <li class="font-weight">
                     BoolB&B
                 </li>
@@ -78,30 +76,38 @@
                 </li>
             </ul>
         </div>
-<!-- social -->
-        <div class="inline">
-            <div class="px-5 text-center">
-                <h3>Trovaci sui nostri social!</h3>
-                <img class="icon mx-4 ml-2" src="/img/icon-social/facebook.png" alt="">
-                <img class="icon mx-4 ml-2" src="/img/icon-social/instagram.png" alt="">
-                <img class="icon mx-4 ml-2" src="/img/icon-social/twitter.png" alt="">
-                <img class="icon mx-4 ml-2" src="/img/icon-social/youtube.png" alt="">
-                <img class="icon mx-4 ml-2" src="/img/icon-social/whatsapp.png" alt="">
+        <div>
+            <div class=" text-center">
+                <h3 class="pb-3">Trovaci sui nostri social!</h3>
+                <img class="icon mx-4 ml-2" src="/img/icon-social/facebook.png" alt="facebook icon link">
+                <img class="icon mx-4 ml-2" src="/img/icon-social/instagram.png" alt="instagram icon link">
+                <img class="icon mx-4 ml-2" src="/img/icon-social/twitter.png" alt="twitter icon link">
+                <img class="icon mx-4 ml-2" src="/img/icon-social/youtube.png" alt="youtube icon link">
+                <img class="icon mx-4 ml-2" src="/img/icon-social/whatsapp.png" alt="whatsup icon link">
             </div>
         </div>
-<!-- button -->
-        <div class="d-flex justify-content-end px-5 bottone">
-                <button @click="scrollToTop" type="button" class="btn btn-outline-secondary mt-4"><strong>&#8892;</strong></button>
+    <div>
+        <div class="d-flex justify-content-end">
+            <button @click="scrollToTop" type="button" class="btn btn-outline-dark"><strong>&#8892;</strong></button>
         </div>
-            <p class="text-center pt-5">&copy;Copyright 2022-2022 | Theme by Boolean | All Rights Reserved | Powered by Booleans</p>
+    </div>
+        <div class="container-fluid d-flex justify-content-center px-2">
+            <div>
+                <p class="text-center">&copy;Copyright 2022-2022 | Theme by Boolean | All Rights Reserved | Powered by Booleans</p>
+            </div>
+        </div>
 
-<!-- wave -->
+<!-- wave
         <div class="wave">
             <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
         </div>
-
+ -->
         
     </div>
+    
+     
+
+   </div>
 
 </template>
 
@@ -126,7 +132,8 @@ export default {
 <style>
     li{
         list-style: none;
-        padding: 15px;
+        padding: 2px;
+        font-size: 0.9em;
     }
 
     li:hover{
@@ -136,7 +143,7 @@ export default {
 
     .font-weight{
         font-weight: bolder;
-        font-size: large;
+        font-size: 1.2em;
     }
 
     .inline{
@@ -146,7 +153,7 @@ export default {
     }
 
     .bg-color{
-        background-color: lightblue;
+        background-color: #488d7f ;
     }
 
     .icon{
@@ -160,11 +167,12 @@ export default {
 
     }
 
-
-    .btn-outline-secondary{
+    .btn-outline-dark{
         border-radius: 50%;
-        width: 70px;
-        height: 70px;
+        border: 2px solid;
+        width: 50px;
+        height: 50px;
     }
+
     
 </style>
