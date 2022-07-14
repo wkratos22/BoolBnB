@@ -106,8 +106,13 @@
                 </div>
         </nav>
 
-        <main class="py-4">
-            <div class="container">
+        <main>
+            
+            {{-- @if (Request::route()->getName() == 'admin.habitations.index')
+                <div class="create-gradient"></div>
+           @endif --}}
+            
+           <div class="container">
                 @yield('content')
             </div>
         </main>
