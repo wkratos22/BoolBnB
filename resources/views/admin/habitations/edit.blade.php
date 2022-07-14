@@ -4,6 +4,8 @@
 
 @section('content')
 
+<div class="containerDue">
+
     <small class="form-text text-muted mb-3">* Campo obbligatorio</small>
 
     <form action="{{ route('admin.habitations.update', $habitation->id)}}" method="POST" enctype="multipart/form-data">
@@ -103,7 +105,7 @@
         </div>
 
         <div class="form-group">
-            <label for="guests_number" class="pb-2"> 
+            <label for="guests_number" class="pb-2">
                 <h4>
                     * Numero massimo di ospiti:
                 </h4>
@@ -186,11 +188,11 @@
                 Edit
             </button>
         </div>
-        
+
 
         </form>
 
-
+    </div>
 
 
 

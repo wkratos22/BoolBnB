@@ -3,7 +3,7 @@
 @include('includes.validation.errors')
 
 @section('content')
-<div>
+<div class="containerDue">
     <small class="form-text text-muted mb-3">* Campo obbligatorio</small>
 
     <form action="{{ route('admin.habitations.store')}}" method="POST" enctype="multipart/form-data">
@@ -44,10 +44,10 @@
                 <div class="my-1 width">
                     <input class="form-check-input" type="checkbox" id="tag{{$tag->id}}" value="{{$tag->id}}"
                         name="tags[]" @if( in_array($tag->id, old('tags', []) ) ) checked @endif>
-                        
-                    <label class="form-check-label" for="tag{{$tag->id}}">{{$tag->label}}</label> 
-                    
-                    
+
+                    <label class="form-check-label" for="tag{{$tag->id}}">{{$tag->label}}</label>
+
+
                 </div>
 
                 @endforeach
@@ -66,8 +66,8 @@
                     <input class="form-check-input" type="checkbox" id="service{{$service->id}}"
                         value="{{$service->id}}" name="services[]" @if( in_array($service->id, old('services', []) ) )
                     checked @endif>
-                   
-                    <label class="form-check-label me-3" for="service{{$service->id}}">{{$service->label}}</label>  
+
+                    <label class="form-check-label me-3" for="service{{$service->id}}">{{$service->label}}</label>
                 </div>
 
                 @endforeach
