@@ -33,7 +33,6 @@
 <script>
 export default {
     name: 'HomeSearch',
-
     data(){
         return {
             positionInput: {
@@ -47,44 +46,33 @@ export default {
             },
         }
     },
-
     methods: {
-
   },
-
 }
 </script>
 
 <style lang="scss" scoped>
-
 @media screen and (min-width: 821px) {
   .radiusValue {
     min-width: 4em;
   }
 }
-
 @media screen and (min-width: 601px) {
   input {
     width: 230px;
     height: 50px;
   }
 }
-
 @media screen and (min-width: 200px) and (max-width: 600px) {
   input {
     width: 190px;
     height: 30px;
   }
-
   .display-flex-column {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-
-
-
 }
-
 </style>

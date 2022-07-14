@@ -110,23 +110,18 @@
 
 <script>
     import axios from 'axios';
-
     export default {
         name: "AdvancedSearch",
-
         props: {
             filteredHabs: String,
         },
-
         data() {
             return {
                 active: false,
                 habitations: [],
                 services: [],
-
                 api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
                
-
                 positionInput: {
                   destination: "",
                   radius: 20000,
@@ -136,9 +131,7 @@
                 },
             }
         },
-
         mounted() {
-
             this.positionInput.destination = this.$route.params.destination;
             
             if (isNaN(this.$route.params.radius)) {
@@ -146,29 +139,21 @@
             } else {
                 this.positionInput.radius = this.$route.params.radius;
             }
-
             this.getHomeSearch(this.$route.params.destination, this.$route.params.radius, this.$route.params.bedsNumber, this.$route.params.roomsNumber, this.$route.params.services);
-
             this.getServices();
-
             
         },
-
-
         methods: {
             getShow() {
                 this.active = !this.active
             },
-
             getHomeSearch(location, radius, minBeds, minRooms, services) {
                 let destinationParam = location;
-
                 if (destinationParam == "") {
                     this.habitations = [];
                 }
                 if (destinationParam != "" && destinationParam != null && destinationParam != undefined) {
                     let encodeLocation = encodeURI(location);
-
                     let url = `https://api.tomtom.com/search/2/search/${encodeLocation}.json?limit=5&radius=${radius}&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=${this.api_key}`
                     // console.log(url)
                     axios.get(url)
@@ -191,9 +176,6 @@
                         .catch(err => console.error('Impossibile caricare i dati', err))
                 }
             },
-
-
-
             sendQuery(latitudine, longitudine, radius, minBeds, minRooms, services) {
                 axios.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine +
                         '&radius=' + radius + '&minBeds=' + minBeds + '&minRooms=' + minRooms + '&services=' +
@@ -204,7 +186,6 @@
                     })
                     .catch(err => console.error('Impossibile caricare i dati', err))
             },
-
             getServices() {
             axios.get('http://127.0.0.1:8000/api/services')
                 .then((res) => {
@@ -213,22 +194,16 @@
                 })
                 .catch(err => console.error('Impossibile caricare i dati', err))
             },
-
          
         }
-
     }
-
 </script>
 
 <style lang="scss" scoped>
-
  @media screen and (min-width: 821px) {
-
  .searchContainer {
         width: 60%;
     }
-
     .addFilters {
         z-index: 9999;
         top: 50%;
@@ -237,39 +212,28 @@
         height: 60vh;
         width: 60vw;
     }
-
  }
-
    @media screen and (min-width: 601px) and (max-width: 820px) {
-
        .searchContainer {
            width: 90%;
        }
-
-
        .addFilters {
            z-index: 9999;
            top: 50%;
            left: 50%;
            transform: translate(-50%, -50%);
            height: 60vh;
-
-
        }
            
    }
-
  @media screen and (min-width: 200px) and (max-width: 600px) { 
   
-
         .margin{
             margin-bottom: 20px;
         }
-
                  .searchContainer {
                      width: 100%;
                  }
-
                  .display-flex-column{
                     display: flex;
                     flex-direction: column;
@@ -278,7 +242,5 @@
                                        width: 220px;
                                        height: 40px;
                                    }
-
  }
-
 </style>
