@@ -47,11 +47,11 @@ return [
     ],
     [
         "label" => 'Sauna',
-        "icon" => 'sea-front.png'
+        "icon" => 'sauna.png'
     ],
     [
         "label" => 'Vista mare',
-        "icon" => 'sauna.png'
+        "icon" => 'sea-front.png'
     ],
     [
         "label" => 'Rilevatore di fumo',

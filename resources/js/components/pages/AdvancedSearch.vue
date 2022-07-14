@@ -64,8 +64,25 @@
         </div>
         <!-- LISTA DI ANNUNCI TROVATI -->
         <div class="py-4 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center">
-            <div class="card col m-3" v-for="habitation in habitations" :key="habitation.id">
-                <!-- <img class="card-img-top" :src="require(`../../../../public/storage/${firstImage}`)" alt="Card image cap"> -->
+            <div class="card col px-0 m-3" v-for="habitation in habitations" :key="habitation.id">
+                <!-- <div  v-for="(image, i) in habitation.images" :key="image.id" > 
+                    <img class="card-img-top" :src="'/storage/' + image.image_url" alt="Card image cap" width="280px" height="350px" v-if="i == 0">
+                </div> -->
+                <div :id="'carouselControls' + habitation.id" class="carousel slide" data-ride="carousel" data-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item" v-for="(image, i) in habitation.images" :class="{ active: i==0 }" :key="image.id">
+                                <img :src="'/storage/' + image.image_url" class="w-100 hab-img" width="280px" height="350px" :alt="'immagine di' + habitation.title">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" :href="'#carouselControls' + habitation.id" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" :href="'#carouselControls' + habitation.id" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 <div class="card-body">
                     <h5 class="card-title">{{habitation.title}}</h5>
                     <p class="card-text">{{habitation.address}}</p>
