@@ -1,19 +1,20 @@
 <template>
     <div>
 
-        <h1 class="my-5 py-5 text-center">Sito in costruzione</h1>
+
+
 
         <div class="height_100vh flex_between">
 
             <div class="align-self-center">
 
-                <h1 class="text_gray font_size_3">Scegli una meta.. Goditi il viaggio!</h1>
+                <h1 class="text_gray font_size_3 margin-top">Scegli una meta.. Goditi il viaggio!</h1>
 
-                </div>
-                    <!-- <h1 class="my-5 py-5 text-center">Sito in costruzione</h1> -->
-                    <HomeSearch @locationData="getLocationData"/>
+            </div>
 
-                <div>
+            <HomeSearch @locationData="getLocationData" />
+
+            <div>
 
             </div>
 
@@ -21,6 +22,8 @@
     </div>
 
 </template>
+
+
 
 <script>
 import HomeSearch from "../includes/HomeSearch.vue";
@@ -49,21 +52,78 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .height_100vh {
-        height: 100vh
-    }
+ @media screen and (min-width: 821px) {
 
-    .flex_between {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
 
-    .font_size_3 {
-        font-size: 3rem;
-    }
+     .height_100vh {
+         height: 100vh
+     }
 
-    .text_gray {
-        color: rgb(190, 182, 182);
-    }
+     .flex_between {
+         display: flex;
+         flex-direction: column;
+         justify-content: space-around;
+     }
+
+     .font_size_3 {
+         font-size: 3rem;
+     }
+
+     .text_gray {
+         color: rgb(190, 182, 182);
+     }
+ }
+
+ @media screen and (min-width: 601px) {
+
+
+     .height_100vh {
+         height: 85vh
+     }
+
+     .flex_between {
+         display: flex;
+         flex-direction: column;
+
+     }
+
+     .font_size_3 {
+         font-size: 2.5rem;
+     }
+
+     .text_gray {
+         color: rgb(190, 182, 182);
+     }
+
+     .margin-top {
+         margin-top: 200px;
+         margin-bottom: 150px;
+     }
+
+
+ }
+
+ @media screen and (min-width: 200px) and (max-width: 600px) {
+     .height_100vh {
+         height: 80vh
+     }
+
+     .flex_between {
+         display: flex;
+         flex-direction: column;
+         justify-content: space-around;
+
+     }
+
+     .font_size_3 {
+         font-size: 1.5rem;
+     }
+
+     .text_gray {
+         color: rgb(190, 182, 182);
+     }
+
+
+ }
+
 </style>
