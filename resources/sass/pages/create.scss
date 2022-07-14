@@ -1,0 +1,33 @@
+.bg_gradient{
+background: rgb(47,166,143);
+background: linear-gradient(0deg, rgba(47,166,143,0.7497373949579832) 0%, rgba(34,179,151,0.5956757703081232) 30%, rgba(38,175,148,0.19511554621848737) 60%, rgba(25,188,156,0.09987745098039214) 100%);
+}
+.color_button{
+    background-color: #409584;
+}
+
+.color_button:hover{
+background-color: #26af94;
+}
+
+.c_border{
+    border-color: #51847a;
+}
+.width{
+    width: 15%;
+}
+
+//media-query
+
+@media screen and (max-width:1200px) {
+    .width{
+        width: 25%;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .width{
+        width: 33%;
+    }
+}
+
