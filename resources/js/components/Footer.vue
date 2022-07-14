@@ -82,11 +82,11 @@
         <div class="inline">
             <div class="px-5 text-center">
                 <h3>Trovaci sui nostri social!</h3>
-                <img class="icon mx-4 ml-2" src="./icon/facebook.png" alt="">
-                <img class="icon mx-4 ml-2" src="./icon/instagram.png" alt="">
-                <img class="icon mx-4 ml-2" src="./icon/twitter.png" alt="">
-                <img class="icon mx-4 ml-2" src="./icon/youtube.png" alt="">
-                <img class="icon mx-4 ml-2" src="./icon/whatsapp.png" alt="">
+                <img class="icon mx-4 ml-2" src="/img/icon-social/facebook.png" alt="">
+                <img class="icon mx-4 ml-2" src="/img/icon-social/instagram.png" alt="">
+                <img class="icon mx-4 ml-2" src="/img/icon-social/twitter.png" alt="">
+                <img class="icon mx-4 ml-2" src="/img/icon-social/youtube.png" alt="">
+                <img class="icon mx-4 ml-2" src="/img/icon-social/whatsapp.png" alt="">
             </div>
         </div>
 <!-- button -->
