@@ -2855,7 +2855,7 @@ var render = function render() {
         return _vm.$set(_vm.positionInput, "radius", $event.target.value);
       }
     }
-  }), _vm._v("\n                    " + _vm._s(_vm.positionInput.radius / 1000) + "km\n                ")])]), _vm._v(" "), _c("button", {
+  }), _vm._v("\r\n                    " + _vm._s(_vm.positionInput.radius / 1000) + "km\r\n                ")])]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-secondary dropdown-toggle",
     attrs: {
       type: "button"
@@ -2866,7 +2866,7 @@ var render = function render() {
         return _vm.getShow();
       }
     }
-  }, [_vm._v("\n                Ulteriori Filtri\n            ")]), _vm._v(" "), _vm.active ? _c("div", {
+  }, [_vm._v("\r\n                Ulteriori Filtri\r\n            ")]), _vm._v(" "), _vm.active ? _c("div", {
     staticClass: "addFilters form-group position-absolute bg-dark py-5"
   }, [_c("div", {
     staticClass: "container"
@@ -2981,13 +2981,13 @@ var render = function render() {
       attrs: {
         "for": "service-" + service.id
       }
-    }, [_vm._v("\n                                    " + _vm._s(service.label) + "\n                                ")])]);
+    }, [_vm._v("\r\n                                    " + _vm._s(service.label) + "\r\n                                ")])]);
   }), 0)])])]) : _vm._e(), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                Search\n            ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\r\n                Search\r\n            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "py-4 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center"
   }, _vm._l(_vm.habitations, function (habitation) {
     return _c("div", {
@@ -3062,7 +3062,7 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("Vedi appartamento\n                    ")])], 1)]);
+    }, [_vm._v("Vedi appartamento\r\n                    ")])], 1)]);
   }), 0)]);
 };
 
@@ -20447,7 +20447,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/simonelucazaino/Desktop/BoolBnB progetto finale/Repository/BoolBnB/resources/js/routes.js */"./resources/js/routes.js");
+module.exports = __webpack_require__(/*! C:\Users\matte\OneDrive\Desktop\Projects\VsCode\Boolean-58\BoolBnB\resources\js\routes.js */"./resources/js/routes.js");
 
 
 /***/ })

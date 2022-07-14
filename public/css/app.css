@@ -10038,6 +10038,28 @@ a {
   margin: 0 auto;
 }
 
+.scroller {
+  overflow-x: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+}
+
+.gray-14 {
+  color: #51847a;
+}
+
+.gray-20 {
+  color: #6b6b6b;
+}
+
+.bg-green-5 {
+  background-color: #2aab91;
+}
+
+.bg-green-2 {
+  background-color: rgba(29, 195, 162, 0.2666666667);
+}
+
 .bg_gradient {
   background: rgb(47, 166, 143);
   background: linear-gradient(0deg, rgba(47, 166, 143, 0.749737395) 0%, rgba(34, 179, 151, 0.5956757703) 30%, rgba(38, 175, 148, 0.1951155462) 60%, rgba(25, 188, 156, 0.099877451) 100%);

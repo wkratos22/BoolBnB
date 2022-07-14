@@ -2,3 +2,25 @@
     width: 90%;
     margin: 0 auto;
 }
+
+.scroller {
+    overflow-x: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+  }
+
+  .gray-14{
+    color: #51847a;
+  }
+
+  .gray-20{
+    color: #6b6b6b;
+  }
+
+  .bg-green-5{
+    background-color: #2aab91;
+  }
+
+  .bg-green-2{
+    background-color: #1dc3a244;
+  }

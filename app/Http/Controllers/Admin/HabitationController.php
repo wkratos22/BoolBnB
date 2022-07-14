@@ -27,9 +27,9 @@ class HabitationController extends Controller
         if (Auth::check()) {
 
             $user_hab = Auth::user()->habitations();
-    
+
             $habitations = $user_hab->where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
-    
+
             return view('admin.habitations.index', compact('habitations'));
         }
     }
@@ -68,7 +68,7 @@ class HabitationController extends Controller
                 'beds_number'  => 'required|integer|min:1',
                 'bathrooms_number'  => 'required|integer|min:1',
                 'square_meters'  => 'integer|min:1',
-                
+
                 'visible'  => 'required',
                 'services'  => 'required',
                 'tags'  => 'required',
@@ -99,7 +99,7 @@ class HabitationController extends Controller
                 'rooms_number.required' => 'Il numero di stanze è un campo obbligatorio.',
                 'rooms_number.integer' => 'Inserisci un numero per stabilire la quantità di stanze.',
                 'rooms_number.min' => 'Il numero minimo previsto per le stanze è 1.',
-                
+
                 'beds_number.required' => 'Il numero di letti è un campo obbligatorio.',
                 'beds_number.integer' => 'Inserisci un numero per stabilire la quantità di letti.',
                 'beds_number.min' => 'Il numero minimo previsto per i letti è 1.',
@@ -119,7 +119,7 @@ class HabitationController extends Controller
 
         $data = $request->all();
 
-        
+
 
         $new_habitation = new Habitation();
 
@@ -130,7 +130,7 @@ class HabitationController extends Controller
          $url = "https://api.tomtom.com/search/2/geocode/{$address}.json?key={$apiKey}&limit=5&countrySet=IT&language=it-IT";
          $response_json = file_get_contents($url);
          $response = json_decode($response_json, true);
- 
+
          // inserimento lat e lot nel rispettivo record
          $new_habitation->latitude = $response['results'][0]['position']['lat'];
          $new_habitation->longitude = $response['results'][0]['position']['lon'];
@@ -142,23 +142,23 @@ class HabitationController extends Controller
         $new_habitation->slug = Str::slug($new_habitation->title, '-');
 
         $new_habitation->save();
-        
-        
+
+
         if (array_key_exists('image', $data)) {
             $files = $data['image'];
-            
+
             foreach ($files as $file) {
-                
-                
+
+
                 $new_image = new Image();
-                
+
                 $image_url = Storage::put('habitations_images', $file);
-                
+
                 $new_image->image_url = $image_url;
                 $new_image->habitation_id = $new_habitation->id;
 
                 $new_image->save();
-               
+
             }
         }
 
@@ -339,7 +339,7 @@ class HabitationController extends Controller
      */
     public function destroy(Habitation $habitation)
     {
-        
+
         if (Auth::user()->id == $habitation->user_id) {
             $habitation->delete();
             return redirect()->route( 'admin.habitations.index' )->with('message', "$habitation->title è stato eliminato con successo.");

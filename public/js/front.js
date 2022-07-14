@@ -2585,31 +2585,31 @@ var staticRenderFns = [function () {
   }, [_c("h3", [_vm._v("Trovaci sui nostri social!")]), _vm._v(" "), _c("img", {
     staticClass: "icon mx-4 ml-2",
     attrs: {
-      src: __webpack_require__(/*! ./icon/facebook.png */ "./resources/js/components/icon/facebook.png"),
+      src: "/img/icon-social/facebook.png",
       alt: ""
     }
   }), _vm._v(" "), _c("img", {
     staticClass: "icon mx-4 ml-2",
     attrs: {
-      src: __webpack_require__(/*! ./icon/instagram.png */ "./resources/js/components/icon/instagram.png"),
+      src: "/img/icon-social/instagram.png",
       alt: ""
     }
   }), _vm._v(" "), _c("img", {
     staticClass: "icon mx-4 ml-2",
     attrs: {
-      src: __webpack_require__(/*! ./icon/twitter.png */ "./resources/js/components/icon/twitter.png"),
+      src: "/img/icon-social/twitter.png",
       alt: ""
     }
   }), _vm._v(" "), _c("img", {
     staticClass: "icon mx-4 ml-2",
     attrs: {
-      src: __webpack_require__(/*! ./icon/youtube.png */ "./resources/js/components/icon/youtube.png"),
+      src: "/img/icon-social/youtube.png",
       alt: ""
     }
   }), _vm._v(" "), _c("img", {
     staticClass: "icon mx-4 ml-2",
     attrs: {
-      src: __webpack_require__(/*! ./icon/whatsapp.png */ "./resources/js/components/icon/whatsapp.png"),
+      src: "/img/icon-social/whatsapp.png",
       alt: ""
     }
   })])]);
@@ -3157,7 +3157,7 @@ var render = function render() {
         return _vm.$set(_vm.positionInput, "radius", $event.target.value);
       }
     }
-  }), _vm._v("\n                    " + _vm._s(_vm.positionInput.radius / 1000) + "km\n                ")])]), _vm._v(" "), _c("button", {
+  }), _vm._v("\r\n                    " + _vm._s(_vm.positionInput.radius / 1000) + "km\r\n                ")])]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-secondary dropdown-toggle",
     attrs: {
       type: "button"
@@ -3168,7 +3168,7 @@ var render = function render() {
         return _vm.getShow();
       }
     }
-  }, [_vm._v("\n                Ulteriori Filtri\n            ")]), _vm._v(" "), _vm.active ? _c("div", {
+  }, [_vm._v("\r\n                Ulteriori Filtri\r\n            ")]), _vm._v(" "), _vm.active ? _c("div", {
     staticClass: "addFilters form-group position-absolute bg-dark py-5"
   }, [_c("div", {
     staticClass: "container"
@@ -3283,13 +3283,13 @@ var render = function render() {
       attrs: {
         "for": "service-" + service.id
       }
-    }, [_vm._v("\n                                    " + _vm._s(service.label) + "\n                                ")])]);
+    }, [_vm._v("\r\n                                    " + _vm._s(service.label) + "\r\n                                ")])]);
   }), 0)])])]) : _vm._e(), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                Search\n            ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\r\n                Search\r\n            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "py-4 row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center"
   }, _vm._l(_vm.habitations, function (habitation) {
     return _c("div", {
@@ -3364,7 +3364,7 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("Vedi appartamento\n                    ")])], 1)]);
+    }, [_vm._v("Vedi appartamento\r\n                    ")])], 1)]);
   }), 0)]);
 };
 
@@ -20610,61 +20610,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/icon/facebook.png":
-/*!***************************************************!*\
-  !*** ./resources/js/components/icon/facebook.png ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/facebook.png?87e2de9c3536d686a96f394dfb9fa87c";
-
-/***/ }),
-
-/***/ "./resources/js/components/icon/instagram.png":
-/*!****************************************************!*\
-  !*** ./resources/js/components/icon/instagram.png ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/instagram.png?4a8c23476a7c20c5bee2a752a6f96e9e";
-
-/***/ }),
-
-/***/ "./resources/js/components/icon/twitter.png":
-/*!**************************************************!*\
-  !*** ./resources/js/components/icon/twitter.png ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/twitter.png?8f35a40403a84631c4125c4f1859c7a6";
-
-/***/ }),
-
-/***/ "./resources/js/components/icon/whatsapp.png":
-/*!***************************************************!*\
-  !*** ./resources/js/components/icon/whatsapp.png ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/whatsapp.png?774352deeaa60ebe04164a1e28489771";
-
-/***/ }),
-
-/***/ "./resources/js/components/icon/youtube.png":
-/*!**************************************************!*\
-  !*** ./resources/js/components/icon/youtube.png ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/youtube.png?ca6d67e60f758d352745329b283e8f32";
-
-/***/ }),
-
 /***/ "./resources/js/components/includes/ContactForm.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/includes/ContactForm.vue ***!
@@ -21240,7 +21185,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/simonelucazaino/Desktop/BoolBnB progetto finale/Repository/BoolBnB/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\matte\OneDrive\Desktop\Projects\VsCode\Boolean-58\BoolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
