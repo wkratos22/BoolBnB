@@ -2086,6 +2086,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Footer",
   methods: {
@@ -3180,7 +3185,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nli{\n    list-style: none;\n    padding: 2px;\n    font-size: 0.9em;\n}\nli:hover{\n    text-decoration: underline;\n    cursor: pointer;\n}\n.font-weight{\n    font-weight: bolder;\n    font-size: 1.2em;\n}\n.inline{\n    display: inline-flex;\n    justify-content: space-around;\n}\n.bg-color{\n    background-color: #488d7f ;\n}\n.icon{\n    width: 30px;\n}\n.icon:hover{\n    cursor: pointer;\n    transition: 0.3s;\n    opacity: 0.6;\n}\n.btn-outline-dark{\n    border-radius: 50%;\n    border: 2px solid;\n    width: 50px;\n    height: 50px;\n}\n\n\n", ""]);
+exports.push([module.i, "\nli{\n    list-style: none;\n    padding: 2px;\n    font-size: 0.9em;\n}\nli:hover{\n    text-decoration: underline;\n    cursor: pointer;\n}\n.font-weight{\n    font-weight: bolder;\n    font-size: 1.2em;\n}\n.inline{\n    display: inline-flex;\n    justify-content: space-around;\n}\n.bg-color{\n    background-color: #488d7f ;\n}\n.icon{\n    width: 30px;\n}\n.icon:hover{\n    cursor: pointer;\n    transition: 0.3s;\n    opacity: 0.6;\n}\n.btn-outline-dark{\n    border-radius: 50%;\n    border: 2px solid;\n    width: 50px;\n    height: 50px;\n}\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4589,31 +4594,54 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid bg-color" }, [
-    _c("div", { staticClass: "d-flex row justify-content-around pt-2 p-5" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _vm._m(3),
-      _vm._v(" "),
-      _c("div", [
-        _c("div", { staticClass: "d-flex justify-content-end" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-dark",
-              attrs: { type: "button" },
-              on: { click: _vm.scrollToTop },
-            },
-            [_c("strong", [_vm._v("⊼")])]
-          ),
+    _c(
+      "div",
+      {
+        staticClass:
+          "d-flex row justify-content-md-around p-4 pt-2 p-sm-3 p-lg-5",
+      },
+      [
+        _c("div", { staticClass: " " }, [
+          _c("div", [
+            _c("div", { staticClass: "d-flex justify-content-end d-md-none" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-dark",
+                  attrs: { type: "button" },
+                  on: { click: _vm.scrollToTop },
+                },
+                [_c("strong", [_vm._v("⊼")])]
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
         ]),
-      ]),
-      _vm._v(" "),
-      _vm._m(4),
-    ]),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _vm._m(3),
+        _vm._v(" "),
+        _c("div", [
+          _c("div", { staticClass: "d-md-flex justify-content-end d-none" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark",
+                attrs: { type: "button" },
+                on: { click: _vm.scrollToTop },
+              },
+              [_c("strong", [_vm._v("⊼")])]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(4),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -4621,47 +4649,45 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("ul", [
-        _c("li", { staticClass: "font-weight" }, [
-          _vm._v("\n                    Assistenza\n                "),
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _vm._v("\n                    Centro Assistenza \n                "),
-        ]),
-        _vm._v(" "),
-        _c("li", [_vm._v("\n                    AirCover\n                ")]),
-        _vm._v(" "),
-        _c("li", [
-          _vm._v(
-            "\n                    Informazioni di sicurezza \n                "
-          ),
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _vm._v(
-            "\n                    Accessibilità per tutti\n                "
-          ),
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _vm._v(
-            "\n                    Opzioni di cancellazione\n                "
-          ),
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _vm._v(
-            "\n                    La nostra risposta all'emergenza COVID-19\n                "
-          ),
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _vm._v(
-            "\n                    Segnala problemi ne quartiere\n                "
-          ),
-        ]),
+    return _c("ul", {}, [
+      _c("li", { staticClass: "font-weight" }, [
+        _vm._v("\n                    Assistenza\n                "),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v("\n                    Centro Assistenza \n                "),
+      ]),
+      _vm._v(" "),
+      _c("li", [_vm._v("\n                    AirCover\n                ")]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                    Informazioni di sicurezza \n                "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                    Accessibilità per tutti\n                "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                    Opzioni di cancellazione\n                "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                    La nostra risposta all'emergenza COVID-19\n                "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                    Segnala problemi ne quartiere\n                "
+        ),
       ]),
     ])
   },
@@ -4750,7 +4776,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: " text-center" }, [
+      _c("div", { staticClass: " text-center pt-2 pt-md-3" }, [
         _c("h3", { staticClass: "pb-3" }, [
           _vm._v("Trovaci sui nostri social!"),
         ]),
@@ -4803,7 +4829,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "container-fluid d-flex justify-content-center px-2" },
+      { staticClass: "container-fluid d-flex justify-content-center pt-5" },
       [
         _c("div", [
           _c("p", { staticClass: "text-center" }, [

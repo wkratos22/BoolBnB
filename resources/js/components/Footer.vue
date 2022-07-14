@@ -1,8 +1,13 @@
 <template>
    <div class="container-fluid bg-color">
-     <div class="d-flex row justify-content-around pt-2 p-5">
-        <div>
-             <ul>
+     <div class="d-flex row justify-content-md-around p-4 pt-2 p-sm-3 p-lg-5">
+        <div class=" ">
+             <div>
+                <div class="d-flex justify-content-end d-md-none">
+                    <button @click="scrollToTop" type="button" class="btn btn-outline-dark"><strong>&#8892;</strong></button>
+                </div>
+            </div>
+             <ul class="">
                 <li class="font-weight">
                     Assistenza
                 </li>
@@ -77,7 +82,7 @@
             </ul>
         </div>
         <div>
-            <div class=" text-center">
+            <div class=" text-center pt-2 pt-md-3">
                 <h3 class="pb-3">Trovaci sui nostri social!</h3>
                 <img class="icon mx-4 ml-2" src="/img/icon-social/facebook.png" alt="facebook icon link">
                 <img class="icon mx-4 ml-2" src="/img/icon-social/instagram.png" alt="instagram icon link">
@@ -87,11 +92,11 @@
             </div>
         </div>
     <div>
-        <div class="d-flex justify-content-end">
+        <div class="d-md-flex justify-content-end d-none">
             <button @click="scrollToTop" type="button" class="btn btn-outline-dark"><strong>&#8892;</strong></button>
         </div>
     </div>
-        <div class="container-fluid d-flex justify-content-center px-2">
+        <div class="container-fluid d-flex justify-content-center pt-5">
             <div>
                 <p class="text-center">&copy;Copyright 2022-2022 | Theme by Boolean | All Rights Reserved | Powered by Booleans</p>
             </div>
@@ -173,6 +178,8 @@ export default {
         width: 50px;
         height: 50px;
     }
+
+    
 
     
 </style>
