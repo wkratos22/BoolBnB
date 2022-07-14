@@ -82,13 +82,13 @@
             </ul>
         </div>
         <div>
-            <div class=" text-center pt-2 pt-md-3">
+            <div class=" text-center pt-2 pt-md-4">
                 <h3 class="pb-3">Trovaci sui nostri social!</h3>
-                <img class="icon mx-4 ml-2" src="/img/icon-social/facebook.png" alt="facebook icon link">
-                <img class="icon mx-4 ml-2" src="/img/icon-social/instagram.png" alt="instagram icon link">
-                <img class="icon mx-4 ml-2" src="/img/icon-social/twitter.png" alt="twitter icon link">
-                <img class="icon mx-4 ml-2" src="/img/icon-social/youtube.png" alt="youtube icon link">
-                <img class="icon mx-4 ml-2" src="/img/icon-social/whatsapp.png" alt="whatsup icon link">
+                <img class="icon mx-md-4 ml-2" src="/img/icon-social/facebook.png" alt="facebook icon link">
+                <img class="icon mx-md-4 ml-2" src="/img/icon-social/instagram.png" alt="instagram icon link">
+                <img class="icon mx-md-4 ml-2" src="/img/icon-social/twitter.png" alt="twitter icon link">
+                <img class="icon mx-md-4 ml-2" src="/img/icon-social/youtube.png" alt="youtube icon link">
+                <img class="icon mx-md-4 ml-2" src="/img/icon-social/whatsapp.png" alt="whatsup icon link">
             </div>
         </div>
     <div>

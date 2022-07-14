@@ -4776,13 +4776,13 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: " text-center pt-2 pt-md-3" }, [
+      _c("div", { staticClass: " text-center pt-2 pt-md-4" }, [
         _c("h3", { staticClass: "pb-3" }, [
           _vm._v("Trovaci sui nostri social!"),
         ]),
         _vm._v(" "),
         _c("img", {
-          staticClass: "icon mx-4 ml-2",
+          staticClass: "icon mx-md-4 ml-2",
           attrs: {
             src: "/img/icon-social/facebook.png",
             alt: "facebook icon link",
@@ -4790,7 +4790,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("img", {
-          staticClass: "icon mx-4 ml-2",
+          staticClass: "icon mx-md-4 ml-2",
           attrs: {
             src: "/img/icon-social/instagram.png",
             alt: "instagram icon link",
@@ -4798,7 +4798,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("img", {
-          staticClass: "icon mx-4 ml-2",
+          staticClass: "icon mx-md-4 ml-2",
           attrs: {
             src: "/img/icon-social/twitter.png",
             alt: "twitter icon link",
@@ -4806,7 +4806,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("img", {
-          staticClass: "icon mx-4 ml-2",
+          staticClass: "icon mx-md-4 ml-2",
           attrs: {
             src: "/img/icon-social/youtube.png",
             alt: "youtube icon link",
@@ -4814,7 +4814,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("img", {
-          staticClass: "icon mx-4 ml-2",
+          staticClass: "icon mx-md-4 ml-2",
           attrs: {
             src: "/img/icon-social/whatsapp.png",
             alt: "whatsup icon link",
