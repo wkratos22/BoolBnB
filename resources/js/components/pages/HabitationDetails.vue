@@ -151,7 +151,7 @@
 
 <script>
 import ContactForm from '../includes/ContactForm.vue';
-import tt from '@tomtom-international/web-sdk-maps';
+
 
     export default {
         name: "HabitationDetails",
