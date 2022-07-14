@@ -106,10 +106,10 @@
                 </div>
         </nav>
 
-        <main class="py-4">
-            <div class="container">
-                @yield('content')
-            </div>
+        <main class="{{Request::route()->getName() == 'admin.habitations.create' || Request::route()->getName() == 'admin.habitations.edit' ? 'bg_gradient' : ''}}">
+
+            @yield('content')
+
         </main>
     </div>
 

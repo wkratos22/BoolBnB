@@ -14,8 +14,14 @@
 @import './base/margin';
 @import './base/padding';
 
-// Pages
+// Dashboard
 @import './pages/dashboard.scss';
+
+// Show
+@import './pages/show.scss';
+
+// Create
+@import './pages/create.scss';
 
 // #19bc9c
 // #1db899
@@ -47,3 +53,7 @@
 // #18b394
 // #12866f
 // #0c594a
+
+
+
+
