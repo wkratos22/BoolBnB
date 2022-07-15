@@ -2,8 +2,10 @@
 <div>
         <!-- INPUT PER RICERCA AVANZATA -->
         <div class="searchContainer mx-auto my-4">
-        <form class="w-100 d-flex justify-content-around align-items-center" @submit.prevent="getHomeSearch(positionInput.destination, positionInput.radius, positionInput.bedsNumber, positionInput.roomsNumber, positionInput.checkedService)">
+        <form class="w-100 d-flex justify-content-around align-items-center display-flex-column" @submit.prevent="getHomeSearch(positionInput.destination, positionInput.radius, positionInput.bedsNumber, positionInput.roomsNumber, positionInput.checkedService)">
+            
             <div class="form-group mb-0">
+
                 <input class="form-control mr-sm-2" type="search" placeholder="Dove vuoi andare?"
                     aria-label="Search" minlength="3" v-model="positionInput.destination" />
             </div>
@@ -208,6 +210,7 @@
 </script>
 
 <style lang="scss" scoped>
+        @media screen and (min-width: 821px) {
     .searchContainer {
         width: 60%;
     }
@@ -220,4 +223,14 @@
         height: 60vh;
         width: 60vw;
     }
+        }
+
+                @media screen and (min-width: 601px)  and (max-width: 820px){
+                .display-flex-column {
+                        display: flex;
+                        flex-direction: column;
+                      
+                        justify-content: center;
+                    }
+                }
 </style>
