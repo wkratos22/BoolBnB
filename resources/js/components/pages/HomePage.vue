@@ -1,36 +1,27 @@
 <template>
-    <div>
 
+    <div class="containerHome">
 
+        <div class="text-center">
 
-
-        <div class="height_100vh flex_between">
-
-            <div class="align-self-center">
-
-                <h1 class="text_gray font_size_3 margin-top">Scegli una meta.. Goditi il viaggio!</h1>
-
-            </div>
-
-            <HomeSearch @locationData="getLocationData" />
-
-            <div>
-
-            </div>
+            <h1 class="text_gray font_size_3">Scegli una meta.. Goditi il viaggio!</h1>
 
         </div>
-    </div>
 
+        <HomeSearch @locationData="getLocationData" />
+
+    </div>
 </template>
 
 
 
 <script>
 import HomeSearch from "../includes/HomeSearch.vue";
+
 export default {
     name: 'HomePage',
      components: {
-        HomeSearch
+        HomeSearch,
     },
     data(){
         return {
@@ -47,50 +38,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.containerHome {
+    height: 87vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        margin-bottom: 6rem;
+    }
+}
+
  @media screen and (min-width: 821px) {
-     .height_100vh {
-         height: 100vh
-     }
-     .flex_between {
-         display: flex;
-         flex-direction: column;
-         justify-content: space-around;
-     }
-     .font_size_3 {
-         font-size: 3rem;
-     }
      .text_gray {
          color: rgb(190, 182, 182);
      }
  }
  @media screen and (min-width: 601px) {
-     .height_100vh {
-         height: 85vh
-     }
-     .flex_between {
-         display: flex;
-         flex-direction: column;
-     }
      .font_size_3 {
          font-size: 2.5rem;
      }
      .text_gray {
          color: rgb(190, 182, 182);
      }
-     .margin-top {
-         margin-top: 200px;
-         margin-bottom: 150px;
-     }
  }
  @media screen and (min-width: 200px) and (max-width: 600px) {
-     .height_100vh {
-         height: 90vh
-     }
-     .flex_between {
-         display: flex;
-         flex-direction: column;
-         justify-content: space-around;
-     }
      .font_size_3 {
          font-size: 1.5rem;
      }

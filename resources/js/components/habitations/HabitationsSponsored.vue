@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <h2 class="text-center">In Evidenza</h2>
+        <h2 class="text-center mb-3">In Evidenza</h2>
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-3 justify-content-center">
             <div class="col card m-2 position-relative" v-for="habitation in sortedArray" :key="habitation.id">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
@@ -23,7 +23,6 @@
 
             </div>
         </div>
-        <hr>
     </div>
 
 </template>

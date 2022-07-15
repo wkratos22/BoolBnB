@@ -6,6 +6,10 @@
 
       <main>
         <router-view></router-view>
+
+          <div v-if="$route.name === 'home'" class="p-4 bg-light">
+            <HabitationsSponsored/>
+          </div>
       </main>
 
       <Footer />
@@ -17,6 +21,7 @@
 <script>
 import Header from "./Header.vue";
 import Footer from "./Footer.vue";
+import HabitationsSponsored from './habitations/HabitationsSponsored.vue'
 
 
 export default {
@@ -25,6 +30,7 @@ export default {
   components: {
     Header,
     Footer,
+    HabitationsSponsored,
   },
 
 }
@@ -35,13 +41,17 @@ export default {
 <style lang="scss">
 
     .bg_img_casual {
-        background-image: url('/images/bg-home.jpeg');
-        background-position: center;
-        background-size: cover;
+      background-image: url('/images/bg-home.jpeg');
+      background-position: center;
+      background-size: cover;
     }
 
     .bg_white{
-        background-color: blue;
+      background-color: blue;
+    }
+
+    main {
+      padding-top: 13vh;
     }
 
 </style>

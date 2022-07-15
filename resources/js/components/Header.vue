@@ -1,7 +1,7 @@
 <template>
-<header>
+<header class="fixed-top scrollTop">
 
-  <nav class="navbar navbar-expand-lg navbar-dark" :class="($route.path != '/' ? 'bg-secondary' : '')">
+  <nav class="navbar navbar-expand-lg align-items-lg-center navbar-dark" :class="($route.path != '/' ? 'bg-secondary' : '')">
 
     <!-- Home -->
     <router-link class="navbar-brand m-1" :to="{ name: 'home' }">
@@ -39,11 +39,19 @@
 
 export default {
   name: "Header",
+
+    methods: {
+
+  }
 };
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+    nav {
+      height: 15vh;
+    }
 
     .font-size-1{
         font-size: 1.2rem;

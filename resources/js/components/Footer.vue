@@ -141,7 +141,7 @@ export default {
     }
 
     .bg-color{
-        background-color: #488d7f;
+        background-color: #4da492;
     }
 
     .icon{

@@ -1,7 +1,7 @@
 
 
 <template>
-  <div class="w-100 d-flex flex-column justify-content-center">
+  <div class="w-100 d-flex flex-column justify-content-center mb-5">
 
     <div class="d-flex justify-content-center display-flex-column align-items-center">
       <div class="form-group mb-0 text-light text-center">
