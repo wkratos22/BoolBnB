@@ -105,7 +105,7 @@ export default {
 
  @media screen and (min-width: 200px) and (max-width: 600px) {
      .height_100vh {
-         height: 80vh
+         height: 90vh
      }
 
      .flex_between {
