@@ -41,9 +41,10 @@ export default {
 <style lang="scss">
 
     .bg_img_casual {
-      background-image: url('/images/bg-home.jpeg');
-      background-position: center;
-      background-size: cover;
+      background-image: url('/images/background.jpg');
+      background-position: center top;
+      background-size: contain;
+      background-repeat: no-repeat;
     }
 
     .bg_white{
