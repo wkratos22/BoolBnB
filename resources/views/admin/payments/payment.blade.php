@@ -11,18 +11,19 @@
                 @csrf
 
                 <div class="form-group">
-                  <label for="amount">Amount</label>
-                  <input class="form-control" type="number" name="price" id="amount" min="1" step="0.01" value="{{$sponsorship->price}}" readonly>
+                  <input class="form-control bg-white c_border" type="number" name="price" id="amount" min="1" step="0.01" value="{{$sponsorship->price}}" readonly>
                   {{-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
                 </div>
 
                 <div class="container">
-                    <div id="bt-dropin"></div>
+                    <div id="bt-dropin" class="c_border"></div>
                 </div>
 
                 <input type="hidden" name="payment_method_nonce" id="nonce">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="text-center pt-3">
+                    <button type="submit" class="btn color_button">Submit</button>   
+                </div>
+                
             </form>
 
         </div>

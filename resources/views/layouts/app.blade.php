@@ -102,14 +102,14 @@
                             </ul> --}}
                         </li>
                     </div>
-                    @endauth
+                    @endauth 
                 </div>
             </div>
         </nav>
         
 
     <main
-        class="{{Request::route()->getName() == 'login' || Request::route()->getName() == 'register' ? 'bg_gradient h-100' : ''}}">
+        class="{{Request::route()->getName() == 'login' || Request::route()->getName() == 'register' || Request::route()->getName() == 'admin.sponsor' || Request::route()->getName() == 'admin.pay' ? 'bg_gradient h-100' : ''}}">
 
         @yield('content')
 
