@@ -34,7 +34,6 @@
       height: 100%;
       background-color: #409584;
       transition: all .3s;
-    //   border-radius: 10rem;
       z-index: -1;
     }
     &:hover {
@@ -43,12 +42,16 @@
         width: 100%;
       }
     }
+    &:active {
+      transform: scale(0.9);
+    }
   }
 
 .grid_responsive_index {
     display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 0.4fr));
+    place-content: center;
 }
 
 .firstLetterUpp {
@@ -78,19 +81,25 @@
     display: none;
 }
 
-// Base styles
-.card-cust {
-  padding: 0 1.7rem;
+// Card Style
+.cardCust {
+  border-radius: 1em;
   .wrapper {
     background-color: $white;
+    border: 1px solid #090000;
     min-height: 350px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 19px 38px rgba($black, 0.3), 0 15px 12px rgba($black, 0.2);
+    border-radius: 1em;
+    // box-shadow: 0 19px 38px rgba($black, 0.3), 0 15px 12px rgba($black, 0.2);
     &:hover {
       .data {
         transform: translateY(0);
       }
+    }
+
+    img {
+      border-radius: 1em;
     }
   }
   .data {
@@ -103,44 +112,25 @@
       padding: 1em;
       position: relative;
       z-index: 1;
+      background-color: $white;
+      box-shadow: 0 5px 30px 10px rgba($black, 0.3);
     }
   }
   .title {
-    margin-top: 10px;
     font-family: $open-sans;
-    font-weight: 300;
+    font-weight: 400;
+    margin-bottom: 10px;
+
+    a {
+      color: lighten($black, 50%);
+    }
   }
   .text {
     height: 70px;
     margin: 0;
-  }
-}
 
-// First example styles
-.hab-card {
-  .hab-visibility {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: $bermuda;
-    color: $white;
     span {
-      display: block;
-      text-align: center;
-    }
-    .day {
-      font-weight: 600;
-      font-size: 1em;
-      text-shadow: 2px 3px 2px rgba($black, 0.18);
-    }
-  }
-  .content {
-    background-color: $white;
-    box-shadow: 0 5px 30px 10px rgba($black, 0.3);
-  }
-  .title {
-    a {
-      color: lighten($black, 50%);
+      font-weight: 700;
     }
   }
 }

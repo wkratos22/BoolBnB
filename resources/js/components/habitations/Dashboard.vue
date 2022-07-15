@@ -2,20 +2,36 @@
     <div class="container-fluid">
         <HabitationsSponsored/>
 
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-3 justify-content-center">
-            <div class="col card m-2 position-relative" v-for="habitation in habsNotSponsor" :key="habitation.id">
-                <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="container-fluid grid_responsive_index sponsor-gradient pb-5 pt-3">
+            
+            <div class="hab-card cardCust" v-for="habitation in habsNotSponsor" :key="habitation.id">
+                <router-link class="text-dark" :to="{name: 'habitationDetails', params: { slug: habitation.slug} }">
+                    <div class="wrapper">
+                        <div v-for="(image, i) in habitation.images" :key="image.id">
+                            <img :src="'/storage/' + image.image_url" class="w-100" v-if="i === 0" height="350px"
+                                :alt="'immagine di' + habitation.title">
+                        </div>
+                        <div class="data">
+                            <div class="content">
+                                <h2 class="title">{{habitation.title}}</h2>
+                                <div class="text d-flex justify-content-between align-items-center">
+                                    <p>
+                                        <span>{{habitation.price}} €</span>  /notte
+                                    </p>
 
-                <div class="card-body">
-                    <h5 class="card-title">{{habitation.title}}</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <div class="d-flex align-items-center">
+                                        <span>{{habitation.guests_number}}</span>
+                                        <img src="/img/icons/pageShow/people.png" alt="icona persone" class="ml-2">
+                                    </div>
 
-                    <router-link class="btn btn-primary"
-                        :to="{name: 'habitationDetails', params: { slug: habitation.slug} }">Vedi appartamento
-                    </router-link>
-                </div>
-
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </router-link>
             </div>
+
         </div>
 
     </div>
