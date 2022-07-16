@@ -2,6 +2,8 @@
     <div class="container-fluid">
         <HabitationsSponsored/>
 
+        <EasyBooking />
+
         <div class="container-fluid grid_responsive_index sponsor-gradient pb-5 pt-3">
             
             <div class="hab-card cardCust" v-for="habitation in habsNotSponsor" :key="habitation.id">
@@ -39,12 +41,14 @@
 
 <script>
 import HabitationsSponsored from "./HabitationsSponsored.vue";
+import EasyBooking from "../includes/EasyBooking.vue";
 
 export default {
     name: 'Dashboard',
 
     components: {
-        HabitationsSponsored
+        HabitationsSponsored,
+        EasyBooking
     },
 
     data(){

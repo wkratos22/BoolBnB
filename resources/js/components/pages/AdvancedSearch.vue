@@ -4,7 +4,7 @@
         <div class="w-100 search-gradient py-5">
             <div class="searchContainer mx-auto py-4">
 
-                <h1 class="text-center">Cerca l'alloggio perfetto per te!</h1>
+                <h2 class="text-center">Cerca l'alloggio perfetto per te!</h2>
 
                 <form class="w-100 d-flex flex-column flex-sm-row justify-content-between justify-content-md-around align-items-center mt-5"
                     @submit.prevent="getHomeSearch(positionInput.destination, positionInput.radius, positionInput.bedsNumber, positionInput.roomsNumber, positionInput.checkedService)">
