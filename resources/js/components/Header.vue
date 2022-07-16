@@ -19,15 +19,18 @@
         <ul class="navbar-nav">
 
           <li class="nav-item">
-            <router-link class="nav-link m-1 font-size-1 text-white" :to="{ name: 'dashboard' }">Annunci</router-link>
+            <router-link class="nav-link btn  m-1 font-size-1" :class="($route.path == '/') ? 'text-white btn1' : 'text-dark btn2'"
+              :to="{ name: 'dashboard' }">Annunci</router-link>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link m-1 font-size-1 text-white" href="/login">Passa alla modalità host</a>
+            <a class="nav-link m-1 btn font-size-1" :class="($route.path == '/') ? 'text-white btn1' : 'text-dark btn2'"
+              href="/login">Passa alla modalità host</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link m-1 font-size-1 text-white" href="/register">Registrati</a>
+            <a class="nav-link m-1 btn font-size-1" :class="($route.path == '/') ? 'text-white btn1' : 'text-dark btn2'"
+              href="/register">Registrati</a>
           </li>
 
         </ul>
@@ -89,8 +92,26 @@ export default {
            transition: all .2s ease-in-out;
     
            &.onScroll {
-            //  box-shadow: 0 0 10px #aaa;
-             background-color: #00cda4;
+            
+             box-shadow: 0 0 10px #aaa;
+            background: linear-gradient(0deg, rgb(157, 207, 187) 0%, rgb(93, 202, 155) 35%, rgb(73, 200, 145) 50%, rgb(73, 207, 133) 100%);
+           }
+
+            .btn1, .btn2{
+              border-radius: 20px;
+            }
+           .btn1:hover{
+              background-color: rgba(96, 214, 227, 0.398);
+              border: 1px solid white;
+              border-radius: 20px;
+             
+              
+           }
+
+           .btn2:hover{
+            background-color: rgba(96, 214, 227, 0.398);
+              border: 1px solid rgb(0, 0, 0);
+              border-radius: 20px;
            }
          }
 
