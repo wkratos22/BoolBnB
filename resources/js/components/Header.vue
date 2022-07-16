@@ -63,6 +63,7 @@ export default {
       } else {
         if (!this.view.topOfPage) this.view.topOfPage = true
       }
+      
     }
   }
 };

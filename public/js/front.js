@@ -2563,19 +2563,19 @@ var staticRenderFns = [function () {
   return _c("div", {
     staticClass: "row p-4"
   }, [_c("ul", {
-    staticClass: "col-12 col-md-3 mb-lg-1 d-flex flex-column align-items-center"
+    staticClass: "col-12 col-md-3 m-bottom text-center mb-lg-1 d-flex flex-column align-items-center"
   }, [_c("li", {
     staticClass: "font-weight"
   }, [_vm._v("\n                Assistenza\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Centro Assistenza\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                AirCover\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Informazioni di sicurezza\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Accessibilità per tutti\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Opzioni di cancellazione\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Emergenza COVID-19\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Segnala problemi nel quartiere\n            ")])]), _vm._v(" "), _c("ul", {
-    staticClass: "col-12 col-md-3 mb-lg-1 d-flex flex-column align-items-center"
+    staticClass: "col-12 col-md-3 text-center m-bottom mb-lg-1 d-flex flex-column align-items-center"
   }, [_c("li", {
     staticClass: "font-weight"
   }, [_vm._v("\n                Ospitare\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Prova a ospitare\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                AirCover per gli host\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Risorse per host\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Forum della community\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Ospitare responsabilmente\n            ")])]), _vm._v(" "), _c("ul", {
-    staticClass: "col-12 col-md-3 mb-mb-lg-1 d-flex flex-column align-items-center"
+    staticClass: "col-12 col-md-3 text-center m-bottom mb-lg-1 d-flex flex-column align-items-center"
   }, [_c("li", {
     staticClass: "font-weight"
   }, [_vm._v("\n                BoolB&B\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Nuove funzionalità\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Lettera dai nostri fondatori\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Opportunità di lavoro\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Iscrizion Newsletter\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Lista Investitori\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Gift card\n            ")])]), _vm._v(" "), _c("ul", {
-    staticClass: "col-12 col-md-3 mb-lg-1 d-flex flex-column align-items-center"
+    staticClass: "col-12 col-md-3 text-center m-bottom mb-lg-1 d-flex flex-column align-items-center"
   }, [_c("li", {
     staticClass: "font-weight"
   }, [_vm._v("\n                Contatti\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Domande frequenti\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Chat\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Numeri utili\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Termini e condizioni generali di servizio\n            ")]), _vm._v(" "), _c("li", [_vm._v("\n                Informativa sulla privacy\n            ")])])]);
@@ -3694,7 +3694,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".bg_img_casual {\n  background-image: url(\"/images/new-bg.jpg\");\n  background-position: center top;\n  background-size: contain;\n  background-repeat: no-repeat;\n}\n.bg_white {\n  background-color: blue;\n}\nmain {\n  padding-top: 13vh;\n}", ""]);
+exports.push([module.i, ".bg_img_casual {\n  background-image: url(\"/images/new-bg.jpg\");\n  background-position: center center;\n  background-repeat: no-repeat;\n  background-attachment: fixed;\n  background-size: cover;\n}\n.bg_white {\n  background-color: blue;\n}\nmain {\n  padding-top: 13vh;\n}", ""]);
 
 // exports
 
@@ -3713,7 +3713,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "li[data-v-61a7c374] {\n  list-style: none;\n  padding: 10px;\n  margin-bottom: -10px !important;\n  font-size: 0.7rem;\n  color: rgb(44, 44, 44);\n}\nli[data-v-61a7c374]:hover {\n  text-decoration: underline;\n  cursor: pointer;\n}\n.font-weight[data-v-61a7c374] {\n  font-weight: bold;\n}\n.bg-color[data-v-61a7c374] {\n  background: rgb(144, 190, 171);\n  background: linear-gradient(0deg, rgb(144, 190, 171) 0%, rgb(85, 185, 143) 35%, rgb(68, 189, 138) 100%);\n}\n.icon[data-v-61a7c374] {\n  width: 20px;\n}\n.icon[data-v-61a7c374]:hover {\n  cursor: pointer;\n  transition: 0.3s;\n  opacity: 0.6;\n}\n.scrollTop[data-v-61a7c374] {\n  right: 1em;\n  bottom: 5em;\n}\n.btn-outline-secondary[data-v-61a7c374] {\n  border-radius: 50%;\n  border: 2px solid;\n  width: 50px;\n  height: 50px;\n}\n.btn-outline-secondary[data-v-61a7c374]:active {\n  color: #488d7f;\n}", ""]);
+exports.push([module.i, "li[data-v-61a7c374] {\n  list-style: none;\n  padding: 10px;\n  margin-bottom: -10px !important;\n  font-size: 0.7rem;\n  color: rgb(44, 44, 44);\n}\nli[data-v-61a7c374]:hover {\n  text-decoration: underline;\n  cursor: pointer;\n}\n.font-weight[data-v-61a7c374] {\n  font-weight: bold;\n}\n.bg-color[data-v-61a7c374] {\n  background: rgb(144, 190, 171);\n  background: linear-gradient(0deg, rgb(144, 190, 171) 0%, rgb(85, 185, 143) 35%, rgb(68, 189, 138) 100%);\n}\n.icon[data-v-61a7c374] {\n  width: 20px;\n}\n.icon[data-v-61a7c374]:hover {\n  cursor: pointer;\n  transition: 0.3s;\n  opacity: 0.6;\n}\n.scrollTop[data-v-61a7c374] {\n  right: 1em;\n  bottom: 5em;\n}\n.btn-outline-secondary[data-v-61a7c374] {\n  border-radius: 50%;\n  border: 2px solid;\n  width: 50px;\n  height: 50px;\n}\n.btn-outline-secondary[data-v-61a7c374]:active {\n  color: #488d7f;\n}\n@media screen and (min-width: 100px) and (max-width: 767px) {\n.m-bottom[data-v-61a7c374] {\n    margin-bottom: 20px;\n}\n}", ""]);
 
 // exports
 

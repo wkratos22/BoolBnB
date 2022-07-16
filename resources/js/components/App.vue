@@ -42,9 +42,11 @@ export default {
 
     .bg_img_casual {
       background-image: url('/images/new-bg.jpg');
-      background-position: center top;
-      background-size: contain;
-      background-repeat: no-repeat;
+        background-position: center center;
+        background-repeat: no-repeat; 
+        background-attachment: fixed;
+        background-size: cover;
+      
     }
 
     .bg_white{

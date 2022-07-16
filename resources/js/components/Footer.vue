@@ -2,7 +2,7 @@
     <div class="container-fluid bg-color position-relative py-1">
         <div class="row p-4">
 
-            <ul class="col-12 col-md-3  mb-lg-1 d-flex flex-column align-items-center">
+            <ul class="col-12 col-md-3 m-bottom text-center mb-lg-1 d-flex flex-column align-items-center">
                 <li class="font-weight">
                     Assistenza
                 </li>
@@ -29,7 +29,7 @@
                 </li>
             </ul>
 
-            <ul class="col-12 col-md-3  mb-lg-1 d-flex flex-column align-items-center">
+            <ul class="col-12 col-md-3 text-center m-bottom mb-lg-1 d-flex flex-column align-items-center">
 
                 <li class="font-weight">
                     Ospitare
@@ -51,7 +51,7 @@
                 </li>
             </ul>
 
-            <ul class="col-12 col-md-3 mb-mb-lg-1 d-flex flex-column align-items-center">
+            <ul class="col-12 col-md-3 text-center m-bottom mb-lg-1 d-flex flex-column align-items-center">
 
                 <li class="font-weight">
                     BoolB&B
@@ -76,7 +76,7 @@
                 </li>
             </ul>
 
-            <ul class="col-12 col-md-3  mb-lg-1 d-flex flex-column align-items-center">
+            <ul class="col-12 col-md-3  text-center m-bottom  mb-lg-1 d-flex flex-column align-items-center">
                 <li class="font-weight">
                     Contatti
                 </li>
@@ -95,7 +95,7 @@
                 <li>
                     Informativa sulla privacy
                 </li>
-               
+
             </ul>
 
 
@@ -206,6 +206,15 @@ background: rgb(144, 190, 171);
     &:active {
         color: #488d7f;
     }
+
 }
+
+    @media screen and (min-width: 100px) and (max-width: 767px){
+        .m-bottom{
+             margin-bottom: 20px;
+        
+    }
+    }
+
 </style>
 
