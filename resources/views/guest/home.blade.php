@@ -8,9 +8,13 @@
 
         {{-- NPM --}}
         {{-- <link rel="stylesheet" type="text/css" href="maps.css"/> --}}
-
+    
+        {{-- Favicon --}}
+        <link rel="shortcut icon" href="{{ asset('home-fav.ico') }}">
+    
         {{-- CDN --}}
         <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.39.0/maps/maps.css'>
+    
         {{-- MOBILE --}}
         {{-- <link rel='stylesheet' type='text/css' href='../assets/ui-library/index.css'/> --}}
 
