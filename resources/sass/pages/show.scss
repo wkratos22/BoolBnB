@@ -21,6 +21,14 @@
     color: #6b6b6b;
   }
 
+  .bg-green{
+    background-color: #19bc9b78;
+  }
+
+  .bg-green-custom{
+    background-color: #19bc9bb6;
+  }
+
   .bg-green-5{
     background-color: #2aab91;
   }
@@ -54,7 +62,14 @@
   }
 
   .b-1{
-    border: 1px solid black;
+    border: 1px solid #6b6b6b;
+}
+
+.b-2{
+    border: 1px solid #6b6b6b0f;
+    background-color: #6b6b6b0f;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .btn-hover:hover{
@@ -74,6 +89,10 @@
     outline: 0;
 }
 
+.w_25{
+    width: 25px;
+}
+
 .redAndBorder{
     color: red;
     border: hidden black;
@@ -81,6 +100,44 @@
 .th {
     font-weight: lighter!important;
 }
+
+.sidenav {
+    width: 100%;
+    height: 30%;
+    // z-index: 1;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 150px;
+    // top: 400px;
+    // right: 10px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 8px;
+    // margin: 20px;
+  }
+
+//   .sidenav div {
+//     padding: 6px 8px 6px 16px;
+//     text-decoration: none;
+//     font-size: 150px;
+//     // color: #2196F3;
+//     display: block;
+//   }
+
+  .sidenav div:hover {
+    color: #064579;
+  }
+
+//   .main {
+//     margin-left: 140px; /* Same width as the sidebar + left position in px */
+//     font-size: 28px; /* Increased text to enable scrolling */
+//     padding: 0px 10px;
+//   }
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
 
 // .modal-header {
 //     display: flex;

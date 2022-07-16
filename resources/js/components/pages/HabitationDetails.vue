@@ -1,4 +1,5 @@
 <template>
+<div>
     <div class="containerDue">
 
         <div class="d-flex justify-content-between">
@@ -12,6 +13,13 @@
                     <h2 class="align-middle">{{habitation.title}}</h2>
                 </div>
 
+                <div class="d-flex mt-24 mb-8">
+                    <span class="align-middle mr-16">
+                        <img src="../../../../public/img/icons8-euro-48.png" width="25px" alt="">
+                    </span>
+                    <span class="text-dark">{{habitation.price}}<span>/notte</span></span>
+                </div>
+
                 <div class="mt-24 mb-8">
                     <router-link :to="{ name: 'advancedSearch' }" class="gray-20 gray-20-hover mr-32 align-middle" role="button" v-for="tag in tags" :key="tag.id">
                         <img :src="'/img/icons/tags/' + tag.icon" class="align-middle mr-16" :alt="'icona di' + tag.label" width="25px">
@@ -21,14 +29,14 @@
 
             </div>
 
-            <div class="align-middle mt-80">
+            <!-- <div class="align-middle mt-80"> -->
                 <!-- Button trigger modal -->
 
-                <a class="gray-20 gray-20-hover mr-32 align-middle" role="button" data-toggle="modal" data-target="#exampleModal">
+                <!-- <a class="gray-20 gray-20-hover mr-32 align-middle" role="button" data-toggle="modal" data-target="#exampleModal">
                     <span class="underline align-middle">Condividi</span>
-                </a>
+                </a> -->
 
-                <!-- Modal -->
+                <!-- Modal
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="containerDue b-1 modal-content d-flex flex-column justify-content-between">
@@ -60,14 +68,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> -->
+            <!-- </div> -->
         </div>
 
 
         <div class="align-middle d-flex b-left-radius b-right-radius">
 
-            <div class="width-50 mb-100 mt-24">
+            <div class="width-50 mt-24">
 
                 <div class="position-relative b-left-radius">
                     <div id="carouselExampleControls" class="carousel slide b-left-radius" data-ride="carousel">
@@ -88,7 +96,7 @@
 
 
                     <!-- LABEL METRI QUADRI -->
-                    <div class="text-center position-absolute habSquare p-1 bg-light rounded">
+                    <div class="text-center position-absolute habSquare p-1 bg-green-custom rounded">
                         <p class="text-dark font-weight-bold">
                             {{habitation.square_meters}} &#13217;
                         </p>
@@ -99,184 +107,261 @@
             </div>
 
             <!-- MAPPA -->
-            <div class="width-50 mb-80 mt-24">
+            <div class="width-50 mt-24">
                 <div class="b-right-radius w-100" id='map'></div>
             </div>
         </div>
 
+        <!-- <div class="b-2 mt-40 mt-80"></div> -->
+    </div>
 
-        <div class="mb-80 p-32 ">
+    <div class="w-100 text-center mb-80 mt-80 bg-green p-40">
+        <h3>
+            Sempre in contatto con ogni singolo Host.
+        </h3>
+    </div>
 
-            <div class="d-flex justify-content-between">
-                <div class="w-50">
-                    <div class="mb-24">
-                        <h2 class="redAndBorder">
-                            Solo Boolbnb ti offre BoolCover
-                        </h2>
+    <div>
+
+        <div class="d-flex containerDue">
+
+            <div class="w-75">
+
+                <div>
+                    <div class="d-flex justify-content-between">
+                        <div class="w-50">
+                            <div class="mb-24">
+                                <h2 class="redAndBorder">
+                                    Solo Boolbnb ti offre BoolCover
+                                </h2>
+                            </div>
+
+                            <h5 class="w-75">
+                                Ogni prenotazione include una protezione gratuita
+                                in caso di cancellazione da parte dell'host, di
+                                inesattezze dell'annuncio e di altri problemi come
+                                le difficoltà in fase di check-in.
+                            </h5>
+                        </div>
+
+                        <table class="table table-borderless table-hover table-responsive-sm table-responsive-md table-responsive-lg w-50">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        <h5>
+                                            Boolbnb
+                                        </h5>
+                                    </th>
+                                    <th>
+                                        <h5>
+                                            Concorrenti
+                                        </h5>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle">
+                                    <td>
+                                        <h5>
+                                            Garanzia di prenotazione
+                                        </h5>
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../../../../public/img/icons8-check-mark-48.png" class="w_25" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../../../../public/img/icons8-close-48.png" class="w_25" alt="">
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>
+                                        <h5>Garanzia di check-in</h5>
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../../../../public/img/icons8-check-mark-48.png" class="w_25" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../../../../public/img/icons8-close-48.png" class="w_25" alt="">
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>
+                                        <h5>Garanzia di conformità</h5>
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../../../../public/img/icons8-check-mark-48.png" class="w_25" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../../../../public/img/icons8-close-48.png" class="w_25" alt="">
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td>
+                                        <h5>Supporto sicurezza H24</h5>
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../../../../public/img/icons8-check-mark-48.png" class="w_25" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../../../../public/img/icons8-close-48.png" class="w_25" alt="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
-                    <h5 class="w-75">
-                        Ogni prenotazione include una protezione gratuita
-                        in caso di cancellazione da parte dell'host, di
-                        inesattezze dell'annuncio e di altri problemi come
-                        le difficoltà in fase di check-in.
-                    </h5>
+                    <div class="d-flex justify-content-center mt-40 mb-80">
+                        <span>
+                            Vantaggi di BoolCover rispetto alle protezioni complete offerte gratuitamente dai nostri concorrenti più diretti.
+                        </span>
+                    </div>
                 </div>
 
-                <table class="table w-50">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>
-                                <h5>
-                                    Boolbnb
-                                </h5>
-                            </th>
-                            <th>
-                                <h5>
-                                    Concorrenti
-                                </h5>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <h5>
-                                    Garanzia di prenotazione
-                                </h5>
-                            </td>
-                            <td>
-                                <img src="../../../../public/img/icons8-check-mark-48.png" alt="">
-                            </td>
-                            <td>
-                                <img src="../../../../public/img/icons8-close-48.png" alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Garanzia di check-in</h5>
-                            </td>
-                            <td>
-                                <img src="../../../../public/img/icons8-check-mark-48.png" alt="">
-                            </td>
-                            <td>
-                                <img src="../../../../public/img/icons8-close-48.png" alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Garanzia di conformità</h5>
-                            </td>
-                            <td>
-                                <img src="../../../../public/img/icons8-check-mark-48.png" alt="">
-                            </td>
-                            <td>
-                                <img src="../../../../public/img/icons8-close-48.png" alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Supporto sicurezza H24</h5>
-                            </td>
-                            <td>
-                                <img src="../../../../public/img/icons8-check-mark-48.png" alt="">
-                            </td>
-                            <td>
-                                <img src="../../../../public/img/icons8-close-48.png" alt="">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-             </div>
-            <div class="d-flex justify-content-center">
-                <span>
-                    Vantaggi di BoolCover rispetto alle protezioni complete offerte gratuitamente dai nostri concorrenti più diretti.
-                </span>
-            </div>
-        </div>
+                <div class="b-2 mt-40 mt-80"></div>
 
-        <div class="mb-80 mb-32 p-32 b-1 b-left-radius-2 b-right-radius-2">
-            <div class="mt-16 b-left-radius-2 b-right-radius-2">
-                <h2 class="align-middle">Descrizione</h2>
-            </div>
-            <div class="mt-16 b-left-radius-2 b-right-radius-2">
-                <p class="text-dark">
-                    {{habitation.description}}
-                </p>
-            </div>
-        </div>
-
-        <div class="mb-80 p-32 b-1 b-left-radius-2 b-right-radius-2 d-flex justify-content-between">
-            <div class="w-50 mb-32">
-                <div class="mt-32">
-                    <div class="mt-16">
-                        <h2 class="align-middle">Prezzo</h2>
+                <div class="mb-40 mt-80 d-flex align-items-center">
+                    <div>
+                        <h3 class="mr-40 mb-16">
+                            Cosa aspetti? Contatta l'Host e prepara la valigia!
+                        </h3>
                     </div>
-                    <div class="mt-16">
+                    <div class="ml-120">
+                        <img src="../../../../public/img/icons8-destra-80.png" alt="">
+                    </div>
+                </div>
+
+                <div class="b-2 mb-40 mt-80"></div>
+
+                <div class="mb-40 mt-80">
+                    <div class="b-left-radius-2 b-right-radius-2">
+                        <h2 class="align-middle">Descrizione</h2>
+                    </div>
+                    <div class="mt-16 b-left-radius-2 b-right-radius-2">
+                        <p class="text-dark">
+                            {{habitation.description}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="b-2 mb-40 mt-80"></div>
+
+                <div class="mb-40 mt-80">
+                    <div class="b-left-radius-2 b-right-radius-2">
+                        <h2 class="align-middle">Caratteristiche</h2>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <span class="text-dark font-weight-bold"> {{habitation.price}} &#8364; <span>/ notte</span></span>
+                            <div class="d-flex mt-40 justify-content-start align-items-center">
+                                <img src="/img/icons/pageShow/people.png" alt="people icon">
+                                <span class="text-dark ml-8"> {{habitation.guests_number}}</span>
+                            </div>
+                            <div class="mt-40 d-flex justify-content-start align-items-center">
+                                <img src="/img/icons/pageShow/room.png" alt="room icon">
+                                <span class="text-dark ml-8"> {{habitation.rooms_number}}</span>
+                            </div>
+                        </div>
+                        <div class="justify-self-center">
+                            <div class="mt-40 d-flex justify-content-start align-items-center">
+                                <img src="/img/icons/pageShow/bed.png" alt="bed icon">
+                                <span class="text-dark ml-8"> {{habitation.beds_number}}</span>
+                            </div>
+                            <div class="mt-40 d-flex justify-content-start align-items-center">
+                                <img src="/img/icons/pageShow/bathroom.png" alt="bathroom icon">
+                                <span class="text-dark ml-8"> {{habitation.bathrooms_number}}</span>
+                            </div>
+                        </div>
+                        <div>
+
                         </div>
                     </div>
                 </div>
-                <div class="mt-32">
-                    <div class="mt-16">
-                        <h2 class="align-middle">Capacità</h2>
+
+                <!-- <div class="mb-40 mt-80 d-flex justify-content-between">
+                    <div class="w-50 mb-32">
+                        <div class="mt-32">
+                            <div class="mt-16">
+                                <h2 class="align-middle">Capacità</h2>
+                            </div>
+                            <div class="d-flex mt-40 justify-content-start align-items-center">
+                                <img src="/img/icons/pageShow/people.png" alt="people icon">
+                                <span class="text-dark ml-8"> {{habitation.guests_number}}</span>
+                            </div>
+                        </div>
+                        <div class="mt-32">
+                            <div class="mt-16">
+                                <h2 class="align-middle">Stanze</h2>
+                            </div>
+                            <div class="mt-40 d-flex justify-content-start align-items-center">
+                                <img src="/img/icons/pageShow/room.png" alt="room icon">
+                                <span class="text-dark ml-8"> {{habitation.rooms_number}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex mt-16 justify-content-start align-items-center">
-                        <img src="/img/icons/pageShow/people.png" alt="people icon">
-                        <span class="text-dark font-weight-bold ml-8"> {{habitation.guests_number}}</span>
+                    <div class="w-50">
+                        <div class="mt-32">
+                            <div class="mt-16">
+                                <h2 class="align-middle">Posti letto</h2>
+                            </div>
+                            <div class="mt-40 d-flex justify-content-start align-items-center">
+                                <img src="/img/icons/pageShow/bed.png" alt="bed icon">
+                                <span class="text-dark ml-8"> {{habitation.beds_number}}</span>
+                            </div>
+                        </div>
+                        <div class="mt-32">
+                            <div class="mt-16">
+                                <h2 class="align-middle">Bagno/i</h2>
+                            </div>
+                            <div class="mt-40 d-flex justify-content-start align-items-center">
+                                <img src="/img/icons/pageShow/bathroom.png" alt="bathroom icon">
+                                <span class="text-dark ml-8"> {{habitation.bathrooms_number}}</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-32">
-                    <div class="mt-16">
-                        <h2 class="align-middle">Stanze</h2>
+                </div> -->
+
+                <div class="b-2 mb-40 mt-80"></div>
+
+                    <div class="mb-40 mt-80">
+                        <div class="mt-16">
+                            <h2 class="align-middle">Cosa troverai</h2>
+                        </div>
+                        <div v-for="service in services" :key="service.id" class="mt-40 d-flex align-items-center">
+                            <img :src="'/img/icons/services/' + service.icon" :alt="'icona di' + service.label" width="25px">
+                            <span class="text-dark ml-8">{{service.label}}</span>
+                        </div>
                     </div>
-                    <div class="mt-16 d-flex justify-content-start align-items-center">
-                        <img src="/img/icons/pageShow/room.png" alt="room icon">
-                        <span class="text-dark font-weight-bold ml-8"> {{habitation.rooms_number}}</span>
-                    </div>
-                </div>
+
+                <div class="b-2 mb-40 mt-80"></div>
+
             </div>
-            <div class="w-50">
-                <div class="mt-32">
-                    <div class="mt-16">
-                        <h2 class="align-middle">Posti letto</h2>
+
+                <!-- <div class="d-flex flex-column">
+                    <div class="align-self-start m-16">
+                        <h3>
+                            Semplice
+                        </h3>
                     </div>
-                    <div class="mt-16 d-flex justify-content-start align-items-center">
-                        <img src="/img/icons/pageShow/bed.png" alt="bed icon">
-                        <span class="text-dark font-weight-bold ml-8"> {{habitation.beds_number}}</span>
+                    <div class="align-self-center m-16">
+                        <h3>
+                            Comodo
+                        </h3>
                     </div>
-                </div>
-                <div class="mt-32">
-                    <div class="mt-16">
-                        <h2 class="align-middle">Bagno/i</h2>
+                    <div class="align-self-end m-16">
+                        <h3>
+                            Divertente
+                        </h3>
                     </div>
-                    <div class="mt-16 d-flex justify-content-start align-items-center">
-                        <img src="/img/icons/pageShow/bathroom.png" alt="bathroom icon">
-                        <span class="text-dark font-weight-bold ml-8"> {{habitation.bathrooms_number}}</span>
-                    </div>
-                </div>
-                <div class="mt-32">
-                    <div class="mt-16">
-                        <h2 class="align-middle">Servizi presenti nella struttura:</h2>
-                    </div>
-                    <div v-for="service in services" :key="service.id" class="mt-16 d-flex align-items-center">
-                        <img :src="'/img/icons/services/' + service.icon" :alt="'icona di' + service.label" width="25px">
-                        <span class="text-dark font-weight-bold ml-8">{{service.label}}</span>
-                    </div>
+                </div> -->
+            <!-- CONTACT FORM -->
+            <div class="sidenav w-25 mb-80 ml-24 mb-32 b-left-radius-2 b-right-radius-2">
+                <div class="mt-16 mb-16 b-left-radius-2 b-right-radius-2">
+                    <ContactForm :userId="habitation.user_id" :habitationId="habitation.id"/>
                 </div>
             </div>
         </div>
-
-        <!-- CONTACT FORM -->
-        <div class="mb-80 mt-32 mb-32 p-32 b-1 b-left-radius-2 b-right-radius-2">
-            <div class="mt-16 mb-16">
-                <ContactForm :userId="habitation.user_id" :habitationId="habitation.id"/>
-            </div>
-        </div>
-
     </div>
+</div>
+
 </template>
 
 <script>
