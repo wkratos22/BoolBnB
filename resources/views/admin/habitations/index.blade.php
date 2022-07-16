@@ -9,7 +9,7 @@
             Ciao <span class="firstLetterUpp">{{Auth::user()->name}}</span>, benvenuto nella tua area personale!
         </h4>
 
-        <a href="{{ route('admin.habitations.create')}}" class="btn btn_outline_green desktopCreate">Crea Annuncio</a>
+        <a href="{{ route('admin.habitations.create')}}" class="btn btn_outline_green shadow-none desktopCreate">Crea Annuncio</a>
     </div>
 
     <div class="container-fluid">

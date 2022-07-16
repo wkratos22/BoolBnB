@@ -51,7 +51,7 @@ export default {
     }
 
     main {
-      padding-top: 13vh;
+      padding-top: 15vh;
     }
 
 </style>
