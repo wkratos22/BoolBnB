@@ -75,11 +75,11 @@
                                 </div>
                                     <div class="modal-body">
                                 </div>
-                                <div class="modal-footer d-flex justify-content-between">
-                                    <a href="{{ route('admin.sponsor', $habitation)}}" class="btn btn-success shadow-none">
+                                <div class="modal-footer d-flex flex-column align-items-start">
+                                    <a href="{{ route('admin.sponsor', $habitation)}}" class="shadow-none">
                                         Sponsorizza
                                     </a>
-                                    <a href="{{ route('admin.habitations.edit', $habitation->id)}}" class="btn btn-secondary shadow-none">
+                                    <a href="{{ route('admin.habitations.edit', $habitation->id)}}" class="shadow-none">
                                         Modifica annuncio
                                     </a>
                                     <form action="{{route('admin.habitations.destroy', $habitation->id)}}" method="post"
@@ -89,7 +89,7 @@
 
                                         @csrf
 
-                                        <button type="submit" class="btn btn-danger shadow-none">
+                                        <button type="submit" class="btn btn-light shadow-none">
                                             Elimina annuncio
                                         </button>
 
