@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container mt-5">
+    <div class="container">
         <h2 class="text-center">Contact area</h2>
 
         <Alert type="success" :message="this.alertMessage" v-if="sentMessage">
@@ -46,9 +46,11 @@
 
                 <!-- testo che spiega l'errore -->
                 <small class="form-text text-danger">{{errors.message}}</small>
+                <div class="mt-32 mb-32 text-center">
+                    <button class="btn btn_outline_green shadow-none" @click.prevent="sendForm()">Invia</button>
+                </div>
             </div>
 
-            <button class="btn btn-primary" @click.prevent="sendForm()">Invia</button>
         </form>
     </div>
 
@@ -97,7 +99,7 @@ export default {
             this.form.idHabitation = this.habitationId
 
             this.getErrors();
-                
+
             axios.post('http://127.0.0.1:8000/api/messages', this.form)
             .then( (res) => {
 
@@ -105,7 +107,7 @@ export default {
                     this.sentMessage = true
 
                     this.hideAlert();
-                } 
+                }
 
             })
             .then((res) => {
@@ -120,7 +122,7 @@ export default {
         },
 
         getErrors(){
-            
+
             if (!this.form.name) {
                 this.errors.name = "Il nome è obbligatorio!"
             }
@@ -128,7 +130,7 @@ export default {
             if (!this.validEmail(this.form.email)) {
                 this.errors.email = "Inserisci un'email valida!"
             }
-            
+
             if (!this.form.email) {
                 this.errors.email = "L'email è obbligatoria!"
             }
