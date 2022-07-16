@@ -4,7 +4,7 @@
             <div class="trackCust d-inline-flex" ref="track">
                 <div class="cardCust" v-for="habitation in sortedArray" :key="habitation.id">
                     <router-link class="text-dark" :to="{name: 'habitationDetails', params: { slug: habitation.slug} }">
-                        <div class="wrapper w-100 h-100">
+                        <div class="wrapper w-100">
                             <!-- Cover -->
                             <div v-for="(image, i) in habitation.images" :key="image.id">
                                 <img :src="'/storage/' + image.image_url" v-if="i === 0" class="w-100" height="350px"

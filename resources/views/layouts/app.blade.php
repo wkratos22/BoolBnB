@@ -20,7 +20,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg c_navbar bg_navbar">
+        <nav class="navbar navbar-expand-lg c_navbar bg_navbar" style="height: 10vh;">
             <a class="navbar-brand" href="{{url('/')}}">
                 <img class="w-25" src="{{asset('/images/BoolBnb_logo-removebg-preview.png')}}" alt="air-bnb-logo">
             </a>
@@ -108,8 +108,7 @@
         </nav>
         
 
-    <main
-        class="{{Request::route()->getName() == 'login' || Request::route()->getName() == 'register' || Request::route()->getName() == 'admin.sponsor' || Request::route()->getName() == 'admin.pay' ? 'bg_gradient h-100' : ''}}">
+    <main class="{{Request::route()->getName() == 'login' || Request::route()->getName() == 'register' || Request::route()->getName() == 'admin.sponsor' || Request::route()->getName() == 'admin.pay' ? 'bg_gradient h-100' : ''}}">
 
         @yield('content')
 
