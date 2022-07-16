@@ -1,41 +1,68 @@
 <template>
-  <header class="fixed-top scrollTop">
-
-    <nav class="navbar navbar-expand-lg align-items-lg-center navbar-dark" :class=" { 'onScroll' :
+  <header class="fixed-top scrollTop container-fluid">
+    <div class="row">
+      <nav class="navbar navbar-expand-lg align-items-lg-center navbar-dark" :class=" { 'onScroll' :
       !view.topOfPage}">
 
-      <!-- Home -->
-      <router-link class="navbar-brand m-1" :to="{ name: 'home' }">
-        <img class="w-50" src="/images/logo_header.png" alt="">
-      </router-link>
+        <!-- Home -->
 
-      <!-- Button menu mobile -->
-      <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <router-link class="navbar-brand m-1 col-2 " :to="{ name: 'home' }">
+          <img class="w-50" src="/images/logo_header.png" alt="">
+        </router-link>
 
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
+        <!-- Button menu mobile -->
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="col-3"></div>
+        <div v-if="($route.path == '/dashboard')" class="collapse navbar-collapse justify-content-center col-2"
+          id="navbarNav">
+          <ul class="">
 
-          <li class="nav-item">
-            <router-link class="nav-link btn  m-1 font-size-1" :class="($route.path == '/') ? 'text-white btn1' : 'text-dark btn2'"
-              :to="{ name: 'dashboard' }">Annunci</router-link>
-          </li>
+            <li class="nav-item">
+              <router-link class="nav-link btn  m-1 font-size-1 btn-annunci text-dark btn2"
+                :to="{ name: 'advancedSearch' }">Ricerca Avanzata
+              </router-link>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link m-1 btn font-size-1" :class="($route.path == '/') ? 'text-white btn1' : 'text-dark btn2'"
-              href="/login">Passa alla modalità host</a>
-          </li>
+          </ul>
+        </div>
+        <div v-else class="collapse navbar-collapse justify-content-center col-2" id="navbarNav">
+          <ul class="">
 
-          <li class="nav-item">
-            <a class="nav-link m-1 btn font-size-1" :class="($route.path == '/') ? 'text-white btn1' : 'text-dark btn2'"
-              href="/register">Registrati</a>
-          </li>
+            <li class="nav-item" :class="($route.path == '/dashboard') ? 'd-none' : ''">
+              <router-link class="nav-link btn  m-1 font-size-1 btn-annunci "
+                :class="($route.path == '/') ? 'text-white btn1' : 'text-dark btn2'" :to="{ name: 'dashboard' }">Esplora
+              </router-link>
+            </li>
 
-        </ul>
-      </div>
-    </nav>
+          </ul>
+        </div>
+
+
+
+
+        <div class="collapse navbar-collapse justify-content-end col-5" id="navbarNav">
+          <ul class="navbar-nav">
+
+
+
+            <li class="nav-item">
+              <a class="nav-link m-1 btn font-size-1"
+                :class="($route.path == '/') ? 'text-white btn1' : 'text-dark btn2'" href="/login">Passa alla modalità
+                host</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link m-1 btn font-size-1"
+                :class="($route.path == '/') ? 'text-white btn1' : 'text-dark btn2'" href="/register">Registrati</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </div>
 
   </header>
 </template>
@@ -72,7 +99,7 @@ export default {
 
 <style lang="scss" scoped>
 
- 
+  
 
     .font-size-1{
         font-size: 1.2rem;
@@ -102,7 +129,7 @@ export default {
               border-radius: 20px;
             }
            .btn1:hover{
-              background-color: rgba(96, 214, 227, 0.398);
+              background-color: rgba(35, 200, 218, 0.563);
               border: 1px solid white;
               border-radius: 20px;
              
@@ -114,6 +141,13 @@ export default {
               border: 1px solid rgb(0, 0, 0);
               border-radius: 20px;
            }
+
+           .btn-annunci{
+            font-weight: bold;
+           }
+
+    
+          
          }
 
 </style>

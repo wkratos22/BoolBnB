@@ -2650,14 +2650,16 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("header", {
-    staticClass: "fixed-top scrollTop"
+    staticClass: "fixed-top scrollTop container-fluid"
+  }, [_c("div", {
+    staticClass: "row"
   }, [_c("nav", {
     staticClass: "navbar navbar-expand-lg align-items-lg-center navbar-dark",
     "class": {
       onScroll: !_vm.view.topOfPage
     }
   }, [_c("router-link", {
-    staticClass: "navbar-brand m-1",
+    staticClass: "navbar-brand m-1 col-2",
     attrs: {
       to: {
         name: "home"
@@ -2670,7 +2672,39 @@ var render = function render() {
       alt: ""
     }
   })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "collapse navbar-collapse justify-content-end",
+    staticClass: "col-3"
+  }), _vm._v(" "), _vm.$route.path == "/dashboard" ? _c("div", {
+    staticClass: "collapse navbar-collapse justify-content-center col-2",
+    attrs: {
+      id: "navbarNav"
+    }
+  }, [_c("ul", {}, [_c("li", {
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "nav-link btn m-1 font-size-1 btn-annunci text-dark btn2",
+    attrs: {
+      to: {
+        name: "advancedSearch"
+      }
+    }
+  }, [_vm._v("Ricerca Avanzata\n            ")])], 1)])]) : _c("div", {
+    staticClass: "collapse navbar-collapse justify-content-center col-2",
+    attrs: {
+      id: "navbarNav"
+    }
+  }, [_c("ul", {}, [_c("li", {
+    staticClass: "nav-item",
+    "class": _vm.$route.path == "/dashboard" ? "d-none" : ""
+  }, [_c("router-link", {
+    staticClass: "nav-link btn m-1 font-size-1 btn-annunci",
+    "class": _vm.$route.path == "/" ? "text-white btn1" : "text-dark btn2",
+    attrs: {
+      to: {
+        name: "dashboard"
+      }
+    }
+  }, [_vm._v("Esplora\n            ")])], 1)])]), _vm._v(" "), _c("div", {
+    staticClass: "collapse navbar-collapse justify-content-end col-5",
     attrs: {
       id: "navbarNav"
     }
@@ -2678,23 +2712,13 @@ var render = function render() {
     staticClass: "navbar-nav"
   }, [_c("li", {
     staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "nav-link btn m-1 font-size-1",
-    "class": _vm.$route.path == "/" ? "text-white btn1" : "text-dark btn2",
-    attrs: {
-      to: {
-        name: "dashboard"
-      }
-    }
-  }, [_vm._v("Annunci")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link m-1 btn font-size-1",
     "class": _vm.$route.path == "/" ? "text-white btn1" : "text-dark btn2",
     attrs: {
       href: "/login"
     }
-  }, [_vm._v("Passa alla modalità host")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("Passa alla modalità\n              host")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link m-1 btn font-size-1",
@@ -2702,7 +2726,7 @@ var render = function render() {
     attrs: {
       href: "/register"
     }
-  }, [_vm._v("Registrati")])])])])], 1)]);
+  }, [_vm._v("Registrati")])])])])], 1)])]);
 };
 
 var staticRenderFns = [function () {
@@ -3732,7 +3756,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".font-size-1[data-v-1f42fb90] {\n  font-size: 1.2rem;\n}\n.text_gray[data-v-1f42fb90] {\n  color: rgb(190, 182, 182);\n}\nnav[data-v-1f42fb90] {\n  position: fixed;\n  width: 100%;\n  height: 15vh;\n  background-color: transparent;\n  display: flex;\n  align-items: center;\n  transition: all 0.2s ease-in-out;\n}\nnav.onScroll[data-v-1f42fb90] {\n  box-shadow: 0 0 10px #aaa;\n  background: linear-gradient(0deg, rgb(157, 207, 187) 0%, rgb(93, 202, 155) 35%, rgb(73, 200, 145) 50%, rgb(73, 207, 133) 100%);\n}\nnav .btn1[data-v-1f42fb90], nav .btn2[data-v-1f42fb90] {\n  border-radius: 20px;\n}\nnav .btn1[data-v-1f42fb90]:hover {\n  background-color: rgba(96, 214, 227, 0.398);\n  border: 1px solid white;\n  border-radius: 20px;\n}\nnav .btn2[data-v-1f42fb90]:hover {\n  background-color: rgba(96, 214, 227, 0.398);\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 20px;\n}", ""]);
+exports.push([module.i, ".font-size-1[data-v-1f42fb90] {\n  font-size: 1.2rem;\n}\n.text_gray[data-v-1f42fb90] {\n  color: rgb(190, 182, 182);\n}\nnav[data-v-1f42fb90] {\n  position: fixed;\n  width: 100%;\n  height: 15vh;\n  background-color: transparent;\n  display: flex;\n  align-items: center;\n  transition: all 0.2s ease-in-out;\n}\nnav.onScroll[data-v-1f42fb90] {\n  box-shadow: 0 0 10px #aaa;\n  background: linear-gradient(0deg, rgb(157, 207, 187) 0%, rgb(93, 202, 155) 35%, rgb(73, 200, 145) 50%, rgb(73, 207, 133) 100%);\n}\nnav .btn1[data-v-1f42fb90], nav .btn2[data-v-1f42fb90] {\n  border-radius: 20px;\n}\nnav .btn1[data-v-1f42fb90]:hover {\n  background-color: rgba(35, 200, 218, 0.563);\n  border: 1px solid white;\n  border-radius: 20px;\n}\nnav .btn2[data-v-1f42fb90]:hover {\n  background-color: rgba(96, 214, 227, 0.398);\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 20px;\n}\nnav .btn-annunci[data-v-1f42fb90] {\n  font-weight: bold;\n}", ""]);
 
 // exports
 
