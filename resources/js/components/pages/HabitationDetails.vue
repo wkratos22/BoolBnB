@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="containerDue">
+    <div class="containerDue media-screen-justify-center media-screen-flex-column-normal">
 
         <div class="d-flex justify-content-between">
 
@@ -22,8 +22,8 @@
 
                 <div class="mt-24 mb-8">
                     <router-link :to="{ name: 'advancedSearch' }" class="gray-20 gray-20-hover mr-32 align-middle" role="button" v-for="tag in tags" :key="tag.id">
-                        <img :src="'/img/icons/tags/' + tag.icon" class="align-middle mr-16" :alt="'icona di' + tag.label" width="25px">
-                        <span class="underline align-middle">{{tag.label}}</span>
+                        <img :src="'/img/icons/tags/' + tag.icon" class="align-middle mr-16" :alt="'icona di' + tag.label" width="25px"  role="button">
+                        <label  role="button" class="underline align-middle">{{tag.label}}</label>
                     </router-link>
                 </div>
 
@@ -77,7 +77,7 @@
 
             <div class="width-50 mt-24">
 
-                <div class="position-relative b-left-radius">
+                <div class="position-relative b-left-radius media-screen-text-center media-screen-flex-column-normal">
                     <div id="carouselExampleControls" class="carousel slide b-left-radius media-screen-img-right-border" data-ride="carousel">
                         <div class="carousel-inner b-left-radius media-screen-img-right-border">
                             <div class="carousel-item b-left-radius media-screen-img-right-border" v-for="(image, i) in images" :class="{ active: i==0 }" :key="image.id">
@@ -123,20 +123,20 @@
 
     <div>
 
-        <div class="d-flex containerDue">
+        <div class="d-flex containerDue media-screen-flex-column media-screen-d-flex-jus-center">
 
-            <div class="w-75 media-screen-width-50 mb-56">
+            <div class="w-75 media-screen-width-100 mb-56">
 
-                <div class="media-screen-width-50">
+                <div>
                     <div class="d-flex justify-content-between">
-                        <div class="w-50">
+                        <div class="w-50 media-screen-width-100">
                             <div class="mb-24">
                                 <h2 class="greenAndBorder">
                                     Solo Boolbnb ti offre BoolCover
                                 </h2>
                             </div>
 
-                            <h5 class="w-75">
+                            <h5 class="w-75 media-screen-width-100">
                                 Ogni prenotazione include una protezione gratuita
                                 in caso di cancellazione da parte dell'host, di
                                 inesattezze dell'annuncio e di altri problemi come
@@ -210,7 +210,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex justify-content-center mt-40 mb-80">
+                    <div class="d-flex media-screen-width-100 justify-content-center mt-40 mb-80">
                         <span>
                             Vantaggi di BoolCover rispetto alle protezioni complete offerte gratuitamente dai nostri concorrenti più diretti.
                         </span>
@@ -219,9 +219,9 @@
 
                 <div class="b-2 mt-40 mt-80"></div>
 
-                <div class="mb-40 mt-80 d-flex align-items-center media-screen-width-50">
-                    <div class="media-screen-width-50">
-                        <h3 class="mr-40 mb-16 media-screen-width-50">
+                <div class="mb-40 mt-80 d-flex align-items-center media-screen-width-100">
+                    <div class="media-screen-width-100">
+                        <h3 class="mr-40 mb-16 media-screen-width-100">
                             Cosa aspetti? Contatta l'Host e prepara la valigia!
                         </h3>
                     </div>
@@ -232,8 +232,8 @@
 
                 <div class="b-2 mb-40 mt-80"></div>
 
-                <div class="mb-56 mt-80 media-screen-width-50">
-                    <div class="b-left-radius-2 b-right-radius-2 media-screen-width-50">
+                <div class="mb-56 mt-80 media-screen-width-100">
+                    <div class="b-left-radius-2 b-right-radius-2 media-screen-width-100">
                         <h2 class="align-middle">Descrizione</h2>
                     </div>
                     <div class="mt-16 b-left-radius-2 b-right-radius-2">
@@ -245,29 +245,33 @@
 
                 <div class="b-2 mb-40 mt-80"></div>
 
-                <div class="mb-56 mt-80 media-screen-width-50">
-                    <div class="b-left-radius-2 b-right-radius-2">
+                <div class="mb-56 mt-80 media-screen-width-100">
+                    <div class="b-left-radius-2 b-right-radius-2 media-screen-width-100">
                         <h2 class="align-middle">Caratteristiche</h2>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <div class="d-flex mt-40 justify-content-start align-items-center">
-                                <img src="/img/icons/pageShow/people.png" alt="people icon">
-                                <span class="text-dark ml-8"> {{habitation.guests_number}}</span>
+                    <div class="d-flex justify-content-between align-items-center media-screen-d-block">
+                        <div class="">
+                            <div class="d-flex mt-40 justify-content-start align-items-center media-screen-d-block">
+                                <img class="align-middle" src="/img/icons/pageShow/people.png" alt="people icon">
+                                <span class="text-dark ml-8 align-middle"> {{habitation.guests_number}}</span>
+                                <label class="align-middle ml-8">Ospiti</label>
                             </div>
-                            <div class="mt-40 d-flex justify-content-start align-items-center">
-                                <img src="/img/icons/pageShow/room.png" alt="room icon">
-                                <span class="text-dark ml-8"> {{habitation.rooms_number}}</span>
+                            <div class="mt-40 d-flex justify-content-start align-items-center media-screen-d-block">
+                                <img class="align-middle" src="/img/icons/pageShow/room.png" alt="room icon">
+                                <span class="text-dark ml-8 align-middle"> {{habitation.rooms_number}}</span>
+                                <label class="align-middle ml-8">Stanze</label>
                             </div>
                         </div>
                         <div class="justify-self-center">
-                            <div class="mt-40 d-flex justify-content-start align-items-center">
-                                <img src="/img/icons/pageShow/bed.png" alt="bed icon">
-                                <span class="text-dark ml-8"> {{habitation.beds_number}}</span>
+                            <div class="mt-40 d-flex justify-content-start align-items-center media-screen-d-block">
+                                <img class="align-middle" src="/img/icons/pageShow/bed.png" alt="bed icon">
+                                <span class="text-dark ml-8 align-middle"> {{habitation.beds_number}}</span>
+                                <label class="align-middle ml-8">Posti letto</label>
                             </div>
-                            <div class="mt-40 d-flex justify-content-start align-items-center">
-                                <img src="/img/icons/pageShow/bathroom.png" alt="bathroom icon">
-                                <span class="text-dark ml-8"> {{habitation.bathrooms_number}}</span>
+                            <div class="mt-40 d-flex justify-content-start align-items-center media-screen-d-block">
+                                <img class="align-middle" src="/img/icons/pageShow/bathroom.png" alt="bathroom icon">
+                                <span class="text-dark ml-8 align-middle"> {{habitation.bathrooms_number}}</span>
+                                <label class="align-middle ml-8">Bagni</label>
                             </div>
                         </div>
                         <div>
@@ -321,11 +325,11 @@
 
                 <div class="b-2 mb-40 mt-80"></div>
 
-                <div class="mb-56 mt-80 media-screen-width-50">
+                <div class="mb-56 mt-80 media-screen-width-100">
                     <div class="mt-16">
                         <h2 class="align-middle">Cosa troverai</h2>
                     </div>
-                    <div v-for="service in services" :key="service.id" class="mt-40 d-flex align-items-center">
+                    <div v-for="service in services" :key="service.id" class="mt-40 media-screen-justify-center d-flex align-items-center">
                         <img :src="'/img/icons/services/' + service.icon" :alt="'icona di' + service.label" width="25px">
                         <span class="text-dark ml-8">{{service.label}}</span>
                     </div>
@@ -336,7 +340,7 @@
             </div>
 
             <!-- CONTACT FORM -->
-            <div class="sidenav w-25 media-screen-width-50 mb-80 ml-24 mb-32 b-left-radius-2 b-right-radius-2">
+            <div class="sidenav media-screen-pos-static media-screen-justify-center media-screen-width-75 w-25 media-screen-width-100-375 media-screen-width-100 mb-80 ml-24 mb-32 b-left-radius-2 b-right-radius-2">
                 <div class="mt-16 mb-16 b-left-radius-2 b-right-radius-2">
                     <ContactForm :userId="habitation.user_id" :habitationId="habitation.id"/>
                 </div>
@@ -460,8 +464,6 @@ import ContactForm from '../includes/ContactForm.vue';
 
 <style lang="scss" scoped>
 
-
-@media screen and (min-width: 821px) {
     .firstCapitalize::first-letter {
         text-transform: uppercase;
     }
@@ -471,57 +473,13 @@ import ContactForm from '../includes/ContactForm.vue';
         right: 1em;
     }
 
-    #map,
-    .hab-img {
-        height: 60vh;
-    }
-        .width-50 {
-            width: 50%;
-        }
-}
-@media screen and (min-width: 601px) and (max-width: 820px) {
-    .firstCapitalize::first-letter {
-        text-transform: uppercase;
-    }
+    // #map,
+    // .hab-img {
+    //     height: 60vh;
+    // }
 
-    .habSquare {
-        top: 1em;
-        right: 1em;
-    }
-
-    #map,
-    .hab-img {
-        height: 30vh;
-        display: block;
-    }
-
-    .width-50{
+    .width-50 {
         width: 50%;
     }
-}
-
-@media screen and (min-width: 200px) and (max-width: 600px) {
-    .firstCapitalize::first-letter {
-        text-transform: uppercase;
-    }
-
-    .habSquare {
-        top: 1em;
-        right: 1em;
-    }
-
-    #map,
-    .hab-img {
-        height: 30vh;
-        width: 100%;
-
-
-    }
-    .display-flex-column{
-        display: flex;
-        flex-direction: column;
-    }
-
-}
 
 </style>
