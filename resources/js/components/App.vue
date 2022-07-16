@@ -12,6 +12,8 @@
           </div>
       </main>
 
+      <Banner/>
+
       <Footer />
 
     </div>
@@ -21,7 +23,8 @@
 <script>
 import Header from "./Header.vue";
 import Footer from "./Footer.vue";
-import HabitationsSponsored from './habitations/HabitationsSponsored.vue'
+import HabitationsSponsored from './habitations/HabitationsSponsored.vue';
+import Banner from './includes/Banner.vue';
 
 
 export default {
@@ -31,6 +34,7 @@ export default {
     Header,
     Footer,
     HabitationsSponsored,
+    Banner
   },
 
 }
