@@ -1,0 +1,46 @@
+
+    .footer li{
+        list-style: none;
+        padding: 10px;
+    }
+
+    .footer li:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .font-weight{
+        font-weight: bold;
+    }
+
+    .bg-color{
+        background-color: #4da492;
+    }
+
+    .icon{
+        width: 30px;
+
+        &:hover {
+            cursor: pointer;
+            transition: 0.3s;
+            opacity: 0.6;
+        }
+    }
+
+    .scrollTop {
+        right: 1em;
+        bottom: 5em;
+    }
+
+
+    .btn-outline-secondary{
+        border-radius: 50%;
+
+        border: 2px solid;
+        width: 50px;
+        height: 50px;
+
+        &:active {
+            color: #488d7f;
+        }
+    }

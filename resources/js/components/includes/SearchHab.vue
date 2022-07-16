@@ -65,9 +65,12 @@
 </template>
 
 <script>
+
+
   export default {
 
     name: 'SearchHab',
+
 
     data() {
           return {
