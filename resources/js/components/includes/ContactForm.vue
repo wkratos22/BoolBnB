@@ -46,9 +46,11 @@
 
                 <!-- testo che spiega l'errore -->
                 <small class="form-text text-danger">{{errors.message}}</small>
+                <div class="mt-32 mb-32 text-center">
+                    <button class="btn btn_outline_green shadow-none" @click.prevent="sendForm()">Invia</button>
+                </div>
             </div>
 
-            <button class="btn btn-primary" @click.prevent="sendForm()">Invia</button>
         </form>
     </div>
 

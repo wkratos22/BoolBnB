@@ -73,22 +73,22 @@
         </div>
 
 
-        <div class="align-middle d-flex b-left-radius b-right-radius">
+        <div class="align-middle d-flex b-left-radius b-right-radius media-screen-img-right-border">
 
             <div class="width-50 mt-24">
 
                 <div class="position-relative b-left-radius">
-                    <div id="carouselExampleControls" class="carousel slide b-left-radius" data-ride="carousel">
-                        <div class="carousel-inner b-left-radius">
-                            <div class="carousel-item b-left-radius" v-for="(image, i) in images" :class="{ active: i==0 }" :key="image.id">
-                                <img :src="'/storage/' + image.image_url" class="b-left-radius w-100 hab-img" :alt="'immagine di' + habitation.title">
+                    <div id="carouselExampleControls" class="carousel slide b-left-radius media-screen-img-right-border" data-ride="carousel">
+                        <div class="carousel-inner b-left-radius media-screen-img-right-border">
+                            <div class="carousel-item b-left-radius media-screen-img-right-border" v-for="(image, i) in images" :class="{ active: i==0 }" :key="image.id">
+                                <img :src="'/storage/' + image.image_url" class="b-left-radius media-screen-img-right-border w-100 hab-img" :alt="'immagine di' + habitation.title">
                             </div>
                         </div>
                         <a class="carousel-control-prev b-left-radius" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon b-left-radius" aria-hidden="true"></span>
-                            <span class="sr-only b-left-radius">Previous</span>
+                            <span class="carousel-control-prev-icon b-left-radius media-screen-img-right-border" aria-hidden="true"></span>
+                            <span class="sr-only b-left-radius media-screen-img-right-border">Previous</span>
                         </a>
-                        <a class="carousel-control-next b-left-radius" href="#carouselExampleControls" role="button" data-slide="next">
+                        <a class="carousel-control-next b-left-radius media-screen-img-right-border" href="#carouselExampleControls" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -116,7 +116,7 @@
     </div>
 
     <div class="w-100 text-center mb-80 mt-80 bg-green p-40">
-        <h3>
+        <h3 class="text-white">
             Sempre in contatto con ogni singolo Host.
         </h3>
     </div>
@@ -125,13 +125,13 @@
 
         <div class="d-flex containerDue">
 
-            <div class="w-75 mb-56">
+            <div class="w-75 media-screen-width-50 mb-56">
 
-                <div>
+                <div class="media-screen-width-50">
                     <div class="d-flex justify-content-between">
                         <div class="w-50">
                             <div class="mb-24">
-                                <h2 class="redAndBorder">
+                                <h2 class="greenAndBorder">
                                     Solo Boolbnb ti offre BoolCover
                                 </h2>
                             </div>
@@ -144,7 +144,7 @@
                             </h5>
                         </div>
 
-                        <table class="table table-borderless table-hover table-responsive-sm table-responsive-md table-responsive-lg w-50">
+                        <table class="table media-screen-d-none table-borderless table-hover table-responsive-sm table-responsive-md table-responsive-lg w-50">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -219,21 +219,21 @@
 
                 <div class="b-2 mt-40 mt-80"></div>
 
-                <div class="mb-40 mt-80 d-flex align-items-center">
-                    <div>
-                        <h3 class="mr-40 mb-16">
+                <div class="mb-40 mt-80 d-flex align-items-center media-screen-width-50">
+                    <div class="media-screen-width-50">
+                        <h3 class="mr-40 mb-16 media-screen-width-50">
                             Cosa aspetti? Contatta l'Host e prepara la valigia!
                         </h3>
                     </div>
-                    <div class="ml-120">
+                    <div class="ml-120 media-screen-d-none">
                         <img src="../../../../public/img/icons8-destra-80.png" alt="">
                     </div>
                 </div>
 
                 <div class="b-2 mb-40 mt-80"></div>
 
-                <div class="mb-56 mt-80">
-                    <div class="b-left-radius-2 b-right-radius-2">
+                <div class="mb-56 mt-80 media-screen-width-50">
+                    <div class="b-left-radius-2 b-right-radius-2 media-screen-width-50">
                         <h2 class="align-middle">Descrizione</h2>
                     </div>
                     <div class="mt-16 b-left-radius-2 b-right-radius-2">
@@ -245,7 +245,7 @@
 
                 <div class="b-2 mb-40 mt-80"></div>
 
-                <div class="mb-56 mt-80">
+                <div class="mb-56 mt-80 media-screen-width-50">
                     <div class="b-left-radius-2 b-right-radius-2">
                         <h2 class="align-middle">Caratteristiche</h2>
                     </div>
@@ -321,7 +321,7 @@
 
                 <div class="b-2 mb-40 mt-80"></div>
 
-                <div class="mb-56 mt-80">
+                <div class="mb-56 mt-80 media-screen-width-50">
                     <div class="mt-16">
                         <h2 class="align-middle">Cosa troverai</h2>
                     </div>
@@ -336,7 +336,7 @@
             </div>
 
             <!-- CONTACT FORM -->
-            <div class="sidenav w-25 mb-80 ml-24 mb-32 b-left-radius-2 b-right-radius-2">
+            <div class="sidenav w-25 media-screen-width-50 mb-80 ml-24 mb-32 b-left-radius-2 b-right-radius-2">
                 <div class="mt-16 mb-16 b-left-radius-2 b-right-radius-2">
                     <ContactForm :userId="habitation.user_id" :habitationId="habitation.id"/>
                 </div>
