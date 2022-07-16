@@ -125,7 +125,7 @@
 
         <div class="d-flex containerDue">
 
-            <div class="w-75">
+            <div class="w-75 mb-56">
 
                 <div>
                     <div class="d-flex justify-content-between">
@@ -232,7 +232,7 @@
 
                 <div class="b-2 mb-40 mt-80"></div>
 
-                <div class="mb-40 mt-80">
+                <div class="mb-56 mt-80">
                     <div class="b-left-radius-2 b-right-radius-2">
                         <h2 class="align-middle">Descrizione</h2>
                     </div>
@@ -245,7 +245,7 @@
 
                 <div class="b-2 mb-40 mt-80"></div>
 
-                <div class="mb-40 mt-80">
+                <div class="mb-56 mt-80">
                     <div class="b-left-radius-2 b-right-radius-2">
                         <h2 class="align-middle">Caratteristiche</h2>
                     </div>
@@ -321,37 +321,20 @@
 
                 <div class="b-2 mb-40 mt-80"></div>
 
-                    <div class="mb-40 mt-80">
-                        <div class="mt-16">
-                            <h2 class="align-middle">Cosa troverai</h2>
-                        </div>
-                        <div v-for="service in services" :key="service.id" class="mt-40 d-flex align-items-center">
-                            <img :src="'/img/icons/services/' + service.icon" :alt="'icona di' + service.label" width="25px">
-                            <span class="text-dark ml-8">{{service.label}}</span>
-                        </div>
+                <div class="mb-56 mt-80">
+                    <div class="mt-16">
+                        <h2 class="align-middle">Cosa troverai</h2>
                     </div>
+                    <div v-for="service in services" :key="service.id" class="mt-40 d-flex align-items-center">
+                        <img :src="'/img/icons/services/' + service.icon" :alt="'icona di' + service.label" width="25px">
+                        <span class="text-dark ml-8">{{service.label}}</span>
+                    </div>
+                </div>
 
-                <div class="b-2 mb-40 mt-80"></div>
+                <!-- <div class="b-2 mb-40 mt-80"></div> -->
 
             </div>
 
-                <!-- <div class="d-flex flex-column">
-                    <div class="align-self-start m-16">
-                        <h3>
-                            Semplice
-                        </h3>
-                    </div>
-                    <div class="align-self-center m-16">
-                        <h3>
-                            Comodo
-                        </h3>
-                    </div>
-                    <div class="align-self-end m-16">
-                        <h3>
-                            Divertente
-                        </h3>
-                    </div>
-                </div> -->
             <!-- CONTACT FORM -->
             <div class="sidenav w-25 mb-80 ml-24 mb-32 b-left-radius-2 b-right-radius-2">
                 <div class="mt-16 mb-16 b-left-radius-2 b-right-radius-2">
