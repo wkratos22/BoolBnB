@@ -41,7 +41,7 @@ export default {
 <style lang="scss">
 
     .bg_img_casual {
-      background-image: url('/images/background.jpg');
+      background-image: url('/images/new-bg.jpg');
       background-position: center top;
       background-size: contain;
       background-repeat: no-repeat;

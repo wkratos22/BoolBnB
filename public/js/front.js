@@ -3701,7 +3701,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".bg_img_casual {\n  background-image: url(\"/images/background.jpg\");\n  background-position: center top;\n  background-size: contain;\n  background-repeat: no-repeat;\n}\n.bg_white {\n  background-color: blue;\n}\nmain {\n  padding-top: 13vh;\n}", ""]);
+exports.push([module.i, ".bg_img_casual {\n  background-image: url(\"/images/new-bg.jpg\");\n  background-position: center top;\n  background-size: contain;\n  background-repeat: no-repeat;\n}\n.bg_white {\n  background-color: blue;\n}\nmain {\n  padding-top: 13vh;\n}", ""]);
 
 // exports
 
