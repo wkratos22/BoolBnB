@@ -1,21 +1,20 @@
 <template>
 
-    <div class="container">
+    <div>
         <h2 class="text-center">Contact area</h2>
 
         <Alert type="success" :message="this.alertMessage" v-if="sentMessage">
 
         </Alert>
 
-        <form enctype="multipart/form-data">
+        <form class="w-100" enctype="multipart/form-data">
 
-            <small class="form-text text-muted mb-3">* Campo obbligatorio</small>
             <div class="form-group">
                 <label for="name">* Nome</label>
 
                 <input
                     type="text"
-                    class="form-control"
+                    class="form-control shadow-none"
                     id="name"
                     placeholder="Inserisci il tuo nome"
                     v-model="form.name"
@@ -30,7 +29,7 @@
 
                     <input
                         type="email"
-                        class="form-control"
+                        class="form-control shadow-none"
                         id="email"
                         placeholder="Enter email"
                         v-model="form.email"
@@ -42,7 +41,7 @@
 
             <div class="form-group">
                 <label for="message">* Messaggio</label>
-                <textarea class="form-control" v-model="form.message" id="message" rows="3" required></textarea>
+                <textarea class="form-control shadow-none" v-model="form.message" id="message" rows="3" required></textarea>
 
                 <!-- testo che spiega l'errore -->
                 <small class="form-text text-danger">{{errors.message}}</small>

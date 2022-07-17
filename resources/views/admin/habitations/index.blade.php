@@ -37,9 +37,10 @@
         </div>
     </div>
 
+    @include('includes.messages.success')
+
     <div class="container py-4">
 
-        @include('includes.messages.success')
     
         <div class="text-center mobileCreate mb-5">
             <a href="{{ route('admin.habitations.create')}}" class="btn btn_outline_green">Crea Annuncio</a>

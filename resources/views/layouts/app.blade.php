@@ -111,7 +111,7 @@
         </nav>
         
 
-    <main class="{{Request::route()->getName() == 'login' || Request::route()->getName() == 'register' || Request::route()->getName() == 'admin.sponsor' || Request::route()->getName() == 'admin.pay' ? 'bg_gradient h-100' : ''}}">
+    <main class="{{Request::route()->getName() == 'login' || Request::route()->getName() == 'register' || Request::route()->getName() == 'admin.sponsor' || Request::route()->getName() == 'admin.pay' ? 'bg_gradient h_90_vh' : ''}}">
 
         @yield('content')
 
