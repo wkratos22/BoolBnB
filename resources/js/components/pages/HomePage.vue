@@ -53,7 +53,7 @@ export default {
 
  @media screen and (min-width: 821px) {
      .text_gray {
-         color: rgb(190, 182, 182);
+         color: #ffffff;
      }
  }
  @media screen and (min-width: 601px) {
@@ -61,7 +61,7 @@ export default {
          font-size: 2.5rem;
      }
      .text_gray {
-         color: rgb(190, 182, 182);
+         color: #ffffff;
      }
  }
  @media screen and (min-width: 200px) and (max-width: 600px) {
@@ -69,7 +69,7 @@ export default {
          font-size: 1.5rem;
      }
      .text_gray {
-         color: rgb(190, 182, 182);
+         color: #ffffff;
      }
  }
 </style>
