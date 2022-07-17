@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg c_navbar bg_navbar" style="height: 10vh;">
             <a class="navbar-brand" href="{{url('/')}}">
-                <img class="w-25" src="{{asset('/images/BoolBnb_logo-removebg-preview.png')}}" alt="air-bnb-logo">
+                <img class="w-25" src="{{asset('/images/Boolbnb (2).png')}}" alt="air-bnb-logo">
             </a>
 
             <button class="navbar-toggler bg_navbar" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

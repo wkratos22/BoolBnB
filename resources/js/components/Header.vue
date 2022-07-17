@@ -11,7 +11,7 @@
           class="navbar-brand m-1 col-lg-2 col-md-2 col-sm-2 col-xs-2"
           :to="{ name: 'home' }"
         >
-          <img class="w-50 logo" src="/images/logo_header.png" alt="" />
+          <img class="w-img logo" src="/images/BoolBnb (2).png" alt="" />
         </router-link>
 
         <!-- Button menu mobile -->
@@ -127,6 +127,7 @@
 export default {
   name: "Header",
 
+  // el: "#navbar",
   data() {
     return {
       view: {
@@ -157,6 +158,9 @@ export default {
 .text_gray {
   color: rgb(190, 182, 182);
 }
+.w-img{
+  width: 55%;
+}
 
 nav {
   position: fixed;
@@ -166,16 +170,11 @@ nav {
   display: flex;
   align-items: center;
   transition: all 0.2s ease-in-out;
-  z-index: 1030;
 
   &.onScroll {
     box-shadow: 0 0 10px #aaa;
     background: linear-gradient(
-      0deg,
-      rgb(157, 207, 187) 0%,
-      rgb(93, 202, 155) 35%,
-      rgb(73, 200, 145) 50%,
-      rgb(73, 207, 133) 100%
+      0deg, rgba(65,154,136,1) 0%, rgba(20,102,83,1) 100%
     );
   }
 
