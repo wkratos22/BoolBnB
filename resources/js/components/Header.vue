@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed-top scrollTop container-fluid">
+  <header class="scrollTop container-fluid">
     <div class="row">
       <nav
         class="navbar navbar-expand align-items-center"
@@ -127,7 +127,6 @@
 export default {
   name: "Header",
 
-  // el: "#navbar",
   data() {
     return {
       view: {
@@ -167,6 +166,7 @@ nav {
   display: flex;
   align-items: center;
   transition: all 0.2s ease-in-out;
+  z-index: 1030;
 
   &.onScroll {
     box-shadow: 0 0 10px #aaa;

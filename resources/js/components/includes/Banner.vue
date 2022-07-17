@@ -1,10 +1,9 @@
 
-
 <template>
   <div class="containers">
     <div class="box d-flex align-items-center justify-content-around">
         <div class="left d-flex flex-column">
-            <img class="w-50 ml-5" src="../../../../public/img/banner-img/lufthansa.png" alt="">
+            <img class="w-50 ml-5" src="/img/banner-img/lufthansa.png" alt="">
             <h3 class="">Say yes to the world</h3>
         </div>
         <div class="right">
@@ -19,9 +18,6 @@
 <script>
 export default {
     name: 'Banner',
-    data(){
-    },
-   
 }
 </script>
 
