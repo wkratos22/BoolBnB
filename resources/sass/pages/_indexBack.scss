@@ -164,6 +164,11 @@
 
 }
 
+.dropdown-item:active {
+  background-color: #26af94;
+  color: $white !important;
+}
+
 @media screen and (max-width: 730px) {
     .desktopCreate {
         display: none;
