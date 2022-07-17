@@ -14,7 +14,7 @@
                   <h5 class="card-title">Durata: {{$sponsorship->duration}} ore</h5>
                   <h6 class="card-text">Prezzo: {{$sponsorship->price}}€</h6>
                   <div class="pt-4">
-                    <a href="{{ route('admin.pay', [$habitation, $sponsorship])}}" class="btn color_button">Sponsorizza</a> 
+                    <a href="{{ route('admin.pay', [$habitation, $sponsorship])}}" class="btn color_button shadow-none">Scegli</a> 
                   </div>
                   
                 </div>

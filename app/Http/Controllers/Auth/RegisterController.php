@@ -49,12 +49,38 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return Validator::make($data, 
+        [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'date_of_birth' => ['date'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ],
+        [
+            'name.required' => 'Il nome è un campo obbligatorio.',
+            'name.string' => 'Il nome deve essere una stringa.',
+            'name.max' => "Il nome può contenere al massimo 255 caratteri.",
+
+            'surname.required' => 'Il cognome è un campo obbligatorio.',
+            'surname.string' => 'Il cognome deve essere una stringa.',
+            'surname.max' => "Il cognome può contenere al massimo 255 caratteri.",
+            
+            'email.required' => "L' email è un campo obbligatorio.",
+            'email.string' => "L' email deve essere una stringa.",
+            'email.email' => "Inserisci un' email corretta.",
+            'email.max' => "L' email può contenere al massimo 255 caratteri.",
+            'email.unique' => "L' email inserita è già associata ad un account.",
+
+            'date_of_birth.date' => "Inserisci una data corretta come data di nascita.",
+            
+            'password.required' => 'La password è un campo obbligatorio.',
+            'password.string' => 'La password deve essere una stringa.',
+            'password.min' => 'La password deve contenere minimo 8 caratteri.',
+            'password.confirmed' => 'La password non corrisponde a quella inserita, riprova.',
+        ]
+        
+        );
     }
 
     /**

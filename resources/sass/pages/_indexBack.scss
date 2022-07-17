@@ -135,6 +135,35 @@
   }
 }
 
+.pagination {
+  justify-content: center;
+  padding: 30px 0;
+
+  .page-item.active {
+
+    .page-link {
+      background-color: #26af94;
+      border-color: #26af94;
+      color: $white;
+    }
+  }
+
+  .page-item.disabled {
+    display: none;
+  }
+
+  .page-link {
+    color: #26af94;
+    box-shadow: none;
+
+    &:hover {
+      background-color: $white;
+      opacity: 0.8;
+    }
+  }
+
+}
+
 @media screen and (max-width: 730px) {
     .desktopCreate {
         display: none;

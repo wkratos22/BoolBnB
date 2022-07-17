@@ -4,16 +4,19 @@
 // }
 .color_button{
     background-color: #409584;
+    font-size: 1.2em;
+    color: $white;
 }
 
 .color_button:hover{
 background-color: #26af94;
+color: $white;
 }
 
 .c_border{
     border-color: #409584;
 }
-.width{
+.check-responsive {
     width: 15%;
 }
 .c_grey{
@@ -46,14 +49,67 @@ background-color: #26af94;
 //media-query
 
 @media screen and (max-width:1200px) {
-    .width{
+    .check-responsive {
         width: 25%;
     }
 }
 
 @media screen and (max-width:800px) {
-    .width{
+    .check-responsive {
         width: 33%;
     }
+}
+
+@media screen and (max-width:640px) {
+    .check-responsive {
+        width: 50%;
+    }
+
+    .form-check {
+        height: 250px;
+        overflow-y: auto;
+    }
+
+    .form-check::-webkit-scrollbar,
+    .form-check::-webkit-scrollbar {
+        width: 0.4em;
+    }
+
+    .form-check::-webkit-scrollbar-track,
+    .form-check::-webkit-scrollbar-track {
+
+        box-shadow: inset 0 0 2px grey;
+        border-radius: 1em;
+    }
+    
+    .form-check::-webkit-scrollbar-thumb,
+    .form-check::-webkit-scrollbar-thumb {
+        background: #26af94; 
+        border-radius: 1em;
+    }
+
+    .form-check::-webkit-scrollbar-thumb:hover,
+    .form-check::-webkit-scrollbar-thumb:hover {
+        background: #409584; 
+    }
+}
+
+@media screen and (max-width:440px) {
+    // .check-responsive {
+    //     width: 50%;
+    // }
+    form{
+        h4 {
+            font-size: 1.2em;
+        }
+    }
+
+    .form-check {
+
+        label {
+            font-size: 0.8em;
+        }
+    }
+
 }
 
