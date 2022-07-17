@@ -193,7 +193,7 @@
         </div>
 
 
-        <div class="text-center pt-4">
+        <div class="text-center py-5">
             <button class="btn color_button w-25 b-rounded-3 p-2 shadow-none" style="margin: 10px auto;" type="submit"
                 src="{{route('admin.habitations.store')}}">
                 Crea

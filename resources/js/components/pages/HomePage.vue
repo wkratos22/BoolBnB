@@ -9,6 +9,8 @@
         </div>
 
         <HomeSearch @locationData="getLocationData" />
+        
+
 
     </div>
 </template>
@@ -18,10 +20,12 @@
 <script>
 import HomeSearch from "../includes/HomeSearch.vue";
 
+
 export default {
     name: 'HomePage',
      components: {
         HomeSearch,
+       
     },
     data(){
         return {

@@ -36,19 +36,23 @@
 
         </div>
 
+        <Banner/>
+
     </div>
 </template>
 
 <script>
 import HabitationsSponsored from "./HabitationsSponsored.vue";
 import EasyBooking from "../includes/EasyBooking.vue";
+import Banner from "../includes/Banner.vue";
 
 export default {
     name: 'Dashboard',
 
     components: {
         HabitationsSponsored,
-        EasyBooking
+        EasyBooking, 
+        Banner
     },
 
     data(){
