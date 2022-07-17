@@ -4,7 +4,7 @@
 
 @include('includes.messages.success')
 
-<div class="d-flex flex-column containerDue" style="min-height: 50vh">
+<div class="d-flex flex-column containerDue">
 
     <h2 class="mt-24 mb-24">{{$habitation->title}}</h2>
 
@@ -57,8 +57,8 @@
                 <td>
 
                     <!-- Modal -->
-                    <div class="modal-custom fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog-custom" role="document">
+                    <div class="modal modal-custom fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-custom" role="document">
                             <div class="modal-content-custom">
                                 <div class="modal-header text-white bg-green">
                                     {{-- <h5 class="modal-title" id="exampleModalLabel">Impostazioni</h5> --}}
@@ -101,11 +101,11 @@
             <h2 class="mt-24 mb-24 width-media-query media-query-self-start">Descrizione</h2>
             <p class="card-text width-media-query media-query-self-start">{{$habitation->description}}</p>
 
-            <div class="my-5 width-media-query media-query-self-start">
+            <div class="mt-32 width-media-query media-query-self-start">
                 <h2 class="mt-24 mb-24 width-media-query media-query-self-start">Caratteristiche ambiente</h2>
                 <div class="d-flex width-media-query flex-wrap align-items-center media-query-self-start">
                     @forelse ($habitation->tags as $tag)
-                            <div class="d-flex justify-content-center align-items-center mr-32">
+                            <div class="d-flex justify-content-center align-items-center mr-32 mb-32">
                                 <img src="{{asset('img/icons/tags/'. $tag->icon)}}" height="24px" width="24px" class="mr-2"  alt="">
                                 <span>{{$tag->label}}</span>
                             </div>
@@ -119,7 +119,7 @@
                 <h2 class="mt-24 mb-24 width-media-query media-query-self-start">Servizi disponibili</h2>
                 <div class="d-flex  width-media-query flex-wrap media-query-self-start align-items-center">
                     @forelse ($habitation->services as $service)
-                        <div class="d-flex align-items-center mr-32 media-query-self-start">
+                        <div class="d-flex align-items-center mr-32 mb-32 media-query-self-start">
                             <img src="{{asset('img/icons/services/'. $service->icon)}}" class="mr-2 media-query-self-start"  alt="">
                             <span class="media-query-self-start">{{$service->label}}</span>
                         </div>
@@ -131,7 +131,7 @@
         </div>
 
         <div class="img-carousel-w-h">
-            <h2 class="mt-24 mb-24">Immagini</h2>
+            <h2 class="mt-24 mb-24 media-query-text-left">Immagini</h2>
             @if ($habitation->images->count() > 0)
                 <div id="showCarousel" class="carousel slide img-carousel-w-h" data-ride="carousel">
                     <div class="carousel-inner">
@@ -162,7 +162,7 @@
 
 </div>
 
-<div class="mt-110 mb-110 containerDue margin-media-query-mail">
+<div class="containerDue margin-media-query-mail">
 
     <h2 class="mt-24 mb-24">Posta</h2>
 
