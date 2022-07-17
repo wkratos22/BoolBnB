@@ -42,7 +42,7 @@
         >
           <ul class="">
             <li
-              class="nav-item"
+              class="nav-item justify-content-center d-flex"
               :class="$route.path == '/dashboard' ? 'd-none' : ''"
             >
               <router-link
