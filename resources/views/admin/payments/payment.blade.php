@@ -4,8 +4,14 @@
 
     @include('includes.validation.errors')
     
-    <div class="container d-flex align-items-center justify-content-center" style="height: 85vh">
-        <div class="row justify-content-center align-items-center">
+    <div id="loaderWrapper">
+        <div class="bg-light d-flex justify-content-center align-items-center" style="height: 90vh;">
+            <img src="/img/loader-house.png" alt="house loader">
+        </div>
+    </div>
+
+    <div class="container d-flex align-items-start justify-content-center h-100">
+        <div class="row justify-content-center align-items-center mt-5">
 
             <form method="POST" id="payment-form" action="{{route('admin.pay.checkout', [$habitation, $sponsorship])}}">
                 @csrf
@@ -37,6 +43,7 @@
 
     <script>
 
+
         // salvare il form in una variabile
         var form = document.querySelector('#payment-form');
 
@@ -58,9 +65,12 @@
             } 
             let btnPayment = document.getElementById('sendPayment');
             let amountPayment = document.getElementById('amountWrapper');
+            // loader
+            let loader = document.getElementById('loaderWrapper')
 
             btnPayment.classList.remove('d-none')
             amountPayment.classList.remove('d-none')
+            loader.classList.add('d-none')
 
             form.addEventListener( 'submit', function(event){                
                 event.preventDefault();

@@ -80,9 +80,10 @@
             </div>
         </div>
 
+        <Loader v-if="loading" />
 
         <!-- NOTE LISTA DI ANNUNCI TROVATI -->
-        <div class="container-fluid grid_responsive_index" :class="(habitations.length > 0) ? 'py-5' : ''">
+        <div v-else class="container-fluid grid_responsive_index" :class="(habitations.length > 0) ? 'py-5' : ''">
             
             <div class="hab-card cardCust" v-for="habitation in habitations" :key="habitation.id">
                 <router-link class="text-dark" :to="{name: 'habitationDetails', params: { slug: habitation.slug} }">
@@ -138,14 +139,22 @@
 
 <script>
     import axios from 'axios';
+    import Loader from '../includes/Loader.vue'
+
     export default {
         name: "AdvancedSearch",
+
         props: {
             filteredHabs: String,
         },
+
+        components: {
+            Loader,
+        },
+
         data() {
             return {
-                active: false,
+                loading: false,
                 habitations: [],
                 services: [],
                 api_key: "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl",
@@ -172,9 +181,6 @@
             
         },
         methods: {
-            getShow() {
-                this.active = !this.active
-            },
             getHomeSearch(location, radius, minBeds, minRooms, services) {
                 let destinationParam = location;
                 if (destinationParam == "") {
@@ -205,12 +211,17 @@
                 }
             },
             sendQuery(latitudine, longitudine, radius, minBeds, minRooms, services) {
+
+                this.loading = true;
+
                 axios.get('http://127.0.0.1:8000/api/search?lat=' + latitudine + '&lon=' + longitudine +
                         '&radius=' + radius + '&minBeds=' + minBeds + '&minRooms=' + minRooms + '&services=' +
                         services)
                     .then((res) => {
                         this.habitations = res.data.filteredHab
                         console.log(this.habitations)
+
+                        this.loading = false;
                     })
                     .catch(err => console.error('Impossibile caricare i dati', err))
             },

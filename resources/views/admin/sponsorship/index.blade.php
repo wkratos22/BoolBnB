@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="container ">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-center h-100">
+<div class="container h-100">
+    <div class="row row-cols-1 row-cols-lg-3 align-items-center h-100">
         @foreach ($sponsorships as $sponsorship)
         <div class="col">
             <div class="card text-center c_border rounded_lg">
