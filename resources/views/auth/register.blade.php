@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container d-flex justify-content-center align-items-start align-items-sm-center my-4 my-sm-0" style="height: 90vh;">
+<div class="container d-flex justify-content-center align-items-start align-items-sm-center my-4 my-sm-0" style="height: 85%">
     <div class="row justify-content-center w-100">
         <div class="card c_border rounded_lg" style="width: 75%; margin: 0 auto;">
             <div class="card-header c_border h5 bg-white rounded_top">{{ __('Registrati') }}</div>

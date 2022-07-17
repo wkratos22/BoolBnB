@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg c_navbar bg_navbar">
             <a class="navbar-brand" href="{{url('/')}}">
-                <img class="w-25" src="{{asset('/images/Boolbnb (2).png')}}" alt="air-bnb-logo">
+                <img  src="{{asset('/images/Boolbnb (2).png')}}" alt="air-bnb-logo" width="100px">
             </a>
 
             <button class="navbar-toggler bg_navbar" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -33,15 +33,17 @@
                 <span class="navbar-toggler-icon img_toggler"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse {{Request::route()->getName() == 'login' || Request::route()->getName() == 'register' ? 'justify-content-end': ''}}" id="navbarSupportedContent">
+                @auth
                 <ul class="navbar-nav m-auto">
-                    <li class="nav-item">
+                    <li class="nav-item pl-3 pl-lg-0">
                         <a class="nav-link c_navbar" href="{{ route('admin.habitations.index')}}">Dashboard</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item pl-3 pl-lg-0">
                         <a class="nav-link c_navbar" href="{{ route('admin.habitations.create')}}">Crea Annuncio</a>
                     </li>
                 </ul>
+                @endauth
                 <div class="d-flex">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
@@ -50,23 +52,23 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                            <li class="nav-item">
+                            <li class="nav-item pl-3 pl-lg-0">
                                 <a class="nav-link c_navbar"  href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                            <li class="nav-item">
+                            <li class="nav-item pl-3 pl-lg-0">
                                 <a class="nav-link c_navbar" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                             @endif
                             @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item pl-3 pl-lg-0 dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle c_navbar" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right w-25 py-0" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item c_navbar" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    <a class="dropdown-item c_navbar bg_navbar border-0" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
@@ -83,7 +85,7 @@
                     {{-- @auth
 
                     <div>
-                        <li class="nav-item dropdown  d-flex flex-row">
+                        <li class="nav-item pl-3 pl-lg-0 dropdown  d-flex flex-row">
                             <a class="nav-link dropdown-toggle c_navbar" href="#" id="navbarDropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 YourBoolBnb
