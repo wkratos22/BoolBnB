@@ -45,10 +45,7 @@ class HabitationController extends Controller
             // Annunci visibili
             $visibleHabs = $user_hab->where('user_id', Auth::user()->id)->where('visible', 1)->get();
 
-            // Annunci nascosti
-            $hiddenHabs = $user_hab->where('user_id', Auth::user()->id)->where('visible', 0)->get();
-
-            return view('admin.habitations.index', compact('habitations', 'sponsoredHabs', 'visibleHabs', 'hiddenHabs'));
+            return view('admin.habitations.index', compact('habitations', 'sponsoredHabs', 'visibleHabs'));
 
         }
     }
@@ -94,45 +91,45 @@ class HabitationController extends Controller
             ],
 
             [
-                'title.required' => 'Il titolo è un campo obbligatorio.',
-                'title.max' => 'Il limite massimo di caratteri per il titolo è 100.',
-                'title.string' => 'Il titolo deve essere una stringa.',
-                'title.unique' => 'Il titolo selezionato già esiste, provane un altro.',
+                'title.required' => 'Il <strong>titolo</strong> è un campo obbligatorio.',
+                'title.max' => 'Il limite massimo di caratteri per il <strong>titolo</strong> è 100.',
+                'title.string' => 'Il <strong>titolo</strong> deve essere una stringa.',
+                'title.unique' => 'Il <strong>titolo</strong> selezionato già esiste, provane un altro.',
 
-                'habitation_type_id.required' => 'La tipologia di struttura è un campo obbligatorio.',
+                'habitation_type_id.required' => 'La <strong>tipologia</strong> di struttura è un campo obbligatorio.',
 
-                'description.required' => 'La descrizione è un campo obbligatorio.',
-                'description.string' => 'La descrizione deve essere una stringa.',
+                'description.required' => 'La <strong>descrizione</strong> è un campo obbligatorio.',
+                'description.string' => 'La <strong>descrizione</strong> deve essere una stringa.',
 
-                'price.required' => "Inserisci il prezzo per una singola notte.",
-                'price.integer' => "Il prezzo deve essere un numero.",
-                'price.between' => "Il prezzo deve essere compreso tra 1 e 25000.",
+                'price.required' => "Inserisci il <strong>prezzo</strong> per una singola notte.",
+                'price.integer' => "Il <strong>prezzo</strong> deve essere un numero.",
+                'price.between' => "Il <strong>prezzo</strong> deve essere compreso tra 1 e 25000.",
 
-                'address.required' => "L'indirizzo è un campo obbligatorio.",
-                'address.string' => "L'indirizzo deve essere una stringa.",
+                'address.required' => "L'<strong>indirizzo</strong> è un campo obbligatorio.",
+                'address.string' => "L'<strong>indirizzo</strong> deve essere una stringa.",
 
-                'guests_number.required' => 'Il numero massimo di ospiti è un campo obbligatorio.',
-                'guests_number.integer' => 'Inserisci un numero per stabilire la quantità massima di ospiti.',
-                'guests_number.min' => 'Il numero minimo previsto per gli ospiti è 1.',
+                'guests_number.required' => 'Il numero massimo di <strong>ospiti</strong> è un campo obbligatorio.',
+                'guests_number.integer' => 'Inserisci un numero per stabilire la quantità massima di <strong>ospiti</strong>.',
+                'guests_number.min' => 'Il numero minimo previsto per gli <strong>ospiti</strong> è 1.',
 
-                'rooms_number.required' => 'Il numero di stanze è un campo obbligatorio.',
-                'rooms_number.integer' => 'Inserisci un numero per stabilire la quantità di stanze.',
-                'rooms_number.min' => 'Il numero minimo previsto per le stanze è 1.',
+                'rooms_number.required' => 'Il numero di <strong>stanze</strong> è un campo obbligatorio.',
+                'rooms_number.integer' => 'Inserisci un numero per stabilire la quantità di <strong>stanze</strong>.',
+                'rooms_number.min' => 'Il numero minimo previsto per le <strong>stanze</strong> è 1.',
 
-                'beds_number.required' => 'Il numero di letti è un campo obbligatorio.',
-                'beds_number.integer' => 'Inserisci un numero per stabilire la quantità di letti.',
-                'beds_number.min' => 'Il numero minimo previsto per i letti è 1.',
+                'beds_number.required' => 'Il numero di <strong>letti</strong> è un campo obbligatorio.',
+                'beds_number.integer' => 'Inserisci un numero per stabilire la quantità di <strong>letti</strong>.',
+                'beds_number.min' => 'Il numero minimo previsto per i <strong>letti</strong> è 1.',
 
-                'bathrooms_number.required' => 'Il numero di bagni è un campo obbligatorio.',
-                'bathrooms_number.integer' => 'Inserisci un numero per stabilire la quantità di bagni.',
-                'bathrooms_number.min' => 'Il numero minimo previsto per i bagni è 1.',
+                'bathrooms_number.required' => 'Il numero di <strong>bagni</strong> è un campo obbligatorio.',
+                'bathrooms_number.integer' => 'Inserisci un numero per stabilire la quantità di <strong>bagni</strong>.',
+                'bathrooms_number.min' => 'Il numero minimo previsto per i <strong>bagni</strong> è 1.',
 
-                'square_meters.integer' => 'Inserisci un numero per definire i metri quadrati della struttura.',
-                'square_meters.min' => 'Il numero minimo previsto per i metri quadrati è 1.',
+                'square_meters.integer' => 'Inserisci un numero per definire i <strong>metri</strong> quadrati della struttura.',
+                'square_meters.min' => 'Il numero minimo previsto per i <strong>metri</strong> quadrati è 1.',
 
-                'services.required' => 'Inserisci almeno un servizio presente nella struttura',
+                'services.required' => 'Inserisci almeno un <strong>servizio</strong> presente nella struttura',
 
-                'tags.required' => 'Inserisci almeno una caratteristica della struttura',
+                'tags.required' => 'Inserisci almeno una <strong>caratteristica</strong> della struttura',
                 ]
         );
 
@@ -193,7 +190,7 @@ class HabitationController extends Controller
         }
 
 
-        return redirect()->route('admin.habitations.show', $new_habitation)->with('message', "L'annuncio '$new_habitation->title' è stato creato con successo!");
+        return redirect()->route('admin.habitations.show', $new_habitation)->with('message', "L'annuncio <strong>$new_habitation->title</strong> è stato creato con successo!");
     }
 
     /**
@@ -347,7 +344,7 @@ class HabitationController extends Controller
 
         $habitation->update($data);
 
-        return redirect()->route('admin.habitations.show', $habitation)->with('message', "L'annuncio '$habitation->title' è stato modificato con successo!");
+        return redirect()->route('admin.habitations.show', $habitation)->with('message', "L'annuncio <strong>$habitation->title</strong> è stato modificato con successo!");
     }
 
     /**
@@ -361,7 +358,7 @@ class HabitationController extends Controller
 
         if (Auth::user()->id == $habitation->user_id) {
             $habitation->delete();
-            return redirect()->route( 'admin.habitations.index' )->with('message', "$habitation->title è stato eliminato con successo.");
+            return redirect()->route( 'admin.habitations.index' )->with('message', "<strong>$habitation->title</strong> è stato eliminato con successo.");
 
         } return view('admin.pages.notFound');
 

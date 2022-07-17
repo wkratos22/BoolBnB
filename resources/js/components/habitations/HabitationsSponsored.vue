@@ -224,42 +224,20 @@ import axios from 'axios';
 
     @media screen and (max-width: 1180px) {
         .carouselContainer {
-            width: 800px;
-
-            .cardCust {
-                width: 403px;
-            }
-        }
-    }
-
-    @media screen and (max-width: 1080px) {
-        .carouselContainer {
             width: 750px;
 
             .cardCust {
-                width: 378px;
+                width: 376px;
             }
         }
-
     }
 
     @media screen and (max-width: 992px) {
         .carouselContainer {
-            width: 700px;
-
-            .cardCust {
-                width: 353px;
-            }
-        }
-
-    }
-
-    @media screen and (max-width: 935px) {
-        .carouselContainer {
             width: 650px;
 
             .cardCust {
-                width: 328px;
+                width: 326px;
 
                 h2.title {
                     width: 130px;
@@ -272,24 +250,14 @@ import axios from 'axios';
 
     }
 
+
     @media screen and (max-width: 880px) {
 
-        .carouselContainer {
-            width: 600px;
-
-            .cardCust {
-                width: 303px;
-            }
-        }
-
-    }
-
-    @media screen and (max-width: 815px) {
         .carouselContainer {
             width: 550px;
 
             .cardCust {
-                width: 278px;
+                width: 276px;
             }
         }
 
@@ -297,21 +265,10 @@ import axios from 'axios';
 
     @media screen and (max-width: 740px) {
         .carouselContainer {
-            width: 460px;
-
-            .cardCust {
-                width: 233px;
-            }
-        }
-
-    }
-
-    @media screen and (max-width: 650px) {
-        .carouselContainer {
             width: 400px;
 
             .cardCust {
-                width: 403px;
+                width: 401px;
                 
                 h2.title {
                     width: auto;
@@ -326,49 +283,16 @@ import axios from 'axios';
 
     @media screen and (max-width: 575px) {
         .carouselContainer {
-            width: 375px;
-
-            .cardCust {
-                width: 378px;
-            }
-        }
-
-    }
-
-    @media screen and (max-width: 550px) {
-        .carouselContainer {
-            width: 350px;
-
-            .cardCust {
-                width: 353px;
-            }
-        }
-
-    }
-
-    @media screen and (max-width: 520px) {
-        .carouselContainer {
             width: 300px;
 
             .cardCust {
-                width: 303px;
+                width: 301px;
             }
         }
 
     }
     
     @media screen and (max-width: 460px) {
-        .carouselContainer {
-            width: 260px;
-
-            .cardCust {
-                width: 263px;
-            }
-        }
-
-    }
-    
-    @media screen and (max-width: 400px) {
         .carouselContainer {
             width: 200px;
 
@@ -386,5 +310,4 @@ import axios from 'axios';
 
     }
 
-   
 </style>

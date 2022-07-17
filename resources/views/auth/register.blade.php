@@ -10,8 +10,10 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
+                    <small class="form-text text-muted mb-3">* Campo obbligatorio</small>
+
                     <div class="form-group">
-                        <label for="name" class="col-form-label text-md-right">{{ __('Nome') }}</label>
+                        <label for="name" class="col-form-label text-md-right">{{ __('Nome *') }}</label>
 
                         <div>
                             <input id="name" type="text" class="c_border shadow-none form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -25,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="surname" class="col-form-label text-md-right">{{ __('Cognome') }}</label>
+                        <label for="surname" class="col-form-label text-md-right">{{ __('Cognome *') }}</label>
 
                         <div>
                             <input id="surname" type="text" class="c_border shadow-none form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
@@ -39,7 +41,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                        <label for="email" class="col-form-label text-md-right">{{ __('E-Mail *') }}</label>
 
                         <div>
                             <input id="email" type="email" class="c_border shadow-none form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -56,7 +58,7 @@
                         <label for="date_of_birth" class="col-form-label text-md-right">{{ __('Data di nascita') }}</label>
 
                         <div>
-                            <input id="date_of_birth" type="date" class="c_border shadow-none form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth">
+                            <input id="date_of_birth" type="date" class="c_border shadow-none form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('date_of_birth') }}" autocomplete="date_of_birth">
 
                             @error('date_of_birth')
                                 <span class="invalid-feedback" role="alert">
@@ -67,7 +69,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
+                        <label for="password" class="col-form-label text-md-right">{{ __('Password *') }}</label>
 
                         <div>
                             <input id="password" type="password" class="c_border shadow-none form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -81,7 +83,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password-confirm" class="col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                        <label for="password-confirm" class="col-form-label text-md-right">{{ __('Conferma Password *') }}</label>
 
                         <div>
                             <input id="password-confirm" type="password" class=" c_border shadow-none form-control" name="password_confirmation" required autocomplete="new-password">
@@ -90,7 +92,7 @@
 
                     <div class="form-group mb-0 mt-5">
                         <div class="text-center">
-                            <button type="submit" class="btn color_button">
+                            <button type="submit" class="btn color_button shadow-none">
                                 {{ __('Registrati') }}
                             </button>
                         </div>

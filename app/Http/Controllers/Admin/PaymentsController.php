@@ -59,7 +59,7 @@ class PaymentsController extends Controller
 
             $habitation->sponsorships()->sync([$sponsorship->id => ['start_date' => $startDate, 'end_date' => $endDate]]);
 
-            return redirect()->route('admin.habitations.show', $habitation)->with('message', "Il tuo annuncio ora è nella sezione 'In Evidenza'. Cosa aspetti? Corri a vederlo!");
+            return redirect()->route('admin.habitations.show', $habitation)->with('message', "L' annuncio <strong>$habitation->title</strong> ora è nella sezione <a href='/dashboard' style='color: #155724; text-decoration: underline;'><strong>'In Evidenza'</strong></a>. Cosa aspetti? Corri a vederlo!");
         } else{
 
             $errorString = "";

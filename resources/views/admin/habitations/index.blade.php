@@ -26,7 +26,7 @@
             </div>
             
             <div class="col p-4 text-center">
-                <p class="pseudoStats">{{$hiddenHabs->count()}}</p>
+                <p class="pseudoStats">{{$habitations->count() - $visibleHabs->count()}}</p>
                 <h3 class="mb-3">Nascosti</h3>
             </div>
             
@@ -37,59 +37,72 @@
         </div>
     </div>
 
+    @include('includes.messages.success')
+
     <div class="container py-4">
 
-        @include('includes.messages.success')
     
         <div class="text-center mobileCreate mb-5">
             <a href="{{ route('admin.habitations.create')}}" class="btn btn_outline_green">Crea Annuncio</a>
         </div>
 
         <div>
-            <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Cover</th>
-                    <th scope="col">Titolo</th>
-                    <th scope="col" class="d-none d-sm-table-cell">Stato</th>
-                    <th scope="col" class="habPrice">Prezzo</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($habitations as $habitation)
-                        <tr>
-                            <th scope="row">{{$habitation->id}}</th>
+           @if ($habitations->count() > 0)
+            
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Cover</th>
+                        <th scope="col">Titolo</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Stato</th>
+                        <th scope="col" class="habPrice">Prezzo</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($habitations as $habitation)
+                            <tr>
+                                <th scope="row">{{$habitation->id}}</th>
 
-                            <td>
-                                @foreach ($habitation->images as $image)
-                                    @if ($loop->first)
-                                        <img src="{{asset( "storage/$image->image_url" )}}" height="50px" width="65px" alt="...">
+                                <td>
+                                    @foreach ($habitation->images as $image)
+                                        @if ($loop->first)
+                                            <img src="{{asset( "storage/$image->image_url" )}}" height="50px" width="65px" alt="...">
+                                        @endif
+                                    @endforeach
+                                </td>
+
+                                <td>{{$habitation->title}}</td>
+
+                                <td class="d-none d-sm-table-cell">
+                                    @if ($habitation->visible)
+                                        Visibile
+                                    @else
+                                        Nascosto
                                     @endif
-                                @endforeach
-                            </td>
+                                </td>
 
-                            <td>{{$habitation->title}}</td>
+                                <td class="habPrice">{{$habitation->price}} € /notte</td>
 
-                            <td class="d-none d-sm-table-cell">
-                                @if ($habitation->visible)
-                                    Visibile
-                                @else
-                                    Nascosto
-                                @endif
-                            </td>
+                                <td class="text-center">
+                                    <a class="btn btn_green" href="{{route('admin.habitations.show', $habitation->id)}}">Vedi</a>
+                                </td>
+                            </tr>
 
-                            <td class="habPrice">{{$habitation->price}} € /notte</td>
+                        @endforeach
+                    </tbody>
+                </table>
 
-                            <td class="text-center">
-                                <a class="btn btn_green" href="{{route('admin.habitations.show', $habitation->id)}}">Vedi</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-              </table>
+                {{-- @if( $habitations->hasPages() )
+                    {{ $habitations->links() }}
+                @endif --}}
 
+            @else
+
+                <h2 class="text-center">Aggiungi un appartamento</h2>
+            
+            @endif
         </div>
 
     </div>

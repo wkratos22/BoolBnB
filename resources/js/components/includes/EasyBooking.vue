@@ -3,7 +3,7 @@
 
         <div class="p-4">
             <h4 class="text-center text-dark">
-                Prenotare la struttura ideale per la tua vacanza non è mai stato così semplice. <br>
+                Trovare la struttura ideale per la tua vacanza non è mai stato così semplice. <br>
                 Cosa aspetti? Prova per credere! 
             </h4>
         </div>

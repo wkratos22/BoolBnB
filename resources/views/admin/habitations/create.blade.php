@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@include('includes.validation.errors')
 
 @section('content')
 <div class="containerDue">
-    <small class="form-text text-muted mb-3">* Campo obbligatorio</small>
+    @include('includes.validation.errors')
+    
+    <small class="form-text text-muted mb-3">Campo obbligatorio *</small>
 
     <form action="{{ route('admin.habitations.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -12,7 +13,7 @@
         <div class="form-group">
             <label for="title" class="pb-2">
                 <h4>
-                    * Titolo dell'annuncio:
+                    Titolo dell'annuncio *
                 </h4>
             </label>
             <input type="text" class="form-control bg-transparent c_border" id="title" placeholder="Inserisci il titolo"
@@ -22,7 +23,7 @@
         <div class="form-group">
             <label for="habitation_type" class="pb-2">
                 <h4>
-                    * Tipologia:
+                    Tipologia *
                 </h4>
             </label>
             <select class="form-control bg-transparent c_border" id="habitation_type" name="habitation_type_id">
@@ -36,12 +37,12 @@
 
         <div class="my-3">
             <h4 class="pb-2">
-                * Caratteristiche della struttura:
+                Caratteristiche della struttura *
             </h4>
-            <div class="form-check form-check-inline flex-wrap">
+            <div class="form-check form-check-inline flex-wrap"  id="formCheck1">
 
                 @foreach ($tags_hab as $tag)
-                <div class="my-1 width">
+                <div class="my-1 check-responsive">
                     <input class="form-check-input" type="checkbox" id="tag{{$tag->id}}" value="{{$tag->id}}"
                         name="tags[]" @if( in_array($tag->id, old('tags', []) ) ) checked @endif>
 
@@ -57,12 +58,12 @@
 
         <div class="my-3">
             <h4 class="pb-2">
-                * Servizi presenti nella struttura:
+                Servizi presenti nella struttura *
             </h4>
-            <div class="form-check form-check-inline flex-wrap">
+            <div class="form-check form-check-inline flex-wrap" id="formCheck2">
 
                 @foreach ($service_hab as $service)
-                <div class="my-1 width">
+                <div class="my-1 check-responsive">
                     <input class="form-check-input" type="checkbox" id="service{{$service->id}}"
                         value="{{$service->id}}" name="services[]" @if( in_array($service->id, old('services', []) ) )
                     checked @endif>
@@ -79,7 +80,7 @@
         <div class="form-group">
             <label for="description" class="pb-2">
                 <h4>
-                    * Descrizione:
+                    Descrizione *
                 </h4>
             </label>
             <textarea class="form-control bg-transparent c_border" id="description" rows="3" name="description"
@@ -91,7 +92,7 @@
         <div class="form-group">
             <label for="price" class="pb-2">
                 <h4>
-                    * Prezzo per notte:
+                    Prezzo per notte *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="price" name="price" min="1"
@@ -101,7 +102,7 @@
         <div class="form-group">
             <label for="address" class="pb-2">
                 <h4>
-                    * Indirizzo:
+                    Indirizzo *
                 </h4>
             </label>
             <input type="text" class="form-control bg-transparent c_border" id="address" name="address"
@@ -111,7 +112,7 @@
         <div class="form-group">
             <label for="guests_number" class="pb-2">
                 <h4>
-                    * Numero massimo di ospiti:
+                    Numero massimo di ospiti *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="guests_number" name="guests_number"
@@ -121,7 +122,7 @@
         <div class="form-group">
             <label for="rooms_number" class="pb-2">
                 <h4>
-                    * Numero stanze:
+                    Numero stanze *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border c_green" id="rooms_number" name="rooms_number"
@@ -131,7 +132,7 @@
         <div class="form-group">
             <label for="beds_number" class="pb-2">
                 <h4>
-                    * Numero letti:
+                    Numero letti *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="beds_number" name="beds_number"
@@ -141,7 +142,7 @@
         <div class="form-group">
             <label for="bathrooms_number" class="pb-2">
                 <h4>
-                    * Numero bagni:
+                    Numero bagni *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="bathrooms_number"
@@ -151,17 +152,17 @@
         <div class="form-group">
             <label for="square_meters" class="pb-2">
                 <h4>
-                    Metri quadrati:
+                    Metri quadrati *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="square_meters" name="square_meters"
-                min="1" value="{{old('square_meters')}}" placeholder="85">
+                min="1" value="{{old('square_meters')}}" placeholder="85" required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group d-inline-block">
             <label for="image" class="pb-2">
                 <h4 class="my-2">
-                    * Images:
+                    Images *
                 </h4>
             </label>
             <input type="file" class="form-control-file " id="image" name="image[]" multiple required>
@@ -170,7 +171,7 @@
 
         <div class="mt-3">
             <h4 class="pb-2">
-                * Visibilità dell'annuncio:
+                Visibilità dell'annuncio *
             </h4>
 
             <div class="d-flex">
@@ -193,9 +194,9 @@
 
 
         <div class="text-center pt-4">
-            <button class="btn color_button w-25 b-rounded-3 p-2" style="margin: 10px auto;" type="submit"
+            <button class="btn color_button w-25 b-rounded-3 p-2 shadow-none" style="margin: 10px auto;" type="submit"
                 src="{{route('admin.habitations.store')}}">
-                Pubblica
+                Crea
             </button>
         </div>
 

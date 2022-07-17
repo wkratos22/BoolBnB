@@ -6,7 +6,7 @@
 
 <div class="containerDue">
 
-    <small class="form-text text-muted mb-3">* Campo obbligatorio</small>
+    <small class="form-text text-muted mb-3">Campo obbligatorio *</small>
 
     <form action="{{ route('admin.habitations.update', $habitation->id)}}" method="POST" enctype="multipart/form-data">
           @method('PUT')
@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="title" class="pb-2">
             <h4>
-                * Titolo dell'annuncio:
+                Titolo dell'annuncio *
             </h4>
             </label>
             <input type="text" class="form-control bg-transparent c_border" id="title" placeholder="Inserisci il titolo" name="title" maxlength="100" value="{{old('title', $habitation->title)}}" required>
@@ -24,7 +24,7 @@
         <div class="form-group">
             <label for="habitation_type" class="pb-2">
                 <h4>
-                    * Tipologia:
+                    Tipologia *
                 </h4>
             </label>
             <select class="form-control bg-transparent c_border" id="habitation_type" name="habitation_type_id">
@@ -42,12 +42,12 @@
 
         <div class="my-3">
             <h4 class="pb-2">
-                * Caratteristiche della struttura:
+                Caratteristiche della struttura *
             </h4>
             <div class="form-check form-check-inline flex-wrap">
 
                 @foreach ($tags_hab as $tag)
-                    <div class="my-1 width" >
+                    <div class="my-1 check-responsive" >
                         <input class="form-check-input" type="checkbox" id="tag{{$tag->id}}" value="{{$tag->id}}" name="tags[]" @if( in_array($tag->id, old('tags', $habitation_tags_id) ) ) checked @endif>
                         <label class="form-check-label" for="tag{{$tag->id}}">{{$tag->label}}</label>
                     </div>
@@ -59,12 +59,12 @@
 
         <div class="my-3">
             <h4 class="pb-2">
-                * Servizi presenti nella struttura:
+                Servizi presenti nella struttura *
             </h4>
             <div class="form-check form-check-inline flex-wrap">
 
                 @foreach ($service_hab as $service)
-                    <div class="my-1 width">
+                    <div class="my-1 check-responsive">
                         <input class="form-check-input" type="checkbox" id="service{{$service->id}}" value="{{$service->id}}" name="services[]" @if( in_array($service->id, old('services', $habitation_services_id) ) ) checked @endif>
                         <label class="form-check-label" for="service{{$service->id}}">{{$service->label}}</label>
                     </div>
@@ -78,10 +78,10 @@
         <div class="form-group">
             <label for="description" class="pb-2">
                 <h4>
-                    * Descrizione:
+                    Descrizione *
                 </h4>
             </label>
-            <textarea class="form-control bg-transparent c_border" id="description" rows="3" name="description" placeholder="Inserisci la descrizione" required>
+            <textarea class="form-control bg-transparent c_border" id="description" rows="4" cols="50" name="description" placeholder="Inserisci la descrizione" required>
                 {{old('description', $habitation->description)}}
             </textarea>
         </div>
@@ -89,7 +89,7 @@
         <div class="form-group">
             <label for="price" class="pb-2">
                 <h4>
-                    * Prezzo per notte:
+                    Prezzo per notte *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="price" name="price" min="1" max="25000" placeholder="200" value="{{old('price', $habitation->price)}}" required>
@@ -98,7 +98,7 @@
         <div class="form-group">
             <label for="address" class="pb-2">
                 <h4>
-                    * Indirizzo:
+                    Indirizzo *
                 </h4>
             </label>
             <input type="text" class="form-control bg-transparent c_border" id="address" name="address" placeholder="Via Roma 25, Napoli, 80125, Campania, Italia" value="{{old('address', $habitation->address)}}" required>
@@ -107,7 +107,7 @@
         <div class="form-group">
             <label for="guests_number" class="pb-2">
                 <h4>
-                    * Numero massimo di ospiti:
+                    Numero massimo di ospiti *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="guests_number" name="guests_number" min="1" placeholder="8" value="{{old('guests_number', $habitation->guests_number)}}" required>
@@ -116,7 +116,7 @@
         <div class="form-group">
             <label for="rooms_number" class="pb-2">
                 <h4>
-                    * Numero stanze:
+                    Numero stanze *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="rooms_number" name="rooms_number" min="1" placeholder="5" value="{{old('rooms_number', $habitation->rooms_number)}}" required>
@@ -125,7 +125,7 @@
         <div class="form-group">
             <label for="beds_number" class="pb-2">
                 <h4>
-                    * Numero letti:
+                    Numero letti *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="beds_number" name="beds_number" min="1" placeholder="6" value="{{old('beds_number', $habitation->beds_number)}}" required>
@@ -134,7 +134,7 @@
         <div class="form-group">
             <label for="bathrooms_number" class="pb-2">
                 <h4>
-                    * Numero bagni:
+                    Numero bagni *
                 </h4>
             </label>
             <input type="number" class="form-control bg-transparent c_border" id="bathrooms_number" name="bathrooms_number" min="1" placeholder="2" value="{{old('bathrooms_number', $habitation->bathrooms_number)}}" required>
@@ -143,16 +143,16 @@
         <div class="form-group">
             <label for="square_meters" class="pb-2">
                 <h4>
-                    Metri quadrati:
+                    Metri quadrati *
                 </h4>
             </label>
-            <input type="number" class="form-control bg-transparent c_border" id="square_meters" name="square_meters" min="1" value="{{old('square_meters', $habitation->square_meters)}}" placeholder="85">
+            <input type="number" class="form-control bg-transparent c_border" id="square_meters" name="square_meters" min="1" value="{{old('square_meters', $habitation->square_meters)}}" placeholder="85" required>
         </div>
 
         <div class="form-group">
             <label for="image" class="pb-2">
                 <h4 class="my-2">
-                    * Images:
+                    Images *
                 </h4>
             </label>
             <input type="file" class="form-control-file" id="image" name="image[]" value="" multiple>
@@ -161,7 +161,7 @@
 
         <div>
             <h4 class="pb-2">
-                * Visibilità dell'annuncio:
+                Visibilità dell'annuncio *
             </h4>
 
             <div class="d-flex">
@@ -185,7 +185,7 @@
 
         <div class="text-center pt-4">
             <button class="btn color_button w-25 b-rounded-3 p-2" style="margin: 10px auto;" type="submit" src="{{route('admin.habitations.update', $habitation->id)}}">
-                Edit
+                Modifica
             </button>
         </div>
 
