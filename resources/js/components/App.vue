@@ -5,7 +5,7 @@
       <Header/>
 
       <main>
-        <router-view></router-view>
+        <router-view class="px-0"></router-view>
 
           <div v-if="$route.name === 'home'" class="p-4 bg-light">
             <HabitationsSponsored/>

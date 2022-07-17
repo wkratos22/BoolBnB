@@ -127,7 +127,7 @@
 export default {
   name: "Header",
 
-  el: "#navbar",
+  // el: "#navbar",
   data() {
     return {
       view: {
