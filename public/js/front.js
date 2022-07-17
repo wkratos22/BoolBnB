@@ -1975,7 +1975,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header",
-  el: '#navbar',
+  el: "#navbar",
   data: function data() {
     return {
       view: {
@@ -1984,7 +1984,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   beforeMount: function beforeMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
     handleScroll: function handleScroll() {
@@ -2654,27 +2654,27 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("nav", {
-    staticClass: "navbar navbar-expand-lg align-items-lg-center navbar-dark",
+    staticClass: "navbar navbar-expand align-items-center",
     "class": {
       onScroll: !_vm.view.topOfPage
     }
   }, [_c("router-link", {
-    staticClass: "navbar-brand m-1 col-2",
+    staticClass: "navbar-brand m-1 col-lg-2 col-md-2 col-sm-2 col-xs-2",
     attrs: {
       to: {
         name: "home"
       }
     }
   }, [_c("img", {
-    staticClass: "w-50",
+    staticClass: "w-50 logo",
     attrs: {
       src: "/images/logo_header.png",
       alt: ""
     }
-  })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "col-3"
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-sm-3 col-xs-3"
   }), _vm._v(" "), _vm.$route.path == "/dashboard" ? _c("div", {
-    staticClass: "collapse navbar-collapse justify-content-center col-2",
+    staticClass: "justify-content-center col-lg-2 col-md-2 col-sm-2 col-xs-2",
     attrs: {
       id: "navbarNav"
     }
@@ -2688,7 +2688,7 @@ var render = function render() {
       }
     }
   }, [_vm._v("Ricerca Avanzata\n            ")])], 1)])]) : _c("div", {
-    staticClass: "collapse navbar-collapse justify-content-center col-2",
+    staticClass: "justify-content-center col-lg-2 col-md-2 col-sm-2 col-xs-2",
     attrs: {
       id: "navbarNav"
     }
@@ -2704,49 +2704,47 @@ var render = function render() {
       }
     }
   }, [_vm._v("Esplora\n            ")])], 1)])]), _vm._v(" "), _c("div", {
-    staticClass: "collapse navbar-collapse justify-content-end col-5",
+    staticClass: "dropdown d-flex justify-content-end col-lg-5 col-md-5 col-sm-5 col-xs-5"
+  }, [_c("button", {
+    staticClass: "btn position-relative",
     attrs: {
-      id: "navbarNav"
+      type: "button",
+      id: "dropdownMenuButton",
+      "data-toggle": "dropdown",
+      "aria-haspopup": "true",
+      "aria-expanded": "false"
     }
-  }, [_c("ul", {
-    staticClass: "navbar-nav"
-  }, [_c("li", {
-    staticClass: "nav-item"
+  }, [_vm.$route.path == "/" ? _c("img", {
+    attrs: {
+      src: __webpack_require__(/*! ../../../public/img/icons/user.png */ "./public/img/icons/user.png"),
+      alt: ""
+    }
+  }) : _c("img", {
+    attrs: {
+      src: __webpack_require__(/*! ../../../public/img/icons/user-black.png */ "./public/img/icons/user-black.png"),
+      alt: ""
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "dropdown-menu my-drop-menu position-absolute",
+    attrs: {
+      "aria-labelledby": "dropdownMenuButton"
+    }
   }, [_c("a", {
-    staticClass: "nav-link m-1 btn font-size-1",
+    staticClass: "dropdown-item nav-link m-1 btn font-size-1",
     "class": _vm.$route.path == "/" ? "text-white btn1" : "text-dark btn2",
     attrs: {
       href: "/login"
     }
-  }, [_vm._v("Passa alla modalità\n              host")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link m-1 btn font-size-1",
+  }, [_vm._v("Accedi")]), _vm._v(" "), _c("a", {
+    staticClass: "dropdown-item nav-link m-1 btn font-size-1",
     "class": _vm.$route.path == "/" ? "text-white btn1" : "text-dark btn2",
     attrs: {
       href: "/register"
     }
-  }, [_vm._v("Registrati")])])])])], 1)])]);
+  }, [_vm._v("Registrati")])])])], 1)])]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("button", {
-    staticClass: "navbar-toggler navbar-dark",
-    attrs: {
-      type: "button",
-      "data-toggle": "collapse",
-      "data-target": "#navbarNav",
-      "aria-controls": "navbarNav",
-      "aria-expanded": "false",
-      "aria-label": "Toggle navigation"
-    }
-  }, [_c("span", {
-    staticClass: "navbar-toggler-icon"
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -3756,7 +3754,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".font-size-1[data-v-1f42fb90] {\n  font-size: 1.2rem;\n}\n.text_gray[data-v-1f42fb90] {\n  color: rgb(190, 182, 182);\n}\nnav[data-v-1f42fb90] {\n  position: fixed;\n  width: 100%;\n  height: 15vh;\n  background-color: transparent;\n  display: flex;\n  align-items: center;\n  transition: all 0.2s ease-in-out;\n}\nnav.onScroll[data-v-1f42fb90] {\n  box-shadow: 0 0 10px #aaa;\n  background: linear-gradient(0deg, rgb(157, 207, 187) 0%, rgb(93, 202, 155) 35%, rgb(73, 200, 145) 50%, rgb(73, 207, 133) 100%);\n}\nnav .btn1[data-v-1f42fb90], nav .btn2[data-v-1f42fb90] {\n  border-radius: 20px;\n}\nnav .btn1[data-v-1f42fb90]:hover {\n  background-color: rgba(35, 200, 218, 0.563);\n  border: 1px solid white;\n  border-radius: 20px;\n}\nnav .btn2[data-v-1f42fb90]:hover {\n  background-color: rgba(96, 214, 227, 0.398);\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 20px;\n}\nnav .btn-annunci[data-v-1f42fb90] {\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".font-size-1[data-v-1f42fb90] {\n  font-size: 1.2rem;\n}\n.text_gray[data-v-1f42fb90] {\n  color: rgb(190, 182, 182);\n}\nnav[data-v-1f42fb90] {\n  position: fixed;\n  width: 100%;\n  height: 15vh;\n  background-color: transparent;\n  display: flex;\n  align-items: center;\n  transition: all 0.2s ease-in-out;\n}\nnav.onScroll[data-v-1f42fb90] {\n  box-shadow: 0 0 10px #aaa;\n  background: linear-gradient(0deg, rgb(157, 207, 187) 0%, rgb(93, 202, 155) 35%, rgb(73, 200, 145) 50%, rgb(73, 207, 133) 100%);\n}\nnav .btn1[data-v-1f42fb90]:hover {\n  background-color: rgba(35, 200, 218, 0.563);\n}\nnav .btn2[data-v-1f42fb90]:hover {\n  background-color: rgba(96, 214, 227, 0.398);\n}\nnav .btn-annunci[data-v-1f42fb90] {\n  font-weight: bold;\n  border-radius: 20px;\n}\n@media screen and (min-width: 0px) and (max-width: 1200px) {\nnav .logo[data-v-1f42fb90] {\n    width: 80px !important;\n    margin-right: 20%;\n}\n}\nnav .my-drop-menu[data-v-1f42fb90] {\n  background-color: rgba(35, 200, 218, 0.563) !important;\n  border: none !important;\n  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2392156863);\n}\n@media screen and (min-width: 1001px) {\nnav .position-absolute[data-v-1f42fb90] {\n    right: 0%;\n    left: 70%;\n}\n}\n@media screen and (min-width: 821px) and (max-width: 1000px) {\nnav .position-absolute[data-v-1f42fb90] {\n    right: 10%;\n    left: 50%;\n}\n}\n@media screen and (min-width: 664px) and (max-width: 820px) {\nnav .position-absolute[data-v-1f42fb90] {\n    right: 10%;\n    left: 40%;\n}\n}\n@media screen and (min-width: 500px) and (max-width: 663px) {\nnav .position-absolute[data-v-1f42fb90] {\n    right: 50%;\n    left: 20%;\n}\n}\n@media screen and (min-width: 200px) and (max-width: 499px) {\nnav .position-absolute[data-v-1f42fb90] {\n    right: 50%;\n    left: -20%;\n}\n}", ""]);
 
 // exports
 
@@ -20170,6 +20168,28 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+
+/***/ "./public/img/icons/user-black.png":
+/*!*****************************************!*\
+  !*** ./public/img/icons/user-black.png ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/user-black.png?5d82d5d037df4289a64fa1e02a29eb39";
+
+/***/ }),
+
+/***/ "./public/img/icons/user.png":
+/*!***********************************!*\
+  !*** ./public/img/icons/user.png ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/user.png?31e811afb01a0d50ecd4e99a3eecb11f";
 
 /***/ }),
 
