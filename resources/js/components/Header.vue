@@ -26,11 +26,11 @@
           id="navbarNav"
         >
           <ul class="">
-            <li class="nav-item">
+            <li class="nav-item justify-content-center d-flex">
               <router-link
-                class="nav-link btn m-1 font-size-1 btn-annunci text-dark btn2"
+                class="nav-link btn m-1 font-size-1 btn-annunci text-dark myButton2"
                 :to="{ name: 'advancedSearch' }"
-                >Ricerca Avanzata
+                >Cerca
               </router-link>
             </li>
           </ul>
@@ -48,7 +48,7 @@
               <router-link
                 class="nav-link btn m-1 font-size-1 btn-annunci"
                 :class="
-                  $route.path == '/' ? 'text-white btn1' : 'text-dark btn2'
+                  $route.path == '/' ? 'myButton1' : 'myButton2'
                 "
                 :to="{ name: 'dashboard' }"
                 >Esplora
@@ -75,17 +75,18 @@
 
           </ul>
         </div> -->
-
+        
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
         <div
           class="
             dropdown
             d-flex
-            justify-content-end
-            col-lg-5 col-md-5 col-sm-5 col-xs-5
+           justify-content-center
+            col-lg-2 col-md-2 col-sm-2 col-xs-2 
           "
         >
           <button
-            class="btn position-relative"
+            class="btn "
             type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
@@ -101,7 +102,7 @@
             <img v-else src="../../../public/img/icons/user-black.png" alt="" />
           </button>
           <div
-            class="dropdown-menu my-drop-menu position-absolute"
+            class="dropdown-menu my-drop-menu "
             aria-labelledby="dropdownMenuButton"
           >
             <a
@@ -151,6 +152,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .font-size-1 {
   font-size: 1.2rem;
 }
@@ -170,6 +172,7 @@ nav {
   display: flex;
   align-items: center;
   transition: all 0.2s ease-in-out;
+  z-index: 1000;
 
   &.onScroll {
     box-shadow: 0 0 10px #aaa;
@@ -178,20 +181,20 @@ nav {
     );
   }
 
-  .btn1:hover {
-    background-color: rgba(35, 200, 218, 0.563);
-    // border: 1px solid white;
-  }
+  // .btn1:hover {
+  //   background-color: rgba(35, 200, 218, 0.563);
+  //   // border: 1px solid white;
+  // }
 
-  .btn2:hover {
-    background-color: rgba(96, 214, 227, 0.398);
-    // border: 1px solid rgb(0, 0, 0);
-  }
+  // .btn2:hover {
+  //   background-color: rgba(96, 214, 227, 0.398);
+  //   // border: 1px solid rgb(0, 0, 0);
+  // }
 
-  .btn-annunci {
-    font-weight: bold;
-    border-radius: 20px;
-  }
+  // .btn-annunci {
+  //   font-weight: bold;
+  //   border-radius: 20px;
+  // }
 
   @media screen and (min-width: 0px) and (max-width: 1200px) {
     .logo {
@@ -240,5 +243,52 @@ nav {
       left: -20%;
     }
   }
+
+  .myButton1 {
+	box-shadow: 3px 5px 8px 0px rgba(26, 155, 170, 0.563);
+	background-color:rgba(35, 200, 218, 0.563);
+	border-radius:27px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:10px 30px;
+	text-decoration:none;
+	text-shadow:2px 1px 3px #000000;
+  
+}
+.myButton1:hover {
+	background-color:rgba(26, 155, 170, 0.563);
+}
+.myButton1:active {
+	position:relative;
+	top:1px;
+}
+
+  .myButton2 {
+	// box-shadow: 3px 5px 8px 0px rgba(26, 155, 170, 0.563);
+	// background-color:rgba(35, 200, 218, 0.563);
+	border-radius:27px;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:10px 30px;
+	text-decoration:none;
+	
+}
+.myButton2:hover {
+	background-color:rgba(26, 155, 170, 0.563);
+}
+.myButton2:active {
+	position:relative;
+	top:1px;
+}
+
+        
 }
 </style>
