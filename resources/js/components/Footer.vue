@@ -90,7 +90,7 @@
                     Numeri utili
                 </li>
                 <li>
-                    Termini e condizioni generali di servizio
+                    Termini e condizioni generali
                 </li>
                 <li>
                     Informativa sulla privacy
@@ -159,7 +159,7 @@ li {
 
     margin-bottom: -10px !important;
 
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: rgb(44, 44, 44);
 
     &:hover {

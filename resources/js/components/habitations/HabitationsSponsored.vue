@@ -222,6 +222,13 @@ import axios from 'axios';
         }
     }
 
+    h2.title {
+        width: 340px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
     @media screen and (max-width: 1180px) {
         .carouselContainer {
             width: 750px;

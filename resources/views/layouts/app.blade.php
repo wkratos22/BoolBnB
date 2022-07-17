@@ -23,7 +23,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg c_navbar bg_navbar" style="height: 10vh;">
+        <nav class="navbar navbar-expand-lg c_navbar bg_navbar">
             <a class="navbar-brand" href="{{url('/')}}">
                 <img class="w-25" src="{{asset('/images/BoolBnb_logo-removebg-preview.png')}}" alt="air-bnb-logo">
             </a>
@@ -37,12 +37,6 @@
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item">
                         <a class="nav-link c_navbar" href="{{ route('admin.habitations.index')}}">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link c_navbar" href="{{ route('admin.habitations.index')}}">Posta</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link c_navbar" href="{{ route('admin.habitations.index')}}">Calendario</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link c_navbar" href="{{ route('admin.habitations.create')}}">Crea Annuncio</a>
@@ -71,7 +65,7 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right w-25" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right w-25 py-0" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item c_navbar" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -86,14 +80,14 @@
                         </ul>
                     </div>
 
-                    @auth
+                    {{-- @auth
 
                     <div>
                         <li class="nav-item dropdown  d-flex flex-row">
                             <a class="nav-link dropdown-toggle c_navbar" href="#" id="navbarDropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 YourBoolBnb
-                            </a>
+                            </a> --}}
 
                             {{-- <ul class="navbar-nav mr-auto">
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -103,9 +97,9 @@
 
                                 </div>
                             </ul> --}}
-                        </li>
+                        {{-- </li>
                     </div>
-                    @endauth 
+                    @endauth  --}}
                 </div>
             </div>
         </nav>
@@ -194,12 +188,6 @@
                 </li>
             </ul>
 
-
-            <!-- wave
-                    <div class="wave">
-                        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-                    </div>
-            -->
         
         </div>
 
@@ -210,10 +198,6 @@
             <img class="icon mx-md-4 ml-2" src="/img/icon-social/twitter.png" alt="twitter icon link">
             <img class="icon mx-md-4 ml-2" src="/img/icon-social/youtube.png" alt="youtube icon link">
             <img class="icon mx-md-4 ml-2" src="/img/icon-social/whatsapp.png" alt="whatsup icon link">
-        </div>
-
-        <div class="position-absolute scrollTop">
-            <button @click="scrollToTop" type="button" class="btn btn-outline-dark shadow-none"><strong>&#8892;</strong></button>
         </div>
 
 

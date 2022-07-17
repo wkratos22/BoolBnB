@@ -41,10 +41,11 @@
 
     <div class="container py-4">
 
-    
-        <div class="text-center mobileCreate mb-5">
-            <a href="{{ route('admin.habitations.create')}}" class="btn btn_outline_green">Crea Annuncio</a>
-        </div>
+        @if ($habitations->count() > 0)    
+            <div class="text-center mobileCreate mb-5">
+                <a href="{{ route('admin.habitations.create')}}" class="btn btn_outline_green">Crea Annuncio</a>
+            </div>
+        @endif
 
         <div>
            @if ($habitations->count() > 0)
@@ -100,7 +101,22 @@
 
             @else
 
-                <h2 class="text-center">Aggiungi un appartamento</h2>
+                <div class="d-flex flex-column flex-md-row justify-content-around align-items-center">
+                    <div>
+                        <img src="/images/BoolBnb_15.png" alt="home img" width="300px" style="margin: -50px 0">
+                    </div>
+                    <div class="text-center text-md-left">
+                        <h3>
+                            Mai stato così semplice. Ti basta un click per iniziare gratuitamente il tuo business da CASA!
+                        </h3>
+                    </div>
+
+                    @if ($habitations->count() == 0)    
+                        <div class="text-center mobileCreate mt-5">
+                            <a href="{{ route('admin.habitations.create')}}" class="btn btn_outline_green">Crea Annuncio</a>
+                        </div>
+                    @endif
+                </div>
             
             @endif
         </div>
