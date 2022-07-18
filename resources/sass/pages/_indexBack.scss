@@ -1,3 +1,8 @@
+input,
+button {
+  box-shadow: none !important;
+}
+
 .create-gradient {
     height: 20vh;
     background: rgb(47,166,143);
@@ -120,6 +125,10 @@
     font-family: $open-sans;
     font-weight: 400;
     margin-bottom: 10px;
+    width: 340px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 
     a {
       color: lighten($black, 50%);

@@ -16,21 +16,35 @@ class HabitationSeeder extends Seeder
     {
 
         $titles = [
-            'Villa Pliniana',
+            'Villa Pliniana', 
             'Mirror House Sud',
             'Villa Richard Meier',
             'Chalet Orcianita',
-            'Apartment Yoko',
+            'Rimini Luxury',
             'Villa del Pescatore',
             'Villa Anna Capoferro',
             'Arco Iris',
             'Casa Falcucci',
             'Romantic Studio',
+            'Hotel Dolores',
+            'Appartamento Il Saracino',
+            'Villa Arizona',
+            'Hotel Sport - Ricci Hotels',
+            'Residence Altamarea',
+            'One Design Hotel',
+            'Residence Hamilton',
+            'Fienile restaurato di 700 anni sulle colline bolognesi',
+            'Cà di Viola',
+            'Casa Rossana',
+            'Grand Hotel Vesuvio',
+            'Rubino Apartments',
+            'Hotel De Angelis',
+            'La Tonnarella',
         ];
         
         $addresses = [
-            'Via Emilio Gola 20, Milano, 20143',
-            'Via Terracina 380, Napoli, 80125',
+            'Via Salvatore Quasimodo 7, Amalfi, 84011',
+            'Viale Pasitea 180, Positano, 84017',
             'Via Giulia 201, Roma, 00186',
             'Via Michelangelo Tonti 28, Rimini, 47921',
             'Viale Rodi 5, Rimini, 47921',
@@ -38,13 +52,28 @@ class HabitationSeeder extends Seeder
             'Via Ignazio Buttitta 32,  San Vito lo capo, 91010',
             'Piazzetta Costa Smeralda, Porto Cervo, 07021',
             'Via Nazionale 10, Firenze, 50123',
-            'Via Manfredo Camperio 9, Milano, 20123',
+            'Via Giambattista Lama 9, Furore, 84010',
+            'Viale Isonzo 2, Cesenatico, 47042',
+            'Via Luigi Pirandello 15, Cervia, 48015',
+            'Via Pitagora 5, Cesenatico, 47042',
+            'Via C. Vincenzi 36, San Mauro A Mare, 47030',
+            'Viale Regina Elena 205, Rimini, 47924',
+            'Viale Trento Trieste 44, Riccione, 47838',
+            'Via III Traversa 26, Milano Marittima, 48015',
+            "Via Tolara di Sopra 50, Ozzano dell'Emilia, 40064",
+            'Via Carlo Jussi 174, Farneto, 40068',
+            'Salita Apotheca 1, Amalfi, 84011',
+            'Via Nastro Verde 7, Sorrento, 80067',
+            'Viale Alessandro Tassoni 34, Riccione, 47838',
+            'Viale Mameli 15, Riccione, 47838',
+            'Via Capo 31, Sorrento, 80067'
+
         ];
 
         
-        for($i = 0; $i < 10; $i++){
+        for($i = 0; $i < 24; $i++){
             $habitation = new Habitation();
-            $habitation->user_id = 1;
+            $habitation->user_id = $faker->numberBetween(1, 2);
             $habitation->habitation_type_id = $faker->numberBetween(1, 4);
             $habitation->title = $titles[$i];
             $habitation->slug = Str::slug($habitation->title, '-');

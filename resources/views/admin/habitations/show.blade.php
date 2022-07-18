@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{$habitation->title}}
+@endsection
+
 @section('content')
 
 @include('includes.messages.success')
@@ -32,10 +36,10 @@
                     <img src="{{asset('img/icons/types/'. $habitation->habitationType->icon)}}" height="30px" width="30px" alt="">
                 </td>
 
-                @if ($habitation->visible == '0')
+                @if ($habitation->visible == '1')
                     <td>Pubblico</td>
                 @endif
-                @if ($habitation->visible == '1')
+                @if ($habitation->visible == '0')
                     <td>Nascosto</td>
                 @endif
 
@@ -66,9 +70,9 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                    <div class="modal-body">
-                                </div>
-                                <div class="modal-footer d-flex flex-column align-items-start">
+                                    {{-- <div class="modal-body">
+                                </div> --}}
+                                <div class="modal-footer d-flex flex-column align-items-start pt-0">
                                     <a href="{{ route('admin.sponsor', $habitation)}}" class="gray-20-hover btn shadow-none">
                                         Sponsorizza
                                     </a>
@@ -117,7 +121,7 @@
 
             <div class="my-5 width-media-query media-query-self-start">
                 <h2 class="mt-24 mb-24 width-media-query media-query-self-start">Servizi disponibili</h2>
-                <div class="d-flex  width-media-query flex-wrap media-query-self-start align-items-center">
+                <div class="d-flex flex-column width-media-query flex-wrap media-query-self-start">
                     @forelse ($habitation->services as $service)
                         <div class="d-flex align-items-center mr-32 mb-32 media-query-self-start">
                             <img src="{{asset('img/icons/services/'. $service->icon)}}" class="mr-2 media-query-self-start"  alt="">
@@ -164,20 +168,20 @@
 
 <div class="containerDue margin-media-query-mail">
 
-    <h2 class="mt-24 mb-24">Posta</h2>
-
+    
     @if ($habitation->messages->count())
+        <h2 class="mt-24 mb-24 text-center">Posta</h2>
 
-         <div class="mt-4">
-             <table class="table">
-                 <thead class="thead-dark">
-                     <tr>
-                     <th scope="col">Nome mittente</th>
-                     <th scope="col">Email mittente</th>
-                     <th scope="col">Testo</th>
-                     </tr>
-                 </thead>
-                 <tbody>
+        <div class="mt-4">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">Nome mittente</th>
+                    <th scope="col">Email mittente</th>
+                    <th scope="col">Testo</th>
+                    </tr>
+                </thead>
+                <tbody>
 
                      @foreach ($habitation->messages as $message)
                      <tr>

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-
+@section('title')
+    Dashboard
+@endsection
 
 @section('content')
 
@@ -87,7 +89,7 @@
                                 <td class="habPrice">{{$habitation->price}} € /notte</td>
 
                                 <td class="text-center">
-                                    <a class="btn btn_green" href="{{route('admin.habitations.show', $habitation->id)}}">Vedi</a>
+                                    <a class="btn btn_green shadow-none" href="{{route('admin.habitations.show', $habitation->id)}}">Vedi</a>
                                 </td>
                             </tr>
 

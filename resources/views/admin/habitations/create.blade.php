@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')
+    Crea Annuncio
+@endsection
 
 @section('content')
 <div class="containerDue">

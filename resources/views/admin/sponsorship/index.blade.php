@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Sponsorizzazione
+@endsection
+
 @section('content')
 
 <div class="container h-100">

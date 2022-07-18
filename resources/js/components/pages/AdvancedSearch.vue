@@ -1,8 +1,18 @@
 <template>
     <div>
         <!-- NOTE INPUT PER RICERCA AVANZATA -->
-        <div class="w-100 search-gradient py-5">
+        <div class="w-100 search-gradient py-5 position-relative">
+
+            <p class="position-absolute" v-show="!loading && habitations.length == 1" style="top: 0.5em; right: 0.5em;">
+                La tua ricerca ha prodotto <strong>{{habitations.length}}</strong> risultato
+            </p>
+
+            <p class="position-absolute" v-show="!loading && habitations.length > 1" style="top: 0.5em; right: 0.5em;">
+                La tua ricerca ha prodotto <strong>{{habitations.length}}</strong> risultati
+            </p>
+
             <div class="searchContainer mx-auto py-4">
+
 
                 <h2 class="text-center">Cerca l'alloggio perfetto per te!</h2>
 

@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.app')à
+
+@section('title')
+    Modifica Annuncio
+@endsection
 
 @include('includes.validation.errors')
 
@@ -184,7 +188,7 @@
 
 
         <div class="text-center py-5">
-            <button class="btn color_button w-25 b-rounded-3 p-2" style="margin: 10px auto;" type="submit" src="{{route('admin.habitations.update', $habitation->id)}}">
+            <button class="btn color_button w-25 b-rounded-3 p-2 shadow-none" style="margin: 10px auto;" type="submit" src="{{route('admin.habitations.update', $habitation->id)}}">
                 Modifica
             </button>
         </div>

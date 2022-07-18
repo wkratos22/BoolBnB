@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Accedi
+@endsection
+
 @section('content')
 <div class="container d-flex justify-content-center align-items-start align-items-sm-center my-4 my-sm-0 h-75">
     <div class="row justify-content-center w-100">

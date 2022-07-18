@@ -39,6 +39,7 @@ export default {
     font-size: 8em;
     font-weight: bolder;
     background: -webkit-linear-gradient(200deg, rgba(93,232,205,0.8) 0%, rgba(27,200,166) 50%, rgba(21,157,130) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

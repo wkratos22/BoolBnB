@@ -16,10 +16,10 @@ class MessageSeeder extends Seeder
     {
         for($i = 0; $i < 10; $i++){
             $message = new Message();
-            $message->habitation_id = $faker->numberBetween(1,10);
+            $message->habitation_id = $faker->numberBetween(1,20);
             $message->name = $faker->name();
             $message->email_sender = $faker->email();
-            $message->text_message = $faker->paragraph(4);
+            $message->text_message = $faker->paragraph(2);
             $message->save();
         }
     }

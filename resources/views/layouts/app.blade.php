@@ -11,7 +11,9 @@
     {{-- Favicon --}}
     <link rel="shortcut icon" href="{{ asset('home-fav.ico') }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+   
+
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -53,11 +55,11 @@
                             <!-- Authentication Links -->
                             @guest
                             <li class="nav-item pl-3 pl-lg-0">
-                                <a class="nav-link c_navbar"  href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link c_navbar"  href="{{ route('login') }}">{{ __('Accedi') }}</a>
                             </li>
                             @if (Route::has('register'))
                             <li class="nav-item pl-3 pl-lg-0">
-                                <a class="nav-link c_navbar" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link c_navbar" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                             </li>
                             @endif
                             @else
