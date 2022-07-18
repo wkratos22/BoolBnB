@@ -78,7 +78,7 @@
                             justify-content-center
                             col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <button
-                        class="btn shadow-none mr-16"
+                        class="btn shadow-none"
                         type="button"
                         id="dropdownMenuButton"
                         data-toggle="dropdown"
@@ -182,29 +182,6 @@ nav {
       0deg, rgba(65,154,136,1) 0%, rgba(20,102,83,1) 100%
     );
   }
-
-  // .btn1:hover {
-  //   background-color: rgba(35, 200, 218, 0.563);
-  //   // border: 1px solid white;
-  // }
-
-  // .btn2:hover {
-  //   background-color: rgba(96, 214, 227, 0.398);
-  //   // border: 1px solid rgb(0, 0, 0);
-  // }
-
-  // .btn-annunci {
-  //   font-weight: bold;
-  //   border-radius: 20px;
-  // }
-
-//   @media screen and (min-width: 0px) and (max-width: 1200px) {
-//     .logo {
-//       width: 80px !important;
-//     }
-//   }
-
-
 
 @media screen and (max-width: 2766px) {
     .logo {
