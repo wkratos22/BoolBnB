@@ -25,7 +25,7 @@ export default {
 
 .containers{
     width: 100%;
-    
+
 }
 .box{
     height: 300px;
@@ -36,9 +36,10 @@ export default {
     background-size: cover;
     background-position: left; */
 
-    }
+}
+
 .left{
-    width: 50%; 
+    width: 50%;
 }
 .left h3{
     margin-left: 5em;
@@ -49,12 +50,50 @@ export default {
     width: 40%;
 }
 .right h3{
-    color: rgb(182, 182, 26) 
+    color: rgb(182, 182, 26)
 }
 .right h5{
     color: black
 }
 
+@media screen and (max-width: 640px) {
+    .box{
+    height: 300px;
+    background: rgb(3,135,237);
+    background: linear-gradient(0deg, rgba(3,135,237,1) 0%, rgba(27,71,102,1) 100%);
+    display: none!important;
+    }
+}
 
-    
+
+@media screen and (max-width: 560px) {
+    .box{
+    height: 300px;
+    background: rgb(3,135,237);
+    background: linear-gradient(0deg, rgba(3,135,237,1) 0%, rgba(27,71,102,1) 100%);
+    display: none!important;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .box{
+    height: 300px;
+    background: rgb(3,135,237);
+    background: linear-gradient(0deg, rgba(3,135,237,1) 0%, rgba(27,71,102,1) 100%);
+    display: none!important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .box{
+    height: 300px;
+    background: rgb(3,135,237);
+    background: linear-gradient(0deg, rgba(3,135,237,1) 0%, rgba(27,71,102,1) 100%);
+    display: none!important;
+    }
+}
+
+
+
 </style>
