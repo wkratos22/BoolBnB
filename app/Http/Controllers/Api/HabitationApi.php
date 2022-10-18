@@ -21,7 +21,7 @@ class HabitationApi extends Controller
      */
     public function index()
     {
-        // Zero sponsor
+        // NOTE Annunci che non hanno avuto alcuna sponsorizzazione
         $habitations= Habitation::orderBy('updated_at', 'DESC')->where('visible', 1)->with('services', 'tags', 'habitationType', 'images', 'sponsorships')->get();
 
         $habsNoSponsor = [];
@@ -33,7 +33,7 @@ class HabitationApi extends Controller
             }
         }
 
-        // Sponsor scaduti
+        // NOTE Sponsorizzazioni scadute
         $currentDate = Carbon::now('Europe/Rome')->toDateTimeString();
 
         $expiredSponsorHabs = Habitation::whereHas('sponsorships', function ($query) use ($currentDate){
@@ -44,6 +44,7 @@ class HabitationApi extends Controller
                 array_push($habsNoSponsor, $expiredSponsorHab);
             }   
         
+        // NOTE array con tutti gli annunci non soggetti a sponsorizzazione
         return response()->json(compact('habsNoSponsor'));
     }
 
@@ -51,6 +52,7 @@ class HabitationApi extends Controller
     {
         $currentDate = Carbon::now('Europe/Rome')->toDateTimeString();
 
+        // NOTE annunci attualmente soggetti a sponsorizzazione
         $sponsoredHabs = Habitation::whereHas('sponsorships', function ($query) use ($currentDate){
             $query->where('end_date', '>=', $currentDate);
            })->where('visible', 1)->with('sponsorships', 'images')->get();
@@ -132,7 +134,7 @@ class HabitationApi extends Controller
         return response()->json(compact('services'));
     }
 
-    // metodo php per calcolare la distanza tra due diversi punti (definiti tramite lat e long)
+    // NOTE metodo php per calcolare la distanza tra due diversi punti (definiti tramite lat e long)
     public function haversineGreatCircleDistance(
         $latitudeFrom,
         $longitudeFrom,

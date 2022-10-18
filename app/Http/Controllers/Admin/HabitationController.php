@@ -32,17 +32,17 @@ class HabitationController extends Controller
 
 
 
-            // Tutti gli annunci pubblicati
+            // NOTE Tutti gli annunci pubblicati
             $habitations = $user_hab->where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
 
-            // Annunci sponsorizzati attualmente
+            // NOTE Annunci sponsorizzati attualmente
             $currentDate = Carbon::now('Europe/Rome')->toDateTimeString();
 
             $sponsoredHabs = Habitation::whereHas('sponsorships', function ($query) use ($currentDate){
                 $query->where('end_date', '>=', $currentDate);
                })->where('user_id', Auth::user()->id)->get();
 
-            // Annunci visibili
+            // NOTE Annunci visibili
             $visibleHabs = $user_hab->where('user_id', Auth::user()->id)->where('visible', 1)->get();
 
             return view('admin.habitations.index', compact('habitations', 'sponsoredHabs', 'visibleHabs'));
@@ -72,6 +72,7 @@ class HabitationController extends Controller
      */
     public function store(Request $request)
     {
+        // NOTE validazione dei dati inseriti
         $validator = $request->validate(
             [
                 'title'  => 'required|max:100|string|unique:habitations',
@@ -139,7 +140,7 @@ class HabitationController extends Controller
 
         $new_habitation = new Habitation();
 
-         // recupero di lat e long
+         // NOTE recupero di lat e long
          $apiKey = "oXUZAxmXyTAodB2lLDjVxMGJQhcbFGUl";
          $address = $data['address'];
          $address = urlencode($address);
@@ -147,7 +148,7 @@ class HabitationController extends Controller
          $response_json = file_get_contents($url);
          $response = json_decode($response_json, true);
 
-         // inserimento lat e lot nel rispettivo record
+         // NOTE inserimento lat e lot nel rispettivo record
          $new_habitation->latitude = $response['results'][0]['position']['lat'];
          $new_habitation->longitude = $response['results'][0]['position']['lon'];
 
@@ -160,14 +161,16 @@ class HabitationController extends Controller
         $new_habitation->save();
 
 
+        // NOTE se viene caricata una o più immagini
         if (array_key_exists('image', $data)) {
             $files = $data['image'];
 
             foreach ($files as $file) {
 
-
+                // NOTE nuova istanza dell'entità
                 $new_image = new Image();
 
+                // NOTE vengono inserite nella cartella "storage"
                 $image_url = Storage::put('habitations_images', $file);
 
                 $new_image->image_url = $image_url;
@@ -218,6 +221,7 @@ class HabitationController extends Controller
         $tags_hab = Tag::all();
         $service_hab = Service::all();
 
+        // NOTE recuperare tutti i tags e i servizi associati all'annuncio -> array associativo che poi viene trasformato in array ordinario
         $habitation_tags_id = $habitation->tags->pluck('id')->toArray();
         $habitation_services_id = $habitation->services->pluck('id')->toArray();
 

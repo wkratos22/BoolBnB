@@ -49,16 +49,7 @@ class ContactMessageController extends Controller
         $message->text_message = $data['message'];
 
         $message->save();
-
-        // $user = User::where('id', $data['idUser'])->get();
-
-        // var_dump($user);
-
-        // if($request->idUser == $user['id']){
-        //     $mail = new ContactMail( $data );
-        //     Mail::to($user->email)->send($mail);
-        // }
-
+        
         return response()->json( $data);
     }
 }

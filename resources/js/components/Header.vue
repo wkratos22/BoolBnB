@@ -86,28 +86,28 @@
                         aria-expanded="false">
                         <img
                         v-if="$route.path == '/'"
-                        src="../../../public/img/icons/user.png"
+                        src="/img/icons/user.png"
                         alt=""/>
 
-                        <img v-else src="../../../public/img/icons/user-black.png" alt="" />
+                        <img v-else src="/img/icons/user-black.png" alt="" />
                     </button>
                     <div
                         class="dropdown-menu my-drop-menu "
                         aria-labelledby="dropdownMenuButton">
-                        <a
-                            class="dropdown-item nav-link m-1 btn font-size-1"
+                        <!-- <a
+                            class="dropdown-item nav-link btn rounded-0 font-size-1"
                             :class="$route.path == '/' ? 'text-white btn1' : 'text-dark btn2'"
                             href="admin/habitations">
                             Dashboard
-                        </a>
+                        </a> -->
                         <a
-                            class="dropdown-item nav-link m-1 btn font-size-1"
+                            class="dropdown-item nav-link btn rounded-0 font-size-1"
                             :class="$route.path == '/' ? 'text-white btn1' : 'text-dark btn2'"
                             href="/login">
                             Accedi
                         </a>
                         <a
-                            class="dropdown-item nav-link m-1 btn font-size-1"
+                            class="dropdown-item nav-link btn rounded-0 font-size-1"
                             :class="$route.path == '/' ? 'text-white btn1' : 'text-dark btn2'"
                             href="/register">
                             Registrati

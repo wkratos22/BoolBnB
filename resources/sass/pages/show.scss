@@ -197,28 +197,16 @@
 
     .modal-custom {
         position: fixed;
-        top: 250px!important;
-        left: 585px!important;
-        // right: 0;
+        top: 30%;
+        left: 38%;
         z-index: 1050;
         display: none;
-        /* width: 100%; */
         height: 100%;
         overflow: hidden;
         outline: 0;
     }
 
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
-    }
+
 
     .width-media-query{
         width: 75%;
@@ -243,31 +231,6 @@
     .img-carousel-w-h{
         height: 580px;
         width: 900px;
-    }
-
-    .modal-custom {
-        position: fixed;
-        top: 250px!important;
-        left: 500px!important;
-        // right: 0;
-        z-index: 1050;
-        display: none;
-        /* width: 100%; */
-        height: 100%;
-        overflow: hidden;
-        outline: 0;
-    }
-
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
     }
 
     .margin-media-query-mail{
@@ -306,30 +269,10 @@
         align-items: center;
     }
 
-    .modal-custom {
-        position: fixed;
-        top: 250px!important;
-        left: 480px!important;
-        // right: 0;
-        z-index: 1050;
-        display: none;
-        /* width: 100%; */
-        height: 100%;
-        overflow: hidden;
-        outline: 0;
-    }
+    // .modal-custom {
+    // }
 
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
-    }
+
 
     .margin-media-query-description{
         margin-top: 100px;
@@ -379,31 +322,6 @@
         width: 840px;
     }
 
-    .modal-custom {
-        position: fixed;
-        top: 250px!important;
-        left: 390px!important;
-        // right: 0;
-        z-index: 1050;
-        display: none;
-        /* width: 100%; */
-        height: 100%;
-        overflow: hidden;
-        outline: 0;
-    }
-
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
-    }
-
     .media-query-self-start{
         justify-self: start;
     }
@@ -439,30 +357,20 @@
         width: 780px;
     }
 
-    .modal-custom {
-        position: fixed;
-        top: 250px!important;
-        left: 370px!important;
-        // right: 0;
-        z-index: 1050;
-        display: none;
-        /* width: 100%; */
-        height: 100%;
-        overflow: hidden;
-        outline: 0;
-    }
+    // .modal-custom {
+    //     position: fixed;
+    //     top: 250px!important;
+    //     left: 370px!important;
+    //     // right: 0;
+    //     z-index: 1050;
+    //     display: none;
+    //     /* width: 100%; */
+    //     height: 100%;
+    //     overflow: hidden;
+    //     outline: 0;
+    // }
 
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
-    }
+
 
     .media-query-self-start{
         align-self: start;
@@ -508,30 +416,20 @@
         width: 720px;
     }
 
-    .modal-custom {
-        position: fixed;
-        top: 250px!important;
-        left: 320px!important;
-        // right: 0;
-        z-index: 1050;
-        display: none;
-        /* width: 100%; */
-        height: 100%;
-        overflow: hidden;
-        outline: 0;
-    }
+    // .modal-custom {
+    //     position: fixed;
+    //     top: 250px!important;
+    //     left: 320px!important;
+    //     // right: 0;
+    //     z-index: 1050;
+    //     display: none;
+    //     /* width: 100%; */
+    //     height: 100%;
+    //     overflow: hidden;
+    //     outline: 0;
+    // }
 
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
-    }
+
 
     .margin-26{
         margin-right: 26px;
@@ -572,30 +470,20 @@
         width: 640px;
     }
 
-    .modal-custom {
-        position: fixed;
-        top: 250px!important;
-        left: 290px!important;
-        // right: 0;
-        z-index: 1050;
-        display: none;
-        /* width: 100%; */
-        height: 100%;
-        overflow: hidden;
-        outline: 0;
-    }
+    // .modal-custom {
+    //     position: fixed;
+    //     top: 250px!important;
+    //     left: 290px!important;
+    //     // right: 0;
+    //     z-index: 1050;
+    //     display: none;
+    //     /* width: 100%; */
+    //     height: 100%;
+    //     overflow: hidden;
+    //     outline: 0;
+    // }
 
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
-    }
+
 
     .margin-26{
         margin-right: 26px;
@@ -636,30 +524,20 @@
     }
 
 
-    .modal-custom {
-        position: fixed;
-        top: 250px!important;
-        left: 280px!important;
-        // right: 0;
-        z-index: 1050;
-        display: none;
-        /* width: 100%; */
-        height: 100%;
-        overflow: hidden;
-        outline: 0;
-    }
+    // .modal-custom {
+    //     position: fixed;
+    //     top: 250px!important;
+    //     left: 280px!important;
+    //     // right: 0;
+    //     z-index: 1050;
+    //     display: none;
+    //     /* width: 100%; */
+    //     height: 100%;
+    //     overflow: hidden;
+    //     outline: 0;
+    // }
 
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
-    }
+
 
     .margin-26{
         margin-right: 26px;
@@ -706,30 +584,20 @@
         margin: 26px;
     }
 
-    .modal-custom {
-        position: fixed;
-        top: 250px!important;
-        left: 220px!important;
-        // right: 0;
-        z-index: 1050;
-        display: none;
-        /* width: 100%; */
-        height: 100%;
-        overflow: hidden;
-        outline: 0;
-    }
+    // .modal-custom {
+    //     position: fixed;
+    //     top: 250px!important;
+    //     left: 220px!important;
+    //     // right: 0;
+    //     z-index: 1050;
+    //     display: none;
+    //     /* width: 100%; */
+    //     height: 100%;
+    //     overflow: hidden;
+    //     outline: 0;
+    // }
 
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
-    }
+
 
     .margin-26{
         margin-right: 26px;
@@ -752,17 +620,7 @@
     }
 
 
-    .modal-content-custom {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        pointer-events: auto;
-        background-color: white;
-        background-clip: padding-box;
-        border-radius: 5%;
-        outline: 0;
-    }
+
 
     .margin-26{
         margin-right: 26px;

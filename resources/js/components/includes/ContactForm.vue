@@ -9,8 +9,9 @@
 
         <form class="w-100" enctype="multipart/form-data">
 
-            <div class="form-group">
-                <label for="name">* Nome</label>
+            <small class="form-text">Campo obbligatorio *</small>
+            <div class="form-group mt-2">
+                <label for="name">Nome *</label>
 
                 <input
                     type="text"
@@ -25,7 +26,7 @@
             </div>
                 <div class="form-group">
 
-                    <label for="email">* Email</label>
+                    <label for="email">Email *</label>
 
                     <input
                         type="email"
@@ -40,7 +41,7 @@
                 </div>
 
             <div class="form-group">
-                <label for="message">* Messaggio</label>
+                <label for="message">Messaggio *</label>
                 <textarea class="form-control shadow-none" v-model="form.message" id="message" rows="3" required></textarea>
 
                 <!-- testo che spiega l'errore -->
